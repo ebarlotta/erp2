@@ -35,7 +35,25 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Logo
+    | Google Fonts
+    |--------------------------------------------------------------------------
+    |
+    | Here you can allow or not the use of external google fonts. Disabling the
+    | google fonts may be useful if your admin panel internet access is
+    | restricted somehow.
+    |
+    | For detailed instructions you can look the google fonts section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
+    |
+    */
+
+    'google_fonts' => [
+        'allowed' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Panel Logo
     |--------------------------------------------------------------------------
     |
     | Here you can change the logo of your admin panel.
@@ -45,15 +63,63 @@ return [
     |
     */
 
-    'logo' => '<div style="display:inline-block"><b>BarBer</b><br><p style="font-size: 8px;">DESARROLLOS</p></div>',
-    // 'logo' => '<div style="display:inline-block"><b>BarBer</b><br><p style="font-size: 8px;">DESARROLLOS</p></div>',
-    // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img' => 'images/BarBer.png',
-    // session('empresa_id');
+    'logo' => '<b>Admin</b>LTE',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_alt' => 'Admin Logo',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Logo
+    |--------------------------------------------------------------------------
+    |
+    | Here you can setup an alternative logo to use on your login and register
+    | screens. When disabled, the admin panel logo will be used instead.
+    |
+    | For detailed instructions you can look the auth logo section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
+    |
+    */
+
+    'auth_logo' => [
+        'enabled' => false,
+        'img' => [
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'alt' => 'Auth Logo',
+            'class' => '',
+            'width' => 50,
+            'height' => 50,
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Preloader Animation
+    |--------------------------------------------------------------------------
+    |
+    | Here you can change the preloader animation configuration. Currently, two
+    | modes are supported: 'fullscreen' for a fullscreen preloader animation
+    | and 'cwrapper' to attach the preloader animation into the content-wrapper
+    | element and avoid overlapping it with the sidebars and the top navbar.
+    |
+    | For detailed instructions you can look the preloader section here:
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
+    |
+    */
+
+    'preloader' => [
+        'enabled' => true,
+        'mode' => 'fullscreen',
+        'img' => [
+            'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+            'alt' => 'AdminLTE Preloader Image',
+            'effect' => 'animation__shake',
+            'width' => 60,
+            'height' => 60,
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -191,13 +257,13 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
-    'profile_url' => 'user/profile',
+    'profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -229,258 +295,98 @@ return [
 
     'menu' => [
         // Navbar items:
-        // [
-        //     'type'         => 'navbar-search',
-        //     'text'         => 'search',
-        //     'topnav_right' => true,
-        // ],
-        // [
-        //     'type'         => 'fullscreen-widget',
-        //     'topnav_right' => true,
-        // ],
+        [
+            'type' => 'navbar-search',
+            'text' => 'search',
+            'topnav_right' => true,
+        ],
+        [
+            'type' => 'fullscreen-widget',
+            'topnav_right' => true,
+        ],
 
         // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
+        [
+            'type' => 'sidebar-menu-search',
+            'text' => 'search',
+        ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
-        // [
-        //     'text'        => 'Las paginaspages',
-        //     'url'         => '#',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 6,
-        //     'label_color' => 'success',
-        // ],
-        
+        [
+            'text' => 'pages',
+            'url' => 'admin/pages',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 4,
+            'label_color' => 'success',
+        ],
         ['header' => 'account_settings'],
-
         [
-            'text' => 'Administración',
-            'url'  => 'tags',
-            'icon' => 'fas fa-fw fa-building',
-            'submenu' => [
-                [
-                    'text' => 'Usuarios x Empresa',
-                    'url'  => 'empresausuarios',
-                    'icon' => 'fas fa-fw fa-users',
-                ],
-                [
-                    'text' => 'Usuarios x Módulo',
-                    'url'  => 'modulousuarios',
-                    'icon' => 'fas fa-fw fa-user-cog',
-                ],
-                [
-                    'text' => 'Módulos x Empresa',
-                    'url'  => 'empresamodulos',
-                    'icon' => 'fas fa-fw fa-chart-pie',
-                ],
-                [
-                    'text' => 'Gestión de empresas',
-                    'url'  => 'empresagestion',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Gestión de Módulos',
-                    'url'  => 'gestionmodulos',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Gestión de Roles',
-                    'url'  => 'roles',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Gestión de Certificados',
-                    'url'  => 'certificados',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-            ],
+            'text' => 'profile',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Ajustes',
-            'url'  => 'tags',
-            'icon' => 'fas fa-fw fa-building',
-            'submenu' => [
-                [
-                    'text' => 'Etiquetas',
-                    'url'  => 'tags',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Unidades',
-                    'url'  => 'unidades',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Categorías de Productos',
-                    'url'  => 'categoriaproducto',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Categorías Profesionales',
-                    'url'  => 'categoriaprofesional',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Estados',
-                    'url'  => 'estados',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Areas',
-                    'url'  => 'areas',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Cuentas',
-                    'url'  => 'cuentas',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Empleados',
-                    'url'  => 'empleados',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Proveedores',
-                    'url'  => 'proveedores',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Haberes',
-                    'url'  => 'haberes',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-            ],
+            'text' => 'change_password',
+            'url' => 'admin/settings',
+            'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'Productos',
-            'icon' => 'fas fa-fw fa-building',
+            'text' => 'multilevel',
+            'icon' => 'fas fa-fw fa-share',
             'submenu' => [
-                        
+                [
+                    'text' => 'level_one',
+                    'url' => '#',
+                ],
+                [
+                    'text' => 'level_one',
+                    'url' => '#',
+                    'submenu' => [
                         [
-                            'text' => 'Agregar Etiqueta',
-                            'url'  => 'producto/tag',
+                            'text' => 'level_two',
+                            'url' => '#',
                         ],
                         [
-                            'text' => 'Agregar Producto',
-                            'url'  => 'producto/create',
-                        ],
-                        [
-                            'text' => 'Gestión de Producto',
-                            'url'  => 'productos',
-                        ],
-                        [
-                            'text' => 'Modificar / Eliminar',
-                            'url'  => 'producto',
-                        ],
-                        [
-                            'text' => 'Registrar Bajas',
-                            'url'  => 'productobajas',
-                        ],   
-                        [
-                            'text' => 'Carrito Compras',
-                            'icon' => 'fas fa-fw fa-building',
+                            'text' => 'level_two',
+                            'url' => '#',
                             'submenu' => [
                                 [
-                                    'text' => 'Vista de usuario',
-                                    'url'  => 'carts',
+                                    'text' => 'level_three',
+                                    'url' => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url' => '#',
                                 ],
                             ],
-                        ], 
-                    ],
-        ],
-        [
-            'text' => 'Informes',
-            'icon' => 'fas fa-fw fa-building',
-            'submenu' => [
-                        [
-                            'text' => 'Permisos a Informes',
-                            'url'  => 'tablas',
-                        ],
-                        [
-                            'text' => 'Visualizar Informes',
-                            'url'  => 'tablas-ver',
-                        ],
-                        [
-                            'text' => 'Editar/Eliminar Informes',
-                            'url'  => 'tablas-edit',
-                        ],
-                        [
-                            'text' => 'Diseñar Informes',
-                            'url'  => 'tablas-disenar',
                         ],
                     ],
                 ],
-        [
-            'text' => 'VOLVER',
-            'url'  => '/',
-            'icon' => 'fas fa-fw fa-building',
+                [
+                    'text' => 'level_one',
+                    'url' => '#',
+                ],
+            ],
         ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
-        // ['header' => 'labels'],
-        // [
-        //     'text'       => 'important',
-        //     'icon_color' => 'red',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url'        => '#',
-        // ],
-        // [
-        //     'text'       => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url'        => '#',
-        // ],
+        ['header' => 'labels'],
+        [
+            'text' => 'important',
+            'icon_color' => 'red',
+            'url' => '#',
+        ],
+        [
+            'text' => 'warning',
+            'icon_color' => 'yellow',
+            'url' => '#',
+        ],
+        [
+            'text' => 'information',
+            'icon_color' => 'cyan',
+            'url' => '#',
+        ],
     ],
 
     /*
@@ -635,5 +541,5 @@ return [
     |
     */
 
-    'livewire' => true,
+    'livewire' => false,
 ];
