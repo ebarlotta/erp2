@@ -26,6 +26,7 @@ class EmpresaUsuarioFactory extends Factory
         return [
             'empresa_id'=>Empresa::inRandomOrder()->value('id'),
             'user_id'=>User::inRandomOrder()->value('id'),
+            'rol_id'=>User::inRandomOrder()->value('id'),
         ];
     }
 }

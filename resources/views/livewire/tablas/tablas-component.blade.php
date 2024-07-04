@@ -5,7 +5,7 @@
             <!-- //Comienza en submenu de encabezado -->
 
             <!-- Navigation Links -->
-            @livewire('submenu')
+            {{-- @livewire('submenu') --}}
         </div>
 
     </x-slot>

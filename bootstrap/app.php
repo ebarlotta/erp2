@@ -11,6 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
+    ->withRouting(
+        web: __DIR__.'/../routes/admin.php',
+    )
     ->withMiddleware(function (Middleware $middleware) {
         //
     })

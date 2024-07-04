@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Schema;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +32,14 @@ class DatabaseSeeder extends Seeder
         \App\Models\Proveedor::factory(100)->create();
         \App\Models\Categoriaprofesional::factory(10)->create();
         \App\Models\Concepto::factory(10)->create();
-        \App\Models\EmpresaUsuario::factory(10)->create();
+
+        // Schema::dropIfExists('roles');
+        // DB::raw('DELETE * FROM roles');
+        // DB::table('roles')->insert(['name' => 'Administrador','guard_name' => 'web',]);
+        // DB::table('roles')->insert(['name' => 'Usuario','guard_name' => 'web',]);
+
+        // Schema::dropIfExists('empresa_usuarios');        
+        // \App\Models\EmpresaUsuario::factory(10)->create();
         // \App\Models\Modulo::factory(10)->create();
         // DB::table('modulos')->insert(['name' => 'Areas','pagina' => 'areas','imagen' => 'areas.jpg','leyenda' => '',]);
         // DB::table('modulos')->insert(['name' => 'Clientes','pagina' => 'clientes','imagen' => 'clientes.jpg','leyenda' => '',]);
