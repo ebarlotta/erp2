@@ -29,6 +29,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar',
+        'fb_id',
     ];
 
     /**
@@ -63,5 +65,30 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //Relación uno a muchos
+    public function empleados(){
+        return $this->HasMany(Empleado::class);
+    }
+
+    public function comprobantes(){
+        return $this->HasMany(Comprobante::class);
+    }
+
+    public function empresausuarios(){
+        return $this->HasMany(EmpresaUsuario::class);
+    }
+
+    // public function empresausuarios_empresa(){
+    //     return $this->hasManyThrough(EmpresaUsuario::class, Empresa::class,'user_id','empresa_id');
+    // }
+
+    public function tablausuarios(){
+        return $this->HasMany(TablaUsuario::class);
+    }
+
+    public function modulousuario(){
+        return $this->HasMany(ModuloUsuario::class);
     }
 }
