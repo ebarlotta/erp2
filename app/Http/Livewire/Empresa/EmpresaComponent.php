@@ -22,7 +22,6 @@ class EmpresaComponent extends Component
 
     public function render()
     {
-        // dd(auth()->user());
         $userid=auth()->user()->id;
         //$empresas_usuario = EmpresaUsuario::where('user_id',$userid)->get('id');
         //$this->empresas=Empresa::find($empresas_usuario);
@@ -60,10 +59,13 @@ class EmpresaComponent extends Component
             'data' => [15, 39, 22, 55, 16]
         ];
 // dd($this->compras);
+// dd(auth()->user());
+        return view('home');
         return view('livewire.empresa.empresa-component');
     }
 
     public function cargamodulos($id) {
+        // dd($id);
         // Establece el id de la empresaa modo global
         session(['empresa_id' => $id]);
         //sleep(2);

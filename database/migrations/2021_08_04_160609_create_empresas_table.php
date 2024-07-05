@@ -17,7 +17,8 @@ class CreateEmpresasTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('direccion');
-            $table->bigInteger('cuit');
+            // $table->bigInteger('cuit');
+            $table->string('cuit');
             $table->bigInteger('ib');
             $table->string('imagen');
             $table->integer('establecimiento')->default(0);

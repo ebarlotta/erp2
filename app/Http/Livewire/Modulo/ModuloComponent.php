@@ -6,6 +6,8 @@ use App\Models\EmpresaModulo;
 use App\Models\Modulo;
 use Livewire\Component;
 use App\Models\Roles;
+use App\Models\EmpresaUsuario;
+use Illuminate\Support\Facades\Auth;
 
 class ModuloComponent extends Component
 {
@@ -15,18 +17,32 @@ class ModuloComponent extends Component
     public function render()
     {
         if(session('empresa_id')) {
-        $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))->get('modulo_id');
-        //dd(session('empresa_id'));
-        //dd($empresa_modulos);
-
-        $rol = new Roles;
-        $rol->Permisos();
-
-        $this->modulos=Modulo::find($empresa_modulos);
-        return view('livewire.modulo.modulo-component',$this->modulos)->extends('layouts.adminlte')
-        ->section('content');
+            $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))->get('modulo_id');
+            //dd(session('empresa_id'));
+            //dd($empresa_modulos);
+            
+            $rol = new Roles;
+            $rol->Permisos();
+            
+            $this->modulos=Modulo::find($empresa_modulos);
+            return view('livewire.modulo.modulo-component',$this->modulos)->extends('layouts.adminlte')
+            ->section('content');
         } else {
-            return view('livewire.empresa.empresa-component');
+            // dd(Auth::user()->id);
+            $userid=auth()->user()->id;
+            $empresas= EmpresaUsuario::where('user_id',$userid)->get();
+            $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))->get('modulo_id');
+
+            $compras = [
+                'labels' => ['January', 'February', 'March', 'April', 'May'],
+                'data' => [65, 59, 80, 81, 56],
+            ];
+            //Ventas
+            $ventas = [
+                'labels' => ['November', 'February', 'March', 'April', 'May'],
+                'data' => [15, 39, 22, 55, 16]
+            ];
+            return view('livewire.empresa.empresa-component',compact('empresas','compras','ventas'));
         }
     }
 }

@@ -145,7 +145,7 @@ class Cart extends Component
             $detalle = new CartProduct(['user_id'=>Auth::user()->id,'productos_id'=>$id,'cantidad'=>1]);            
         }
         $detalle->save();
-        $this->user_cart=Auth::user()->id;
+        $this->user_cart=()->id;
 
         $this->show_carrito();
     }

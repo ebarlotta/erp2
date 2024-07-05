@@ -33,6 +33,7 @@ class CreateVentasTable extends Migration
             $table->boolean('Cerrado')->default(0);
             $table->double('Anio')->default(0);
             $table->integer('PasadoEnMes')->default(0);
+            $table->integer('orden')->default(0);
 
             $table->unsignedBigInteger('iva_id');
             $table->unsignedBigInteger('area_id');

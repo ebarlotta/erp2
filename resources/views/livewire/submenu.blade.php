@@ -1,9 +1,9 @@
 <div>
     <div class="content-center flex">
         <div class="sm:space-x-8 sm:-my-px sm:ml-10 sm:mx-auto justify-between ">
-            <x-jet-nav-link href="{{ route('areas') }}" :active="request()->routeIs('areas')">
+            {{-- <x-jet-nav-link href="{{ route('areas') }}" :active="request()->routeIs('areas')">
                 Tipos de Beneficios
-            </x-jet-nav-link>
+            </x-jet-nav-link> --}}
             {{-- <x-jet-nav-link href="{{ route('crudEstadosCiviles') }}" :active="request()->routeIs('crudEstadosCiviles')">
                 Estados Civiles
             </x-jet-nav-link>

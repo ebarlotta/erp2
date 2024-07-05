@@ -18,7 +18,8 @@ class CreateProveedorsTable extends Migration
             
             $table->string('name');
             $table->string('direccion');
-            $table->bigInteger('cuit');
+            // $table->bigInteger('cuit');
+            $table->string('cuit');
             $table->bigInteger('telefono');
             $table->string('email');
             $table->unsignedBigInteger('iva_id')->default(1);

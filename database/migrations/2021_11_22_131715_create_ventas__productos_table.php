@@ -20,7 +20,7 @@ class CreateVentasProductosTable extends Migration
             $table->double('precio')->default(0);
             $table->double('cantidad')->default(0);
             $table->unsignedBigInteger('user_id');
-            $table->integer('orden');
+            $table->integer('orden')->default(0);
 
             $table->foreign('productos_id')->references('id')->on('productos');
             $table->foreign('ventas_id')->references('id')->on('ventas');

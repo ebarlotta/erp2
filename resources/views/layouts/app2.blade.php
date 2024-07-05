@@ -38,7 +38,7 @@
 </head>
 <body class="font-sans antialiased">
     
-    <x-jet-banner />
+    {{-- <x-jet-banner /> --}}
 
     <div class="bg-gray-100 h-full">
         {{-- @livewire('navigation-menu') --}}
