@@ -33,7 +33,8 @@ class EmpleadoComponent extends Component
         if($this->listaactivos) { $activos=1; } else { $activos='?'; }
 
         $sql = "Select * from empleados where empresa_id=1 and activo=1 and (name like '%ce%')";
-        $datos = DB::select(DB::raw($sql)); 
+        $datos = DB::select($sql); 
+        // $datos = DB::select(DB::raw($sql)); 
 
         return view('livewire.empleado.empleado-component',['datos'=> Empleado::where('empresa_id', $this->empresa_id)
             ->where('activo', $activos)

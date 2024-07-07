@@ -70,12 +70,12 @@ class CompraComponent extends Component
         $this->ivas = Iva::where('id','>',1)->get();
         $this->productos = Producto::where('empresa_id', $this->empresa_id)->orderBy('name','asc')->get();
         
-        return view('livewire.compra.compra-component');
+        return view('livewire.compra.compra-component')->extends('layouts.adminlte');
     }
     
-    public function render2() {
-        return view('livewire.compra.comprasimple');    
-    }
+    // public function render2() {
+    //     return view('livewire.compra.comprasimple');    
+    // }
 
     public function openModalDelete() { $this->ModalDelete = true;  }
     public function closeModalDelete() { $this->ModalDelete = false;  }
@@ -257,7 +257,9 @@ class CompraComponent extends Component
         // Extrae los distintos Detalles si es que los hay
         $sqlDetalle = "SELECT DISTINCT detalle " . substr($sql,9);
         // $sqlDetalle = substr($sqlDetalle,0,-37);
-        $this->detalles = DB::select(DB::raw($sqlDetalle));        
+        
+        $this->detalles = DB::select($sqlDetalle);        
+        // dd($this->detalles);
         //Dibuja el combo Detalles
         $this->combodetalle = '';
         foreach ($this->detalles as $detalle) {
@@ -271,12 +273,12 @@ class CompraComponent extends Component
         //Dibuja el filtro
         $Saldo=0;
         
-        // <div class=\"table-responsive-sm\">
+        // <div class=\"table-responsive-sm\">word-wrap: anywhere;
         $this->filtro="
-                <table class=\"table table-striped small\" style=\"font-size:12px; word-wrap: anywhere;\">
+                <table class=\"table table-striped small\" style=\"font-size:12px;\">
                 <thead>
                   <tr>
-                    <th scope=\"col\">Fecha</th>
+                    <th style=\"width: auto;\">Fecha</th>
                     <th class=\"p-0\" scope=\"col\">Comprobante</th>
                     <th class=\"p-0 col d-none d-sm-table-cell\" scope=\"col\">Proveedor</th>
                     <th class=\"p-0 col d-none d-sm-table-cell\" scope=\"col\">Detalle</th>
@@ -327,7 +329,7 @@ class CompraComponent extends Component
             
             $this->filtro=$this->filtro."
             <tr wire:click=\"gCargarRegistro(". $registro->id .")\">
-                <td class=\"p-0\">".substr($Fecha,0,6).substr($Fecha,8,2)."</td>
+                <td style=\"width: auto;\">".substr($Fecha,0,6).substr($Fecha,8,2)."</td>
                 <td class=\"p-0\">$registro->comprobante</td>
                 <td class=\"p-0 col d-none d-sm-table-cell text-left\">$Proveedor->name</td>
                 <td style=\"max-width:200px; width:200px; overflow: hidden;\" class=\"p-0 col d-none d-sm-table-cell text-left\">$registro->detalle</td>

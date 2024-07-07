@@ -19,7 +19,6 @@ class ModuloComponent extends Component
         if(session('empresa_id')) {
             $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))->get('modulo_id');
             //dd(session('empresa_id'));
-            //dd($empresa_modulos);
             
             $rol = new Roles;
             $rol->Permisos();
@@ -42,8 +41,12 @@ class ModuloComponent extends Component
                 'labels' => ['November', 'February', 'March', 'April', 'May'],
                 'data' => [15, 39, 22, 55, 16]
             ];
-            return view('livewire.empresa.empresa-component',compact('empresas','compras','ventas'));
+            return view('livewire.empresa.empresa-component',compact('empresas','compras','ventas'))->extends('layouts.adminlte');
         }
+    }
+    public function EnrutarModulo($NombreModulo) {
+        session(['moduloactivo' => $NombreModulo]);
+        return redirect(strtolower($NombreModulo));
     }
 }
 

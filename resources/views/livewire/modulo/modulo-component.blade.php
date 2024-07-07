@@ -5,17 +5,17 @@
             @foreach ($modulos as $modulo)
                 @if($modulo->name === "Compras")
                     {{-- <a href="{{ route('Comprassimple') }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini --}}
-                    <a href="{{ route('VentaSimple','Compras') }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini
+                    <a wire:click="AsignarModulo('{{ $modulo->name }}')" href="{{ route('VentaSimple','Compras') }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini
                     {{-- <a href="http://localhost:8000/VentaSimple?Compras" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini --}}
                     {{-- <a href="{{ base_path() . 'VentaSimple?Compras' }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini --}}
                 @else
                     @if($modulo->name === "Ventas")
                         {{-- <a href="{{ route(base_path()) }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini --}}
-                            <a href="{{ route('VentaSimple','Ventas') }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini
+                            <a wire:click="AsignarModulo('{{ $modulo->name }}')" href="{{ route('VentaSimple','Ventas') }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini
                                 {{-- <a href="{{ base_path() . 'VentaSimple?Ventas' }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">Mini --}}
                             {{-- {{ resource_path() }} --}}
                     @else
-                        <a href="{{ route($modulo->pagina) }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">
+                        <a wire:click="AsignarModulo('{{ $modulo->name }}')" href="{{ route($modulo->pagina) }}" class="flex mb-2 transform transition duration-500 hover:scale-105 shadow ">
                     @endif
                 @endif
                     <div style="width:20%">
@@ -38,7 +38,8 @@
         <?php echo session('nombre_empresa').'<br>'; ?>
         <div class="hidden sm:hidden md:block lg:block xl:block  mb-4 mr-2 text-left mt-6" style=" display: flex; flex-wrap: wrap; width: 100%; justify-content: center;">
             @foreach ($modulos as $modulo)
-            <a href="{{ route($modulo->pagina) }}" class="rounded-l-md flex mb-2 mt-2 transform transition duration-500 hover:scale-105" style="width:45%; margin-right: 5px; margin-left: 5px;">
+            <a wire:click="EnrutarModulo('{{ $modulo->name }}')" class="rounded-l-md flex mb-2 mt-2 transform transition duration-500 hover:scale-105" style="width:45%; margin-right: 5px; margin-left: 5px;">
+       {{-- <a href="{{ route($modulo->pagina) }}" class="rounded-l-md flex mb-2 mt-2 transform transition duration-500 hover:scale-105" style="width:45%; margin-right: 5px; margin-left: 5px;"> --}}
                 <div style="display:flex; box-shadow: 10px 5px 5px gray">
                 {{-- <div class="flex mb-2 mt-2 transform transition duration-500 hover:scale-105 shadow  " style="width:40%; margin-right: 5px; margin-left: 5px"> --}}
                     <div style="width:33%">

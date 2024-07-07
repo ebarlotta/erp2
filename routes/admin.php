@@ -27,12 +27,11 @@ use App\Http\Livewire\Cliente\ClienteComponent;
 use App\Http\Livewire\Empleado\EmpleadoComponent;
 use App\Http\Livewire\Proveedor\ProveedorComponent;
 use App\Http\Livewire\Empresa\EmpresaComponent;
-use App\Livewire\NuevoComponent;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-
-Route::get('modulos',NuevoComponent::class)->name('modulos');
-
+use App\Http\Livewire\Compra\CompraSimpleComponent;
+use App\Http\Livewire\Compra\CompraComponent;
+use App\Http\Livewire\Venta\VentaComponent;
+use App\Http\Controllers\ImprimirPDF;
 
 Route::get('/dasboard', function () {
     return view('empresas');
@@ -67,4 +66,15 @@ Route::get('clientes',ClienteComponent::class)->name('clientes');
 Route::get('empleados',EmpleadoComponent::class)->name('empleados');
 Route::get('proveedores',ProveedorComponent::class)->name('proveedores');
 
+Route::get('VentaSimple',CompraSimpleComponent::class)->name('VentaSimple');
+Route::get('compras',CompraComponent::class)->name('compras');
+Route::get('ventas',VentaComponent::class)->name('ventas');
 
+
+
+Route::get('pdf/deuda/{ddesde}/{dhasta}', [ImprimirPDF::class, 'DeudaPFD'])->name('DeudaPFD');
+Route::get('pdf/credito/{cdesde}/{chasta}', [ImprimirPDF::class, 'CreditoPFD'])->name('CreditoPFD');
+Route::get('pdf/ivacompras/{anio}/{mes}', [ImprimirPDF::class, 'IvaCompras'])->name('IvaCompras');
+Route::get('pdf/ivaventas/{anio}/{mes}', [ImprimirPDF::class, 'IvaVentas'])->name('IvaVentas');
+
+Route::get('pdf/recibos/{anio}/{mes}/{empleadoseleccionado}', [ImprimirPDF::class, 'Recibo'])->name('Recibos');

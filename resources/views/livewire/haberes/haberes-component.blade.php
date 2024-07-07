@@ -25,7 +25,7 @@
                 @include('livewire.haberes.eliminarconceptorecibo')
             @endif
             {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> --}}
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-1">
                 @if (session()->has('messageOk'))
                     <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3"
                         role="alert">
@@ -179,14 +179,16 @@
                                                         </tr>
                                                         @if ($Conceptos)
                                                             @foreach ($Conceptos as $Concepto)
-                                                                <tr wire:click="ModificarConceptoShow({{ $Concepto['id'] }} ,'{{ $Concepto['name']}}' ,{{ $Concepto['cantidad'] }})">
+                                                                {{-- <tr> --}}
+                                                                <tr wire:click="ModificarConceptoShowModal({{ $Concepto['id'] }} ,'{{ $Concepto['name']}}' ,{{ $Concepto['cantidad'] }})">
                                                                     <td>{{ substr(str_repeat(0, 4).$Concepto['orden'], - 4); }} {{ $Concepto['name'] }}</td>
                                                                     <td align="center">{{ '   '.$Concepto['cantidad'] }}</td>
                                                                     <td align="right">{{ number_format($Concepto['Rem'], 2, ',', '.') }}</td>
                                                                     <td align="right">{{ number_format($Concepto['NoRem'], 2, ',', '.') }}</td>
                                                                     <td align="right">{{ number_format($Concepto['Descuento'], 2, ',', '.') }}</td>
                                                                     <td colspan="2" align="center">
-                                                                        <a href="#" class="rounded-md bg-red-300 px-6 mx-2 py-1 mt-3" wire:click="EliminarConceptoReciboShow({{ $Concepto['id'] }} ,'{{ $Concepto['name']}}' ,{{ $Concepto['cantidad'] }})">Eliminar</a>
+                                                                        {{-- <a href="#" class="rounded-md bg-blue-300 px-6 mx-2 py-1 mt-3" wire:click="ModificarConceptoShowModal({{ $Concepto['id'] }} ,'{{ $Concepto['name']}}' ,{{ $Concepto['cantidad'] }})">Modificar</a> --}}
+                                                                        <a href="#" class="rounded-md bg-red-300 px-6 mx-2 py-1 mt-3"  wire:click="EliminarConceptoReciboShowModal({{ $Concepto['id'] }} ,'{{ $Concepto['name']}}' ,{{ $Concepto['cantidad'] }})">Eliminar</a>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

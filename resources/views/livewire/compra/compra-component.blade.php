@@ -1,4 +1,3 @@
-@extends('layouts.app2')
 <div>
 	<x-tituloslim>Comprobantes de Compras</x-tituloslim>
 	<div class="content-center block">
@@ -490,8 +489,8 @@
 								</div>
 							</div>
 
-{{-- Deuda a Proveedores --}}
-{{-- =================== --}}
+							{{-- Deuda a Proveedores --}}
+							{{-- =================== --}}
 							<div class="{{ $tabActivo != 2 ? 'hidden' : '' }}">
 								<div class="flex justify-center">
 									<div class="flex">
@@ -553,8 +552,8 @@
 									</div>
 								</div>								
 							</div>
-{{-- Crédito de Proveedores --}}
-{{-- ======================= --}}							
+					{{-- Crédito de Proveedores --}}
+					{{-- ======================= --}}							
 							<div class="{{ $tabActivo != 3 ? 'hidden' : '' }}">
 								<div class="block">
 									{{-- Areas / Años --}}
@@ -624,15 +623,15 @@
 									</div>
 								</div>
 							</div>
-{{-- Cuentas Corrientes  --}}
-{{-- =================== --}}
+					{{-- Cuentas Corrientes  --}}
+					{{-- =================== --}}
 							<div class="{{ $tabActivo != 4 ? 'hidden' : '' }}">
 								<div class="flex flex-auto justify-center">
 									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
 								</div>
 							</div>
-{{-- Libros de IVA  --}}
-{{-- ============== --}}
+							{{-- Libros de IVA  --}}
+							{{-- ============== --}}
 							<div class="{{ $tabActivo != 5 ? 'hidden' : '' }}">
 								<div class="flex flex-auto justify-center">
 									<div>
@@ -713,19 +712,33 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
 
 <div class="BotonVolver2 form-group col-md-2">
 </div>
-<footer class="text-center text-xs bg-gray-400 mt-px3 pb-2">
-	Desarrollado por: Ing. Enzo Gabriel Barlotta - Información de Contacto<a href="mailto:ebarlotta@yahoo.com.ar">
-		ebarlotta@yahoo.com.ar</a>
-	{{-- &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info"
-		onclick="javascript: window.location.href='../../sistema/menu.php';">&nbsp;&nbsp;&nbsp;Volver&nbsp;&nbsp;&nbsp;</button> --}}
-</footer>
-</div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="js/jquery.mask.js"></script>
-<script src="js/examples.js"></script>
+	{{-- <table class="table-fixed table-striped w-full">
+		<thead>
+			<tr class="bg-gray-100">
+				<th class="px-4 py-2">Nombre</th>
+				<th class="px-4 py-2 hidden md:table-cell md:visible">Dirección</th>
+				<th class="px-4 py-2 hidden md:table-cell md:visible">Cuil</th>
+				<th class="px-4 py-2 hidden md:table-cell md:visible">Teléfono</th>
+				<th class="px-4 py-2">Opciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+		</tbody>
+	</table> --}}
+
+	<footer class="text-center text-xs bg-gray-400 mt-px3 pb-2">
+		Desarrollado por: Ing. Enzo Gabriel Barlotta - Información de Contacto<a href="mailto:ebarlotta@yahoo.com.ar">
+			ebarlotta@yahoo.com.ar</a>
+		{{-- &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info"
+			onclick="javascript: window.location.href='../../sistema/menu.php';">&nbsp;&nbsp;&nbsp;Volver&nbsp;&nbsp;&nbsp;</button> --}}
+	</footer>
+</div>

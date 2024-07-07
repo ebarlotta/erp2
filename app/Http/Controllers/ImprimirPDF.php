@@ -4,37 +4,67 @@ namespace App\Http\Controllers;
 
 use App\Models\Empresa;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Livewire\Haberes\HaberesComponent as Haber;
-
 class ImprimirPDF extends Controller
 {
+
+    public $operacion, $registros, $saldo;
+
     public function DeudaPFD( Request $request) {
-        $operacion = "deuda"; //$request->operacion;
-        $registros = DB::table('comprobantes')
+        $this->operacion = "deuda"; //$request->operacion;
+        $this->registros = DB::table('comprobantes')
         ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name')
         ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
         //->whereBetween('comprobantes.fecha',["'".$this->ddesde."'","'".$this->dhasta."'"])
         // ->whereRaw('(NetoComp-MontoPagadoComp)>1')
         ->where('comprobantes.fecha','>=',$request->ddesde)
         ->where('comprobantes.fecha','<=',$request->dhasta)
-        ->groupBy('proveedors.id')
-        ->get();
-
-        //$sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.* from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` where `comprobantes`.`fecha` >= $request->ddesde and `comprobantes`.`fecha` <= $request->dhasta group by comprobantes.proveedor_id";
-        //dd($sql);
-        $registros = DB::select(DB::raw($sql));
-
-        $saldo = 0;
-        foreach($registros as $registro) { 
-            if($registro->Saldo>1) { $saldo = $saldo + $registro->Saldo; }
-        }
+        ->groupBy('proveedors.id');
         
-        $pdf = PDF::loadView('livewire.compra.pdf_view',compact('registros','saldo','operacion'));
+
+        // $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.* from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= $request->ddesde and `comprobantes`.`fecha` <= $request->dhasta ";
+        $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= $request->ddesde and `comprobantes`.`fecha` <= $request->dhasta group by proveedors.id, proveedors.name";
+        // dd($sql);
+        // $registros = DB::select(DB::raw($sql));
+        $registros = DB::select($sql);
+        
+        $this->saldo = 0;
+        foreach($registros as $registro) { 
+            if($registro->Saldo>1) { $this->saldo = $this->saldo + $registro->Saldo; }
+            if($registro->Saldo<1) { $this->saldo = $this->saldo + $registro->Saldo * -1; }
+        }
+
+        $saldototal = $this->saldo;
+        $operacion = $this->operacion;
+        $html = $this->PrepararTabla($registros);
+        dd($html);
+        $pdf = PDF::loadView('livewire.compra.pdf_view',compact('html','saldototal','operacion'));
         
         // download PDF file with download method
         return $pdf->stream('pdf_file.pdf');
+    }
+
+    public function PrepararTabla($registros) {
+        $html='';
+        foreach($registros as $registro) {
+            if ($this->operacion == 'deuda') 
+                {
+                    if ($registro->Saldo > 1) {
+                        $html=$html."<tr><td class=\"border text-end  mr-3 pr-3\">". $registros->name . "</td><td class=\"border text-end mr-3 pr-3\">". number_format($registros->Saldo, 2, ',','.') ."</td></tr>";
+                } 
+                else 
+                {
+                    if ($registro->Saldo < 1) {
+                        $html=$html."<tr><td class=\"border text-end mr-3 pr-3\">". $registro->name ."</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo * -1, 2, ',','.') ."</td></tr>";
+                    }
+                }
+            }
+        }
+        // dd($html);
+        return $html;
     }
 
     public function CreditoPFD( Request $request) {

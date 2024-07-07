@@ -110,6 +110,8 @@ class HaberesComponent extends Component
     // Recibos de Sueldo
     public $lmes,$lanio, $empleado;
 
+    public $ano_diferencia, $mes_diferencia, $dia_diferencia, $CategoriasProf;
+
     public function render()
     {
         $this->EmpresaId = session('empresa_id');
@@ -626,7 +628,7 @@ class HaberesComponent extends Component
         session()->flash('messageOk', 'El recibo se eliminó con éxito');
     }
 
-    public function ModificarConceptoShow($item_id,$item_name,$item_cantidad) {
+    public function ModificarConceptoShowModal($item_id,$item_name,$item_cantidad) {
         $this->ModificarConceptoShow=true;
         $this->item_id  = $item_id;
         $this->item  = $item_name;
@@ -637,7 +639,7 @@ class HaberesComponent extends Component
         $this->ModificarConceptoShow=false;
     }
 
-    public function EliminarConceptoReciboShow($item_id,$item_name,$item_cantidad) {
+    public function EliminarConceptoReciboShowModal($item_id,$item_name,$item_cantidad) {
         $this->EliminarConceptoReciboShow=true;
         $this->item_id  = $item_id;
         $this->item  = $item_name;

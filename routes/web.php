@@ -39,22 +39,9 @@ Route::middleware([
 Route::get('login-facebook', [App\Http\Controllers\Auth\LoginSocialController::class,'redirect_facebook']);
 Route::get('facebook-callback-url', [App\Http\Controllers\Auth\LoginSocialController::class,'callback_facebook']);
 
-
-Route::get('VentaSimple',CompraSimpleComponent::class)->name('VentaSimple');
-// Route::get('VentaSimple/compra',CompraSimpleComponent::class)->name('VentaSimple');
-Route::get('compras',CompraComponent::class)->name('compras');
-Route::get('ventas',VentaComponent::class)->name('ventas');
 Route::get('ventasmostrador',VentaMostradorComponent::class)->name('ventasmostrador');
 
 //Route::get('empresagestion',EmpresaGestion::class)->name('empresagestion');
-
-Route::get('pdf/deuda/{ddesde}/{dhasta}', [ImprimirPDF::class, 'DeudaPFD'])->name('DeudaPFD');
-Route::get('pdf/credito/{cdesde}/{chasta}', [ImprimirPDF::class, 'CreditoPFD'])->name('CreditoPFD');
-Route::get('pdf/ivacompras/{anio}/{mes}', [ImprimirPDF::class, 'IvaCompras'])->name('IvaCompras');
-Route::get('pdf/ivaventas/{anio}/{mes}', [ImprimirPDF::class, 'IvaVentas'])->name('IvaVentas');
-
-Route::get('pdf/recibos/{anio}/{mes}/{empleadoseleccionado}', [ImprimirPDF::class, 'Recibo'])->name('Recibos');
-
 //Route::get('pdf/deuda/{ddesde}/{dhasta}', [ImprimirPDF::class, 'DeudaPFD'])->name('DeudaPFD');
 //Route::get('pdf/credito/{cdesde}/{chasta}', [ImprimirPDF::class, 'CreditoPFD'])->name('CreditoPFD');
 

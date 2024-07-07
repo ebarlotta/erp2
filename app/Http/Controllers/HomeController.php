@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('empresas');
+        return view('otraruta');
     }
 
     public function upload(Request $request)

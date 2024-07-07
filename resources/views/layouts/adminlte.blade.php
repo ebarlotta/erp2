@@ -3,9 +3,9 @@
 @section('title', 'Dashboard')
 <script src="https://cdn.tailwindcss.com"></script>
 
-@section('content_header')
+{{-- @section('content_header')
     <h1>Dashboard</h1>
-@stop
+@stop --}}
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>

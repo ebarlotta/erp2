@@ -191,7 +191,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => '/',
+    'dashboard_url' => '/empresas',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -257,7 +257,8 @@ return [
         //     'label_color' => 'success',
         // ],
         
-        ['header' => 'account_settings'],
+        // ['header' => 'account_settings'],
+        ['header' => 'GESTIÓN DE EMPRESAS'],
 
         [
             'text' => 'Administración',
@@ -301,6 +302,8 @@ return [
                 ],
             ],
         ],
+        ['header' => 'MÓDULOS'],
+
         [
             'text' => 'Ajustes',
             'url'  => 'tags',
@@ -363,6 +366,7 @@ return [
                 ],
             ],
         ],
+        ['header' => 'GESTIÓN CARRITO'],
         [
             'text' => 'Productos',
             'icon' => 'fas fa-fw fa-building',

@@ -60,8 +60,8 @@ class EmpresaComponent extends Component
         ];
 // dd($this->compras);
 // dd(auth()->user());
-        return view('home');
-        return view('livewire.empresa.empresa-component');
+        // return view('home');
+        return view('livewire.empresa.empresa-component')->extends('layouts.adminlte');
     }
 
     public function cargamodulos($id) {
