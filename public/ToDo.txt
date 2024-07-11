@@ -1,0 +1,15 @@
+09/07/2024
+OK Módulos -> Agragar que se puedan cambiar Página, nombre, leyenda y permisos del módulo
+OK Estados -> No recupera el estado al querer modificar
+OK Categorías Productos -> No enruta hacia el módulo 
+OK Informes -> No enruta hacia el módulo
+OK Etiquetas -> No enruta hacia el módulo
+OK Etiquetas -> No actualiza los datos
+OK Etiquetas -> Agregar Buscador de etiquetas
+
+10/07/2024
+Módulos -> Modificar Imagen de los módulos
+Categorías Productos -> Configurar Permisos del módulo
+Productos -> Agregar -> Colocar buscardor de productos + Revisar de Actualizar producto que no funciona
+Empleados -> Nuevo -> Da un error
+OKInformes -> Colocar espera al cargar informes y generar PDF con el Informe  

@@ -27,13 +27,14 @@
                                         </div>
                                         <table class="table table-hover text-nowrap table-rounded">
                                             <tr>
-                                                <td>Módulo</td>
-                                                <td>Opciones</td>
+                                                <td style="background-color: rgb(164, 157, 157);"><b>Módulo</b></td>
+                                                <td style="background-color: rgb(164, 157, 157);"><b>Opciones</b></td>
                                             </tr>
                                             @if($datos)
                                                 @foreach ($datos as $modulo)
                                                 <tr>
-                                                    <td>{{ $modulo->name }}</td>
+                                                    <td class="d-flex" style="margin: auto"><img class="mr-3 rounded-md" src="images/{{$modulo->imagen}}" alt="" width="50px"> {{ $modulo->name }}</td>
+                                                    
                                                     <td>
                                                         <button type="button" wire:click="showEdit({{$modulo->id}})" class="btn btn-warning" data-toggle="modal" data-target="#ModalEdit">
                                                             Editar
@@ -57,7 +58,7 @@
             <!-- Modal Alta/Modificación Módulo -->
             <!-- ================================== -->
             <div wire:ignore.self class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog " role="document" style="max-width: 80%;">
+                <div class="modal-dialog  col-6" role="document" style="max-width: 80%;">
                     <div class="modal-content" style="width: inherit">
                         <div class="modal-header">
                             <h5 class="modal-title">Alta/Modificación Módulos</h5>
@@ -66,18 +67,45 @@
                             </button>
                         </div>
                         <div class="px-3 py-3">
-                            <div>
-                                <label for="">Nombre del Módulo</label>
-                                <input type="text" class="form-control" value="{{ old('name') }}" wire:model="name">
-                                @error('name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                            <div class="flex col-12 flex-wrap">
+                                <div class="col-4">
+                                    <label for="">Nombre del Módulo</label>
+                                    <input type="text" class="form-control" value="{{ old('name') }}" wire:model="name" wire:keyup="ShowActualizar()">
+                                    @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-4">
+                                    <label for="">Página URL</label>
+                                    <input type="text" class="form-control" value="{{ old('pagina') }}" wire:model="pagina" wire:keyup="ShowActualizar()">
+                                    @error('pagina')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-4">
+                                    <label for="">Imágen</label>
+                                    <input type="text" class="form-control" value="{{ old('imagen') }}" wire:model="imagen" wire:keyup="ShowActualizar()">
+                                    @error('imagen')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label for="">Leyenda</label>
+                                    <textarea wire:model="leyenda" rows="2" class="col-12" wire:keyup="ShowActualizar()">{{ old('leyenda') }}</textarea>
+                                    {{-- <input type="text" class="form-control" value="{{ old('leyenda') }}" wire:model="leyenda"> --}}
+                                    @error('leyenda')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
+
+
                             <div class="mt-3">
                                 <label for="">
-                                    Permisos <button type="button" class="btn btn-success mb-1 ml-2">Agregar
-                                                <span class="col-1 fs-3 ml-1" aria-hidden="true" style="lightcoral;border-radius: 5px; text-align: center;vertical-align: middle;background-color: lightgreen;" wire:click="showNewPermiso()" data-toggle="modal" data-target="#ModalAddPermission">&plus;</span>
-                                                </button>
+                                    Permisos 
+                                    <button type="button" class="btn btn-success mb-1 ml-2">Agregar
+                                        <span class="col-1 fs-3 ml-1" aria-hidden="true" style="lightcoral;border-radius: 5px; text-align: center;vertical-align: middle;background-color: lightgreen;" wire:click="showNewPermiso()" data-toggle="modal" data-target="#ModalAddPermission">&plus;</span>
+                                    </button>
                                 </label><br>
                                 @if($permisos)
                                     @foreach ($permisos as $permiso)
@@ -100,6 +128,11 @@
                                 {{-- <button type="button" class="btn btn-success"  data-dismiss="modal" wire:click="store()">
                                     <i class="fa-solid fa-pen-to-square"></i>Guardar
                                 </button> --}}
+                                @if($ShowButtonActualizar)
+                                    <button type="button" class="btn btn-warning" wire:click="store()">
+                                        <i class="fa-solid fa-pen-to-square"></i>Actualizar
+                                    </button>
+                                @endif
                                 <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">
                                     <i class="fa-solid fa-pen-to-square"></i>Cerrar
                                 </button>

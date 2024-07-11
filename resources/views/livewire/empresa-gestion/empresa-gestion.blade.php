@@ -40,22 +40,22 @@
                             <ul>
                                 <li class="border text-left @if ($seleccionado == $empresa->id) bg-red-100 @endif"
                                     wire:click="CargarDatosEmpresa({{ $empresa->id }})">
-                                    <div class="w-full p-3 hover:scale-105 transition-all duration-500" style="hover:background-color=pink">
-                                        <div class="flex rounded overflow-hidden border hover:bg-red-100 ">
+                                    <div class="w-full hover:scale-105 transition-all duration-500" style="hover:background-color=pink">
+                                        <div class="rounded overflow-hidden border hover:bg-red-100 d-flex flex col-12">
                                             @if($empresa->imagen) 
-														<img class="block rounded-md flex-none bg-cover"
-															 src="{{ asset(''. $empresa->imagen) }}"
-															 style="width: 100px; height: 100px;">
-														@else
-														<img class="block rounded-md flex-none bg-cover"
-															 src="{{ asset('images/sin_imagen.jpg') }}"
-															 style="width: 100px; height: 100px;">
-														@endif
-                                            <div class="bg-white rounded-b ml-4 pt-4 pl-4 flex flex-col justify-between leading-normal bg-transparent">
-                                                <div class="text-black font-bold text-lg mb-2 leading-tight bg-transparent" style="hover:background-color: yellow;">
+                                                <img class="block rounded-md flex-none bg-cover col-2"
+                                                        src="{{ asset(''. $empresa->imagen) }}"
+                                                        style="width: 70px; height: 70px;">
+                                                @else
+                                                <img class="block rounded-md flex-none bg-cover col-2"
+                                                        src="{{ asset('images/sin_imagen.jpg') }}"
+                                                        style="width: 70px; height: 70px;">
+                                                @endif
+                                            <div class="bg-white rounded-b ml-4 pl-4 justify-between leading-normal bg-transparent col-8" style="margin: auto;hover:background-color=pink; opacity: 1;">
+                                                <div class="text-black font-bold text-lg mb-2 leading-tight bg-transparent">
                                                     {{ $empresa->name }}</div>
-                                                <p class="text-grey-darker text-base">Read more</p>
                                             </div>
+                                            <p class="text-grey-darker text-base col-2" style="margin: auto">{{ $empresa->cuit }}</p>
                                         </div>
                                     </div>
                                 </li>

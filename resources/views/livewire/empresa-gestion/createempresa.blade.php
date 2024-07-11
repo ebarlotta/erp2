@@ -53,11 +53,22 @@
                             @error('actividad1') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
 
-                        <div class="mb-4">
-                            <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Imágen</label>
-                            <input type="file" class="shadow appearance-none border rounded w-full py-2 pl-2 -mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" wire:model="imagen">
-                            @error('imagen') <span class="text-red-500">{{ $message }}</span>@enderror
-                        </div>
+                        @if($imagen)
+                            <div class="mb-4">
+                                <div class="d-flex">
+                                    <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Imágen</label>
+                                    <img class="mx-3" src="{{ $imagen }}" width="70px;">
+                                    <input value="Actualizar Imágen" type="button" class="btn btn-info">
+                                    @error('imagen') <span class="text-red-500">{{ $message }}</span>@enderror
+                                </div>  
+                            </div>
+                        @else
+                            <div class="mb-4">
+                                <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Imágen</label>
+                                <input type="file" class="shadow appearance-none border rounded w-full py-2 pl-2 -mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" wire:model="imagen">
+                                @error('imagen') <span class="text-red-500">{{ $message }}</span>@enderror
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

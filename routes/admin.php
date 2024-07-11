@@ -32,6 +32,8 @@ use App\Http\Livewire\Compra\CompraSimpleComponent;
 use App\Http\Livewire\Compra\CompraComponent;
 use App\Http\Livewire\Venta\VentaComponent;
 use App\Http\Controllers\ImprimirPDF;
+use App\Http\Controllers\ImprimirPDFInformes;
+use App\Http\Livewire\Venta\VentaMostradorComponent;
 
 Route::get('/dasboard', function () {
     return view('empresas');
@@ -70,6 +72,7 @@ Route::get('VentaSimple',CompraSimpleComponent::class)->name('VentaSimple');
 Route::get('compras',CompraComponent::class)->name('compras');
 Route::get('ventas',VentaComponent::class)->name('ventas');
 
+Route::get('ventasmostrador',VentaMostradorComponent::class)->name('ventasmostrador');
 
 
 Route::get('pdf/deuda/{ddesde}/{dhasta}', [ImprimirPDF::class, 'DeudaPFD'])->name('DeudaPFD');
@@ -78,3 +81,7 @@ Route::get('pdf/ivacompras/{anio}/{mes}', [ImprimirPDF::class, 'IvaCompras'])->n
 Route::get('pdf/ivaventas/{anio}/{mes}', [ImprimirPDF::class, 'IvaVentas'])->name('IvaVentas');
 
 Route::get('pdf/recibos/{anio}/{mes}/{empleadoseleccionado}', [ImprimirPDF::class, 'Recibo'])->name('Recibos');
+
+// Route::get('pdf/informes/{empresa_id}/{informe_name}', [ImprimirPDFInformes::class, 'PDF'])->name('InformePFD');
+Route::get('pdf/informes/{nombre}', [VisualizarTablaComponent::class, 'GenerarPDF'])->name('InformePFD');
+

@@ -24,23 +24,27 @@
                             </div>
                         </div>
                     @endif
-                    @if(session('Etiquetas.Agregar'))
-                        <x-crear>Nueva Etiqueta</x-crear>
-                        @if ($isModalOpen)
-                            @include('livewire.tag.createtag')
+                    <div class="flex justify-around">
+                        @if(session('Etiquetas.Agregar'))
+                            <x-crear>Nueva Etiqueta</x-crear>
+                            @if ($isModalOpen)
+                                @include('livewire.tag.createtag')
+                            @endif
                         @endif
-                    @endif
-                    <table class="table-fixed table-striped w-full">
+                        <input type="text" wire:model="search" placeholder="Introduzca Filtro" wire:keyup="Filtrar">
+                        <div class="w-1/2 justify-end">{{ $tags->links() }}</div>
+                    </div>
+                    <table class="table-fixed table-striped w-full mt-2">
                         <thead>
                             <tr class="bg-gray-100">
-                                <th class="px-4 py-2">Nombre de la Etiqueta</th>
-                                <th class="px-4 py-2">Valor</th>
-                                <th class="px-4 py-2">Opciones</th>
+                                <th class="px-4 py-2" style="background-color: rgb(164, 157, 157);">Nombre de la Etiqueta</th>
+                                <th class="px-4 py-2" style="background-color: rgb(164, 157, 157);">Valor</th>
+                                <th class="px-4 py-2" style="background-color: rgb(164, 157, 157);">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($datos)
-                                @foreach ($datos as $tag)
+                            @if ($tags)
+                                @foreach ($tags as $tag)
                                     <tr>
                                         <td class="border px-4 py-2 text-left">{{ $tag->name }}</td>
                                         <td class="border px-4 py-2 text-left">{{ $tag->valor }}</td>

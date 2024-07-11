@@ -27,7 +27,7 @@
                     @endif
 
                     <div class="flex justify-around">
-                        @if(session('CategoriaProducto.Agregar'))
+                        @if(session('categoriasdeproductos.Agregar'))
                             <x-crear>Nueva Categoría Producto</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.categoria.createcategoriaproducto')
@@ -40,8 +40,8 @@
                         <table class="table-fixed table-striped w-full">
                             <thead>
                                 <tr class="bg-gray-100">
-                                    <th class="px-4 py-2">Nombre de la Categoría</th>
-                                    <th class="px-4 py-2">Opciones</th>
+                                    <th class="px-4 py-2" style="background-color: rgb(164, 157, 157);">Nombre de la Categoría</th>
+                                    <th class="px-4 py-2" style="background-color: rgb(164, 157, 157);">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,11 +51,11 @@
                                         <td class="border px-4 py-2 text-left">{{ $categoria->name }}</td>
                                         <td class="border px-4 py-2">
                                             <div class="flex justify-center">
-                                                @if(session('CategoriaProducto.Editar'))
+                                                @if(session('categoriasdeproductos.Editar'))
                                                     <!-- Editar  -->
                                                     <x-editar id="{{ $categoria->id }}"></x-editar>
                                                 @endif
-                                                @if(session('CategoriaProducto.Eliminar'))
+                                                @if(session('categoriasdeproductos.Eliminar'))
                                                     <!-- Eliminar -->
                                                     <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
                                                 @endif

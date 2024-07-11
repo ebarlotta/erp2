@@ -34,16 +34,36 @@
     <div style="display: block">
 
         <div class="flex h-full">
-
+            <span wire:loading>
+				<div class="inset-0 fixed">
+					<div class="absolute flex justify-center w-full mt-6 p-18">
+						<div class=" bg-gray-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-2 shadow-lg my-2" role="dialog">
+							<div class=" bg-gray-400 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+								Espere unos segundos mientras se procesa la información ingresada...
+							</div>
+						</div>
+					</div>
+				</div>
+			</span>
             <div class="block w-1/4">
                 <h3>Informes Habilitados</h3>
                 <table class="table-fixed table-striped w-full ml-3" style="background-color: lightblue;">
                     <tbody>
                         @if(count($ListadeTablas)>=1)
                             @foreach ($ListadeTablas as $tabla)
-                                <button wire:click="Visualizar('{{ $tabla['name'] }}')" style="background-color: lightskyblue; border-radius: 5px; width: 90%; height: 60px; margin-top: 10px;">
+                                <div class="flex">
+                                    <button class="col-8" wire:click="Visualizar('{{ $tabla['name'] }}')" style="background-color: lightskyblue; width: 90%; height: 60px; margin-top: 10px; border-radius: 7px 0px 0px 7px; margin-right: 2px; box-shadow: 4px 4px 12px rgba(0,0,0,0.42);">
                                     {{ $tabla['name'] }}
-                                </button>
+                                    </button>
+                                    
+									<a class="col-4" href="{{ URL::to('pdf/informes/'.$tabla['name']) }}" target="_blank">
+                                        {{-- <a class="col-4" href="{{ URL::to('pdf/informes/'.session('empresa_id').'/'. $tabla['name']) }}" target="_blank"> --}}
+                                        <button style="background-color: lightskyblue; width: 90%; height: 60px;     margin-top: 10px; border-radius: 0px 7px 7px 0px; box-shadow: 4px 4px  12px rgba(0,0,0,0.42);">
+                                            {{-- <button wire:click="PDF('{{ $tabla['name'] }}')" style="background-color: lightskyblue; width: 90%; height: 60px;     margin-top: 10px; border-radius: 0px 7px 7px 0px; box-shadow: 4px 4px  12px rgba(0,0,0,0.42);"> --}}
+                                            PDF
+                                        </button>
+                                    </a>
+                                </div>
                                 {{-- <tr wire:click="Visualizar('{{ $tabla['name'] }}')" style="height: 60px;">
                                     <td>
                                         {{ $tabla['name'] }}

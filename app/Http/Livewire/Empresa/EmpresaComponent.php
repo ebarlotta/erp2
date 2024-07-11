@@ -22,46 +22,47 @@ class EmpresaComponent extends Component
 
     public function render()
     {
-        $userid=auth()->user()->id;
-        //$empresas_usuario = EmpresaUsuario::where('user_id',$userid)->get('id');
-        //$this->empresas=Empresa::find($empresas_usuario);
-        //$this->empresas=EmpresaUsuario::where('user_id',$userid)->get('id');
-        $empresas_usuario = EmpresaUsuario::where('user_id',$userid)->get();
-        //dd($userid);
-        //dd($empresas_usuario);
-        foreach($empresas_usuario as $empresa) {
-            //dd($empresa->empresa_id);
-            $this->empresas[] = Empresa::find($empresa->empresa_id);
-        }
-        //dd($this->empresas[2]);
+        if(isset(auth()->user()->id)) {
+            $userid=auth()->user()->id;
+            //$empresas_usuario = EmpresaUsuario::where('user_id',$userid)->get('id');
+            //$this->empresas=Empresa::find($empresas_usuario);
+            //$this->empresas=EmpresaUsuario::where('user_id',$userid)->get('id');
+            $empresas_usuario = EmpresaUsuario::where('user_id',$userid)->get();
+            foreach($empresas_usuario as $empresa) {
+                $this->empresas[] = Empresa::find($empresa->empresa_id);
+            }
 
-        //Compras
-        $this->compras = [
-            'labels' => ['January', 'February', 'March', 'April', 'May'],
-            'data' => [65, 59, 80, 81, 56],
-            // 'data' => [
-                
-            //         'label' => 'AQUI DOS LINEAS',
-            //         'data'=> [12, 19, 3, 5, 2, 3],
-            //         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',    
-            //         'borderWidth'=> 1
-            // ],
-            //         [
-            //         'label' => 'Xxxx',
-            //         'data' => [22, 29, 33, 55, 52, 33],
-            //         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',    
-            //         'borderWidth' => 1
-            //         ]
-        ];
-        //Ventas
-        $this->ventas = [
-            'labels' => ['November', 'February', 'March', 'April', 'May'],
-            'data' => [15, 39, 22, 55, 16]
-        ];
-// dd($this->compras);
-// dd(auth()->user());
-        // return view('home');
-        return view('livewire.empresa.empresa-component')->extends('layouts.adminlte');
+            //Compras
+            $this->compras = [
+                'labels' => ['January', 'February', 'March', 'April', 'May'],
+                'data' => [65, 59, 80, 81, 56],
+                // 'data' => [
+                    
+                //         'label' => 'AQUI DOS LINEAS',
+                //         'data'=> [12, 19, 3, 5, 2, 3],
+                //         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',    
+                //         'borderWidth'=> 1
+                // ],
+                //         [
+                //         'label' => 'Xxxx',
+                //         'data' => [22, 29, 33, 55, 52, 33],
+                //         'backgroundColor' => 'rgba(255, 99, 132, 0.2)',    
+                //         'borderWidth' => 1
+                //         ]
+            ];
+            //Ventas
+            $this->ventas = [
+                'labels' => ['November', 'February', 'March', 'April', 'May'],
+                'data' => [15, 39, 22, 55, 16]
+            ];
+    // dd($this->compras);
+    // dd(auth()->user());
+            // return view('home');
+            return view('livewire.empresa.empresa-component')->extends('layouts.adminlte');
+        }
+        else {
+            return redirect(route('login'));
+        }
     }
 
     public function cargamodulos($id) {
@@ -73,6 +74,8 @@ class EmpresaComponent extends Component
 
         $a = Empresa::find($id);
         session(['nombre_empresa' => $a->name]);
+        session(['url_logo_empresa' => $a->imagen]);
+        
         //dd(session('empresa_id'));
         ////$empresa_modulos = EmpresaModulo::where('empresa_id',$this->empresa_id)->get('modulo_id');
         // $modulos=Modulo::find($empresa_modulos);

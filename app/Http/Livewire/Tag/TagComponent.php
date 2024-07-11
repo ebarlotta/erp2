@@ -9,16 +9,19 @@ class TagComponent extends Component
 {
     public $isModalOpen = false;
     public $tag, $tag_id;
-    public $tags;
-    public $valor;
+    protected $tags;
+    public $valor, $name, $search;
 
     public $empresa_id;
 
     public function render()
     {
         $this->empresa_id=session('empresa_id');
-        $this->tags = Tag::where('empresa_id', $this->empresa_id)->get();
-        return view('livewire.tag.tag-component',['datos'=> Tag::where('empresa_id', $this->empresa_id)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+        $this->tags = Tag::where('empresa_id', '=', $this->empresa_id)
+        ->where('name', 'like', '%'.$this->search.'%')
+        ->paginate(7);
+        return view('livewire.tag.tag-component',['tags'=> $this->tags])->extends('layouts.adminlte');
+        // return view('livewire.tag.tag-component',['datos'=> Tag::where('empresa_id', $this->empresa_id)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
     }
 
     public function create()
@@ -29,14 +32,10 @@ class TagComponent extends Component
         return view('livewire.tag.createtag')->with('isModalOpen', $this->isModalOpen);
     }
 
-    public function openModalPopover()
-    {
-        $this->isModalOpen = true;
-    }
+    public function openModalPopover() { $this->isModalOpen = true; }
+    public function closeModalPopover() { $this->isModalOpen = false; }
 
-    public function closeModalPopover()
-    {
-        $this->isModalOpen = false;
+    public function Filtrar() { $this->tags = Tag::where('empresa_id', '=', $this->empresa_id)->where('name', 'like', '%'.$this->search.'%')->paginate(7); 
     }
 
     private function resetCreateForm(){

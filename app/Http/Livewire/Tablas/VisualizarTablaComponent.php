@@ -11,6 +11,7 @@ use App\Models\Comprobante;
 use App\Models\Area;
 use App\Models\Cuenta;
 use App\Models\TablaUsuario;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\DB;
 
 
@@ -72,7 +73,7 @@ class VisualizarTablaComponent extends Component
                 $Iva27 = 0;
                 $SumIva = 0;
                 
-                $this->visualizar = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 10px; font-weight : 300;" border="1">
+                $this->visualizar = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 12px; font-weight : 300;" border="1">
                 <tbody>
                 <tr style="font-weight:bold; border-top: 3px solid; font-size:14px">
                     <td colspan=9>Libros IVA Ventas 2024</td>
@@ -148,7 +149,7 @@ class VisualizarTablaComponent extends Component
                 $SumIva = 0;
 
                 //$this->visualizar = $this->AgregarEncabezado('Libros IVA Compras');
-                $this->visualizar = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 10px; font-weight : 300;" border="1">
+                $this->visualizar = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 12px; font-weight : 300;" border="1">
                 <tbody>
                 <tr style="font-weight:bold; border-top: 3px solid; font-size:14px">
                     <td colspan=9>Libros IVA Compras 2024</td>
@@ -209,6 +210,7 @@ class VisualizarTablaComponent extends Component
                         <td bgcolor="white" align="right">'.number_format($RetencionGan,2).'</td>
                         <td bgcolor="white" align="right">'.number_format($NetoComp,2).'</td>
                     </tr>';
+                    // dd($this->visualizar);
             break;
             case "Paretto":
                     $a = $this->AgregarEncabezado('Areas-Compras');
@@ -412,7 +414,18 @@ class VisualizarTablaComponent extends Component
         }
     }
     
-    
+    public function GenerarPDF($nombre) {
+        $this->Visualizar($nombre);
+        $html = $this->visualizar;
+        $nombre_empresa = session('nombre_empresa');
+        $url_logo_empresa = session('url_logo_empresa');
+
+        $pdf = PDF::loadView('livewire.tablas.pdf_view',compact('html', 'nombre_empresa','url_logo_empresa'));
+        $pdf->setPaper('A4', 'LANDSCAPE');
+        return $pdf->stream('pdf_file.pdf');
+
+    }
+
     public function AgregarEncabezado($Titulo) {
         $a = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 8px; font-weight : 300;" cellspacing="0" cellpadding="0" bgcolor="#5C92FF" border="0">
         <tbody>

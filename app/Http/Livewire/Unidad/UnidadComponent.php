@@ -9,7 +9,7 @@ class UnidadComponent extends Component
 {
     public $isModalOpen = false;
     public $unidad, $unidad_id;
-    public $unidades;
+    public $unidades, $name;
 
     public $empresa_id;
 

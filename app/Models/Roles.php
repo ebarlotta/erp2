@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\GestionModulos\GestionModuloComponent;
 use Google\Service\Drive\Permission;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 
 class Roles extends Model
 {
@@ -38,6 +40,9 @@ class Roles extends Model
         $a = DB::select($sql);
         foreach($a as $permiso) {
             session([$permiso->nombre => true ]);
+            // $nombre = GestionModuloComponent::reemplazaEspaciosAcentos($permiso->nombre);
+            // dd($nombre);
+            // session([$nombre => true ]);
         }
     }
 

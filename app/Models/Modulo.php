@@ -9,6 +9,13 @@ class Modulo extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        'name',
+        'pagina',
+        'imagen',
+        'leyenda',
+    ];
+
     //Relación de uno a muchos
     public function empresamodulos()
     {

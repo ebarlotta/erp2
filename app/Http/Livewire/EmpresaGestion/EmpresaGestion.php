@@ -23,7 +23,7 @@ class EmpresaGestion extends Component
     public function render()
     {
         $this->empresas=Empresa::all();
-        return view('livewire.empresa-gestion.empresa-gestion',['datos'=> Empresa::orderby('name')->paginate(3),])->extends('layouts.adminlte');
+        return view('livewire.empresa-gestion.empresa-gestion',['datos'=> Empresa::orderby('name')->paginate(7),])->extends('layouts.adminlte');
     }
 
     public function mostrarmodal()
@@ -108,7 +108,7 @@ class EmpresaGestion extends Component
             DB::table('empresa_modulos')->insert(['modulo_id' => '7','empresa_id' => $this->empresa_id->id,]);
             DB::table('empresa_modulos')->insert(['modulo_id' => '14','empresa_id' => $this->empresa_id->id,]);
 
-            DB::table('clientes')->insert(['name' => 'CONSUMIDOR FINAL','cuil'=>'20-000000'.$this->empresa_id->id.'-0','direccion'=>'','email'=>'','telefono'=>'','empresa_id' => $this->empresa_id->id,]);  // Inserta al CONSUMIDOR FINAL como cliente
+            DB::table('clientes')->insert(['name' => "CONSUMIDOR_FINAL",'cuil'=>"20-000000".$this->empresa_id->id."-0",'direccion'=>'-','email'=>'empresa'.$this->empresa_id->id.'@barber.com','telefono'=>'0','empresa_id' => $this->empresa_id->id,]);  // Inserta al CONSUMIDOR FINAL como cliente
         }
 
         $this->closeModalPopover();

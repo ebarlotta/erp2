@@ -28,8 +28,8 @@
                                         </div>
                                         <table class="table table-hover text-nowrap table-rounded">
                                             <tr>
-                                                <td>Rol</td>
-                                                <td>Opciones</td>
+                                                <td style="background-color: rgb(164, 157, 157);"><b>Rol</b></td>
+                                                <td style="background-color: rgb(164, 157, 157);"><b>Opciones</b></td>
                                             </tr>
                                             @if($roles)
                                                 @foreach ($roles as $rol)

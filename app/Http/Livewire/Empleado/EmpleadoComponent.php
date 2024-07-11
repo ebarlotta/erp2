@@ -56,7 +56,8 @@ class EmpleadoComponent extends Component
     {
         $this->resetCreateForm();
         $this->openModalPopover();
-        $this->isModalOpen = true;
+        // $this->isModalOpen = true;
+        $this->categoriasprofesionales = Categoriaprofesional::where('empresa_id',session('empresa_id'))->where('activo','=',1)->get();
         return view('livewire.empleado.createempleados')->with('isModalOpen', $this->isModalOpen)->with('name', $this->name);
     }
 

@@ -24,9 +24,9 @@
                 <td class="border text-center">Crédito</td> }
             @endif
         </tr>
-        antes
+        {{-- antes --}}
         {{ $html }}
-        despues
+        {{-- despues --}}
         {{-- @foreach ($registros as $registro)
         entró
             @if ($operacion == 'deuda') {

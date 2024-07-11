@@ -6,12 +6,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImprimirPDF;
 use App\Http\Controllers\Productos;
 // use App\Http\Livewire\Empresa\EmpresaComponent;
-use App\Http\Livewire\Modulo\ModuloComponent;
-use App\Http\Livewire\Proveedor\ProveedorComponent;
-
-use App\Http\Livewire\Compra\CompraComponent;
-use App\Http\Livewire\Venta\VentaComponent;
-use App\Http\Livewire\Venta\VentaMostradorComponent;
 
 use App\Http\Controllers\SocialController;
 use App\Http\Livewire\Cart\Cart;
@@ -39,7 +33,6 @@ Route::middleware([
 Route::get('login-facebook', [App\Http\Controllers\Auth\LoginSocialController::class,'redirect_facebook']);
 Route::get('facebook-callback-url', [App\Http\Controllers\Auth\LoginSocialController::class,'callback_facebook']);
 
-Route::get('ventasmostrador',VentaMostradorComponent::class)->name('ventasmostrador');
 
 //Route::get('empresagestion',EmpresaGestion::class)->name('empresagestion');
 //Route::get('pdf/deuda/{ddesde}/{dhasta}', [ImprimirPDF::class, 'DeudaPFD'])->name('DeudaPFD');

@@ -12,6 +12,7 @@ class EstadoComponent extends Component
     public $isModalOpen = false;
     public $estado, $estado_id;
     protected $estados;
+    public $name, $search;
 
     public $empresa_id;
 
@@ -20,10 +21,17 @@ class EstadoComponent extends Component
     public function render()
     {
         $this->empresa_id=session('empresa_id');
-        $this->estados = Estado::where('empresa_id', '=', $this->empresa_id)->paginate(7);
+        $this->estados = Estado::where('empresa_id', '=', $this->empresa_id)
+        ->where('name', 'like', '%'.$this->search.'%')
+        ->paginate(7);
         return view('livewire.estado.estado-component',['estados' => $this->estados])->extends('layouts.adminlte');
         // return view('livewire.estado.estado-component',['datos'=> Estado::where('empresa_ids', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
     }
+
+    public function Filtrar() {
+        $this->estados = Estado::where('empresa_id', '=', $this->empresa_id)->where('name', 'like', '%'.$this->search.'%')->paginate(7);
+    }
+
     public function create()
     {
         $this->resetCreateForm();   

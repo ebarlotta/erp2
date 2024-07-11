@@ -24,20 +24,25 @@
 						</div>
 					@endif
 					@if ($seleccionado)
-					<div class="text-left">
-						<button wire:click="mostrarmodal()"	class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded">
+					<div class="text-left flex">
+						<button wire:click="mostrarmodal()"	class="col-2 bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded">
 							Agregar Producto
 						</button>
+						<input class="form-control col-2 ml-2" type="text" wire:model="search" placeholder="Introduzca Filtro" wire:keyup="Filtrar">
+                        <div class="col justify-end">{{ $productos->links() }}</div>
 					</div>
 					@endif
 				</div>
 
+				@if($isModalOpenFileUpload)
+					@include('livewire.producto.EditFileUpload')
+				@endif
 
 				@if ($isModalOpen)
-					{{-- @include('livewire.producto.createproductos') --}}
 					{{-- <x-producto> --}}
+					<div style="background-color: lightgray;">
 						<form method="POST" enctype="multipart/form-data" action="store()">
-							<div class="bg-white px-4 pt-2 pb-2 sm:p-6 sm:pb-4 flex flex-wrap">
+							<div class="bg-white px-4 pt-2 pb-2 sm:p-6 sm:pb-4 flex flex-wrap" style="background-color: lightgray;">
 								<div class="mb-4 mr-2 text-left">
 									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Nombre del Producto</label>
 									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -52,7 +57,8 @@
 								</div>
 								<div class="mb-4 mr-2 text-left flex">
 									@if($this->ruta != 'sin_imagen.jpg')
-										<img src="{{ asset('images2/'.$this->ruta )}}" width="100px" height="100px">
+										<img src="{{ asset('images2/'.$this->ruta )}}" width="70px" height="70px">
+										<input class="btn btn-info ml-2" type="text" value="Actualizar Imágen" style="height: fit-content;" wire:click="ModalOpenFileUpload">
 										@error('ruta') <span class="text-red-500">{{ $message }}</span>@enderror
 									@else
 										<img src="{{ asset('images/sin_imagen.jpg' )}}" width="100px" height="100px">
@@ -62,7 +68,7 @@
 								</div>
 
 							</div>
-							<div class="bg-white px-4 pb-2 sm:p-2 sm:pb-4 flex flex-wrap">
+							<div class="bg-white px-4 pb-2 sm:p-2 sm:pb-4 flex flex-wrap" style="background-color: lightgray;">
 								<div class="mb-4 mr-2 text-left">
 									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Precio de compra</label>
 									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -141,42 +147,44 @@
 								<x-guardar></x-guardar>
 								<x-cerrar></x-cerrar>
 							</div>
-					</form>
+						</form>
+					</div>
 					{{-- </x-producto> --}}
 				@endif	
+
 				@if ($productos)
-				<div class="flex">
-					<div class="h-full w-full">
-						<div class="bg-white rounded-b pt-4 pl-4 flex justify-between leading-normal w-full">
-							<div class="text-black font-bold text-lg mb-2 leading-tight w-36" style="width:35%;">Productos</div>
-							<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Existencia</div>
-							<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Stock Mínimo</div>
-							<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Estado</div>
-						</div>
-						@foreach ($productos as $producto)
-							<ul>
-								<li class="border text-left" wire:click="edit({{ $producto->id }})">
-									<div class="w-full">
-										<div class="flex rounded overflow-hidden border">
-											@if($producto->ruta != 'sin_imagen.jpg') 
-												<img class="block rounded-md flex-none bg-cover" src="{{ asset('images2/'.$producto->ruta) }}" style="width:80px; height: 80px;">	
-											@else
-												<img class="block rounded-md flex-none bg-cover" src="{{ asset('images/sin_imagen.jpg') }}" style="width:80px; height: 80px;">
-											@endif
-											<div class="bg-white rounded-b pt-4 pl-4 flex justify-between leading-normal w-full">
-												<div class="text-black font-bold text-lg mb-2 leading-tight" style="width:25%;">{{ $producto->name }}</div>
-												<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->existencia }}</div>
-												<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->stock_minimo }}</div>
-												<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->estados_id}}</div>
+					<div class="flex">
+						<div class="h-full w-full">
+							<div class="bg-white rounded-b pt-4 pl-4 flex justify-between leading-normal w-full">
+								<div class="text-black font-bold text-lg mb-2 leading-tight w-36" style="width:35%;">Productos</div>
+								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Existencia</div>
+								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Stock Mínimo</div>
+								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Estado</div>
+							</div>
+							@foreach ($productos as $producto)
+								<ul>
+									<li class="border text-left" wire:click="edit({{ $producto->id }})">
+										<div class="w-full">
+											<div class="flex rounded overflow-hidden border">
+												@if($producto->ruta != 'sin_imagen.jpg') 
+													<img class="block rounded-md flex-none bg-cover" src="{{ asset('images2/'.$producto->ruta) }}" style="width:80px; height: 80px;">	
+												@else
+													<img class="block rounded-md flex-none bg-cover" src="{{ asset('images/sin_imagen.jpg') }}" style="width:80px; height: 80px;">
+												@endif
+												<div class="bg-white rounded-b pt-4 pl-4 flex justify-between leading-normal w-full">
+													<div class="text-black font-bold text-lg mb-2 leading-tight" style="width:25%;">{{ $producto->name }}</div>
+													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->existencia }}</div>
+													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->stock_minimo }}</div>
+													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->estados_id}}</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</li>
-							</ul>
-						@endforeach
-						<div class="w-full">{{ $productos->links() }}</div>
+									</li>
+								</ul>
+							@endforeach
+							{{-- <div class="w-full">{{ $productos->links() }}</div> --}}
+						</div>
 					</div>
-				</div>
 				@else
 					<h1>No hay datos</h1>
 				@endif
