@@ -34,10 +34,15 @@ use App\Http\Livewire\Venta\VentaComponent;
 use App\Http\Controllers\ImprimirPDF;
 use App\Http\Controllers\ImprimirPDFInformes;
 use App\Http\Livewire\Venta\VentaMostradorComponent;
+use Livewire\Livewire;
 
 Route::get('/dasboard', function () {
     return view('empresas');
 })->name('dashboard');
+
+// Livewire::setUpdateRoute(function ($handle) {
+//     return Route::post('/custom/livewire/update', $handle);
+// });
 
 // Route::get('/', EmpresaComponent::class)->name('inicio');
 Route::get('/', function () { return view('home')->extends('layouts.guest'); })->name('home1');
