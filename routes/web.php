@@ -14,6 +14,8 @@ use App\Http\Livewire\Compra\CompraSimpleComponent;
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Auth::routes()->prefix('');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,7 +28,6 @@ Route::middleware([
 // Route::get('/', EmpresaComponent::class)->name('inicio');
 // Route::get('/cart', [App\Http\Controllers\Cart::class, 'index']);
 
-//Auth::routes();
 
 
 // Login with Facebook

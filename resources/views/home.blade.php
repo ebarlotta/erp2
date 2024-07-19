@@ -21,7 +21,7 @@
 					<header id="header" class="alt">
 						<a href="/" class="logo"><strong>EocSystems</strong> <span></span></a>
 						<nav class="col-1 align-content-end">
-							<a href="/login">Ingresar</a>
+							<a href="/admin/login">Ingresar</a>
 							<a href="#menu">Menú</a>
 						</nav>
 					</header>
