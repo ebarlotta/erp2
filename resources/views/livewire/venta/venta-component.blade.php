@@ -1,5 +1,5 @@
 <div>
-	@extends('layouts.app2')
+	{{-- @extends('layouts.app2') --}}
 	<x-tituloslim>Comprobantes de Ventas</x-tituloslim>
 	<div class="content-center block">
 		<div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
@@ -617,8 +617,8 @@
 									</div>
 								</div>
 							</div>
-{{-- Deuda a Clientes --}}
-{{-- =================== --}}
+							{{-- Deuda a Clientes --}}
+							{{-- =================== --}}
 							<div class="{{ $tabActivo != 2 ? 'hidden' : '' }}">
 								<div class="flex justify-center">
 									<div class="flex">
@@ -680,8 +680,8 @@
 									</div>
 								</div>								
 							</div>
-{{-- Crédito de Clientes --}}
-{{-- ======================= --}}							
+							{{-- Crédito de Clientes --}}
+							{{-- ======================= --}}							
 							<div class="{{ $tabActivo != 3 ? 'hidden' : '' }}">
 								<div class="block">
 									{{-- Areas / Años --}}
@@ -751,15 +751,13 @@
 									</div>
 								</div>
 							</div>
-{{-- Cuentas Corrientes  --}}
-{{-- =================== --}}
+							{{-- Cuentas Corrientes  --}}
+							{{-- =================== --}}
 							<div class="{{ $tabActivo != 4 ? 'hidden' : '' }}">
 								<div class="flex flex-auto justify-center">
 									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
 								</div>
 							</div>
-{{-- Libros de IVA  --}}
-{{-- ============== --}}
 							<div class="{{ $tabActivo != 5 ? 'hidden' : '' }}">
 								<div class="flex flex-auto justify-center">
 									<div>
@@ -846,19 +844,20 @@
 			</div>
 		</div>
 	</div>
-</div>
-</div>
 
-<div class="BotonVolver2 form-group col-md-2">
-</div>
-<footer class="text-center text-xs bg-gray-400 mt-px3 pb-2">
-	Desarrollado por: Ing. Enzo Gabriel Barlotta - Información de Contacto<a href="mailto:ebarlotta@yahoo.com.ar">
-		ebarlotta@yahoo.com.ar</a>
-	{{-- &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info"
-		onclick="javascript: window.location.href='../../sistema/menu.php';">&nbsp;&nbsp;&nbsp;Volver&nbsp;&nbsp;&nbsp;</button> --}}
-</footer>
-</div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="js/jquery.mask.js"></script>
-<script src="js/examples.js"></script>
+
+	<div class="BotonVolver2 form-group col-md-2">
+	</div>
+	<footer class="text-center text-xs bg-gray-400 mt-px3 pb-2">
+		Desarrollado por: Ing. Enzo Gabriel Barlotta - Información de Contacto<a href="mailto:ebarlotta@yahoo.com.ar">
+			ebarlotta@yahoo.com.ar</a>
+		{{-- &nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-info"
+			onclick="javascript: window.location.href='../../sistema/menu.php';">&nbsp;&nbsp;&nbsp;Volver&nbsp;&nbsp;&nbsp;</button> --}}
+	</footer>
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mask.js"></script>
+	<script src="js/examples.js"></script>
+</div>

@@ -21,7 +21,7 @@
 					<header id="header" class="alt">
 						<a href="/" class="logo"><strong>EocSystems</strong> <span></span></a>
 						<nav class="col-1 align-content-end">
-							<a href="/admin/login">Ingresar</a>
+							<a href="/public/login">Ingresar</a>
 							<a href="#menu">Menú</a>
 						</nav>
 					</header>
@@ -36,7 +36,7 @@
 						</ul>
 						<ul class="actions stacked">
 							<li><a href="#" class="button primary fit">Comenzar</a></li>
-							<li><a href="/login" class="button fit">Ingresar</a></li>
+							<li><a href="/public/login" class="button fit">Ingresar</a></li>
 						</ul>
 					</nav>
 

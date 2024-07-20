@@ -16,7 +16,9 @@ use Illuminate\Http\Request;
 class CompraSimpleComponent extends Component
 {
     public $areas, $cuentas, $clientes, $proveedores, $ivas;
-    public $fecha_simple=false,$monto_simple, $partiva_simple, $iva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
+    public $area, $cuenta, $cliente, $proveedor;
+    public $fecha_simple=false,$monto_simple, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
+    public $iva_simple=1, $ModalGuardado=false;
 
     public $modulo; // Permite hacer elección de módulo a utilizar
 
@@ -32,12 +34,13 @@ class CompraSimpleComponent extends Component
         }
 
         // dd($this->modulo);
+        $this->fecha_simple= date('Y-m-d');
         $this->areas = Area::where('empresa_id', session('empresa_id'))->ORDERBY('name')->get();
         $this->cuentas = Cuenta::where('empresa_id', session('empresa_id'))->ORDERBY('name')->get();
         $this->clientes = Cliente::where('empresa_id', session('empresa_id'))->ORDERBY('name')->get();
         $this->proveedores = Proveedor::where('empresa_id', session('empresa_id'))->ORDERBY('name')->get();
         $this->ivas = Iva::where('id','>',0)->get();
-        return view('livewire.compra.compra-simple-component')->with(['areas' => $this->areas, 'cuentas' => $this->cuentas,'clientes' => $this->clientes,'ivas' => $this->ivas]);    
+        return view('livewire.compra.compra-simple-component')->with(['areas' => $this->areas, 'cuentas' => $this->cuentas,'clientes' => $this->clientes,'ivas' => $this->ivas])->extends('layouts.adminlte');    
 
         // return view('livewire.compra.compra-simple-component');
     }
@@ -47,6 +50,7 @@ class CompraSimpleComponent extends Component
     // ==========================================================================================
 
     public function GuardarVentaSimple() {
+
         $this->validate([
             'monto_simple'            => 'numeric',
         //     'fecha_simple'            => 'required|date',
@@ -61,8 +65,8 @@ class CompraSimpleComponent extends Component
         $anio = substr($this->fecha_simple,0,4);
         $mes = substr($this->fecha_simple,5,2);
         $iva = Iva::where('id','=',$this->iva_simple)->get();  // En base ak id de iva, trae el monto numérico
-        if(count($iva)) { $iva = $iva[0]['monto']; } // $this->iva_simple; // Monto nuperico de Iva }
-        else { $iva = 0; dd($iva); }
+        if(count($iva)) { $iva = $iva[0]['monto'];  } // $this->iva_simple; // Monto nuperico de Iva }
+        else { $iva = 0; }
 
         if($this->partiva_simple==true) { $partiva_simple='Si'; } else { $partiva_simple='No'; }
 
@@ -90,8 +94,11 @@ class CompraSimpleComponent extends Component
             'empresa_id'        => session('empresa_id'),
             'cliente_id'        => (int) $this->cliente_simple,
         ]);
+
         // dd($a);
-        session()->flash('message', 'Comprobante Creado.');  
+
+        session()->flash('message', 'Comprobante Creado en '. $this->modulo);
+        $this->ModalGuardado = true;
     }
 
     public function GuardarCompraSimple() {
@@ -139,6 +146,9 @@ class CompraSimpleComponent extends Component
             'proveedor_id'        => (int) $this->proveedor_simple,
         ]);
         // dd($a);
-        session()->flash('message', 'Comprobante Creado.');  
-    }    
+        session()->flash('message', 'Comprobante Creado en '. $this->modulo);
+        $this->ModalGuardado = true;
+    }
+    
+    public function closeModal() { $this->ModalGuardado=false; }
 }

@@ -71,9 +71,10 @@ class VentaComponent extends Component
         $this->ivas = Iva::where('id','>',0)->get();
         // $this->productos = Producto::where('empresa_id', $this->empresa_id)->orderBy('name','asc')->get();
 
-        $this->ConstructorFacturacion();
+        //Desactivado Temporalmente
+        // $this->ConstructorFacturacion();
 
-        return view('livewire.venta.venta-component');
+        return view('livewire.venta.venta-component')->extends('layouts.adminlte');
     }
 
     public function openModalDelete() { $this->ModalDelete = true;  }
@@ -288,7 +289,7 @@ class VentaComponent extends Component
     public function gfiltro(){
         
         $sql = $this->ProcesaSQLFiltro('ventas'); // Procesa los campos a mostrar
-        $registros = DB::select(DB::raw($sql));       // Busca el recordset
+        $registros = DB::select($sql);       // Busca el recordset
         //Dibuja el filtro
         $Saldo=0;
 
@@ -624,7 +625,7 @@ class VentaComponent extends Component
     public function MostrarLibros() {
         if($this->lmes && $this->lanio) {
             $sql = $this->ProcesaSQLFiltro('libro'); // Procesa los campos a mostrar
-            $registros = DB::select(DB::raw($sql));       // Busca el recordset
+            $registros = DB::select($sql);       // Busca el recordset
             //Dibuja el filtro
             $Saldo=0;
             $this->LibroFiltro ="<table class=\"w-full mt-8  shadow-lg\" ><tr><td class=\"bg-gray-300 border border-green-400\">Mes</td><td class=\"bg-gray-300 border border-green-400\">Estado</td>";
