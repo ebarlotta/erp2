@@ -44,6 +44,10 @@ Route::get('/dasboard', function () {
 //     return Route::post('/custom/livewire/update', $handle);
 // });
 
+
+
+
+
 // Route::get('/', EmpresaComponent::class)->name('inicio');
 Route::get('/', function () { return view('home')->extends('layouts.guest'); })->name('home1');
 Route::get('/home', function () { Auth::loginUsingId(1); return view('home')->extends('guest'); })->name('home2');
