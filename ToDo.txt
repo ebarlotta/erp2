@@ -1,0 +1,2 @@
+    // FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
+Revisar Tabs a los que les falta funcionalidad

@@ -115,7 +115,7 @@ class HaberesComponent extends Component
     public function render()
     {
         $this->EmpresaId = session('empresa_id');
-        return view('livewire.haberes.haberes-component');
+        return view('livewire.haberes.haberes-component')->extends('layouts.adminlte');
     }
 
     public function CargarEmpleadosActivosEnEsePeriodo()

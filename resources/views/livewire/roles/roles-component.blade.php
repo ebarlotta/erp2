@@ -69,7 +69,14 @@
                         <div class="px-3 py-3">
                             <div>
                                 <label for="">Nombre del Rol</label>
-                                {{-- <input type="text" class="form-control" value="{{ old('name') }}" wire:model="name"> --}}
+                                @if($name) 
+                                    <input type="text" class="form-control" wire:model="name">
+                                @else
+                                    <div class="flex">
+                                        <input type="text" class="form-control col-8" wire:model="name">
+                                        <input type="button" class="form-control btn-info col-4" value="Agregar" data-toggle="modal" data-target="#ModalConfirmaNuevoRol">
+                                    </div>
+                                @endif
                                 @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -171,6 +178,61 @@
                 </div>
             </div>
 
+            <!-- Modal Confirma Nuevo Rol -->
+            <!-- ======================== -->
+            <div class="modal fade" id="ModalConfirmaNuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content" style="width: inherit">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirma Crear Nuevo Rol</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="px-3 py-3">
+                            <div>
+                                <input type="text" value="{{ $name}}" >
+                                Está seguro de agregar nuevo Rol: <b>{{ $name }}</b>?
+                            </div>
+                            <div class="pt-3">
+                                <button type="button" class="btn btn-success" data-dismiss="modal" wire:click="store()">
+                                    <i class="fa-solid fa-pen-to-square"></i>Agregar
+                                </button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa-solid fa-pen-to-square"></i>Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    @if($name)
+    <div class="modal-dialog " role="document">
+        <div class="modal-content" style="width: inherit">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirma Crear Nuevo Rol</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="px-3 py-3">
+                <div>
+                    <input type="text" value="{{ $name}}" >
+                    Está seguro de agregar nuevo Rol: <b>{{ $name }}</b>?
+                </div>
+                <div class="pt-3">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" wire:click="store()">
+                        <i class="fa-solid fa-pen-to-square"></i>Agregar
+                    </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">
+                        <i class="fa-solid fa-pen-to-square"></i>Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
         </section>
     </div>
 </div>

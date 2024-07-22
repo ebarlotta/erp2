@@ -68,12 +68,15 @@ class RolesComponent extends Component
         $this->validate([
             'name' => 'required|unique:roles|max:255',
         ]);
+        dd($this->name);
         Roles::updateOrCreate(['id' => $this->rol_id], [
             'name' => $this->name,
         ]);
         $this->rol_id = null;
         session()->flash('mensaje', 'Se guardó el rol.');
     }
+
+    // public function setname($name) { $this->name = $name; dd($this->name); }
 
     public function SeleccionarModulo($id, $nombreModulo) {
         // dd($nombreModulo);

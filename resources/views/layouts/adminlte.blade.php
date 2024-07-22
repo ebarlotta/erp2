@@ -1,7 +1,8 @@
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
-<script src="https://cdn.tailwindcss.com"></script>
+{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+<script src="cart/js/taildwind.js"></script>
 
 {{-- @section('content_header')
     <h1>Dashboard</h1>
