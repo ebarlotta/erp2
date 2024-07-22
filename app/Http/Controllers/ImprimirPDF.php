@@ -210,7 +210,7 @@ class ImprimirPDF extends Controller
                 $row = $row . '<tr>
                 <td style="text-align:center; border: 1px solid #ddd; mr-3 pr-3">'. substr($registro->fecha,8,2) ."-". substr($registro->fecha,5,2) ."-". substr($registro->fecha,0,4) .'</td>
                 <td style="text-align:right; border: 1px solid #ddd; mr-3 pr-3">'. $registro->comprobante .'</td>
-                <td style="text-align:right; border: 1px solid #ddd; mr-3 pr-3" style="color:red">'. $registro->name .'</td>
+                <td style="text-align:right; border: 1px solid #ddd; mr-3 pr-3">'. $registro->name .'</td>
                 <td style="text-align:center; border: 1px solid #ddd; mr-3 pr-3">'. substr($registro->cuit,0,2) ."-" . substr($registro->cuit,3,8) . "-" . substr($registro->cuit,12,1).'</td>
                 <td style="text-align:right; border: 1px solid #ddd; mr-3 pr-3">'. number_format($registro->BrutoComp, 2, ',', '.') .'</td>
                 <td style="text-align:right; border: 1px solid #ddd; mr-3 pr-3">'. number_format($registro->MontoIva, 2, ',', '.') .'</td>

@@ -1,3 +1,4 @@
+{{-- <x-slot> --}}
 <div>
 	<x-tituloslim>Comprobantes de Compras</x-tituloslim>
 	<div class="content-center block">
@@ -62,7 +63,7 @@
 									<div class="flex justify-center">
 										<div class="flex flex-wrap justify-center fse-1">
 											<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="store">Agregar</button>
-											<button class="rounded-md bg-yellow-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalModify">Modificar</button>
+											<button class="rounded-md bg-yellow-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalModify()">Modificar</button>
 											<button class="rounded-md bg-red-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalDelete">Eliminar</button>
 											<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalAgregarDetalle">Agregar Productos</button>
 										
@@ -492,7 +493,7 @@
 							{{-- Deuda a Proveedores --}}
 							{{-- =================== --}}
 							<div class="{{ $tabActivo != 2 ? 'hidden' : '' }}">
-								<div class="flex justify-center">
+								{{-- <div class="flex justify-center">
 									<div class="flex">
 										<div class="block mb-4 justify-start">
 											<label for="">Áreas a incluir</label><br>
@@ -522,9 +523,20 @@
 											</select>
 										</div>
 									</div>
-								</div>
+								</div> --}}
 								<div class="block justify-center">
 									<div class="flex justify-center">
+										<div class="block mb-4 justify-start">
+											{{-- <label for="">Áreas a incluir</label><br> --}}
+											Áreas a incluir<br>
+											<select class="pl-2 ml-2 text-xs rounded-md h-7 leading-none mr-5" wire:model="darea">
+												<option value="0">Todas</option>
+												@foreach ($areas as $area)
+													<option value="{{ $area->id }}">{{ $area->name }}</option>
+												@endforeach
+											</select>
+										</div>
+
 										<div class="block mb-4 justify-center">
 											Desde <br>
 											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ddesde">
@@ -552,12 +564,12 @@
 									</div>
 								</div>								
 							</div>
-					{{-- Crédito de Proveedores --}}
-					{{-- ======================= --}}							
+							{{-- Crédito de Proveedores --}}
+							{{-- ======================= --}}							
 							<div class="{{ $tabActivo != 3 ? 'hidden' : '' }}">
 								<div class="block">
 									{{-- Areas / Años --}}
-									<div class="flex justify-center">
+									{{-- <div class="flex justify-center">
 										<div class="flex">
 											<div class="block mb-4 justify-start">
 												<label for="">Àreas a incluir</label><br>
@@ -587,10 +599,20 @@
 												</select>
 											</div>
 										</div>
-									</div>
+									</div> --}}
 									{{-- Desde / Hasta --}}
 									<div class="flex justify-center">
 										<div class="flex justify-center">
+											<div class="block mb-4 justify-start">
+												{{-- <label for="">Àreas a incluir</label><br> --}}
+												Àreas a incluir<br>
+												<select class="pl-2 ml-2 text-xs rounded-md h-7 leading-none mr-5" wire:model="carea">
+													<option value="0">Todas</option>
+													@foreach ($areas as $area)
+													<option value="{{ $area->id }}">{{ $area->name }}</option>
+													@endforeach
+												</select>
+											</div>
 											<div class="block mb-4 justify-start">
 												Desde <br>
 												<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="cdesde"><br>
@@ -623,12 +645,47 @@
 									</div>
 								</div>
 							</div>
-					{{-- Cuentas Corrientes  --}}
-					{{-- =================== --}}
+							{{-- Cuentas Corrientes  --}}
+							{{-- =================== --}}
 							<div class="{{ $tabActivo != 4 ? 'hidden' : '' }}">
-								<div class="flex flex-auto justify-center">
-									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
+								<div class="flex justify-center">
+									<div class="flex justify-center">
+
+										<div class="block mb-4 justify-start">
+											Proveedor<br>
+											<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccProveedor">
+												<option value=" "> </option>
+												@foreach ($ccProveedores as $proveedor)
+													<option value="{{ $proveedor->id }}">
+														{{ $proveedor->name }}
+													</option>
+												@endforeach
+											</select>
+											@error('ccProveedor') <span class="text-red-500">{{ $message }}</span>@enderror
+										</div>
+										<div class="block mb-4 justify-start">
+											Agrupado por Comprobante <br>
+											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccAgrupadoComp"><br>
+										</div>
+										<div class="block mb-4 justify-start">
+											Agrupado por Detalle <br>
+											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="cccAgrupadoDeta"><br>
+										</div>
+
+										<div class="block mb-4 justify-start">
+											Desde <br>
+											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="cdesde"><br>
+										</div>
+									
+										<div class="block mb-4 justify-center">
+											Hasta <br>
+											<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="chasta"><br>
+										</div>
+									</div>
 								</div>
+								{{-- <div class="flex flex-auto justify-center">
+									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
+								</div> --}}
 							</div>
 							{{-- Libros de IVA  --}}
 							{{-- ============== --}}
@@ -639,7 +696,7 @@
 											<tr>
 												<td>
 													<label for="">Mes</label><br>
-													<select class="mr-4 w-full text-xs px-2 rounded-md h-7 leading-none" wire:model="lmes" wire:change="MostrarLibros()">
+													<select class="pl-2 mr-4 w-full text-xs px-2 rounded-md h-7 leading-none" wire:model="lmes" wire:change="MostrarLibros()">
 														<option value=""></option>
 														<option value="1">enero
 														</option>
@@ -670,7 +727,7 @@
 														</option>
 													</select>
 													<label for="">Año</label><br>
-													<select class="mr-4 w-full text-xs rounded-md h-7 leading-none" wire:model="lanio" wire:change="MostrarLibros()">
+													<select class="pl-2 mr-4 w-full text-xs rounded-md h-7 leading-none" wire:model="lanio" wire:change="MostrarLibros()">
 														<option value=""></option>
 														<option value="2024">2024</option>
 														<option value="2023">2023</option>
@@ -699,7 +756,7 @@
 											@include('livewire.compra.modalcerrarlibrocompras')
 										@endif
 										<div class="w-full">
-											@if ($MostrarLibros)
+											@if ($MostrarLibrosComponent)
 												{!! $LibroFiltro !!}
 											@endif
 										</div>
@@ -713,8 +770,8 @@
 		</div>
 	</div>
 
-<div class="BotonVolver2 form-group col-md-2">
-</div>
+	<div class="BotonVolver2 form-group col-md-2">
+	</div>
 
 	{{-- <table class="table-fixed table-striped w-full">
 		<thead>
@@ -742,3 +799,4 @@
 			onclick="javascript: window.location.href='../../sistema/menu.php';">&nbsp;&nbsp;&nbsp;Volver&nbsp;&nbsp;&nbsp;</button> --}}
 	</footer>
 </div>
+{{-- </x-slot> --}}

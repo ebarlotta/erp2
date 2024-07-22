@@ -18,7 +18,9 @@
     <link rel="stylesheet" href="{{asset('css/tooltips.css')}}">
 
 
-
+    <script src="cart/js/taildwind.js"></script>
+    <!-- Scripts -->
+    <script src="js/jquery.mask.js"></script>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -29,12 +31,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
     {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    {{-- <script src="js/jquery.mask.js"></script> --}}
     
     @livewireStyles
 
     <!-- Scripts -->
     {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
-    <script src="js/jquery.mask.js"></script>
 </head>
 <body class="font-sans antialiased">
     
@@ -53,9 +55,16 @@
         @endif --}}
 
         <!-- Page Content -->
-        <main>
-            {{ $slot ?? '' }}
-        </main>
+        <livewire:compra.compra-component />
+        
+        @section('content')
+            <main>
+                <p>Welcome to this beautiful admin panel.</p>
+                </main>
+                
+                {{ $slot ?? 'ddd' }}
+        {{-- @stop --}}
+        @endsection
     </div>
 
     @stack('modals')

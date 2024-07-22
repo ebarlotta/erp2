@@ -28,9 +28,7 @@ class CompraComponent extends Component
     public $iva_value=0;
     public $isModalOpen = false;
     public $giva=1;
-    public $ModalDelete, $openModalDelete;
-    public $ModalModify, $openModalModify;
-    public $ModalAgregarDetalle, $openModalAgregarDetalle;
+    public $ModalDelete, $ModalModify, $ModalAgregarDetalle;
     public $ModalCerrarLibro;
     public $gfecha,$gproveedor, $gcomprobante, $gcuenta, $gdetalle, $ganio, $gmes, $garea, $gpartiva, $gbruto, $giva2, $gexento, $gimpinterno, $gperciva, $gretgan, $gperib, $gneto, $gmontopagado, $gcantidad;
     public $gselect_productos, $gprecio_prod, $gcantidad_prod, $glistado_prod;
@@ -39,7 +37,7 @@ class CompraComponent extends Component
     
     
     // Deuda Proveedores
-    public $darea, $ddesde, $dhasta, $danio;
+    public $darea, $ddesde=0, $dhasta=0, $danio;
     public $DeudaProveedoresFiltro, $MostrarDeudaProveedores; 
     public $deudaPDF;
 
@@ -47,9 +45,12 @@ class CompraComponent extends Component
     public $carea, $cdesde, $chasta, $canio;
     public $CreditoProveedoresFiltro, $MostrarCreditoProveedores;
 
+    // Cuentas Corrientes
+    public $ccProveedores, $ccProveedor;
+
     // Libros de Iva
     public $lmes,$lanio;
-    public $MostrarLibros, $LibroFiltro;
+    public $MostrarLibrosComponent, $LibroFiltro;
 
     //Listado de filtros
     public $filtro, $combodetalle;                // Comprobantes
@@ -67,10 +68,12 @@ class CompraComponent extends Component
         $this->areas = Area::where('empresa_id', $this->empresa_id)->ORDERBY('name')->get();
         $this->cuentas = Cuenta::where('empresa_id', $this->empresa_id)->ORDERBY('name')->get();
         $this->proveedores = Proveedor::where('empresa_id', $this->empresa_id)->ORDERBY('name')->get();
+        $this->ccProveedores = $this->proveedores;
         $this->ivas = Iva::where('id','>',1)->get();
         $this->productos = Producto::where('empresa_id', $this->empresa_id)->orderBy('name','asc')->get();
         
-        return view('livewire.compra.compra-component')->extends('layouts.adminlte');
+        return view('livewire.compra.compra-component')->extends('layouts.app2');
+        // return view('livewire.compra.compra-component')->extends('layouts.adminlte');
     }
     
     // public function render2() {
@@ -488,33 +491,10 @@ class CompraComponent extends Component
                 //"SELECT proveedors.name as Name, Saldos.Saldo as Saldo FROM proveedors, (SELECT sum(NetoComp-MontoPagadoComp) as Saldo, comprobantes.proveedor_id as idproveedor FROM comprobantes WHERE fecha>='2021-09-01' and fecha<='2021-09-30' and empresa_id=1     GROUP BY comprobantes.proveedor_id ) as Saldos WHERE proveedors.id = Saldos.idproveedor and Saldos.Saldo>1
                 
                 if ($this->darea==0) { $darea=''; } else { $darea=' and comprobantes.area_id='.$this->darea; }  //Comprueba si se ha seleccionado un area en especìfico
+                // dd($this->darea);
                 if ($this->danio==0) { $danio=''; } else { $danio=' and comprobantes.Anio='.$this->danio; }  //Comprueba si se ha seleccionado un año en especìfico
 
-                // $sql="SELECT proveedors.name as Name, Saldos.Saldo as Saldo FROM proveedors, (SELECT sum(NetoComp-MontoPagadoComp) as Saldo, comprobantes.proveedor_id as idproveedor FROM comprobantes WHERE fecha>='". $this->ddesde."' and fecha<='". $this->dhasta."' and empresa_id=". session('empresa_id')." $darea $danio GROUP BY comprobantes.proveedor_id ) as Saldos WHERE proveedors.id = Saldos.idproveedor and Saldos.Saldo>1"; 
-                
-                // $sql = DB::table('proveedors')
-                //     ->join('comprobantes',function ($query) {
-                //         $query->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo')
-                //             ->from('comprobantes')
-                //             ->groupBy('proveedor_id');
-                // })
-                // ->get();
-                
-                
-                //->where('comprobantes.empresa_id','=',session('empresa_id'))
-                //->where('proveedors.empresa_id','=',session('empresa_id'))
-
-                //->select(DB::raw('SUM(NetoComp-MontoPagadoComp) as Saldo'))
-                    //->where(DB::raw('SUM(NetoComp-MontoPagadoComp),'>',1)
-                    //->havingRaw('SUM(NetoComp-MontoPagadoComp) > ?', [1])
-                    // ->whereBetween('fecha',["'".$this->ddesde."'","'".$this->dhasta."'"])
-                //    ->groupBy('comprobantes.proveedor_id')
-                    
-                    // dd($sql);
-// $proveedores = Proveedor::where('empresa_id','=',session('empresa_id'))->get();
-// $comprobantes = Comprobante::where('empresa_id','=',session('empresa_id'))->get();
-                    // $merded = $comprobantes->merge($proveedores);
-
+                if($this->darea<>0) {
                     $sql = DB::table('comprobantes')
                     ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id')
                     ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
@@ -524,10 +504,20 @@ class CompraComponent extends Component
                     ->where('comprobantes.fecha','>=',$this->ddesde)
                     ->where('comprobantes.fecha','<=',$this->dhasta)
                     ->where('comprobantes.empresa_id','=',session('empresa_id'))
+                    ->where('area_id','=',$this->darea)
+                    // ->where('Anio','=',$this->danio)
                     //->orderByDesc('avg_salary')
                     ->get();
-                    
-                    // dd($sql);
+                } else {
+                    $sql = DB::table('comprobantes')
+                    ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id')
+                    ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
+                    ->groupBy('proveedors.id')
+                    ->where('comprobantes.fecha','>=',$this->ddesde)
+                    ->where('comprobantes.fecha','<=',$this->dhasta)
+                    ->where('comprobantes.empresa_id','=',session('empresa_id'))
+                    ->get();
+                }
 
                 $this->MostrarDeudaProveedores=true;break;
             };
@@ -537,23 +527,33 @@ class CompraComponent extends Component
                 if ($this->carea==0) { $carea=''; } else { $carea=' and comprobantes.area_id='.$this->carea; }  //Comprueba si se ha seleccionado un area en especìfico
                 if ($this->canio==0) { $canio=''; } else { $canio=' and comprobantes.Anio='.$this->canio; }  //Comprueba si se ha seleccionado un año en especìfico
 
+                if($this->carea<>0) {
                 // $sql="SELECT proveedors.name as Name, Saldos.Saldo as Saldo FROM proveedors, (SELECT sum(NetoComp-MontoPagadoComp) as Saldo, comprobantes.proveedor_id as idproveedor FROM comprobantes WHERE fecha>='". $this->cdesde."' and fecha<='". $this->chasta."' and empresa_id=". session('empresa_id')." $carea  $canio  GROUP BY comprobantes.proveedor_id ) as Saldos WHERE proveedors.id = Saldos.idproveedor and Saldos.Saldo<1";
-                $sql = DB::table('comprobantes')
+                    $sql = DB::table('comprobantes')
                     ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id')
                     ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
                     ->groupBy('proveedors.id')
-                    // ->whereRaw('(NetoComp-MontoPagadoComp)<1')
-                    //->whereBetween('comprobantes.fecha',["'".$this->ddesde."'","'".$this->dhasta."'"])
                     ->where('comprobantes.fecha','>=',$this->cdesde)
                     ->where('comprobantes.fecha','<=',$this->chasta)
                     ->where('comprobantes.empresa_id','=',session('empresa_id'))
-                    //->orderByDesc('avg_salary')
+                    ->where('area_id','=',$this->carea)
                     ->get();
+                } else {
+                    $sql = DB::table('comprobantes')
+                    ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id')
+                    ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
+                    ->groupBy('proveedors.id')
+                    ->where('comprobantes.fecha','>=',$this->cdesde)
+                    ->where('comprobantes.fecha','<=',$this->chasta)
+                    ->where('comprobantes.empresa_id','=',session('empresa_id'))
+                    ->get();
+                }
+
                 $this->MostrarCreditoProveedores=true;break;
             };
             case "libro" : {
                 $sql="SELECT PasadoEnMes, Max(Cerrado) as Cerrado FROM comprobantes WHERE ParticIva='Si' and Anio=" . $this->lanio . " and empresa_id='".session('empresa_id')."' GROUP BY PasadoEnMes, Anio";
-                $this->MostrarLibros=true;break;
+                $this->MostrarLibrosComponent=true;break;
             };
         }
         //dd($sql);
@@ -733,7 +733,7 @@ class CompraComponent extends Component
     public function MostrarLibros() {
         if($this->lmes && $this->lanio) {
             $sql = $this->ProcesaSQLFiltro('libro'); // Procesa los campos a mostrar
-            $registros = DB::select(DB::raw($sql));       // Busca el recordset
+            $registros = DB::select($sql);       // Busca el recordset
             //Dibuja el filtro
             $Saldo=0;
             $this->LibroFiltro ="<table class=\"w-full mt-8  shadow-lg\" ><tr><td class=\"bg-gray-300 border border-green-400\">Mes</td><td class=\"bg-gray-300 border border-green-400\">Estado</td>";
