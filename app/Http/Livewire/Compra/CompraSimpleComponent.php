@@ -17,7 +17,7 @@ class CompraSimpleComponent extends Component
 {
     public $areas, $cuentas, $clientes, $proveedores, $ivas;
     public $area, $cuenta, $cliente, $proveedor;
-    public $fecha_simple=false,$monto_simple, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
+    public $fecha_simple=false,$monto_simple=0, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
     public $iva_simple=1, $ModalGuardado=false;
 
     public $modulo; // Permite hacer elección de módulo a utilizar
@@ -48,6 +48,13 @@ class CompraSimpleComponent extends Component
     // ==========================================================================================
     //                      C O M P R A                   S I M P L E 
     // ==========================================================================================
+
+    public function ActualizaMonto() { 
+        if(substr($this->monto_simple,-1)==',') {
+            $this->monto_simple = substr($this->monto_simple,0,strlen($this->monto_simple)-1).'.';
+            // dd($this->monto_simple);
+        }
+    }
 
     public function GuardarVentaSimple() {
 

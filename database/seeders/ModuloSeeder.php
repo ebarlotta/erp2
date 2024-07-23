@@ -45,6 +45,8 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Haberes', 'pagina' => 'haberes','imagen'=>'haberes.jpg','leyenda'=>'Calcule las liquidaciones de haberes de su personal. Revise liquidaciones de períodos anteriores.']);
 
         DB::table('modulos')->insert(['name' => 'Ventas Mostrador', 'pagina' => 'ventasmostrador','imagen'=>'ventasmostrador.jpg','leyenda'=>'Registre comprobantes de ventas, consulte informes en distintas escalas de tiempo.']);
+
+        DB::table('modulos')->insert(['name' => 'Empresas', 'pagina' => 'empresagestion','imagen'=>'empresa.jpg','leyenda'=>'ABM de Empresas.']);
     
     }
 }

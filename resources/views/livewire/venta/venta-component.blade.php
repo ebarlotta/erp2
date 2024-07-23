@@ -1,6 +1,17 @@
 <div>
 	{{-- @extends('layouts.app2') --}}
 	<x-tituloslim>Comprobantes de Ventas</x-tituloslim>
+
+	<script>
+        $('.content-wrapper').click(function (e) {
+            var get_class = $("#cust_sidebar").attr('class');       
+            console.log(get_mini);
+            if (get_class == "control-sidebar control-sidebar-dark control-sidebar-open") {
+                $('#cust_sidebar').removeClass('control-sidebar-open');
+            }               
+        })
+    </script>
+	
 	<div class="content-center block">
 		<div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
 			<span wire:loading>
@@ -74,7 +85,7 @@
 											<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="store">Agregar</button>
 											<button class="rounded-md bg-yellow-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalModify">Modificar</button>
 											<button class="rounded-md bg-red-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalDelete">Eliminar</button>
-											<button class="rounded-md bg-blue-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="Facturar();">Facturar</button>
+											{{-- <button class="rounded-md bg-blue-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="Facturar();">Facturar</button> --}}
 											<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalAgregarDetalle">Agregar Productos</button>
 										
 											<div class=" right-0">

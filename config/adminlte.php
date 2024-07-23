@@ -284,6 +284,7 @@ return [
                     'text' => 'Gestión de empresas',
                     'url'  => 'empresagestion',
                     'icon' => 'fas fa-fw fa-building',
+                    // 'can' => 'empresas.Agregar',
                 ],
                 [
                     'text' => 'Gestión de Módulos',

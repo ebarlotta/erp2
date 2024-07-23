@@ -6,7 +6,7 @@
 		</div>
 
 		<span class="hidden sm:inline-block sm:align-middle "></span>
-		<div class="ml-8 inline-block align-center bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-1 sm:align-top sm:w-3/4" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+		<div class="ml-8 inline-block align-center bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-1 sm:align-top sm:w-3/5" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
 			<form>
 				<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 					<div class="">

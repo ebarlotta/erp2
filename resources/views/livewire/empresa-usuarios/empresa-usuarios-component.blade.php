@@ -82,14 +82,20 @@
                                         <li class="border px-4 py-2 text-left bg-red-100">
                                             <div class="w-full p-2 hover:scale-110 transition-all duration-500">
                                                 <div class="flex rounded overflow-hidden border">
-                                                    <img class="block flex-none bg-cover" src="https://picsum.photos/seed/picsum/80/80" style="width: 100px; height: 100px;">                                            
-                                                    <div class="bg-white rounded-b pl-4 pt-4 flex flex-col justify-between leading-normal">
+                                                    @if($usuario['profile_photo_path']) 
+                                                        <img class="block rounded-md flex-none bg-cover" src="{{ asset('storage/'. $usuario['profile_photo_path'] ) }}" style="width: 70px; height: 70px;">
+                                                       {{-- src="{{ asset('images2/'. $usuario['profile_photo_path'] ) }}" style="width: 100px; height: 100px;"> --}}
+                                                    @else
+                                                        <img class="block rounded-md flex-none bg-cover" src="{{ asset('images/sin_imagen.jpg') }}" style="width: 70px; height: 70px;">
+                                                    @endif
+                                                    {{-- <img class="block flex-none bg-cover" src="https://picsum.photos/seed/picsum/80/80" style="width: 100px; height: 100px;">                                             --}}
+                                                    <div class="bg-white rounded-b pl-4 flex flex-col justify-between leading-normal">
                                                         <div class="text-black font-bold text-lg mb-2 leading-tight">
                                                             {{ $usuario['name'] }}</div>
                                                         {{-- <p class="text-grey-darker text-base">Read more and more</p> --}}
                                                     </div>
                                                     {{-- @if ($usuario->activo) --}}
-                                                    <div class="bg-white rounded-b p-4 flex flex-col justify-between leading-normal">
+                                                    <div class="bg-white rounded-b flex flex-col justify-between leading-normal">
                                                         <div class="text-black font-bold text-xl mb-2 leading-tight">
                                                             <img class="block w-15 h-15 flex-none bg-cover" src="{{ asset('images/activo.jpg') }}" width="40" height="40">
                                                         </div>

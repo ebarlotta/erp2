@@ -29,11 +29,7 @@ class VentaComponent extends Component
     public $iva_value=0;
     public $isModalOpen = false;
     public $giva=1;
-    public $ModalDelete, $openModalDelete;
-    public $ModalModify, $openModalModify;
-    public $ModalAgregarDetalle, $openModalAgregarDetalle;
-    public $ModalCerrarLibro;
-    public $ModalGenerarFactura, $openModalGenerarFactura;
+    public $ModalDelete, $ModalModify, $ModalAgregarDetalle, $ModalCerrarLibro, $ModalGenerarFactura;
     public $gfecha,$gcliente, $gcomprobante, $gcuenta, $gdetalle, $ganio, $gmes, $garea, $gpartiva, $gbruto, $giva2, $gexento, $gimpinterno, $gperciva, $gretgan, $gperib, $gneto, $gmontopagado, $gcantidad;
     public $gselect_productos, $gprecio_prod, $gcantidad_prod, $glistado_prod;
     // public $gventa;
@@ -58,6 +54,8 @@ class VentaComponent extends Component
 
     public function render()
     {
+        // DB::table('modulos')->insert(['name' => 'Empresas', 'pagina' => 'empresagestion','imagen'=>'empresa.jpg','leyenda'=>'ABM de Empresas.']);
+
         if (!is_null(session('empresa_id'))) { $this->empresa_id = session('empresa_id'); } 
         else { 
             $userid=auth()->user()->id;
