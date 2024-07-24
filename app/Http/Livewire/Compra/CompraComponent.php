@@ -46,7 +46,7 @@ class CompraComponent extends Component
     public $CreditoProveedoresFiltro, $MostrarCreditoProveedores;
 
     // Cuentas Corrientes
-    public $ccProveedores, $ccProveedor;
+    public $ccProveedores, $ccProveedor, $ccdesde, $cchasta;
 
     // Libros de Iva
     public $lmes,$lanio;

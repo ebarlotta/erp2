@@ -674,12 +674,12 @@
 
 										<div class="block mb-4 justify-start">
 											Desde <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="cdesde"><br>
+											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
 										</div>
 									
 										<div class="block mb-4 justify-center">
 											Hasta <br>
-											<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="chasta"><br>
+											<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
 										</div>
 									</div>
 								</div>
