@@ -291,7 +291,20 @@ class VentaComponent extends Component
         //Dibuja el filtro
         $Saldo=0;
 
+        
         $this->filtro="
+        <span wire:loading>
+				<div class=\"inset-0 fixed\">
+					<div class=\"absolute flex justify-center w-full mt-6 p-18\">
+						<div class=\" bg-gray-400 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-2 shadow-lg my-2\" role=\"dialog\">
+							<div class=\" bg-gray-400 px-4 pt-5 pb-4 sm:p-6 sm:pb-4\">
+								Espere unos segundos mientras se procesa la información ingresada...
+							</div>
+						</div>
+					</div>
+				</div>
+			</span>
+
             <div class=\"table-responsive-sm\">
                 <table class=\"table table-striped\" style=\"font-size:13px; padding: 0rem 0rem;\">
                 <thead>
@@ -381,6 +394,7 @@ class VentaComponent extends Component
         }
 
         $this->filtro=$this->filtro."<tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

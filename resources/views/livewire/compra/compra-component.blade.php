@@ -1,6 +1,6 @@
 {{-- <x-slot> --}}
 <div>
-	<x-tituloslim>Comprobantes de Compras</x-tituloslim>
+	<x-tituloslim>Comprobantes de Compras <?php echo session('nombre_empresa').'<br>'; ?></x-tituloslim>
 	<div class="content-center block">
 		<div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
 			
@@ -665,11 +665,11 @@
 										</div>
 										<div class="block mb-4 justify-start">
 											Agrupado por Comprobante <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccAgrupadoComp"><br>
+											<input class="text-xs rounded-md h-7 ml-5" type="checkbox" wire:model="ccAgrupadoComp"><br>
 										</div>
 										<div class="block mb-4 justify-start">
 											Agrupado por Detalle <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="cccAgrupadoDeta"><br>
+											<input class="text-xs rounded-md h-7 ml-5" type="checkbox" wire:model="cccAgrupadoDeta"><br>
 										</div>
 
 										<div class="block mb-4 justify-start">

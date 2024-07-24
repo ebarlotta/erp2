@@ -57,8 +57,18 @@ class CompraComponent extends Component
 
     public function render() {
         //dd($this->empresa_id);
+
         if ($this->gfanio==null) { $this->gfanio = date("Y"); } 
-        
+        if ($this->ddesde==null) { $this->ddesde = date("Y"); } 
+        if ($this->cdesde==null) { $this->cdesde = date("Y"); } 
+
+        $this->cdesde = date($this->gfanio.'-01-01');
+        $this->chasta = date($this->gfanio.'-12-31');
+        $this->ddesde = date($this->ddesde.'-01-01');
+        $this->ddesde = date($this->ddesde.'-12-31');
+        $this->cdesde = date($this->cdesde.'-01-01');
+        $this->cdesde = date($this->cdesde.'-12-31');        
+
         if (!is_null(session('empresa_id'))) { $this->empresa_id = session('empresa_id'); } 
         else { 
             $userid=auth()->user()->id;
@@ -255,10 +265,17 @@ class CompraComponent extends Component
         // if ($this->fgascendente) { $sql=$sql . " ASC"; } else { $sql=$sql . " DESC"; }
         // $registros = DB::select(DB::raw($sql));       // Busca el recordset
         $registros = DB::select($sql);       // Busca el recordset
-        
-        // dd($sql);
+        $sqlTemp = $sql;
+        if($this->fgascendente) { 
+            $sqlTemp = substr($sqlTemp,8,-27); 
+            $sqlDetalle = 'SELECT DISTINCT detalle' . $sqlTemp . 'ORDER BY detalle';
+        } else { 
+            $sqlTemp = substr($sql,17,-38); 
+            $sqlDetalle = 'SELECT DISTINCT detalle' . substr($sqlTemp,9) . ' ORDER BY detalle';
+            // dd($sqlDetalle);
+        }
+
         // Extrae los distintos Detalles si es que los hay
-        $sqlDetalle = "SELECT DISTINCT detalle " . substr($sql,9);
         // $sqlDetalle = substr($sqlDetalle,0,-37);
         
         $this->detalles = DB::select($sqlDetalle);        
