@@ -58,16 +58,16 @@ class CompraComponent extends Component
     public function render() {
         //dd($this->empresa_id);
 
-        if ($this->gfanio==null) { $this->gfanio = date("Y"); } 
-        if ($this->ddesde==null) { $this->ddesde = date("Y"); } 
-        if ($this->cdesde==null) { $this->cdesde = date("Y"); } 
+        if ($this->gfanio==null) { $anio = date("Y"); } 
+        if ($this->ddesde==null || $this->dhasta==null || $this->cdesde==null || $this->chasta==null || $this->ccdesde==null || $this->cchasta==null ) { $anio = date("Y"); } 
+        if ($this->cdesde==null) { $anio = date("Y"); } 
 
-        $this->cdesde = date($this->gfanio.'-01-01');
-        $this->chasta = date($this->gfanio.'-12-31');
-        $this->ddesde = date($this->ddesde.'-01-01');
-        $this->ddesde = date($this->ddesde.'-12-31');
-        $this->cdesde = date($this->cdesde.'-01-01');
-        $this->cdesde = date($this->cdesde.'-12-31');        
+        $this->ddesde = date($anio.'-01-01');
+        $this->dhasta = date($anio.'-12-31');
+        $this->cdesde = date($anio.'-01-01');
+        $this->chasta = date($anio.'-12-31');
+        $this->ccdesde = date($anio.'-01-01');
+        $this->cchasta = date($anio.'-12-31');        
 
         if (!is_null(session('empresa_id'))) { $this->empresa_id = session('empresa_id'); } 
         else { 
