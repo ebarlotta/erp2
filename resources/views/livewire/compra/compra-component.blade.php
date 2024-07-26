@@ -637,7 +637,7 @@
 									<div class="flex justify-center">
 										<div class="block mb-4 justify-start">
 											Proveedor<br>
-											<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccProveedor">
+											<select class="px-2 col-10 rounded-md h-8 leading-none" wire:model="ccProveedor">
 												<option value=" "> </option>
 												@foreach ($ccProveedores as $proveedor)
 													<option value="{{ $proveedor->id }}">
@@ -648,14 +648,20 @@
 											@error('ccProveedor') <span class="text-red-500">{{ $message }}</span>@enderror
 										</div>
 										<div class="block mb-4 justify-start">
-											Agrupado por Comprobante <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="checkbox" wire:model="ccAgrupadoComp"><br>
+												Agrupado por:<br>
+												<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccAgrupadoComp">
+													<option value="1">Comprobante</option>
+													<option value="0">Detalle</option>
+												</select>
+											{{-- <div>
+												<div class="flex">
+													<input class="text-xs rounded-md h-7 ml-5" type="Checkbox" name="opcion" wire:model="ccAgrupadoComp" wire:click="subfiltro"> Comprobante
+												</div>
+												<div class="flex">
+													<input class="text-xs rounded-md h-7 ml-5" type="Checkbox" Name="opcion" wire:model="ccAgrupadoDeta" wire:click="subfiltro"> Detalle
+												</div>
+											</div> --}}
 										</div>
-										<div class="block mb-4 justify-start">
-											Agrupado por Detalle <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="checkbox" wire:model="ccAgrupadoDeta"><br>
-										</div>
-
 										<div class="block mb-4 justify-start">
 											Desde <br>
 											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
@@ -669,6 +675,42 @@
 											<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
 										</div>
 									</div>
+									<style>table.scroll {
+										width: 20%; /* 140px * 5 column + 16px scrollbar width */
+										border-spacing: 0;
+										border: 2px solid black;
+									}
+									
+									table.scroll tbody,
+									table.scroll thead tr { display: block; }
+									
+									table.scroll tbody {
+										height: 100px;
+										overflow-y: auto;
+										overflow-x: scroll;
+									}
+									
+									table.scroll tbody td,
+									table.scroll thead th {
+										width: 140px;
+										border: 1px solid black;
+									}
+									
+									table.scroll thead th:last-child {
+										width: 156px; /* 140px + 16px scrollbar width */
+									}
+									
+									thead tr th { 
+										height: 30px;
+										line-height: 30px;
+										/*text-align: left;*/
+									}
+									
+									tbody { border-top: 2px solid black; }
+									
+									tbody td:last-child, thead th:last-child {
+										border-right: none !important;
+									}</style>
 									{!! $CuentasCorrientesHtml !!}
 									{{-- <div class="flex justify-center">
 										<table class="table table-stripped w-75">
