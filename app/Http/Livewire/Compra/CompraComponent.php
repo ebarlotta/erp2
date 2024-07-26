@@ -33,7 +33,7 @@ class CompraComponent extends Component
     public $gfecha,$gproveedor, $gcomprobante, $gcuenta, $gdetalle, $ganio, $gmes, $garea, $gpartiva, $gbruto, $giva2, $gexento, $gimpinterno, $gperciva, $gretgan, $gperib, $gneto, $gmontopagado, $gcantidad;
     public $gselect_productos, $gprecio_prod, $gcantidad_prod, $glistado_prod;
     //Variables del filtro
-    public $gfmes, $gfproveedor, $gfparticipa, $gfiva, $gfdetalle, $gfarea, $gfcuenta, $gfanio, $fgascendente, $gfsaldo; //Comprobantes
+    public $gfmes, $gfproveedor, $gfparticipa, $gfiva, $gfdetalle, $gfarea, $gfcuenta, $gfanio, $fgascendente=true, $gfsaldo; //Comprobantes
     
     
     // Deuda Proveedores
@@ -46,7 +46,7 @@ class CompraComponent extends Component
     public $CreditoProveedoresFiltro, $MostrarCreditoProveedores;
 
     // Cuentas Corrientes
-    public $ccProveedores, $ccProveedor, $ccdesde, $cchasta;
+    public $ccProveedores, $ccProveedor, $ccdesde, $cchasta, $detallesCC, $ccAgrupadoComp=true, $ccAgrupadoDeta, $saldo, $CuentasCorrientesHtml;
 
     // Libros de Iva
     public $lmes,$lanio;
@@ -58,9 +58,11 @@ class CompraComponent extends Component
     public function render() {
         //dd($this->empresa_id);
 
-        if ($this->gfanio==null) { $anio = date("Y"); } 
+        // if () { $anio = date("Y"); } 
+        $anio = date("Y");
+        if(is_null($this->gfanio)) { $this->gfanio = $anio; }; //La primara vez que inicia revisa si es nulo y en ese caso cambia al año actual, sino no lo toca más
+    
         if ($this->ddesde==null || $this->dhasta==null || $this->cdesde==null || $this->chasta==null || $this->ccdesde==null || $this->cchasta==null ) { $anio = date("Y"); } 
-        if ($this->cdesde==null) { $anio = date("Y"); } 
 
         $this->ddesde = date($anio.'-01-01');
         $this->dhasta = date($anio.'-12-31');
@@ -101,6 +103,157 @@ class CompraComponent extends Component
 
     public function openModalAgregarDetalle() { $this->ModalAgregarDetalle = true; $this->listado_productos(); }
     public function closeModalAgregarDetalle() { $this->ModalAgregarDetalle = false;  }
+
+    public function ListarCuentasCorrientes() {
+        if($this->ccAgrupadoComp) {
+            // Busca todos los registros que cumplen con los criterios de parámetros, de ahí toma los distintos números de comprobantes
+            $subtotalesGenerales = DB::select('select comprobante, sum(NetoComp-MontoPagadoComp) as saldo, comprobantes.empresa_id, proveedor_id, proveedors.name FROM comprobantes join proveedors on proveedors.id = comprobantes.proveedor_id WHERE comprobantes.proveedor_id = '.$this->ccProveedor.' and comprobantes.fecha >= "'.$this->ccdesde.'" and comprobantes.fecha <= "'.$this->cchasta.'" and comprobantes.empresa_id = '. session('empresa_id') .' GROUP BY comprobante, empresa_id, proveedor_id, proveedors.name');
+
+            //Genera el encabezado principal de la tabla
+            $html = '<div class="flex justify-center"><table class="table table-stripped w-75"><tr bgcolor="lightGray"><td align="center">Fecha</td><td align="center">Comp.</td><td>Proveedor</td><td align="right">Monto Comprado</td><td align="right">Monto Pagado</td><td align="right">Saldo</td><td>Área</td><td>Cuenta</td></tr>';
+
+            $CantGeneral = count($subtotalesGenerales); // Cantidad de registros encontrados a nivel general
+
+            // Commienza a iterar la cantidad de registros a nivel general que ha encontrado
+            for($i=0; $CantGeneral>$i ; $i++) {
+            
+                //Busca todos los registros que tienen el mismo Nro de Comprobante y le falta el total de la cta cte
+                $subParciales = DB::select('SELECT comprobantes.fecha, comprobantes.comprobante, comprobantes.NetoComp, comprobantes.MontoPagadoComp, a.name as area_name, c.name as cuenta_name, p.name as proveedor_name from comprobantes inner join areas as a on comprobantes.area_id=a.id inner join cuentas as c on comprobantes.cuenta_id=c.id inner join proveedors as p on comprobantes.proveedor_id=p.id WHERE comprobantes.proveedor_id = '.$this->ccProveedor.' and comprobantes.fecha >= "'.$this->ccdesde.'" and comprobantes.fecha <= "'.$this->cchasta.'" and comprobantes.empresa_id = '. session('empresa_id').' and comprobante="'.$subtotalesGenerales[$i]->comprobante.'" ORDER by comprobantes.fecha;');
+  
+                // Cantidad de registros encontrados a nivel detallado
+                $CantParcial = count($subParciales); 
+ 
+                // Cambia el recordset por un array
+                $Parcial = $subParciales[0];
+                // $Parcial = $subParciales[$i];
+
+                // Imprime el registro inicial con el COMPROBANTE ORIGINARIO
+                $html = $html ."<tr style=\"border-top: 4px solid;\"><td align=\"center\">".substr($Parcial->fecha,8,2).'-'.substr($Parcial->fecha,5,2).'-'.substr($Parcial->fecha,0,4)."</td><td>".$Parcial->comprobante."</td><td>COMPROBANTE ORIGINARIO</td><td align=\"right\"><b>".number_format($Parcial->NetoComp, 2, ',', '.')."</b></td><td align=\"right\">".number_format($Parcial->MontoPagadoComp, 2, ',', '.')."</td><td align=\"right\">".number_format($subtotalesGenerales[$i]->saldo, 2, ',', '.')."</td><td>".$Parcial->area_name."</td><td>".$Parcial->cuenta_name."</td></tr>";
+
+                $saldo = $subtotalesGenerales[$i]->saldo;
+                //Comienza a iterar en todos los registros a nivel detallado que encontró
+                for($j=0; $CantParcial>$j ; $j++) {
+                    // dd($subParciales[0]);
+                    // $sub = $subParciales[$CantParcial]; // Convierte el registro en un array para poder utilizarlo más adelante
+                    $sub = $subParciales[$j]; // Convierte el registro en un array para poder utilizarlo más adelante
+                    // ".number_format($subParciales[$i]->saldo, 2, ',', '.')."
+                    $saldo = $saldo - $sub->MontoPagadoComp;
+                    $html = $html ."<tr><td align=\"center\">".substr($sub->fecha,8,2).'-'.substr($sub->fecha,5,2).'-'.substr($sub->fecha,0,4)."</td><td>".$sub->comprobante."</td><td>".$sub->proveedor_name."</td><td align=\"right\">0.00</td><td align=\"right\">".number_format($sub->MontoPagadoComp, 2, ',', '.')."</td><td align=\"right\"><b>".number_format($saldo, 2, ',', '.')."</b></td><td>".$sub->area_name."</td><td>".$sub->cuenta_name."</td></tr>"; 
+                }
+            }
+        } else {
+            // Busca todos los registros que cumplen con los criterios de parámetros, de ahí toma los distintos números de comprobantes
+            $subtotalesGenerales = DB::select('select detalle, comprobante, sum(NetoComp-MontoPagadoComp) as saldo, comprobantes.empresa_id, proveedor_id, proveedors.name FROM comprobantes join proveedors on proveedors.id = comprobantes.proveedor_id WHERE comprobantes.proveedor_id = '.$this->ccProveedor.' and comprobantes.fecha >= "'.$this->ccdesde.'" and comprobantes.fecha <= "'.$this->cchasta.'" and comprobantes.empresa_id = '. session('empresa_id') .' GROUP BY detalle, comprobante, empresa_id, proveedor_id, proveedors.name');
+
+            //Genera el encabezado principal de la tabla
+            $html = '<div class="flex justify-center"><table class="table table-stripped w-75"><tr bgcolor="lightGray"><td align="center">Fecha</td><td align="center">Comp.</td><td>Proveedor</td><td>Detalle</td><td align="right">Monto Comprado</td><td align="right">Monto Pagado</td><td align="right">Saldo</td><td>Área</td><td>Cuenta</td></tr>';
+
+            $CantGeneral = count($subtotalesGenerales); // Cantidad de registros encontrados a nivel general
+
+            // Commienza a iterar la cantidad de registros a nivel general que ha encontrado
+            for($i=0; $CantGeneral>$i ; $i++) {
+
+                //Busca todos los registros que tienen el mismo Nro de Comprobante y le falta el total de la cta cte
+                $subParciales = DB::select('SELECT comprobantes.detalle, comprobantes.fecha, comprobantes.comprobante, comprobantes.NetoComp, comprobantes.MontoPagadoComp, a.name as area_name, c.name as cuenta_name, p.name as proveedor_name from comprobantes inner join areas as a on comprobantes.area_id=a.id inner join cuentas as c on comprobantes.cuenta_id=c.id inner join proveedors as p on comprobantes.proveedor_id=p.id WHERE comprobantes.proveedor_id = '.$this->ccProveedor.' and comprobantes.fecha >= "'.$this->ccdesde.'" and comprobantes.fecha <= "'.$this->cchasta.'" and comprobantes.empresa_id = '. session('empresa_id').' and detalle="'.$subtotalesGenerales[$i]->detalle.'" ORDER by comprobantes.fecha;');
+
+                // Cantidad de registros encontrados a nivel detallado
+                $CantParcial = count($subParciales); 
+
+                // Cambia el recordset por un array
+                $Parcial = $subParciales[0];
+                // $Parcial = $subParciales[$i];
+
+                // Imprime el registro inicial con el COMPROBANTE ORIGINARIO
+                $html = $html ."<tr style=\"border-top: 4px solid;\"><td align=\"center\">".substr($Parcial->fecha,8,2).'-'.substr($Parcial->fecha,5,2).'-'.substr($Parcial->fecha,0,4)."</td><td>".$Parcial->comprobante."</td><td>COMPROBANTE ORIGINARIO</td><td></td><td align=\"right\"><b>".number_format($Parcial->NetoComp, 2, ',', '.')."</b></td><td align=\"right\">".number_format($Parcial->MontoPagadoComp, 2, ',', '.')."</td><td align=\"right\">".number_format($subtotalesGenerales[$i]->saldo, 2, ',', '.')."</td><td>".$Parcial->area_name."</td><td>".$Parcial->cuenta_name."</td></tr>";
+
+                $saldo = $subtotalesGenerales[$i]->saldo;
+                //Comienza a iterar en todos los registros a nivel detallado que encontró
+                for($j=0; $CantParcial>$j ; $j++) {
+                    // dd($subParciales[0]);
+                    // $sub = $subParciales[$CantParcial]; // Convierte el registro en un array para poder utilizarlo más adelante
+                    $sub = $subParciales[$j]; // Convierte el registro en un array para poder utilizarlo más adelante
+                    // ".number_format($subParciales[$i]->saldo, 2, ',', '.')."
+                    $saldo = $saldo - $sub->MontoPagadoComp;
+                    $html = $html ."<tr><td align=\"center\">".substr($sub->fecha,8,2).'-'.substr($sub->fecha,5,2).'-'.substr($sub->fecha,0,4)."</td><td>".$sub->comprobante."</td><td>".$sub->proveedor_name."</td><td>".$sub->detalle."</td><td align=\"right\">0.00</td><td align=\"right\">".number_format($sub->MontoPagadoComp, 2, ',', '.')."</td><td align=\"right\"><b>".number_format($saldo, 2, ',', '.')."</b></td><td>".$sub->area_name."</td><td>".$sub->cuenta_name."</td></tr>"; 
+                }
+            }
+        }
+
+        $html = $html . '</table></div>';
+        $this->CuentasCorrientesHtml = $html;
+
+                // dd($subtotales1);
+
+            // $subtotales = DB::table('ListadoCuentasCorrientes')
+            // ->groupByRaw('area_id')
+            // ->get();
+
+            // $subtotales = DB::select('SELECT * FROM ListadoCuentasCorrientes');
+            
+
+// create view ListadoCuentasCorrientes as
+// SELECT comprobantes.fecha, 
+// comprobantes.comprobante, 
+// comprobantes.NetoComp, 
+// comprobantes.MontoPagadoComp,
+// comprobantes.empresa_id,
+// comprobantes.proveedor_id,
+// B.saldo 
+// FROM 
+// comprobantes, 
+// (select comprobante, 
+//   sum(NetoComp-MontoPagadoComp) as saldo, 
+//   empresa_id, 
+//   proveedor_id, 
+//   area_id, 
+//   cuenta_id 
+// FROM comprobantes 
+// GROUP BY
+//   comprobante, empresa_id, proveedor_id) as B 
+// WHERE 
+// comprobantes.comprobante = B.comprobante and 
+// comprobantes.empresa_id=B.empresa_id and 
+// comprobantes.proveedor_id = B.proveedor_id and 
+// comprobantes.area_id = B.area_id and 
+// comprobantes.cuenta_id = B.cuenta_id
+// ORDER by comprobantes.fecha;
+        //     $subtotales = Comprobante::leftjoin('proveedors','comprobantes.proveedor_id','proveedors.id')
+        //     ->leftjoin('cuentas1','comprobantes.cuenta_id','cuentas.id')
+        //     ->leftjoin('areas','comprobantes.area_id','areas.id')
+        //     ->where('comprobantes.proveedor_id','=',$this->ccProveedor)
+        //     ->where('comprobantes.fecha','>=', $this->ccdesde)
+        //     ->where('comprobantes.fecha','<=', $this->cchasta)
+        //     ->where('comprobantes.empresa_id','=', session('empresa_id'))
+        //     ->groupby('comprobante','comprobantes.proveedor_id','proveedors.id','comprobantes.fecha','comprobantes.NetoComp','comprobantes.MontoPagadoComp','proveedors.name','areas.name','cuentas.name')
+        //     ->get(['fecha', 'comprobante', 'NetoComp', 'MontoPAgadoComp', 'proveedors.name as proveedor', 'areas.name as area', 'cuentas.name as cuenta']);
+
+        //     $this->detallesCC = Comprobante::leftjoin('proveedors','comprobantes.proveedor_id','proveedors.id')
+        //     ->leftjoin('cuentas','comprobantes.cuenta_id','cuentas.id')
+        //     ->leftjoin('areas','comprobantes.area_id','areas.id')
+        //     ->where('comprobantes.proveedor_id','=',$this->ccProveedor)
+        //     ->where('comprobantes.fecha','>=', $this->ccdesde)
+        //     ->where('comprobantes.fecha','<=', $this->cchasta)
+        //     ->where('comprobantes.empresa_id','=', session('empresa_id'))
+        //     ->orderby('fecha')
+        //     ->orderby('comprobantes')
+        //     ->get(['fecha', 'comprobante', 'NetoComp', 'MontoPAgadoComp', 'proveedors.name as proveedor', 'areas.name as area', 'cuentas.name as cuenta']);
+        // } else {
+        //     $this->detallesCC = Comprobante::leftjoin('proveedors','comprobantes.proveedor_id','proveedors.id')
+        //     ->leftjoin('cuentas','comprobantes.cuenta_id','cuentas.id')
+        //     ->leftjoin('areas','comprobantes.area_id','areas.id')
+        //     ->where('comprobantes.proveedor_id','=',$this->ccProveedor)
+        //     ->where('comprobantes.fecha','>=', $this->ccdesde)
+        //     ->where('comprobantes.fecha','<=', $this->cchasta)
+        //     ->where('comprobantes.empresa_id','=', session('empresa_id'))
+        //     ->orderby('fecha')
+        //     ->orderby('detalle')
+        //     ->get(['fecha', 'comprobante', 'NetoComp', 'MontoPAgadoComp', 'proveedors.name as proveedor', 'areas.name as area', 'cuentas.name as cuenta']);
+        // }
+
+        // dd($a);
+
+
+    }
 
     public function RellenarCamposVacios() {
         if(is_null($this->gfecha)) $this->gfecha=now();
@@ -270,8 +423,9 @@ class CompraComponent extends Component
             $sqlTemp = substr($sqlTemp,8,-27); 
             $sqlDetalle = 'SELECT DISTINCT detalle' . $sqlTemp . 'ORDER BY detalle';
         } else { 
-            $sqlTemp = substr($sql,17,-38); 
-            $sqlDetalle = 'SELECT DISTINCT detalle' . substr($sqlTemp,9) . ' ORDER BY detalle';
+            $sqlTemp = substr($sql,8,-38);
+            // dd($sqlTemp); 
+            $sqlDetalle = 'SELECT DISTINCT detalle' . $sqlTemp  . ' ORDER BY detalle';
             // dd($sqlDetalle);
         }
 

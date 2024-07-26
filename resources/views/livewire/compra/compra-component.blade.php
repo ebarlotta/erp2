@@ -1,6 +1,6 @@
 {{-- <x-slot> --}}
 <div>
-	<x-tituloslim>Comprobantes de Compras <?php echo session('nombre_empresa').'<br>'; ?></x-tituloslim>
+	<x-tituloslim>Comprobantes de Compras - <?php echo session('nombre_empresa').'<br>'; ?></x-tituloslim>
 	<div class="content-center block">
 		<div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
 			
@@ -266,33 +266,18 @@
 											<label style="font-size: 80%;">Mes</label>
 											<select class="w-full px-2 rounded-md h-8 leading-none" wire:model="gmes">
 												<option value=""></option>
-												<option value="1">enero
-												</option>
-												<option value="2">febrero
-												</option>
-												<option value="3">marzo
-												</option>
-												<option value="4">abril
-												</option>
-												<option value="5">mayo
-												</option>
-												<option value="6">junio
-												</option>
-												<option value="7">julio
-												</option>
-												<option value="8">agosto
-												</option>
-												<option value="9">
-													setiembre
-												</option>
-												<option value="10">octubre
-												</option>
-												<option value="11">
-													noviembre
-												</option>
-												<option value="12">
-													diciembre
-												</option>
+												<option value="1">enero</option>
+												<option value="2">febrero</option>
+												<option value="3">marzo</option>
+												<option value="4">abril</option>
+												<option value="5">mayo</option>
+												<option value="6">junio</option>
+												<option value="7">julio</option>
+												<option value="8">agosto</option>
+												<option value="9">setiembre</option>
+												<option value="10">octubre</option>
+												<option value="11">noviembre</option>
+												<option value="12">diciembre</option>
 											</select>
 											@error('gmes') <span class="text-red-500">{{ $message }}</span>@enderror
 										</div>
@@ -461,8 +446,8 @@
 											</div>
 											<div class="border px-2 grid text-left">
 												<label style="font-size: 80%;">Año</label>
-												<!-- <select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gfiltro()"> -->
-												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gsetanio(gfanio)">
+												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gfiltro()">
+												{{-- <select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gsetanio(gfanio)"> --}}
 													<option value="2024">2024</option>
 													<option value="2023">2023</option>
 													<option value="2022">2022</option>
@@ -648,9 +633,8 @@
 							{{-- Cuentas Corrientes  --}}
 							{{-- =================== --}}
 							<div class="{{ $tabActivo != 4 ? 'hidden' : '' }}">
-								<div class="flex justify-center">
+								{{-- <div class="flex justify-center"> --}}
 									<div class="flex justify-center">
-
 										<div class="block mb-4 justify-start">
 											Proveedor<br>
 											<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccProveedor">
@@ -669,7 +653,7 @@
 										</div>
 										<div class="block mb-4 justify-start">
 											Agrupado por Detalle <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="checkbox" wire:model="cccAgrupadoDeta"><br>
+											<input class="text-xs rounded-md h-7 ml-5" type="checkbox" wire:model="ccAgrupadoDeta"><br>
 										</div>
 
 										<div class="block mb-4 justify-start">
@@ -681,8 +665,40 @@
 											Hasta <br>
 											<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
 										</div>
+										<div class="block mb-4 justify-center">
+											<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
+										</div>
 									</div>
-								</div>
+									{!! $CuentasCorrientesHtml !!}
+									{{-- <div class="flex justify-center">
+										<table class="table table-stripped w-75">
+											<tr bgcolor="lightGray">
+												<td align="center">Fecha</td>
+												<td align="center">Comp.</td>
+												<td>Proveedor</td>
+												<td>Monto Comprado</td>
+												<td>Monto Pagado</td>
+												<td>Saldo</td>
+												<td>Área</td>
+												<td>Cuenta</td>
+											</tr>
+											@if($detallesCC)
+												@foreach ($detallesCC as $detalleCC )
+													<tr>
+														<td align="center">{{ substr($detalleCC->fecha,8,2).'-'.substr($detalleCC->fecha,5,2).'-'. substr($detalleCC->fecha,0,4) }}</td>
+														<td>{{ $detalleCC->comprobante }}</td>
+														<td>{{ $detalleCC->proveedor }}</td>
+														<td align="right" class="pr-2">{{ number_format($detalleCC->NetoComp, 2, ',', '.') }}</td>
+														<td align="right" class="pr-2">{{ number_format($detalleCC->MontoPAgadoComp, 2, ',', '.') }}</td>
+														<td align="right">{{ number_format($saldo=$saldo+$detalleCC->NetoComp-$detalleCC->MontoPAgadoComp, 2, ',', '.') }}</td>
+														<td>{{ $detalleCC->area }}</td>
+														<td>{{ $detalleCC->cuenta }}</td>
+													</tr>
+												@endforeach
+											@endif
+										</table>
+									</div> --}}
+								{{-- </div> --}}
 								{{-- <div class="flex flex-auto justify-center">
 									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
 								</div> --}}

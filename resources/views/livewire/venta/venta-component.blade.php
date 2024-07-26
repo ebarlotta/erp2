@@ -1,6 +1,6 @@
 <div>
 	{{-- @extends('layouts.app2') --}}
-	<x-tituloslim>Comprobantes de Ventas</x-tituloslim>
+	<x-tituloslim>Comprobantes de Ventas - <?php echo session('nombre_empresa').'<br>'; ?></x-tituloslim>
 
 	<script>
         $('.content-wrapper').click(function (e) {
@@ -768,33 +768,18 @@
 													<label for="">Mes</label><br>
 													<select class="mr-4 w-full text-xs px-1 rounded-md h-7 leading-none" wire:model="lmes" wire:change="MostrarLibros()">
 														<option value=""></option>
-														<option value="1">enero
-														</option>
-														<option value="2">febrero
-														</option>
-														<option value="3">marzo
-														</option>
-														<option value="4">abril
-														</option>
-														<option value="5">mayo
-														</option>
-														<option value="6">junio
-														</option>
-														<option value="7">julio
-														</option>
-														<option value="8">agosto
-														</option>
-														<option value="9">
-															setiembre
-														</option>
-														<option value="10">octubre
-														</option>
-														<option value="11">
-															noviembre
-														</option>
-														<option value="12">
-															diciembre
-														</option>
+														<option value="1">enero</option>
+														<option value="2">febrero</option>
+														<option value="3">marzo</option>
+														<option value="4">abril</option>
+														<option value="5">mayo</option>
+														<option value="6">junio</option>
+														<option value="7">julio</option>
+														<option value="8">agosto</option>
+														<option value="9">setiembre</option>
+														<option value="10">octubre</option>
+														<option value="11">noviembre</option>
+														<option value="12">diciembre</option>
 													</select>
 													<label for="">Año</label><br>
 													<select class="mr-4 w-full text-xs rounded-md h-7 leading-none" wire:model="lanio" wire:change="MostrarLibros()">
