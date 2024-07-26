@@ -637,8 +637,8 @@
 									<div class="flex justify-center">
 										<div class="block mb-4 justify-start">
 											Proveedor<br>
-											<select class="px-2 col-10 rounded-md h-8 leading-none" wire:model="ccProveedor">
-												<option value=" "> </option>
+											<select class="px-2 col-11 rounded-md h-8 leading-none" wire:model="ccProveedor">
+												<option value="0">-- Todos -- </option>
 												@foreach ($ccProveedores as $proveedor)
 													<option value="{{ $proveedor->id }}">
 														{{ $proveedor->name }}
@@ -672,45 +672,22 @@
 											<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
 										</div>
 										<div class="block mb-4 justify-center">
+											Mes <br>
+											*
+										</div>
+										<div class="block mb-4 justify-center">
+											Área <br>
+											*
+										</div>
+										<div class="block mb-4 justify-center">
+											Cuenta <br>
+											*
+										</div>
+										<div class="block mb-4 justify-center">
 											<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
 										</div>
 									</div>
-									<style>table.scroll {
-										width: 20%; /* 140px * 5 column + 16px scrollbar width */
-										border-spacing: 0;
-										border: 2px solid black;
-									}
-									
-									table.scroll tbody,
-									table.scroll thead tr { display: block; }
-									
-									table.scroll tbody {
-										height: 100px;
-										overflow-y: auto;
-										overflow-x: scroll;
-									}
-									
-									table.scroll tbody td,
-									table.scroll thead th {
-										width: 140px;
-										border: 1px solid black;
-									}
-									
-									table.scroll thead th:last-child {
-										width: 156px; /* 140px + 16px scrollbar width */
-									}
-									
-									thead tr th { 
-										height: 30px;
-										line-height: 30px;
-										/*text-align: left;*/
-									}
-									
-									tbody { border-top: 2px solid black; }
-									
-									tbody td:last-child, thead th:last-child {
-										border-right: none !important;
-									}</style>
+
 									{!! $CuentasCorrientesHtml !!}
 									{{-- <div class="flex justify-center">
 										<table class="table table-stripped w-75">
