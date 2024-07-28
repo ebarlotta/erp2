@@ -19,7 +19,7 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<a href="/" class="logo"><strong>EocSystems</strong> <span></span></a>
+						<a href="/" class="logo"><strong>EcoSystems</strong> <span></span></a>
 						<nav class="col-1 align-content-end">
 							<a href="/public/login">Ingresar</a>
 							<a href="#menu">Menú</a>
@@ -33,6 +33,7 @@
 							<li><a href="home/landing.html">Landing</a></li>
 							<li><a href="home/generic.html">Generic</a></li>
 							<li><a href="home/elements.html">Elements</a></li>
+							<li><a href="public/register">REGISTRARSE</a></li>
 						</ul>
 						<ul class="actions stacked">
 							<li><a href="#" class="button primary fit">Comenzar</a></li>

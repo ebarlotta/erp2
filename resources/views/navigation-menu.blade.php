@@ -21,7 +21,7 @@
                     </x-nav-link>
                 </div>
             </div>
-
+{{-- @if(Auth::user()) --}}
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
@@ -78,6 +78,7 @@
 
                 <!-- Settings Dropdown -->
                 <div class="ms-3 relative">
+                    <img class="h-8 w-8 rounded-full object-cover" src="http://localhost:8000/storageimages/phpAYO1hb1685705491.jpg" alt="{{ Auth::user()->name }}" />
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -224,4 +225,5 @@
             </div>
         </div>
     </div>
+{{-- @endif --}}
 </nav>

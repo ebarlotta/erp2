@@ -37,7 +37,7 @@ use App\Http\Livewire\Venta\VentaMostradorComponent;
 use Livewire\Livewire;
 
 Route::get('/dasboard', function () {
-    return view('empresas');
+    return view('dashboard');
 })->name('dashboard');
 
 // Livewire::setUpdateRoute(function ($handle) {
