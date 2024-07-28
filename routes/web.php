@@ -15,6 +15,10 @@ use App\Http\Livewire\Compra\CompraSimpleComponent;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes()->prefix('');
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 Route::middleware([
     'auth:sanctum',

@@ -37,19 +37,20 @@ use App\Http\Livewire\Venta\VentaMostradorComponent;
 use Livewire\Livewire;
 
 Route::get('/dasboard', function () {
-    return view('dashboard');
+    return view('empresas');
 })->name('dashboard');
 
 // Livewire::setUpdateRoute(function ($handle) {
 //     return Route::post('/custom/livewire/update', $handle);
 // });
 
-
-
-
-
 // Route::get('/', EmpresaComponent::class)->name('inicio');
-Route::get('/', function () { return view('home')->extends('layouts.guest'); })->name('home1');
+
+// Ruta Inicial
+// ============
+// Route::get('/', function () { return view('home')->extends('layouts.guest'); })->name('home1');
+Route::get('/', function () { return redirect()->route('login'); }); // return view('welcome'); 
+
 Route::get('/home', function () { Auth::loginUsingId(1); return view('home')->extends('guest'); })->name('home2');
 Route::get('modulos',ModuloComponent::class)->name('modulos');
 Route::get('empresas', EmpresaComponent::class)->name('empresas');

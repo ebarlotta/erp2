@@ -192,7 +192,7 @@ return [
 
     'use_route_url' => false,
     'dashboard_url' => '/empresas',
-    'logout_url' => 'public/logout',
+    'logout_url' => 'public/public/logout',
     'login_url' => 'public/login',
     'register_url' => 'register',
     'password_reset_url' => 'public/|password/reset',
