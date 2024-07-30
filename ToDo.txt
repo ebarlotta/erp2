@@ -2,3 +2,27 @@
 Revisar Tabs a los que les falta funcionalidad
 
 Terminar de configurar Permission y Roles
+
+mÓDULOS -> migrar los módulos de Geri a Erp
+Modulos_usuario Geri tiene un campo más
+Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado
+Empresa_usuarios está mas desarrollado en erp2 que tiene Roles
+
+Tabla Empresas  Usar el de Geri
+imagen          Nulo Si
+actividad1      Nulo Si
+email           usar geri
+habilitada      usar geri
+nombretitular   usar geri
+dnititular      usar geri
+
+No migrar recursos
+
+Revisar otras tablas flatantes que estaban en las hojas impresas
+
+Una Vez Revisado todo comenzar con la migración de controladores, interfaces y modelos y migraciones
+
+Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
+---------------------------------
+
+Agregar "Signo" a la tabla unidades

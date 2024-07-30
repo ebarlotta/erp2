@@ -176,7 +176,7 @@ class VentaComponent extends Component
             ->get();
         if(!count($cerrado) || (count($cerrado) && $this->gpartiva='Si')) {
             Venta::create([
-                'fecha'             => $this->gfecha,
+                'fecha'             => date($this->gfecha),
                 'comprobante'       => $this->gcomprobante,
                 'detalle'           => $this->gdetalle,
                 'BrutoComp'         => $this->gbruto,

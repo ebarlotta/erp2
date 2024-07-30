@@ -48,7 +48,9 @@ Route::get('/dasboard', function () {
 
 // Ruta Inicial
 // ============
-// Route::get('/', function () { return view('home')->extends('layouts.guest'); })->name('home1');
+//Route::get('/', function () { return view('home')->extends('layouts.guest'); })->name('home1');
+//Route::get('/', function () { return redirect()->route('public/login'); }); // return view('welcome');   
+// php artisan route:clear
 Route::get('/', function () { return redirect()->route('login'); }); // return view('welcome'); 
 
 Route::get('/home', function () { Auth::loginUsingId(1); return view('home')->extends('guest'); })->name('home2');
