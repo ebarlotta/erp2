@@ -1,12 +1,19 @@
-    // FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
-Revisar Tabs a los que les falta funcionalidad
 
-Terminar de configurar Permission y Roles
 
-mÓDULOS -> migrar los módulos de Geri a Erp
-Modulos_usuario Geri tiene un campo más
-Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado
-Empresa_usuarios está mas desarrollado en erp2 que tiene Roles
+MÓDULOS -> migrar los módulos de Geri a Erp -> REALIZADO 30/07/2024
+Agregar "Signo" a la tabla unidades -> REALIZADO 30/07/2024
+No migrar recursos -> SE MIGRÓ PARA NO PERDER INFORMACIÓN SI MÁS ADELANTE NO ES NECESARIO SE ELIMINA
+Una Vez Revisado todo comenzar con la migración de controladores, interfaces y modelos y migraciones -> SE COMENZÓ EL 30/07/2024
+Empresa_usuarios está mas desarrollado en erp2 que tiene Roles -> Se decide no migrarla desde Geri 30/07/2024
+
+
+Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración
+
+
+- Modulos_usuario Geri tiene un campo más
+- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
+- Revisar Tabs a los que les falta funcionalidad
+- Terminar de configurar Permission y Roles
 
 Tabla Empresas  Usar el de Geri
 imagen          Nulo Si
@@ -16,16 +23,8 @@ habilitada      usar geri
 nombretitular   usar geri
 dnititular      usar geri
 
-No migrar recursos
-
-Revisar otras tablas flatantes que estaban en las hojas impresas
-
-Una Vez Revisado todo comenzar con la migración de controladores, interfaces y modelos y migraciones
-
+Revisar otras tablas flatantes que estaban en las hojas impresas ->
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
----------------------------------
-
-Agregar "Signo" a la tabla unidades
-
-30/07/2024
-Nueva linea para hacer un nuevo merge
+-- Ingredientes no se si es necesario empresa_id
+-- Camas no se si es necesario empresa_id
+-- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización
