@@ -28,3 +28,4 @@ Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 Agregar "Signo" a la tabla unidades
 
 30/07/2024
+Nueva linea para hacer un nuevo merge
