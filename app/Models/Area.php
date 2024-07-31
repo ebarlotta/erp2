@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\erp;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +12,7 @@ class Area extends Model
     protected $fillable = [
         'name',
         'empresa_id',
+        'habilitada',
     ];
 
     //Relacion uno a muchos inversa

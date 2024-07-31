@@ -2,12 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Empresa;
-
+use App\Models\Areas;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UnidadFactory extends Factory
+class AreasFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Areas::class;
+
     /**
      * Define the model's default state.
      *
@@ -16,8 +22,7 @@ class UnidadFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'empresa_id' => Empresa::inRandomOrder()->value('id') ?: Empresa::factory(1)->create(),
+            //
         ];
     }
 }

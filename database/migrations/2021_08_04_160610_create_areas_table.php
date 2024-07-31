@@ -18,6 +18,7 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('habilitada')->default(true);
             $table->unsignedBigInteger('empresa_id');
 
             $table->timestamps();

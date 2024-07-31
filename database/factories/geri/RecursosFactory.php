@@ -2,11 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Recursos;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Empresa;
 
-class CategoriaproductoFactory extends Factory
+class RecursosFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Recursos::class;
+
     /**
      * Define the model's default state.
      *
@@ -15,8 +22,7 @@ class CategoriaproductoFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'empresa_id' => Empresa::inRandomOrder()->value('id') ?: Empresa::factory(1)->create(),
+            //
         ];
     }
 }

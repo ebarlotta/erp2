@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\erp;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,17 +25,17 @@ class Empresa extends Model
       
     public function cuentas()
     {
-        return $this->hasMany('App\Models\erp\Cuenta');
+        return $this->hasMany('App\Models\Cuenta');
     }
 
     public function areas()
     {
-        return $this->hasMany('App\Models\erp\Area');
+        return $this->hasMany('App\Models\Area');
     }
 
     public function comprobantes()
     {
-        return $this->hasMany('App\Models\erp\Comprobante');
+        return $this->hasMany('App\Models\Comprobante');
     }
 
     public function proveedores()
@@ -45,31 +45,31 @@ class Empresa extends Model
 
     public function clientes()
     {
-        return $this->hasMany('App\Models\erp\Cliente');
+        return $this->hasMany('App\Models\Cliente');
     }
     
     public function empleados()
     {
-        return $this->hasMany('App\Models\erp\Empleado');
+        return $this->hasMany('App\Models\Empleado');
     }
 
     public function categoriaprofesionales()
     {
-        return $this->hasMany('App\Models\erp\Categoriaprofesional');
+        return $this->hasMany('App\Models\Categoriaprofesional');
     }
 
     public function tablas()
     {
-        return $this->hasMany('App\Models\erp\Tabla');
+        return $this->hasMany('App\Models\Tabla');
     }
 
     public function empresausuarios()
     {
-        return $this->hasMany('App\Models\erp\EmpresaUsuario');
+        return $this->hasMany('App\Models\EmpresaUsuario');
     }
 
     public function empresamodulos()
     {
-        return $this->hasMany('App\Models\erp\EmpresaModulo');
+        return $this->hasMany('App\Models\EmpresaModulo');
     }
 }

@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Models\erp;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cuenta extends Model
+class EmpresaModulo extends Model
 {
     use HasFactory;
-    
-    protected $fillable = [
-        'name',
-        'empresa_id'
+    protected $fillable=[
+        'empresa_id',
+        'modulo_id',
     ];
-
     //Relacion uno a muchos inversa
 
     public function empresa()
@@ -21,9 +19,8 @@ class Cuenta extends Model
         return $this->belongsTo(Empresa::class);
     }
 
-    //Relación de uno a muchos
-    public function comprobantes()
+    public function modulo()
     {
-        return $this->hasMany(Comprobante::class);
+        return $this->belongsTo(Modulo::class);
     }
 }

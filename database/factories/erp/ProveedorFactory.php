@@ -1,19 +1,21 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\erp;
 
-use App\Models\Cliente;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\erp\Proveedor;
+
 use App\Models\Empresa;
 
-class ClienteFactory extends Factory
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class ProveedorFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Cliente::class;
+    protected $model = Proveedor::class;
 
     /**
      * Define the model's default state.
@@ -24,9 +26,10 @@ class ClienteFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'direccion'=> $this->faker->city(),
-            'cuil'=> $this->faker->numberBetween(20000000,40000000),
+            'direccion'=> $this->faker->address(),
+            'cuit'=> $this->faker->numberBetween(20000000,40000000),
             'telefono'=> $this->faker->numberBetween(2634000000,40000000),
+            'email'=> $this->faker->email(),
             'empresa_id' => Empresa::inRandomOrder()->value('id') ?: Empresa::factory(1)->create(),
         ];
     }

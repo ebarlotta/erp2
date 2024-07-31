@@ -1,12 +1,13 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\erp;
 
 use App\Models\Empresa;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UnidadFactory extends Factory
+
+class EstadoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,7 +17,7 @@ class UnidadFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->randomElement(['Disponible','Nuevo','Usado','No disponible','Reparado','Defectuoso']),
             'empresa_id' => Empresa::inRandomOrder()->value('id') ?: Empresa::factory(1)->create(),
         ];
     }

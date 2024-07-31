@@ -1,10 +1,12 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\erp;
 
-use App\Models\Categoriaprofesional;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\erp\Categoriaprofesional;
+
 use App\Models\Empresa;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoriaprofesionalFactory extends Factory
 {

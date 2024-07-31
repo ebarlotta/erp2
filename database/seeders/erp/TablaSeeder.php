@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\erp;
 
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder\erp;
 use Illuminate\Support\Facades\DB;
 
 class TablaSeeder extends Seeder

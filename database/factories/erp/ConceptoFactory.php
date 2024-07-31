@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\erp;
 
-use App\Models\Concepto;
+use App\Models\erp\Concepto;
+
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ConceptoFactory extends Factory

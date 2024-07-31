@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\erp;
 
 use App\Models\Empresa;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UnidadFactory extends Factory
+class CategoriaproductoFactory extends Factory
 {
     /**
      * Define the model's default state.
