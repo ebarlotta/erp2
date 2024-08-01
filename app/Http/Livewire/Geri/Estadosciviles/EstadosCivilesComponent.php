@@ -14,7 +14,7 @@ class EstadosCivilesComponent extends Component
     public function render()
     {
         $this->estadosciviles = EstadosCiviles::all();
-        return view('livewire.estadosciviles.estados-civiles-component')->with('isModalOpen', $this->isModalOpen)->with('estadociviles', $this->estadosciviles);
+        return view('livewire.geri.estadosciviles.estados-civiles-component',['isModalOpen'=> $this->isModalOpen,'estadociviles'=>$this->estadosciviles])->extends('layouts.adminlte');
     }
 
 
@@ -23,7 +23,7 @@ class EstadosCivilesComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.estadosciviles.estados-civiles-component')->with('isModalOpen', $this->isModalOpen)->with('estadociviles', $this->estadosciviles);
+        return view('livewire.geri.estadosciviles.estados-civiles-component',['isModalOpen'=> $this->isModalOpen,'estadociviles'=>$this->estadosciviles])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

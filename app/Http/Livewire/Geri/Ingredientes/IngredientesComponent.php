@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Geri\Ingredientes;
 
 use App\Models\Geri\Categorias;
 use App\Models\Geri\Ingredientes;
-use App\Models\Geri\Unidad;
+use App\Models\Unidad;
 
 use Livewire\Component;
 
@@ -26,7 +26,7 @@ class IngredientesComponent extends Component
         $this->unidades = Unidad::where('empresa_id', $this->empresa_id)->get();
         $this->ingredientes = Ingredientes::where('empresa_id', $this->empresa_id)->get();
         //dd($this->ingredientes->categorias['nombrecategoria']);
-        return view('livewire.ingredientes.ingrediente-component',['datos'=> Ingredientes::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        return view('livewire.geri.ingredientes.ingrediente-component',['datos'=> Ingredientes::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
     }
 
     public function create()
@@ -34,7 +34,7 @@ class IngredientesComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.ingredientes.createingrediente')->with('isModalOpen', $this->isModalOpen)->with('nombreingrediente', $this->nombreingrediente);
+        return view('livewire.geri.ingredientes.createingrediente')->with('isModalOpen', $this->isModalOpen)->with('nombreingrediente', $this->nombreingrediente);
     }
 
     public function openModalPopover()

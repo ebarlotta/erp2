@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\erp\Haberes;
 
-use App\Models\erp\Empresa;
+use App\Models\Empresa;
 
 use App\Models\erp\Recibo;
 use App\Models\erp\Categoriaprofesional;

@@ -21,7 +21,7 @@ class Habitacion extends Component
         // dd(session('empresa_id'));
         $this->habitaciones = Hab::where('empresa_id',session('empresa_id'))->get();
         //dd($this->habitaciones);
-        return view('livewire.habitacion.habitacion-component');
+        return view('livewire.geri.habitacion.habitacion-component')->extends('layouts.adminlte');
     }
 
     public function create()
@@ -29,7 +29,7 @@ class Habitacion extends Component
         //$this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.habitacion.createhabitacion')->with('isModalOpen', $this->isModalOpen);
+        return view('livewire.geri.habitacion.createhabitacion',['isModalOpen'=>$this->isModalOpen])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

@@ -21,7 +21,7 @@ class PersonasCamposComponent extends Component
         $this->PersonasCampos = DB::table('personas_campos')
                 ->orderBy('OrdenCampo', 'asc')
                 ->get();
-        return view('livewire.persona-campos.personas-campos')->with('isModalOpen', $this->isModalOpen)->with('PersonasCampos', $this->PersonasCampos);
+        return view('livewire.geri.persona-campos.personas-campos')->with('isModalOpen', $this->isModalOpen)->with('PersonasCampos', $this->PersonasCampos);
     }
 
 
@@ -30,7 +30,7 @@ class PersonasCamposComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.persona-campos.personas-campos')->with('isModalOpen', $this->isModalOpen);
+        return view('livewire.geri.persona-campos.personas-campos')->with('isModalOpen', $this->isModalOpen);
     }
 
     public function openModalPopover()

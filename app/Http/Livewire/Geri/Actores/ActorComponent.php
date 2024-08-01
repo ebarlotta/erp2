@@ -2,6 +2,12 @@
 
 namespace App\Http\Livewire\Geri\Actores;
 
+use App\Models\Nacionalidad;
+use App\Models\Localidades;
+use App\Models\Areas;
+use App\Models\EmpresaUsuario;
+use App\Models\Iva;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\Geri\Actor;
 use App\Models\Geri\Actores\ActorAgente;
@@ -13,7 +19,6 @@ use App\Models\Geri\Actores\ActorReferente;
 use App\Models\Geri\Actores\ActorVendedor;
 use App\Models\Geri\Agente;
 use App\Models\Geri\AgenteInforme;
-use App\Models\Geri\Areas;
 use App\Models\Geri\Beneficios;
 use App\Models\Geri\Camas;
 use App\Models\Geri\Cliente;
@@ -24,8 +29,6 @@ use App\Models\Geri\GradoDependencia;
 use App\Models\Geri\Habitacion;
 use App\Models\Geri\Informes\Informe;
 use App\Models\Geri\Informes\InformeRespuestas;
-use App\Models\Geri\Localidades;
-use App\Models\Geri\Nacionalidad;
 use App\Models\Geri\PersonActivo;
 use App\Models\Geri\Personas;
 use App\Models\Geri\Pregunta;
@@ -34,11 +37,9 @@ use App\Models\Geri\Sexo;
 use App\Models\Geri\Sociales\DatosSocial;
 use App\Models\Geri\TipoDePersona;
 use App\Models\Geri\TiposDocumentos;
-use App\Models\EmpresaUsuario;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TraitUseAdaptation\Alias;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
-use App\Models\Geri\Iva;
 use Livewire\Component;
 
 class ActorComponent extends Component
@@ -78,7 +79,7 @@ class ActorComponent extends Component
     {
         //Busca el id de la empresa relacionada con el usuario que está logueado
         $usuario=EmpresaUsuario::where('user_id','=',Auth::id())->get();
-        session(['empresa_id' => $usuario[0]['empresa_id']]);
+        // session(['empresa_id' => $usuario[0]['empresa_id']]);
         
         $this->anioNuevo=date("Y");
         $this->tipos_documentos = TiposDocumentos::all();   //Carga todos los tipos de documentos
@@ -99,7 +100,7 @@ class ActorComponent extends Component
             ->orderBy('cama_id')
             ->get(),true);
         if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
-        return view('livewire.actores.actor-component')->with(['radios'=>$this->radios]);
+        return view('livewire.geri.actores.actor-component',['radios'=>$this->radios])->extends('layouts.adminlte');
     }
     
     protected $rules = [
@@ -279,7 +280,7 @@ class ActorComponent extends Component
             ->where('habitacions.empresa_id',session('empresa_id'))
             ->orderBy('cama_id')
             ->get(),true);
-        return view('livewire.actores.actor-component')->with('isModalOpen', $this->isModalOpen);
+        return view('livewire.geri.actores.actor-component')->with('isModalOpen', $this->isModalOpen);
     }
 
     // Se encarga de los modales 

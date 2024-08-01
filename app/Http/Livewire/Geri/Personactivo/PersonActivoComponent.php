@@ -14,14 +14,14 @@ class PersonActivoComponent extends Component
     public function render()
     {
         $this->estados = PersonActivo::all();
-        return view('livewire.personactivo.person-activo-component')->with('isModalOpen', $this->isModalOpen)->with('estados', $this->estados);
+        return view('livewire.geri.personactivo.person-activo-component',['isModalOpen'=> $this->isModalOpen, 'estados'=> $this->estados])->extends('layouts.adminlte');
     }
     public function create()
     {
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.personactivo.person-activo-component')->with('isModalOpen', $this->isModalOpen)->with('estados', $this->estados);
+        return view('livewire.geri.personactivo.person-activo-component',['isModalOpen'=> $this->isModalOpen, 'estados'=> $this->estados])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

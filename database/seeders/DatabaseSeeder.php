@@ -5,14 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Seeders\erp\AreaSeeder;
-use Illuminate\Database\Seeders\geri\EscolaridadesSeeder;
-
-
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Seeder\erp;
-use Illuminate\Database\Seeder\geri;
 
 use Illuminate\Support\Facades\DB;
 
@@ -26,11 +20,12 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->withPersonalTeam()->create();
 
         // \App\Models\User::factory(10)->create();
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
         $this->call(IvaSeeder::class);
         
-        DB::table('empresas')->insert(['name' => 'Empresa de Pruebas','direccion' => 'Dirección','cuit' => '20123456789','ib' => '012345678','imagen' => 'BarBer.png','establecimiento' => '0','telefono' => '12345678','actividad' => 'Desarrollo','actividad1' => 'Software','menu' => '2',]);
-        \App\Models\Empresa::factory(4)->create();   //Crea una empresa de prueba para relacionar con los usuarios que se dan de alta
+        DB::table('empresas')->insert(['name' => 'Empresa de Pruebas','direccion' => 'Dirección','cuit' => '20123456789','ib' => '012345678','imagen' => 'BarBer.png','establecimiento' => '0','telefono' => '12345678','actividad' => 'Desarrollo','actividad1' => 'Software','menu' => '2','email'=>'enzo@gmail.com','habilitada'=>true,'nombretitular'=>'Enzo','dnititular'=>'1234',]);
+        
+        // \App\Models\Empresa::factory(4)->create();   //Crea una empresa de prueba para relacionar con los usuarios que se dan de alta
 
         // $this->call(TablaSeeder::class);
 
@@ -166,7 +161,7 @@ class DatabaseSeeder extends Seeder
         
         // $this->call(PersonasCamposSeeder::class);
         
-        $this->call(ModuloSeeder::class);
+        // $this->call(ModuloSeeder::class);
 
 
         // $this->call(IvaSeeder::class);

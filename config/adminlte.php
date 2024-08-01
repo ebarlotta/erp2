@@ -246,7 +246,7 @@ return [
         // ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
+            'url'  => 'blog',
             'can'  => 'manage-blog',
         ],
         // [
@@ -259,12 +259,27 @@ return [
         
         // ['header' => 'account_settings'],
         ['header' => 'GESTIÓN DE EMPRESAS'],
-
         [
             'text' => 'Administración',
             'url'  => 'tags',
             'icon' => 'fas fa-fw fa-building',
             'submenu' => [
+                [
+                    'text' => 'Gestión de empresas',
+                    'url'  => 'empresagestion',
+                    'icon' => 'fas fa-fw fa-building',
+                    // 'can' => 'empresas.Agregar',
+                ],
+                [
+                    'text' => 'Módulos x Empresa',
+                    'url'  => 'empresamodulos',
+                    'icon' => 'fas fa-fw fa-chart-pie',
+                ],
+                [
+                    'text' => 'Gestión de Módulos',
+                    'url'  => 'gestionmodulos',
+                    'icon' => 'fas fa-fw fa-building',
+                ],
                 [
                     'text' => 'Usuarios x Empresa',
                     'url'  => 'empresausuarios',
@@ -274,22 +289,6 @@ return [
                     'text' => 'Usuarios x Módulo',
                     'url'  => 'modulousuarios',
                     'icon' => 'fas fa-fw fa-user-cog',
-                ],
-                [
-                    'text' => 'Módulos x Empresa',
-                    'url'  => 'empresamodulos',
-                    'icon' => 'fas fa-fw fa-chart-pie',
-                ],
-                [
-                    'text' => 'Gestión de empresas',
-                    'url'  => 'empresagestion',
-                    'icon' => 'fas fa-fw fa-building',
-                    // 'can' => 'empresas.Agregar',
-                ],
-                [
-                    'text' => 'Gestión de Módulos',
-                    'url'  => 'gestionmodulos',
-                    'icon' => 'fas fa-fw fa-building',
                 ],
                 [
                     'text' => 'Gestión de Roles',
@@ -303,38 +302,101 @@ return [
                 ],
             ],
         ],
-        ['header' => 'MÓDULOS'],
 
+        ['header' => 'ERP'],
+        [
+            'text' => 'Categorías Profesionales',
+            'url'  => 'categoriaprofesional',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Empleados',
+            'url'  => 'empleados',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Haberes',
+            'url'  => 'haberes',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+
+        ['header' => 'GERI'],
+        [
+            'text' => 'Ajustes',
+            'url'  => 'settings',
+            'icon' => 'fas fa-fw fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'Gestión de Actores',
+                    'icon' => 'fas fa-fw fa-cogs',
+                    'submenu' => [
+                        [
+                            'text' => 'Estado de Actores',
+                            'url'  => 'personactivo',
+                            'icon' => 'fas fa-fw fa-bed',
+                        ],
+                        [
+                            'text' => 'Tipo de Actor',
+                            'url'  => 'tiposdepersonas',
+                            'icon' => 'fas fa-fw fa-object-group',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Gestión Menú',
+                    'icon' => 'fas fa-fw fa-cogs',
+                    'submenu' => [
+                        [
+                            'text' => 'Ingredientes',
+                            'url'  => 'ingredientes',
+                        ],
+                        [
+                            'text' => 'Menúes',
+                            'url'  => 'menu',
+                        ],
+                        [
+                            'text' => 'Categorías',
+                            'url'  => 'categorias',
+                        ],    
+                    ],
+                ],
+                [
+                    'text' => 'Beneficios',
+                    'url'  => 'beneficios',
+                    'icon' => 'fas fa-fw fa-usd',
+                ],
+                [
+                    'text' => 'Estado de Camas',
+                    'url'  => 'estadocama',
+                    'icon' => 'fas fa-fw fa-bed',
+                ],
+                [
+                    'text' => 'Escolaridades',
+                    'url'  => 'escolaridades',
+                ],
+                [
+                    'text' => 'Grado de Dependencia',
+                    'url'  => 'gradodependencia',
+                    'icon' => 'fas fa-fw fa-blind',
+                ],
+                [
+                    'text' => 'Habitaciones',
+                    'url'  => 'habitaciones',
+                    'icon' => 'fas fa-fw fa-bed',
+                ],
+                [
+                    'text' => 'Motivos de Egresos',
+                    'url'  => 'motivoegreso',
+                ],
+            ],
+        ],
+
+        ['header' => 'MÓDULOS'],
         [
             'text' => 'Ajustes',
             'url'  => 'tags',
             'icon' => 'fas fa-fw fa-building',
             'submenu' => [
-                [
-                    'text' => 'Etiquetas',
-                    'url'  => 'tags',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Unidades',
-                    'url'  => 'unidades',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Categorías de Productos',
-                    'url'  => 'categoriaproducto',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Categorías Profesionales',
-                    'url'  => 'categoriaprofesional',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
-                [
-                    'text' => 'Estados',
-                    'url'  => 'estados',
-                    'icon' => 'fas fa-fw fa-building',
-                ],
                 [
                     'text' => 'Areas',
                     'url'  => 'areas',
@@ -351,8 +413,18 @@ return [
                     'icon' => 'fas fa-fw fa-building',
                 ],
                 [
-                    'text' => 'Empleados',
-                    'url'  => 'empleados',
+                    'text' => 'Estados Civiles',
+                    'url'  => 'estadosciviles',
+                    'icon' => 'fas fa-fw fa-venus-mars',
+                ],
+                [
+                    'text' => 'Tipos de Documentos',
+                    'url'  => 'tiposdedocumentos',
+                    'icon' => 'fas fa-fw fa-card',
+                ],                                
+                [
+                    'text' => 'Unidades',
+                    'url'  => 'unidades',
                     'icon' => 'fas fa-fw fa-building',
                 ],
                 [
@@ -361,10 +433,24 @@ return [
                     'icon' => 'fas fa-fw fa-building',
                 ],
                 [
-                    'text' => 'Haberes',
-                    'url'  => 'haberes',
-                    'icon' => 'fas fa-fw fa-building',
+                    'text' => 'Localización',
+                    'icon' => 'fas fa-fw fa-cogs',
+                    'submenu' => [
+                        [
+                            'text' => 'Localidades',
+                            'url'  => 'localidades',
+                        ],
+                        [
+                            'text' => 'Nacionalidades',
+                            'url'  => 'nacionalidad',
+                        ],
+                        [
+                            'text' => 'Provincias',
+                            'url'  => 'provincias',
+                        ],
+                    ],
                 ],
+
             ],
         ],
         ['header' => 'GESTIÓN CARRITO'],
@@ -372,39 +458,50 @@ return [
             'text' => 'Productos',
             'icon' => 'fas fa-fw fa-building',
             'submenu' => [
-                        
-                        [
-                            'text' => 'Agregar Etiqueta',
-                            'url'  => 'producto/tag',
-                        ],
-                        [
-                            'text' => 'Agregar Producto',
-                            'url'  => 'producto/create',
-                        ],
-                        [
-                            'text' => 'Gestión de Producto',
-                            'url'  => 'productos',
-                        ],
-                        [
-                            'text' => 'Modificar / Eliminar',
-                            'url'  => 'producto',
-                        ],
-                        [
-                            'text' => 'Registrar Bajas',
-                            'url'  => 'productobajas',
-                        ],   
-                        [
-                            'text' => 'Carrito Compras',
-                            'icon' => 'fas fa-fw fa-building',
-                            'submenu' => [
-                                [
-                                    'text' => 'Vista de usuario',
-                                    'url'  => 'carts',
-                                ],
-                            ],
-                        ], 
-                    ],
+                [
+                    'text' => 'Agregar Etiqueta',
+                    'url'  => 'producto/tag',
+                ],
+                [
+                    'text' => 'Agregar Producto',
+                    'url'  => 'producto/create',
+                ],
+                [
+                    'text' => 'Modificar / Eliminar',
+                    'url'  => 'producto',
+                ],
+                [
+                    'text' => 'Gestión de Producto',
+                    'url'  => 'productos',
+                ],
+                [
+                    'text' => 'Registrar Bajas',
+                    'url'  => 'productobajas',
+                ],   
+            ],
         ],
+        [
+            'text' => 'Etiquetas',
+            'url'  => 'tags',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Estados',
+            'url'  => 'estados',
+            'icon' => 'fas fa-fw fa-building',
+        ],        
+        [
+            'text' => 'Categorías de Productos',
+            'url'  => 'categoriaproducto',
+            'icon' => 'fas fa-fw fa-building',
+        ],        
+        [
+            'text' => 'Vista de usuario',
+            'url'  => 'carts',
+        ],
+
+        ['header' => 'GESTIÓN INFORMES'],
+
         [
             'text' => 'Informes',
             'icon' => 'fas fa-fw fa-building',
@@ -427,6 +524,32 @@ return [
                         ],
                     ],
                 ],
+
+        [
+            'text' => 'Generales',
+            'url'  => 'settings',
+            'icon' => 'fas fa-fw fa-cogs',
+                'submenu' => [
+                    [
+                        'text' => 'Otras Cosas',
+                        'url'  => 'otrascosas',
+                    ],
+                    [
+                        'text' => 'Usuario',
+                        'url'  => 'user/profile',
+                    ],    
+                    [
+                        'text' => 'Personas Campos',
+                        'url'  => 'personascampos',
+                        'icon' => 'fas fa-fw fa-child ',
+                    ],
+                    [
+                        'text' => 'Gestión de Interfaces',
+                        'url'  => 'interfaces',
+                    ],
+                ],
+        ],                
+
         [
             'text' => 'VOLVER',
             'url'  => '/',

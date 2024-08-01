@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Geri\Medicamentos;
 
 use App\Models\Geri\Medicamento;
-use App\Models\Geri\Unidad;
+use App\Models\Unidad;
 
 use Livewire\Component;
 

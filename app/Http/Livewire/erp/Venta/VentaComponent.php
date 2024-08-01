@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\erp\Venta;
 
-use App\Models\erp\Area;
+use App\Models\Area;
 use App\Models\erp\Cliente;
-use App\Models\erp\Cuenta;
-use App\Models\erp\EmpresaUsuario;
+use App\Models\Cuenta;
+use App\Models\EmpresaUsuario;
 use App\Models\erp\Iva;
 use App\Models\erp\Producto;
 use App\Models\erp\Ventas_Productos;

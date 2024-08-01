@@ -6,7 +6,7 @@ use App\Models\erp\Categoriaproducto;
 use App\Models\erp\Estado;
 use App\Models\erp\Producto;
 use App\Models\erp\Proveedor;
-use App\Models\erp\Unidad;
+use App\Models\Unidad;
 
 use Livewire\Component;
 use Livewire\WithPagination;

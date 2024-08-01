@@ -26,6 +26,10 @@ class CreateEmpresasTable extends Migration
             $table->string('actividad');
             $table->string('actividad1');
             $table->integer('menu')->default('2');
+            $table->string('email')->nullable();
+            $table->boolean('habilitada')->default(true);
+            $table->string('nombretitular')->nullable();
+            $table->bigInteger('dnititular')->nullable();
 
             $table->timestamps();
         });

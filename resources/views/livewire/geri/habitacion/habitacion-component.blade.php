@@ -1,6 +1,6 @@
 <div>
     <x-titulo>Gestión de Habitaciones</x-titulo>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
@@ -8,7 +8,7 @@
             @livewire('submenu')
         </div>
 
-    </x-slot>
+    </x-slot> --}}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-2 py-4">
             @if (session()->has('message'))
@@ -22,7 +22,7 @@
             @endif
             <x-crear>Nueva Habitación</x-crear>
             @if ($isModalOpen)
-                @include('livewire.habitacion.createhabitacion')
+                @include('livewire.geri.habitacion.createhabitacion')
             @endif
             <div style="width: 100%">
             <table class="table-fixed w-full sm:max-width: 450px">  <!--  table-fixed  class="w-full     style="display: block; overflow-x: auto; sm:max-width: 450px""-->

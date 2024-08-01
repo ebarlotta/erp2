@@ -4,7 +4,7 @@ namespace App\Models\Geri;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Geri\Unidad;
+use App\Models\Unidad;
 
 class Ingredientes extends Model
 {

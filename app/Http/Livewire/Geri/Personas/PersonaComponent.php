@@ -2,6 +2,10 @@
 
 namespace App\Http\Livewire\Geri\Personas;
 
+use App\Models\Iva;
+use App\Models\Localidades;
+use App\Models\Nacionalidad;
+
 use App\Models\Geri\Actor;
 use App\Models\Geri\Actores\ActorReferente;
 use App\Models\Geri\Beneficios;
@@ -12,9 +16,6 @@ use App\Models\Geri\Escolaridades;
 use App\Models\Geri\EstadosCiviles;
 use App\Models\Geri\GradoDependencia;
 use App\Models\Geri\Habitacion;
-use App\Models\Geri\Iva;
-use App\Models\Geri\Localidades;
-use App\Models\Geri\Nacionalidad;
 use App\Models\Geri\Persona;
 use App\Models\Geri\PersonActivo;
 use App\Models\Geri\Personas;
@@ -62,7 +63,7 @@ class PersonaComponent extends Component
             ->get(),true);
 
         $this->personas = Persona::all();
-        return view('livewire.personas.persona-component')->with('isModalOpen', $this->isModalOpen)->with('personas', $this->personas);
+        return view('livewire.geri.personas.actor-component',['isModalOpen'=>$this->isModalOpen,'personas'=>$this->personas])->extends('layouts.adminlte');
 
         // $a = New Actor;
         // $a->nueva();
@@ -97,7 +98,8 @@ class PersonaComponent extends Component
             ->where('habitacions.empresa_id',session('empresa_id'))
             ->orderBy('cama_id')
             ->get(),true);
-        return view('livewire.personas.persona-component')->with('isModalOpen', $this->isModalOpen);
+            // return view('livewire.geri.personas.persona-component',['isModalOpen'=>$this->isModalOpen])->extends('layouts.adminlte');
+        return view('livewire.geri.personas.actor-component',['isModalOpen'=>$this->isModalOpen])->extends('layouts.adminlte');
     }
 
     // Se encarga de los modales 

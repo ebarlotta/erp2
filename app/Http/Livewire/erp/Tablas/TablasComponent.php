@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\erp\Tablas;
 
-use App\Models\erp\EmpresaUsuario;
+use App\Models\EmpresaUsuario;
 use App\Models\erp\Tabla;
 use App\Models\erp\TablaUsuario;
-use App\Models\erp\User;
+use App\Models\User;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;

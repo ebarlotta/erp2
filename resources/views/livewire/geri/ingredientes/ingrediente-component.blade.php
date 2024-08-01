@@ -1,6 +1,6 @@
 <div>
     <x-titulo>Ingredientes</x-titulo>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
@@ -8,7 +8,7 @@
             @livewire('submenu')
         </div>
 
-    </x-slot>
+    </x-slot> --}}
 
     <div class="content-center flex">
         <div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
@@ -29,11 +29,11 @@
                         <x-crear>Nuevo Ingrediente</x-crear>
                         <a href="menu">
                             <button class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded my-3">
-                                Volver al nmenú
+                                Volver al menú
                             </button>
                         </a>
                         @if ($isModalOpen)
-                            @include('livewire.ingredientes.createingrediente')
+                            @include('livewire.geri.ingredientes.createingrediente')
                         @endif
                         <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                     </div>

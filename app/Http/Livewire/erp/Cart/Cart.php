@@ -4,7 +4,7 @@ namespace App\Http\Livewire\erp\Cart;
 
 use App\Models\erp\Categoriaproducto;
 use App\Models\erp\Producto;
-use App\Models\erp\Empresa;
+use App\Models\Empresa;
 use App\Models\erp\Cart as Carro;
 use App\Models\erp\CartProduct;
 

@@ -28,3 +28,8 @@ Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 -- Ingredientes no se si es necesario empresa_id
 -- Camas no se si es necesario empresa_id
 -- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización
+
+Cambiar ícono
+Gestión de Módulos
+Gestión de Roles
+Gestión de Certificados

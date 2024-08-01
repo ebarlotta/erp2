@@ -14,7 +14,7 @@ class MenuComponent extends Component
     public $isModalOpenGestionar = false;
     public $menu, $menu_id;
     public $menues, $nombremenu, $menuactivo, $tiempopreparacion;
-    public $ingredientesdelmenu, $ingredientes, $ingredienteagestionar, $cantidad; 
+    public $ingredientesdelmenu, $ingredientes, $ingredientea, $cantidad; 
     
     public $empresa_id;
     
@@ -23,7 +23,7 @@ class MenuComponent extends Component
         $this->empresa_id=session('empresa_id');
         $this->menues = Menu::where('empresa_id', $this->empresa_id)->orderby('nombremenu')->get();
         $this->ingredientes = Ingredientes::where('empresa_id', $this->empresa_id)->orderby('nombreingrediente')->get();
-        return view('livewire.menu.menu-component',['datos'=> Menu::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        return view('livewire.geri.menu.menu-component',['datos'=> Menu::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
     }
 
     public function create()
@@ -31,7 +31,7 @@ class MenuComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.menu.createmenu')->with('isModalOpen', $this->isModalOpen)->with('menu', $this->menu);
+        return view('livewire.geri.menu.createmenu')->with('isModalOpen', $this->isModalOpen)->with('menu', $this->menu);
     }
 
     public function show($id)

@@ -17,7 +17,7 @@ class CategoriasComponent extends Component
     {
         $this->empresa_id=session('empresa_id');
         $this->categorias = Categorias::where('empresa_id', $this->empresa_id)->get();
-        return view('livewire.categorias.categoria-component',['datos'=> Categorias::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        return view('livewire.geri.categorias.categoria-component',['datos'=> Categorias::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
     }
 
     public function create()
@@ -25,7 +25,7 @@ class CategoriasComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.categorias.createcategoria')->with('isModalOpen', $this->isModalOpen)->with('nombrecategoria', $this->nombrecategoria);
+        return view('livewire.geri.categorias.createcategoria')->with('isModalOpen', $this->isModalOpen)->with('nombrecategoria', $this->nombrecategoria);
     }
 
     public function openModalPopover()

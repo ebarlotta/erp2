@@ -1,6 +1,6 @@
 <div>
     <x-titulo>Actores</x-titulo>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
@@ -8,7 +8,7 @@
             @livewire('submenu')
         </div>
 
-    </x-slot>
+    </x-slot> --}}
     <div class="mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             @if (session()->has('message'))
@@ -78,10 +78,10 @@
                     </div>
                 </div>
             </div>
-            @if ($isModalOpen) @include('livewire.actores.createactores') @endif
-            @if ($isModalOpenAdicionales) @include('livewire.actores.createactoresadicionales') @endif
-            @if ($isModalOpenGestionar) @include('livewire.actores.createactores2') @endif
-            @if ($modalpreguntas) @include('livewire.actores.modalpreguntas') @endif
+            @if ($isModalOpen) @include('livewire.geri.actores.createactores') @endif
+            @if ($isModalOpenAdicionales) @include('livewire.geri.actores.createactoresadicionales') @endif
+            @if ($isModalOpenGestionar) @include('livewire.geri.actores.createactores2') @endif
+            @if ($modalpreguntas) @include('livewire.geri.actores.modalpreguntas') @endif
 
             <table class="table-fixed">
                 <thead>

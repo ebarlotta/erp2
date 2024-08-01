@@ -16,7 +16,7 @@ class MotivoegresoComponent extends Component
     public function render()
     {
         $this->motivos = MotivosEgresos::all();
-        return view('livewire.motivoegreso.motivoegreso-component')->with('isModalOpen', $this->isModalOpen)->with('motivos', $this->motivos);
+        return view('livewire.geri.motivoegreso.motivoegreso-component',['isModalOpen'=>$this->isModalOpen,'motivos'=>$this->motivos])->extends('layouts.adminlte');
     }
 
 
@@ -25,7 +25,7 @@ class MotivoegresoComponent extends Component
         $this->resetCreateForm();
         $this->openModalPopover();
         $this->isModalOpen = true;
-        return view('livewire.motivoegreso.motivoegreso-component')->with('isModalOpen', $this->isModalOpen)->with('motivoegresoDescripcion', $this->motivoegresoDescripcion);
+        return view('livewire.geri.motivoegreso.motivoegreso-component',['isModalOpen'=>$this->isModalOpen,'motivoegresoDescripcion'=>$this->motivoegresoDescripcion])->extends('layouts->adminlte');
     }
 
     public function openModalPopover()

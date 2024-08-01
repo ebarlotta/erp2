@@ -31,6 +31,6 @@ class Producto extends Model
 
     public function unidad()
     {
-        return $this->hasMany('App\Models\erp\Unidad','id');
+        return $this->hasMany('App\Models\Unidad','id');
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\erp\Tablas;
 
-use App\Models\erp\Area;
-use App\Models\erp\Cuenta;
+use App\Models\Area;
+use App\Models\Cuenta;
 
 use App\Models\erp\Tabla;
 use App\Models\erp\Venta;

@@ -16,7 +16,7 @@ class GradodependenciaComponent extends Component
     public function render()
     {
         $this->gradodependencias = GradoDependencia::all();
-        return view('livewire.gradodependencia.gradodependencia-component')->with('isModalOpen', $this->isModalOpen)->with('gradodependencias', $this->gradodependencias);
+        return view('livewire.geri.gradodependencia.gradodependencia-component',['isModalOpen'=>$this->isModalOpen, 'gradodependencias'=>$this->gradodependencias])->extends('layouts.adminlte');
     }
 
 
@@ -25,7 +25,7 @@ class GradodependenciaComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.gradodependencia.gradodependencia-component')->with('isModalOpen', $this->isModalOpen)->with('gradodependenciaDescripcion', $this->gradodependenciaDescripcion);
+        return view('livewire.geri.gradodependencia.gradodependencia-component',['isModalOpen'=>$this->isModalOpen, 'gradodependencias'=>$this->gradodependencias])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

@@ -21,7 +21,7 @@ class TiposDePersonasComponent extends Component
         //$coments = TipoDePersona::find(2)->interfaces;
         //dd($coments);
         //return view('livewire.tiposdepersonas.tipos-de-personas-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdepersonas', $this->tiposdepersonas);
-        return view('livewire.tiposdepersonas.tipos-de-personas-component', ['tiposdepersonas' => TipoDePersona::paginate(5),]);
+        return view('livewire.geri.tiposdepersonas.tipos-de-personas-component', ['tiposdepersonas' => TipoDePersona::paginate(5),])->extends('layouts.adminlte');
     }
 
 
@@ -30,7 +30,7 @@ class TiposDePersonasComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.tiposdepersonas.tipos-de-personas-component',['isModalOpen'=> $this->isModalOpen,'tiposdepersonas' => TipoDePersona::class]);
+        return view('livewire.geri.tiposdepersonas.tipos-de-personas-component',['isModalOpen'=> $this->isModalOpen,'tiposdepersonas' => TipoDePersona::class]);
     }
 
     public function openModalPopover()

@@ -1,6 +1,6 @@
 <div>
     <x-titulo>Estados de Personas</x-titulo>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
@@ -8,7 +8,7 @@
             @livewire('submenu')
         </div>
 
-    </x-slot>
+    </x-slot> --}}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             @if (session()->has('message'))
@@ -23,7 +23,7 @@
             <x-crear>Nuevos Estados de Personas</x-crear>
             <!-- <button wire:click="create()" class="bg-green-500 text-blue font-bold py-2 px-4 rounded my-3">Crear Estado de Personas</button> -->
             @if ($isModalOpen)
-            @include('livewire.personactivo.createpersonactivo')
+            @include('livewire.geri.personactivo.createpersonactivo')
             @endif
             <table class="table-fixed w-full">
                 <thead>

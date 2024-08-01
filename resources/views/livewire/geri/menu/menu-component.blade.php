@@ -1,6 +1,6 @@
 <div>
     <x-titulo>Menúes</x-titulo>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
@@ -8,7 +8,7 @@
             @livewire('submenu')
         </div>
 
-    </x-slot>
+    </x-slot> --}}
 
     <div class="content-center flex">
         <div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
@@ -30,7 +30,7 @@
                         <div class="flex justify-around">
                             <x-crear>Nuevo Menú</x-crear>
                             @if ($isModalOpen)
-                                @include('livewire.menu.createmenu')
+                                @include('livewire.geri.menu.createmenu')
                             @endif
                             <div><a href="{{ route('ingredientes') }}">
                                     <button wire:click="create()"

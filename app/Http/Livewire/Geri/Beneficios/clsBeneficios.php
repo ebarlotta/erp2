@@ -15,9 +15,10 @@ class clsBeneficios extends Component
     {
         $this->beneficios = Beneficios::all();
         //return view('liveware.crudbeneficios')->with('isModalOpen', $this->isModalOpen)->with('beneficios', $this->beneficios);
-        return view('livewire.beneficios.crudbeneficios')
+        return view('livewire.geri.beneficios.crudbeneficios')
             ->with('isModalOpen', $this->isModalOpen)
-            ->with('beneficios', $this->beneficios);
+            ->with('beneficios', $this->beneficios)
+            ->extends('layouts.adminlte');
 }
 
     public function create()
@@ -25,7 +26,7 @@ class clsBeneficios extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.beneficios.crudbeneficios')->with('isModalOpen', $this->isModalOpen)->with('beneficios', $this->beneficios);
+        return view('livewire.geri.beneficios.crudbeneficios')->with('isModalOpen', $this->isModalOpen)->with('beneficios', $this->beneficios);
     }
 
     public function openModalPopover()

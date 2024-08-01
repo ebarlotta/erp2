@@ -22,7 +22,7 @@ class EstadocamaComponent extends Component
             ->orderBy('NroCama', 'asc')
             ->get();
             //dd($this->camas);
-        return view('livewire.estadocama.estadocama-component')->with('isModalOpen', $this->isModalOpen)->with('camas', $this->camas);
+        return view('livewire.geri.estadocama.estadocama-component',['isModalOpen'=>$this->isModalOpen,'camas'=>$this->camas])->extends('layouts.adminlte');
     }
 
 
@@ -31,7 +31,7 @@ class EstadocamaComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.estadocama.estadocama-component')->with('isModalOpen', $this->isModalOpen)->with('camas', $this->camas);
+        return view('livewire.geri.estadocama.estadocama-component',['isModalOpen'=>$this->isModalOpen,'camas'=>$this->camas])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

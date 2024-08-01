@@ -1,6 +1,6 @@
 <div>
     <x-titulo>Categorias</x-titulo>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
@@ -8,7 +8,7 @@
             @livewire('submenu')
         </div>
 
-    </x-slot>
+    </x-slot> --}}
 
     <div class="content-center flex">
         <div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
@@ -28,7 +28,7 @@
                     <div class="flex justify-around">
                         <x-crear>Nueva Categoria</x-crear>
                         @if ($isModalOpen)
-                            @include('livewire.categorias.createcategoria')
+                            @include('livewire.geri.categorias.createcategoria')
                         @endif
                         <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                     </div>

@@ -9,20 +9,23 @@ use Livewire\Component;
 class TiposDeDocumentosComponent extends Component
 {
 
-    public $tipodocumento, $tiposdedocumentos, $tipodedocumento_id;
+    public $tipodocumento, $tipodedocumento_id;
     public $isModalOpen = false;
+    protected $tiposdedocumentos;
 
     public function render()
     {
         $this->tiposdedocumentos = TiposDocumentos::all();
-        return view('livewire.tiposdedocumentos.tipos-de-documentos-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdedocumentos', $this->tiposdedocumentos);
+        return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component',['isModalOpen' => $this->isModalOpen,'tiposdedocumentos'=> $this->tiposdedocumentos])->extends('layouts.adminlte');
+        // return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdedocumentos', $this->tiposdedocumentos)->extends('layouts.adminlte');
+
     }
     public function create()
     {
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.tiposdedocumentos.tipos-de-documentos-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdedocumentos', $this->tiposdedocumentos);
+        return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdedocumentos', $this->tiposdedocumentos)->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

@@ -15,7 +15,7 @@ class EscolaridadesComponent extends Component
     public function render()
     {
         $this->escolaridades = Escolaridades::all();
-        return view('livewire.escolaridades.escolaridades-component')->with('isModalOpen', $this->isModalOpen)->with('escolaridades', $this->escolaridades);
+        return view('livewire.geri.escolaridades.escolaridades-component',['isModalOpen'=> $this->isModalOpen,'escolaridades'=>$this->escolaridades])->extends('layouts.adminlte');
     }
 
 
@@ -23,7 +23,7 @@ class EscolaridadesComponent extends Component
     {
         $this->resetCreateForm();
         $this->openModalPopover();
-        return view('livewire.escolaridades.escolaridades-component')->with('isModalOpen', $this->isModalOpen)->with('escolaridadDescripcion', $this->escolaridadDescripcion);
+        return view('livewire.geri.escolaridades.escolaridades-component',['isModalOpen'=> $this->isModalOpen,'escolaridades'=>$this->escolaridades])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

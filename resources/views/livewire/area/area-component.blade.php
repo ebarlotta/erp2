@@ -27,7 +27,7 @@
                     @endif
                 
                     <div class="flex justify-around">
-                        @if(session('Areas.Agregar'))
+                        @if(session('areas.Agregar'))
                             <x-crear>Nueva Área</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.area.createareas')
@@ -45,23 +45,23 @@
                             </thead>
                             <tbody>
                                 @if ($areas)
-                                @foreach ($areas as $area)
-                                    <tr style="height: 0;">
-                                        <td class="border px-4 py-2 text-left">{{ $area->name }}</td>
-                                        <td class="border px-4 py-2">
-                                            <div class="flex justify-center">
-                                                @if(session('Areas.Editar'))
-                                                    <!-- Editar  -->
-                                                    <x-editar id="{{ $area->id }}"></x-editar>
-                                                @endif
-                                                @if(session('Areas.Eliminar'))
-                                                    <!-- Eliminar -->
-                                                    <x-eliminar id="{{ $area->id }}"></x-eliminar>
-                                                @endif
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($areas as $area)
+                                        <tr style="height: 0;">
+                                            <td class="border px-4 py-2 text-left">{{ $area->name }}</td>
+                                            <td class="border px-4 py-2">
+                                                <div class="flex justify-center">
+                                                    @if(session('areas.Editar'))
+                                                        <!-- Editar  -->
+                                                        <x-editar id="{{ $area->id }}"></x-editar>
+                                                    @endif
+                                                    @if(session('areas.Eliminar'))
+                                                        <!-- Eliminar -->
+                                                        <x-eliminar id="{{ $area->id }}"></x-eliminar>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @endif
                             </tbody>
                         </table>
