@@ -39,7 +39,7 @@ class Venta extends Model
 
     public function iva()
     {
-        return $this->belongsTo('App\Models\erp\Iva');
+        return $this->belongsTo('App\Models\Iva');
     }
 
 

@@ -31,7 +31,7 @@ class InterfacesComponent extends Component
          //$this->Interfaces->tipos = RelInterfacesCampos::find(1)->tipospersonas;
          //$comments = Interfaces::find(7);
          //dd($comments->tipodepersonas->tipodepersona);
-        return view('livewire.geri.interfaces.interfaces-component');
+        return view('livewire.geri.interfaces.interfaces-component')->extends('layouts.adminlte');
     }
 
     public function create()
@@ -64,8 +64,7 @@ class InterfacesComponent extends Component
 
         $this->resetCreateForm();
         $this->openModalPopover();
-        return view('livewire.geri.interfaces.interfaces-component')
-            ->with('isModalOpen', $this->isModalOpen);
+        return view('livewire.geri.interfaces.interfaces-component',['isModalOpen'=>$this->isModalOpen])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

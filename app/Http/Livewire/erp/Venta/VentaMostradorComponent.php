@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\erp\Venta;
 
 use App\Models\Area;
-use App\Models\erp\Iva;
+use App\Models\Iva;
 use App\Models\Cuenta;
 use App\Models\EmpresaUsuario;
 

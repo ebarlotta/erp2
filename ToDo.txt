@@ -6,22 +6,23 @@ No migrar recursos -> SE MIGRÓ PARA NO PERDER INFORMACIÓN SI MÁS ADELANTE NO 
 Una Vez Revisado todo comenzar con la migración de controladores, interfaces y modelos y migraciones -> SE COMENZÓ EL 30/07/2024
 Empresa_usuarios está mas desarrollado en erp2 que tiene Roles -> Se decide no migrarla desde Geri 30/07/2024
 
-
-Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración
-
-
-- Modulos_usuario Geri tiene un campo más
-- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
-- Revisar Tabs a los que les falta funcionalidad
-- Terminar de configurar Permission y Roles
-
 Tabla Empresas  Usar el de Geri
 imagen          Nulo Si
 actividad1      Nulo Si
 email           usar geri
 habilitada      usar geri
 nombretitular   usar geri
-dnititular      usar geri
+dnititular      usar geri       HECHO 02/08/2024
+- Redactar denuevo las leyendas de los módulos en el ModuloSeeder REALIZADO 02/08/2024
+
+
+Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración
+
+- Modulos_usuario Geri tiene un campo más
+- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
+- Revisar Tabs a los que les falta funcionalidad
+- Terminar de configurar Permission y Roles
+
 
 Revisar otras tablas flatantes que estaban en las hojas impresas ->
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
@@ -33,3 +34,5 @@ Cambiar ícono
 Gestión de Módulos
 Gestión de Roles
 Gestión de Certificados
+
+Seeder de Empresa_Modulos debe habilitar a la empresa los módulos básicos para trabajar cada vez que se crea una

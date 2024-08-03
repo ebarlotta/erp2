@@ -3,10 +3,11 @@
 namespace App\Http\Livewire\erp\Venta;
 
 use App\Models\Area;
-use App\Models\erp\Cliente;
 use App\Models\Cuenta;
 use App\Models\EmpresaUsuario;
-use App\Models\erp\Iva;
+use App\Models\Iva;
+
+use App\Models\erp\Cliente;
 use App\Models\erp\Producto;
 use App\Models\erp\Ventas_Productos;
 use App\Models\erp\Venta;
@@ -57,6 +58,8 @@ class VentaComponent extends Component
     public function render()
     {
         // DB::table('modulos')->insert(['name' => 'Empresas', 'pagina' => 'empresagestion','imagen'=>'empresa.jpg','leyenda'=>'ABM de Empresas.']);
+
+        $this->gfanio = (int) date("Y");
 
         if (!is_null(session('empresa_id'))) { $this->empresa_id = session('empresa_id'); } 
         else { 

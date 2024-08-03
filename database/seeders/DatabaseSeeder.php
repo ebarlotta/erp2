@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Modulo;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 
@@ -39,8 +40,8 @@ class DatabaseSeeder extends Seeder
 
         // Schema::dropIfExists('roles');
         // DB::raw('DELETE * FROM roles');
-        // DB::table('roles')->insert(['name' => 'Administrador','guard_name' => 'web',]);
-        // DB::table('roles')->insert(['name' => 'Usuario','guard_name' => 'web',]);
+        DB::table('roles')->insert(['name' => 'Administrador','guard_name' => 'web',]);
+        DB::table('roles')->insert(['name' => 'Usuario','guard_name' => 'web',]);
 
         // Schema::dropIfExists('empresa_usuarios');        
         // \App\Models\EmpresaUsuario::factory(10)->create();
@@ -158,6 +159,10 @@ class DatabaseSeeder extends Seeder
         DB::table('areas')->insert(['name'=>'Pagos','empresa_id'=>1,'habilitada'=>1]);
         DB::table('areas')->insert(['name'=>'Nutricional','empresa_id'=>1,'habilitada'=>1]);
         
+        $this->call(ModSeeder::class);
+        
+
+
         
         // $this->call(PersonasCamposSeeder::class);
         

@@ -3,10 +3,11 @@
 namespace App\Http\Livewire\erp\Compra;
 
 use App\Models\Area;
+use App\Models\Cuenta;
+use App\Models\Iva;
+
 use App\Models\erp\Cliente;
 use App\Models\erp\Comprobante;
-use App\Models\Cuenta;
-use App\Models\erp\Iva;
 use App\Models\erp\Proveedor;
 use App\Models\erp\Venta;
 
