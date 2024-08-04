@@ -1,14 +1,14 @@
 <div>
     <x-titulo>Medicamentos</x-titulo>
-    <x-slot name="header">
-        <div class="flex">
+    {{-- <x-slot name="header"> --}}
+        {{-- <div class="flex">
             <!-- //Comienza en submenu de encabezado -->
 
             <!-- Navigation Links -->
             @livewire('submenu')
-        </div>
+        </div> --}}
 
-    </x-slot>
+    {{-- </x-slot> --}}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             @if (session()->has('message'))
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            @if ($isModalOpen) @include('livewire.medicamentos.createmedicamentos') @endif
+            @if ($isModalOpen) @include('livewire.geri.medicamentos.createmedicamentos') @endif
             {{-- @if ($isModalOpenAdicionales) @include('livewire.medicamentos.createmedicamentosadicionales') @endif --}}
 
             <table class="table-fixed w-full">

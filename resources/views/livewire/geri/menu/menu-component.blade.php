@@ -25,7 +25,7 @@
                         </div>
                     @endif
                     @if ($isModalOpenGestionar)
-                        @include('livewire.menu.gestionarmenu')
+                        @include('livewire.geri.menu.gestionarmenu')
                     @else
                         <div class="flex justify-around">
                             <x-crear>Nuevo Menú</x-crear>

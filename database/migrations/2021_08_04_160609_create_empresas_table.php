@@ -20,7 +20,7 @@ class CreateEmpresasTable extends Migration
             // $table->bigInteger('cuit');
             $table->string('cuit');
             $table->bigInteger('ib');
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->integer('establecimiento')->default(0);
             $table->bigInteger('telefono');
             $table->string('actividad');

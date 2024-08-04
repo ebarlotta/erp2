@@ -12,6 +12,7 @@ class EmpresaUsuario extends Model
     protected $fillable=[
         'empresa_id',
         'user_id',
+        'rol_id',
     ];
     //Relacion uno a muchos inversa
 

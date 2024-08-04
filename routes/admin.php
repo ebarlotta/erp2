@@ -113,7 +113,7 @@ Route::get('estados',EstadoComponent::class)->name('estados');
 Route::get('productos',ProductoComponent::class)->name('productos');
 Route::get('tablas',TablasComponent::class)->name('tablas');
 Route::get('tablas-edit',EditarTablaComponent::class)->name('tablas-edit');
-Route::get('tablas-ver',VisualizarTablaComponent::class)->name('tablas-ver');
+Route::get('tablasver',VisualizarTablaComponent::class)->name('tablasver');
 Route::get('tablas-disenar',DisenarComponent::class)->name('tablas-disenar');
 Route::get('haberes',HaberesComponent::class)->name('haberes');
 Route::get('categoriaprofesional',CategoriaprofesionalComponent::class)->name('categoriaprofesional');

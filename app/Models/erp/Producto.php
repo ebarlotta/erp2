@@ -16,15 +16,21 @@ class Producto extends Model
         'existencia',
         'stock_minimo',
         'lote',
+
+        'barra',
+        'qr',
+        'barra_proveedor',
+        'descuento',
+        'calificacion',
+        'descuento_especial',
+        'precio_venta',
+        
         'unidads_id',
         'categoriaproductos_id',
         'estados_id',
         'proveedor_id',
-        'ruta',
-        'barra',
-        'qr',
-        'barra_proveedor',
         'empresa_id',
+        'ruta',
     ];
 
     //Relacion de uno a muchos 
@@ -32,5 +38,10 @@ class Producto extends Model
     public function unidad()
     {
         return $this->hasMany('App\Models\Unidad','id');
+    }
+
+    public function estado()
+    {
+        return $this->hasOne('App\Models\erp\Estado','id');
     }
 }

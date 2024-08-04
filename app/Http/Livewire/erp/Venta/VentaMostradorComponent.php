@@ -65,6 +65,7 @@ class VentaMostradorComponent extends Component
     {
         //Al hacer clic sobre el botón seleccionar, se cargan los datos del producto para poder completar con la cantidad
         $temp = Producto::find($id);
+        // dd($temp);
         $this->productoid = $id;
         $this->nombreproducto = $temp->name;
         $this->descripcion = $temp->descripcion;
@@ -108,11 +109,11 @@ class VentaMostradorComponent extends Component
                 'Anio'              => date('Y'),
                 'PasadoEnMes'       => idate("m"),
                 'iva_id'            => 1,
-                'area_id'           => 109,     //Mostrador
-                'cuenta_id'         => 192,     // Venta
+                'area_id'           => 1,     //Mostrador
+                'cuenta_id'         => 1,     // Venta
                 'user_id'           => auth()->user()->id,
                 'empresa_id'        => session('empresa_id'),
-                'cliente_id'        => 202,     //Consumidor final
+                'cliente_id'        => 1,     //Consumidor final
             ]);
             //session()->flash('message', 'Comprobante Creado.');
             $this->VentaId = $this->idVenta->id;
@@ -185,7 +186,7 @@ class VentaMostradorComponent extends Component
     public function eliminarItem($productos_id, $ventas_id)
     {
         $sql = 'DELETE FROM ventas__productos WHERE productos_id=' . $productos_id . ' and ventas_id=' . $ventas_id;
-        $datos = DB::select(DB::raw($sql));
+        $datos = DB::select($sql);
         $this->orden--;
         $this->Reordenar();
         $this->CargarListado();
@@ -231,7 +232,7 @@ class VentaMostradorComponent extends Component
         ->where('comprobante', 'like','F_-000__-0_______')
         ->orderby('comprobante','desc')
         ->get();
-        if($datos) {
+        if(count($datos)) {
             $a = ((int)substr($datos[0]['comprobante'],9));
             $a++;
             $a = str_pad($a, 8, "0", STR_PAD_LEFT); 

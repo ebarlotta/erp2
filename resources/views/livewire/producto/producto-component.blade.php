@@ -142,6 +142,48 @@
 										@error('estados_id') <span class="text-red-500">{{ $message }}</span>@enderror
 									@endif
 								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Barra</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese código de barra" wire:model="barra">
+									@error('barra') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">QR</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese código QR" wire:model="qr">
+									@error('qr') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Barra Proveerdor</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese código de barra del proveedor" wire:model="barra_proveerdor">
+									@error('barra_proveerdor') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Descuento</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese Descuento" wire:model="descuento">
+									@error('descuento') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Calificacion</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese Calificación" wire:model="calificacion">
+									@error('calificacion') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Descuento Especial</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese descuento Especial" wire:model="descuento_especial">
+									@error('descuento_especial') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
+								<div class="mb-4 mr-2 text-left">
+									<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Precio Venta</label>
+									<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+											id="exampleFormControlInput1" placeholder="Ingrese Precio de Venta" wire:model="precio_venta">
+									@error('precio_venta') <span class="text-red-500">{{ $message }}</span>@enderror
+								</div>
 							</div>
 							<div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse mr-5">
 								<x-guardar></x-guardar>
@@ -153,15 +195,44 @@
 				@endif	
 
 				@if ($productos)
-					<div class="flex">
+				<table class="w-full table table-striped">
+					<thead>
+						<th>Productos</th>
+						<thExistenciath>
+						<th>Stock Mínimo</th>
+						<th>Precio Compra</th>
+						<th>Precio Venta</th>
+						<th>Estado</th>
+					</thead>
+					@foreach ($productos as $producto)
+						<tr wire:click="edit({{ $producto->id }})">
+							<td>
+								@if($producto->ruta != 'sin_imagen.jpg') 
+									<img class="block rounded-md flex-none bg-cover" src="{{ asset('images2/'.$producto->ruta) }}" style="width:70px; height: 70px;">	
+								@else
+									<img class="block rounded-md flex-none bg-cover" src="{{ asset('images/sin_imagen.jpg') }}" style="width:70px; height: 70px;">
+								@endif
+							</td>
+							<td>{{ $producto->name }}</td>
+							<td>{{ $producto->existencia }}</td>
+							<td>{{ $producto->stock_minimo }}</td>
+							<td>{{ $producto->precio_compra }}</td>
+							<td>{{ $producto->precio_venta }}</td>
+							<td>{{ $producto->estado->name }}</td>
+						</tr>
+					@endforeach
+				</table>
+					{{-- <div class="flex">
 						<div class="h-full w-full">
 							<div class="bg-white rounded-b pt-4 pl-4 flex justify-between leading-normal w-full">
 								<div class="text-black font-bold text-lg mb-2 leading-tight w-36" style="width:35%;">Productos</div>
 								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Existencia</div>
 								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Stock Mínimo</div>
+								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Precio Compra</div>
+								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Precio Venta</div>
 								<div class="text-black font-bold text-lg mb-2 leading-tight w-36 text-right">Estado</div>
-							</div>
-							@foreach ($productos as $producto)
+							</div> --}}
+							{{-- @foreach ($productos as $producto)
 								<ul>
 									<li class="border text-left" wire:click="edit({{ $producto->id }})">
 										<div class="w-full">
@@ -175,13 +246,15 @@
 													<div class="text-black font-bold text-lg mb-2 leading-tight" style="width:25%;">{{ $producto->name }}</div>
 													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->existencia }}</div>
 													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->stock_minimo }}</div>
-													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->estados_id}}</div>
+													<div class="text-black text-lg mb-2 leading-tight w-1/6">$ {{ $producto->precio_compra }}</div>
+													<div class="text-black text-lg mb-2 leading-tight w-1/6">$ {{ $producto->precio_venta }}</div>
+													<div class="text-black text-lg mb-2 leading-tight w-1/6">{{ $producto->estado->name}}</div>
 												</div>
 											</div>
 										</div>
 									</li>
 								</ul>
-							@endforeach
+							@endforeach --}}
 							{{-- <div class="w-full">{{ $productos->links() }}</div> --}}
 						</div>
 					</div>

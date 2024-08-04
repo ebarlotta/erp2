@@ -68,24 +68,31 @@
                         </div>
                         <div class="px-3 py-3">
                             <div class="flex col-12 flex-wrap">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label for="">Nombre del Módulo</label>
                                     <input type="text" class="form-control" value="{{ old('name') }}" wire:model="name" wire:keyup="ShowActualizar()">
                                     @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label for="">Página URL</label>
                                     <input type="text" class="form-control" value="{{ old('pagina') }}" wire:model="pagina" wire:keyup="ShowActualizar()">
                                     @error('pagina')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label for="">Imágen</label>
                                     <input type="text" class="form-control" value="{{ old('imagen') }}" wire:model="imagen" wire:keyup="ShowActualizar()">
                                     @error('imagen')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-3">
+                                    <label for="">Habilitado</label>
+                                    <input type="checkbox" class="form-control" value="{{ old('habilitado') }}" wire:model="habilitado" wire:keyup="ShowActualizar()">
+                                    @error('habilitado')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>

@@ -86,7 +86,8 @@ class EmpresaUsuariosComponent extends Component
 
     public function AgregarUsuario($user_id)
     {
-        EmpresaUsuario::create(['empresa_id' => $this->empresaseleccionada->id, 'user_id' => $user_id]);
+
+        EmpresaUsuario::create(['empresa_id' => $this->empresaseleccionada->id, 'user_id' => $user_id,'rol_id'=>1]); // Enzo Arreglar agregar distintos roles
         $this->closeModalPopover();
         // $this->usuarios = User::all();
         $this->CargarUsuarios($this->empresaseleccionada->id);

@@ -16,15 +16,20 @@ dnititular      usar geri       HECHO 02/08/2024
 - Redactar denuevo las leyendas de los módulos en el ModuloSeeder REALIZADO 02/08/2024
 
 
-Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración
+Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración REALIZADO 02/08/2024
 
-- Modulos_usuario Geri tiene un campo más
+- Modulos_usuario Geri tiene un campo más -> Revisado 04/08/2024
+- Modulos_usuario -> Agregar funcionalidad en el controlador de quien modifica el registro -> REALIZADO 04/08/2024
+- Seeder de Empresa_Modulos debe habilitar a la empresa los módulos básicos para trabajar cada vez que se crea una -> REALIZADO 04/08/2024
+- Arreglar los botones de Categorias que aparezcan horizontamlmente -> REALIZADO 04/08/2024
+
+Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
+
+
 - FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
 - Revisar Tabs a los que les falta funcionalidad
 - Terminar de configurar Permission y Roles
 
-
-Revisar otras tablas flatantes que estaban en las hojas impresas ->
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 -- Ingredientes no se si es necesario empresa_id
 -- Camas no se si es necesario empresa_id
@@ -35,4 +40,31 @@ Gestión de Módulos
 Gestión de Roles
 Gestión de Certificados
 
-Seeder de Empresa_Modulos debe habilitar a la empresa los módulos básicos para trabajar cada vez que se crea una
+
+Medicamentos
+Ingredientes
+Elementos
+
+
+
+Desarrollar Faltantes de Stock  
+Desarrollar RelPacienteMenu
+
+Artículos       Puede incluirse en Productos
+CanonMensual    Puede incluirse en venta de Producto/servicio
+tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
+
+Terminar módulo VentaMostrador
+
+Permitir abrir sólo módulos habilitados
+
+tblPagos hacer que al pagar por billeteras virtuales se impacte el pago en la tabla de Ventas
+
+Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos
+
+Hacer Paciente_Medicamentos
+
+Hacer StockMedicamentos
+
+Empresas -> Arreglar que cargue la imagen al dar de alta y controlar casillero de habilitada
+Empresas -> Arreglar agregar distintos roles al usurario agregado

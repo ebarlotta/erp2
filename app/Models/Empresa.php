@@ -19,6 +19,11 @@ class Empresa extends Model
         'telefono',
         'actividad',
         'actividad1',
+        'menu',
+        'email',
+        'habilitada',
+        'nombretitular',
+        'dnititular',
     ];
 
     //Relacion de uno a muchos 

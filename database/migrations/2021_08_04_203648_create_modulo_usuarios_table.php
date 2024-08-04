@@ -18,8 +18,10 @@ class CreateModuloUsuariosTable extends Migration
 
             $table->unsignedBigInteger('modulo_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('modificado_user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('modulo_id')->references('id')->on('modulos');
+            $table->foreign('modificado_user_id')->references('id')->on('users');
 
             $table->timestamps();
         });

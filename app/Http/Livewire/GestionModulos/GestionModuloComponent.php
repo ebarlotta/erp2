@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 
 class GestionModuloComponent extends Component
 {
-    public $name,$pagina,$imagen,$leyenda;
+    public $name,$pagina,$imagen,$leyenda, $habilitado;
     public $modulos;
     public $permisos;
     public $nombre_permiso;
@@ -61,6 +61,7 @@ class GestionModuloComponent extends Component
         $this->pagina = $modulos->pagina;
         $this->imagen = $modulos->imagen;
         $this->leyenda = $modulos->leyenda;
+        $this->habilitado = $modulos->habilitado;
         $this->ShowButtonActualizar = false;
         
         //Cargar todos los permisos desponibles del módulo
@@ -105,6 +106,7 @@ class GestionModuloComponent extends Component
             'pagina' => $this->pagina,
             'imagen' => $this->imagen,
             'leyenda' => $this->leyenda,
+            'habilitado' => $this->habilitado,
         ]);
         $this->modulo_id = null;
         session()->flash('mensaje', 'Se guardó el módulo.');

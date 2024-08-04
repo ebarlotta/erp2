@@ -512,7 +512,7 @@ return [
                         ],
                         [
                             'text' => 'Visualizar Informes',
-                            'url'  => 'tablas-ver',
+                            'url'  => 'tablasver',
                         ],
                         [
                             'text' => 'Editar/Eliminar Informes',

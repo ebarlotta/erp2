@@ -13,18 +13,10 @@ use Illuminate\Support\Facades\DB;
 
 class RolesComponent extends Component
 {
-    public $name;
-    public $roles;
-    public $rol_id;
-    public $permisos;
-    public $permisoshabilitados;
-    public $modulo_name;
-
-    public $modulos, $modulo_seleccionado;
-
+    public $name, $roles, $rol_id, $permisos, $permisoshabilitados, $modulo_name, $modulos, $modulo_seleccionado;
     public $buscar;
 
-    // FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
+    // FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR Enzo
     
     public function render()
     {
@@ -70,10 +62,12 @@ class RolesComponent extends Component
         $this->validate([
             'name' => 'required|unique:roles|max:255',
         ]);
-        dd($this->name);
+        // dd($this->name);
         Roles::updateOrCreate(['id' => $this->rol_id], [
             'name' => $this->name,
+            'guard_name' => 'web',
         ]);
+        
         $this->rol_id = null;
         session()->flash('mensaje', 'Se guardó el rol.');
     }

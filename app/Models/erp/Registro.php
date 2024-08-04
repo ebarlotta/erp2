@@ -10,10 +10,11 @@ class Registro extends Model
     use HasFactory;
 
     protected $fillable = [
+        'titulo',
         'fila', 
         'columna', 
+        'expresion',
         'colorfondocelda', 
         'alineacion', 
-        'expresion',
     ];
 }

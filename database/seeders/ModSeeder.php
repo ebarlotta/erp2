@@ -20,10 +20,10 @@ class ModSeeder extends Seeder
         // dd($modulos);
         $a=[];
         foreach($modulos as $modulo) {
-            DB::table('permissions')->insert(['name'=>strtolower($modulo->name) . '.Agregar','guard_name'=>'web']);
-            DB::table('permissions')->insert(['name'=>strtolower($modulo->name) . '.Eliminar','guard_name'=>'web']);
-            DB::table('permissions')->insert(['name'=>strtolower($modulo->name) . '.Modificar','guard_name'=>'web']);
-            DB::table('permissions')->insert(['name'=>strtolower($modulo->name) . '.Ver','guard_name'=>'web']);
+            DB::table('permissions')->insert(['name'=>strtolower($modulo->pagina) . '.Agregar','guard_name'=>'web']);
+            DB::table('permissions')->insert(['name'=>strtolower($modulo->pagina) . '.Eliminar','guard_name'=>'web']);
+            DB::table('permissions')->insert(['name'=>strtolower($modulo->pagina) . '.Modificar','guard_name'=>'web']);
+            DB::table('permissions')->insert(['name'=>strtolower($modulo->pagina) . '.Ver','guard_name'=>'web']);
         }
     }
 }

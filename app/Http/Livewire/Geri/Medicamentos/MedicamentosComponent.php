@@ -21,7 +21,7 @@ class MedicamentosComponent extends Component
             $this->buscar = '';
         }
         $this->unidades = Unidad::all();
-        return view('livewire.medicamentos.medicamentos-component');
+        return view('livewire.geri.medicamentos.medicamentos-component')->extends('layouts.adminlte');
     }
 
     public function create()
@@ -29,7 +29,7 @@ class MedicamentosComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.medicamentos.createmedicamentos')->with('isModalOpen', $this->isModalOpen);
+        return view('livewire.geri.medicamentos.createmedicamentos',['isModalOpen'=>$this->isModalOpen])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

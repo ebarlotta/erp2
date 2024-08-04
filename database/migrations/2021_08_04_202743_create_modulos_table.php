@@ -19,6 +19,7 @@ class CreateModulosTable extends Migration
             $table->string('pagina');
             $table->string('imagen');
             $table->string('leyenda',255);
+            $table->boolean('habilitado')->default(true);
 
             $table->timestamps();
         });

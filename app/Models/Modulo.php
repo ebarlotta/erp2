@@ -14,6 +14,7 @@ class Modulo extends Model
         'pagina',
         'imagen',
         'leyenda',
+        'habilitado',
     ];
 
     //Relación de uno a muchos

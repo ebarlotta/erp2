@@ -61,7 +61,7 @@
                 <div class="modal-dialog " role="document">
                     <div class="modal-content" style="width: inherit">
                         <div class="modal-header">
-                            <h5 class="modal-title">Alta/Modificación Roles</h5>
+                            <h5 class="modal-title">Alta/Modificación Roles1</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -87,11 +87,11 @@
                                 <div>
                                     @foreach ($modulos as $modulo)
                                         @if($modulo_seleccionado == $modulo->id)
-                                            <button type="button" class="btn btn-success" wire:click="SeleccionarModulo({{ $modulo->id }},'{{ $modulo->name }}')">
+                                            <button type="button" class="btn btn-success" wire:click="SeleccionarModulo({{ $modulo->id }},'{{ $modulo->pagina }}')">
                                                 <i class="fa-solid fa-pen-to-square"></i>{{ $modulo->name }}
                                             </button>
                                         @else
-                                            <button type="button" class="btn btn-outline-success mb-1" wire:click="SeleccionarModulo({{ $modulo->id }},'{{ $modulo->name }}')">
+                                            <button type="button" class="btn btn-outline-success mb-1" wire:click="SeleccionarModulo({{ $modulo->id }},'{{ $modulo->pagina }}')">
                                                 <i class="fa-solid fa-pen-to-square"></i>{{ $modulo->name }}
                                             </button>
                                         @endif
@@ -207,7 +207,7 @@
                 </div>
             </div>
 
-    @if($name)
+    {{-- @if($name)
     <div class="modal-dialog " role="document">
         <div class="modal-content" style="width: inherit">
             <div class="modal-header">
@@ -232,7 +232,7 @@
             </div>
         </div>
     </div>
-    @endif
+    @endif --}}
         </section>
     </div>
 </div>

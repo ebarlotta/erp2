@@ -5,7 +5,7 @@ namespace App\Http\Livewire\ModuloUsuarios;
 use App\Models\Modulo;
 use App\Models\User;
 use App\Models\ModuloUsuario;
-
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
@@ -86,9 +86,9 @@ class ModuloUsuariosComponent extends Component
 
     public function AgregarUsuario($user_id)
     {
-        ModuloUsuario::create(['modulo_id' => $this->moduloseleccionado->id, 'user_id' => $user_id]);
+        ModuloUsuario::create(['modulo_id' => $this->moduloseleccionado->id, 'user_id' => $user_id, 'modificado_user_id'=>Auth()->user()->id]);
         $this->closeModalPopover();
-        $this->usuarios = User::all();
+        // $this->usuarios = User::all();
         $this->CargarUsuarios($this->moduloseleccionado->id);
         return view('livewire.modulo-usuarios.modulo-usuarios-component');
     }
@@ -98,7 +98,7 @@ class ModuloUsuariosComponent extends Component
         $a = ModuloUsuario::where('modulo_id', "=", $this->moduloseleccionado->id)
             ->where('user_id', "=", $user_id)->delete();
         $this->closeModalPopover();
-        $this->usuarios = User::all();
+        // $this->usuarios = User::all();
         $this->CargarUsuarios($this->moduloseleccionado->id);
         return view('livewire.modulo-usuarios.modulo-usuarios-component');
     }

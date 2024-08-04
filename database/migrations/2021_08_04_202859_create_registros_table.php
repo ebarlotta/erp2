@@ -15,6 +15,7 @@ class CreateRegistrosTable extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
             $table->unsignedBigInteger('tabla_id');
             $table->integer('fila');
             $table->integer('columna');

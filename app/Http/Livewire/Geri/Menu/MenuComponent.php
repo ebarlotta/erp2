@@ -52,7 +52,7 @@ class MenuComponent extends Component
         // ->get();
         //dd($this->ingredientesdelmenu);
 
-        return view('livewire.menu.gestionarmenu')->with('isModalOpen', $this->isModalOpen)->with('menu', $menu);
+        return view('livewire.geri.menu.gestionarmenu')->with('isModalOpen', $this->isModalOpen)->with('menu', $menu);
     }
 
     

@@ -11,6 +11,7 @@ class ModuloUsuario extends Model
     protected $fillable = [
         'modulo_id',
         'user_id',
+        'modificado_user_id',
     ];
 
         //Relación de uno a muchos inversa

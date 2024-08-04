@@ -43,17 +43,15 @@
                     </div>
                     <div class="mb-4">
                         <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Unidad</label>
-								@if($this->unidades) {
-									<select wire:model="unidads_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-										@foreach ($unidades as $unidad)
-											<option value="">1</option>
-										@endforeach
-									</select>
-      	                  <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-   	                         id="exampleFormControlInput1" placeholder="Ingrese unidad" wire:model="unidads_id">
-	                        @error('unidads_id') <span class="text-red-500">{{ $message }}</span>@enderror
-								}
-								@endif
+                        @if($this->unidades) {
+                            <select wire:model="unidads_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                @foreach ($unidades as $unidad)
+                                    <option value="">1</option>
+                                @endforeach
+                            </select>
+                            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Ingrese unidad" wire:model="unidads_id">
+                            @error('unidads_id') <span class="text-red-500">{{ $message }}</span>@enderror }
+                        @endif
                     </div>
                     <div class="mb-4">
                         <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Categoría</label>
@@ -61,11 +59,11 @@
                             id="exampleFormControlInput1" placeholder="Ingrese categoría" wire:model="categoriaproductos_id">
                         @error('categoriaproductos_id') <span class="text-red-500">{{ $message }}</span>@enderror
                     </div>
-						  <div class="mb-4">
-								<label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Proveedor</label>
-								<input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Ingrese proveedor" wire:model="proveedor_id">
-								@error('proveedor_id') <span class="text-red-500">{{ $message }}</span>@enderror
-					  		</div>
+                    <div class="mb-4">
+                        <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Proveedor</label>
+                        <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Ingrese proveedor" wire:model="proveedor_id">
+                        @error('proveedor_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                    </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <x-guardar></x-guardar>
