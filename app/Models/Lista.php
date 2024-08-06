@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unidad extends Model
+class Lista extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable=[
         'name',
-        'empresa_id',
-        'signo',
+        'porcentaje',
     ];
-
 }

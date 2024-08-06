@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\erp\Estado;
+namespace App\Http\Livewire\Estado;
 
-use App\Models\erp\Estado;
+use App\Models\Estado;
 
 use Livewire\Component;
 use Livewire\WithPagination;

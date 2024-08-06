@@ -66,6 +66,7 @@ class EstadocamaComponent extends Component
             'NroHabitacion' => $this->NroHabitacion,
             'SexoCama' => $this->SexoCama,
             'EstadoCama' => $this->EstadoCama,
+            'empresa_id' => session('empresa_id'),
         ]);
         
         session()->flash('message', $this->cama_id ? 'Cama Actualizada.' : 'Cama Creada.');

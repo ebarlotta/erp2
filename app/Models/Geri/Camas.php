@@ -14,5 +14,6 @@ class Camas extends Model
         'NroCama',
         'EstadoCama',
         'SexoCama',
+        'empresa_id',
     ];
 }

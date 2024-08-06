@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Elementos;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unidad extends Model
+class ElementoDescartable extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
+    protected $fillable=[
+        'pendiente',
+        'elemento_id',
         'empresa_id',
-        'signo',
     ];
-
 }

@@ -49,7 +49,8 @@ class EmpresaGestion extends Component
         $this->actividad1 = $empresa->actividad1; 
         $this->menu = $empresa->menu;
         $this->email = $empresa->email;
-        $this->habilitada = $empresa->habilitada;
+        
+        $this->habilitada = $empresa->habilitada ? true : false;
         $this->nombretitular = $empresa->nombretitular;
         $this->dnititular = $empresa->dnititular;
         $this->empresa_id = $id; 

@@ -354,10 +354,6 @@ return [
                             'text' => 'Menúes',
                             'url'  => 'menu',
                         ],
-                        [
-                            'text' => 'Categorías',
-                            'url'  => 'categorias',
-                        ],    
                     ],
                 ],
                 [
@@ -403,6 +399,11 @@ return [
                     'icon' => 'fas fa-fw fa-building',
                 ],
                 [
+                    'text' => 'Categorías',
+                    'url'  => 'categorias',
+                    'icon' => 'fas fa-fw fa-building',
+                ],    
+                [
                     'text' => 'Clientes',
                     'url'  => 'clientes',
                     'icon' => 'fas fa-fw fa-building',
@@ -410,6 +411,11 @@ return [
                 [
                     'text' => 'Cuentas',
                     'url'  => 'cuentas',
+                    'icon' => 'fas fa-fw fa-building',
+                ],
+                [
+                    'text' => 'Elementos',
+                    'url'  => 'elementos',
                     'icon' => 'fas fa-fw fa-building',
                 ],
                 [

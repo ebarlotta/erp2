@@ -28,7 +28,7 @@
                     <div class="flex justify-around">
                         <x-crear>Nueva Categoria</x-crear>
                         @if ($isModalOpen)
-                            @include('livewire.geri.categorias.createcategoria')
+                            @include('livewire.categorias.createcategoria')
                         @endif
                         <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                     </div>

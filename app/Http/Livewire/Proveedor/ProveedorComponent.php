@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\erp\Proveedor;
+namespace App\Http\Livewire\Proveedor;
 
-use App\Models\erp\Proveedor;
+use App\Models\Proveedor;
 
 use Livewire\Component;
 use Livewire\WithPagination;

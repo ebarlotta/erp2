@@ -27,6 +27,7 @@ class CamasFactory extends Factory
             'nrocama' => $this->faker->unique()->numberBetween(1,100),
             'estadocama' => $this->faker->randomElement([0,1]),
             'sexocama' => $this->faker->randomElement([1,2,3]),
+            'empresa_id' => 1,  // Se entiende que es la empresa de prueba
         ];
     }
 }

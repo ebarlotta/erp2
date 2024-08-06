@@ -23,17 +23,28 @@ Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado ->
 - Seeder de Empresa_Modulos debe habilitar a la empresa los módulos básicos para trabajar cada vez que se crea una -> REALIZADO 04/08/2024
 - Arreglar los botones de Categorias que aparezcan horizontamlmente -> REALIZADO 04/08/2024
 
-Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
+Medicamentos
+Ingredientes    REALIZADO 05/07/2024
+Elementos
+Artículos
+Descartables
 
+Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
 
 - FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
 - Revisar Tabs a los que les falta funcionalidad
 - Terminar de configurar Permission y Roles
 
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
--- Ingredientes no se si es necesario empresa_id
--- Camas no se si es necesario empresa_id
--- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización
+-- Ingredientes no se si es necesario empresa_id -> Se entiende que Elementos tiene el id necesario 05/08/2024
+-- Artículos       Puede incluirse en Productos -> Se entiende que Elementos tiene el id necesario 05/08/2024
+-- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización -> Se entiende que Elementos tiene el id necesario 05/08/2024
+-- Camas no se si es necesario empresa_id -> Si es necesario. Se agrega 05/08/2024
+
+
+- Empresas -> controlar casillero de habilitada -> REALIZADO 06/07/2024
+
+
 
 Cambiar ícono
 Gestión de Módulos
@@ -41,16 +52,12 @@ Gestión de Roles
 Gestión de Certificados
 
 
-Medicamentos
-Ingredientes
-Elementos
 
 
 
 Desarrollar Faltantes de Stock  
 Desarrollar RelPacienteMenu
 
-Artículos       Puede incluirse en Productos
 CanonMensual    Puede incluirse en venta de Producto/servicio
 tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
 
@@ -66,5 +73,5 @@ Hacer Paciente_Medicamentos
 
 Hacer StockMedicamentos
 
-Empresas -> Arreglar que cargue la imagen al dar de alta y controlar casillero de habilitada
+Empresas -> Arreglar que cargue la imagen al dar de alta 
 Empresas -> Arreglar agregar distintos roles al usurario agregado

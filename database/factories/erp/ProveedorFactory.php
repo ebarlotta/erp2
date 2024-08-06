@@ -2,7 +2,7 @@
 
 namespace Database\Factories\erp;
 
-use App\Models\erp\Proveedor;
+use App\Models\Proveedor;
 
 use App\Models\Empresa;
 

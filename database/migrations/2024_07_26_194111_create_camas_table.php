@@ -19,7 +19,11 @@ class CreateCamasTable extends Migration
             $table->integer('NroCama');
             $table->integer('EstadoCama');  // 1 Habilitada  0 Desabilitada
             $table->integer('SexoCama');    // 1 masculino   0 Femenina
+            $table->unsignedBigInteger('empresa_id');
+
             $table->timestamps();
+
+            $table->foreign('empresa_id')->references('id')->on('empresas');
         });
     }
 
