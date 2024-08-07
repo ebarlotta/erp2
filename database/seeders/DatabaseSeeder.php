@@ -30,13 +30,13 @@ class DatabaseSeeder extends Seeder
 
         // $this->call(TablaSeeder::class);
 
-        \App\Models\Area::factory(30)->create();
-        \App\Models\Cuenta::factory(30)->create();
+        // \App\Models\Area::factory(30)->create();
+        // \App\Models\Cuenta::factory(30)->create();
 
-        \App\Models\erp\Cliente::factory(10)->create();
-        \App\Models\erp\Proveedor::factory(100)->create();
-        \App\Models\erp\Categoriaprofesional::factory(10)->create();
-        \App\Models\erp\Concepto::factory(10)->create();
+        // \App\Models\erp\Cliente::factory(10)->create();
+        // \App\Models\Proveedor::factory(100)->create();
+        // \App\Models\erp\Categoriaprofesional::factory(10)->create();
+        // \App\Models\erp\Concepto::factory(10)->create();
 
         // Schema::dropIfExists('roles');
         // DB::raw('DELETE * FROM roles');
@@ -59,15 +59,15 @@ class DatabaseSeeder extends Seeder
 
         
         $this->call(EmpresaModuloSeeder::class);
-        \App\Models\erp\Empleado::factory(10)->create();
-        \App\Models\EmpresaModulo::factory(10)->create();
-        \App\Models\ModuloUsuario::factory(10)->create();
-        \App\Models\erp\Tag::factory(10)->create();
-        \App\Models\Unidad::factory(10)->create();
-        \App\Models\erp\Categoriaproducto::factory(10)->create();
-        \App\Models\erp\Estado::factory(50)->create();
+        // \App\Models\erp\Empleado::factory(10)->create();
+        // \App\Models\EmpresaModulo::factory(10)->create();
+        // \App\Models\ModuloUsuario::factory(10)->create();
+        // \App\Models\erp\Tag::factory(10)->create();
+        // \App\Models\Unidad::factory(10)->create();
+        // \App\Models\erp\Categoriaproducto::factory(10)->create();
+        // \App\Models\Estado::factory(50)->create();
 
-        \App\Models\erp\Producto::factory(50)->create();
+        // \App\Models\erp\Producto::factory(50)->create();
 
 
 
@@ -130,11 +130,11 @@ class DatabaseSeeder extends Seeder
         DB::table('motivos_egresos')->insert(['motivoegresoDescripcion'=>'Traslado a Domicilio']);
         DB::table('motivos_egresos')->insert(['motivoegresoDescripcion'=>'Traslado a II Nivel']);
         // $this->call(CamasSeeder::class);
-        DB::table('camas')->insert(['NroHabitacion'=>0,'NroCama'=>0,'EstadoCama'=>0,'SexoCama'=>0]);
-        DB::table('camas')->insert(['NroHabitacion'=>1,'NroCama'=>1,'EstadoCama'=>1,'SexoCama'=>1]);
-        DB::table('camas')->insert(['NroHabitacion'=>1,'NroCama'=>2,'EstadoCama'=>1,'SexoCama'=>0]);
-        DB::table('camas')->insert(['NroHabitacion'=>1,'NroCama'=>3,'EstadoCama'=>0,'SexoCama'=>1]);
-        DB::table('camas')->insert(['NroHabitacion'=>2,'NroCama'=>4,'EstadoCama'=>0,'SexoCama'=>0]);
+        DB::table('camas')->insert(['NroHabitacion'=>0,'NroCama'=>0,'EstadoCama'=>0,'SexoCama'=>0,'empresa_id'=>1]);
+        DB::table('camas')->insert(['NroHabitacion'=>1,'NroCama'=>1,'EstadoCama'=>1,'SexoCama'=>1,'empresa_id'=>1]);
+        DB::table('camas')->insert(['NroHabitacion'=>1,'NroCama'=>2,'EstadoCama'=>1,'SexoCama'=>0,'empresa_id'=>1]);
+        DB::table('camas')->insert(['NroHabitacion'=>1,'NroCama'=>3,'EstadoCama'=>0,'SexoCama'=>1,'empresa_id'=>1]);
+        DB::table('camas')->insert(['NroHabitacion'=>2,'NroCama'=>4,'EstadoCama'=>0,'SexoCama'=>0,'empresa_id'=>1]);
         // $this->call(PeriodoSeeder::class);
         DB::table('periodos')->insert(['nombreperiodo'=>'Mensual']);
         DB::table('periodos')->insert(['nombreperiodo'=>'Bimestral']);

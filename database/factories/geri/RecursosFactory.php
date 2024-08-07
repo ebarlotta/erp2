@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\geri;
 
 use App\Models\Recursos;
 use Illuminate\Database\Eloquent\Factories\Factory;

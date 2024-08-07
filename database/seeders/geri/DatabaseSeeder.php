@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\geri;
 
 //use App\Models\TipoDePersona;
 use Illuminate\Database\Seeder;

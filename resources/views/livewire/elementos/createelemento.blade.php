@@ -8,7 +8,7 @@
         <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline" style="max-width: 60%">
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="mb-3"><h2><b>Nuevo {{ $seleccionado }}</b> nro {{ $elemento_id }}</h2></div>
+                    <div class="mb-3"><h2><b>Nuevo {{ $seleccionado }}</b></h2></div>
                     <div class="flex flex-wrap">
                         <div class="mb-4 col-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="mb-4 col-2">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Psiquiátrico</label>
-                                <input type="checkbox" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ingrese si el medicamento es de tipo psiquiátrico" wire:model="psiquiatrico">
+                                <input type="checkbox" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ingrese si el medicamento es de tipo psiquiátrico" wire:model="psiquiatrico">
                                 @error('psiquiatrico') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         @endif
