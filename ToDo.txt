@@ -75,3 +75,5 @@ Hacer StockMedicamentos
 
 Empresas -> Arreglar que cargue la imagen al dar de alta 
 Empresas -> Arreglar agregar distintos roles al usurario agregado
+
+Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento

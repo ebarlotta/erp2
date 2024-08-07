@@ -45,7 +45,7 @@
                             <select class="form-control round shadow-md" wire:model= "categoria_id" >
                                 <option value="">Seleccione</option>
                                 @foreach ($categorias as $categoria)
-                                <option value="{{ $categoria->id }}">{{ $categoria->nombrecategoria }}</option>
+                                    <option value="{{ $categoria->id }}">{{ $categoria->nombrecategoria }}</option>
                                 @endforeach
                             </select>
                             @error('categoria_id') <span class="text-red-500">{{ $message }}</span>@enderror

@@ -55,31 +55,31 @@
                             <tbody>
                                 @if($datos)
                                     @foreach ($datos as $elemento)
-                                    <tr>
-                                        <td class="border px-4 py-2">{{ $elemento->name }}</td>
-                                        <td class="border px-4 py-2">{{ $elemento->existencia }}</td>
-                                        <td class="border px-4 py-2">{{ $elemento->precio_compra }}</td>
-                                        <td class="border px-4 py-2">{{ $elemento->precio_venta }}</td>
-                                        <td class="border px-4 py-2">{{ $elemento->stock_minimo }}</td>
-                                        <td class="border px-4 py-2">
-                                            <div class="block justify-center flex" style="width: 20%; margin: auto; justify-content: space-around;align-items: center;">
-                                                <!-- Editar  -->
-                                                <x-editar id="{{ $elemento->elemento_id }}"></x-editar>
-                                                <!-- Eliminar -->
-                                                <button wire:click="delete({{ $elemento->elemento_id }})" class="lg:hidden bg-red-300 hover:bg-red-400 text-black-900 font-bold py-1 px-1 mt-1 rounded">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                    </svg>
-                                                </button>
-                                                <button wire:click="delete({{ $elemento->elemento_id }})" class="hidden lg:flex bg-red-300 hover:bg-red-400 text-black-900 font-bold py-2 px-4 rounded mt-1w">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                    </svg>
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td class="border px-4 py-2">{{ $elemento->name }}</td>
+                                            <td class="border px-4 py-2">{{ $elemento->existencia }}</td>
+                                            <td class="border px-4 py-2">{{ $elemento->precio_compra }}</td>
+                                            <td class="border px-4 py-2">{{ $elemento->precio_venta }}</td>
+                                            <td class="border px-4 py-2">{{ $elemento->stock_minimo }}</td>
+                                            <td class="border px-4 py-2">
+                                                <div class="block justify-center flex" style="width: 20%; margin: auto; justify-content: space-around;align-items: center;">
+                                                    <!-- Editar  -->
+                                                    <x-editar id="{{ $elemento->elemento_id }}"></x-editar>
+                                                    <!-- Eliminar -->
+                                                    <button wire:click="delete({{ $elemento->elemento_id }})" class="lg:hidden bg-red-300 hover:bg-red-400 text-black-900 font-bold py-1 px-1 mt-1 rounded">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <button wire:click="delete({{ $elemento->elemento_id }})" class="hidden lg:flex bg-red-300 hover:bg-red-400 text-black-900 font-bold py-2 px-4 rounded mt-1w">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                        </svg>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 @else
                                     No hay elementos

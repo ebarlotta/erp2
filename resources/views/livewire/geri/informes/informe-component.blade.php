@@ -49,10 +49,10 @@
                             </td> --}}
                         </tr>
                         @foreach($periodos as $periodo)
-                        <tr>
-                            <td>{{ $periodo->nombreperiodo }}</td>
-                            {{-- <td class="col-1"><x-editar id="{{$periodo->id}}"></x-editar></td> --}}
-                        </tr>
+                            <tr>
+                                <td>{{ $periodo->nombreperiodo }}</td>
+                                {{-- <td class="col-1"><x-editar id="{{$periodo->id}}"></x-editar></td> --}}
+                            </tr>
                         @endforeach
                     </table>
                     {{-- <button wire:click="create()" class="bg-green-300 hover:bg-green-400 text-white-900 font-bold px-4 rounded mx-2">
@@ -76,13 +76,13 @@
                             </td>
                         </tr>
                         @foreach($escalas as $escala)
-                        <tr>
-                            <td>{{ $escala->nombreescala }}</td>
-                            <td>{{ $escala->tipodatos }}</td>
-                            <td>{{ $escala->minimo }}</td>
-                            <td>{{ $escala->maximo }}</td>
-                            <td class="col-1"><x-editar id="{{$escala->id}}"></x-editar></td>
-                        </tr>
+                            <tr>
+                                <td>{{ $escala->nombreescala }}</td>
+                                <td>{{ $escala->tipodatos }}</td>
+                                <td>{{ $escala->minimo }}</td>
+                                <td>{{ $escala->maximo }}</td>
+                                <td class="col-1"><x-editar id="{{$escala->id}}"></x-editar></td>
+                            </tr>
                         @endforeach
                     </table>
                 @endif
@@ -108,20 +108,20 @@
                             </td>
                         </tr>
                         @foreach($informes as $informe)
-                        <tr>
-                            <td class="col-4">{{ $informe->nombreinforme }}</td>
-                            <td class="col-2">{{ $informe->periodo->nombreperiodo }}</td>
-                            <td class="col-2">{{ $informe->area->areasdescripcion }}</td>
-                            <td class="col-3">{{ $informe->observaciones }}</td>
-                            <td class="col-1">
-                                <button wire:click="editinforme({{ $informe->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                    </svg>
-                                    Editar
-                                </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class="col-4">{{ $informe->nombreinforme }}</td>
+                                <td class="col-2">{{ $informe->periodo->nombreperiodo }}</td>
+                                <td class="col-2">{{ $informe->area->areasdescripcion }}</td>
+                                <td class="col-3">{{ $informe->observaciones }}</td>
+                                <td class="col-1">
+                                    <button wire:click="editinforme({{ $informe->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                        </svg>
+                                        Editar
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
                     </table>
                 @endif
@@ -145,20 +145,20 @@
                             </td>
                         </tr>
                         @foreach($preguntas as $pregunta)
-                        <tr>
-                            <td class=" col-5">{{ $pregunta->textopregunta }}</td>
-                            <td class="col-1">{{ $pregunta->nombrearea->areasdescripcion }}</td>
-                            <td class="col-1">{{ $pregunta->nombreescala->nombreescala }}</td>
-                            <td class="col-2">{{ $pregunta->informe->nombreinforme }}</td>
-                            <td class="col-2">
-                                <button wire:click="editpregunta({{ $pregunta->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                    </svg>
-                                    Editar
-                                </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td class=" col-5">{{ $pregunta->textopregunta }}</td>
+                                <td class="col-1">{{ $pregunta->nombrearea->areasdescripcion }}</td>
+                                <td class="col-1">{{ $pregunta->nombreescala->nombreescala }}</td>
+                                <td class="col-2">{{ $pregunta->informe->nombreinforme }}</td>
+                                <td class="col-2">
+                                    <button wire:click="editpregunta({{ $pregunta->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                        </svg>
+                                        Editar
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
                     </table>
                 @endif

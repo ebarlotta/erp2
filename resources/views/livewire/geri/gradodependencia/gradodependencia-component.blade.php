@@ -33,17 +33,17 @@
                 </thead>
                 <tbody>
                     @foreach ($gradodependencias as $gradodependencia)
-                    <tr>
-                        <td class="border px-4 py-2">{{ $gradodependencia->gradodependenciaDescripcion }}</td>
-                        <td class="border px-4 py-2">
-                            <div class="flex justify-center">
-                                <!-- Editar  -->
-                                <x-editar id="{{$gradodependencia->id}}"></x-editar>
-                                <!-- Eliminar -->
-                                <x-eliminar id="{{$gradodependencia->id}}"></x-eliminar>
-                            </div>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="border px-4 py-2">{{ $gradodependencia->gradodependenciaDescripcion }}</td>
+                            <td class="border px-4 py-2">
+                                <div class="flex justify-center">
+                                    <!-- Editar  -->
+                                    <x-editar id="{{$gradodependencia->id}}"></x-editar>
+                                    <!-- Eliminar -->
+                                    <x-eliminar id="{{$gradodependencia->id}}"></x-eliminar>
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

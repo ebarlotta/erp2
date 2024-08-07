@@ -8,8 +8,8 @@ use App\Http\Controllers\Productos;
 // use App\Http\Livewire\Empresa\EmpresaComponent;
 
 use App\Http\Controllers\SocialController;
-use App\Http\Livewire\Cart\Cart;
-use App\Http\Livewire\Cart\Payment\PaymentComponent;
+use App\Http\Livewire\erp\Cart\Cart;
+use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
 use App\Http\Livewire\Compra\CompraSimpleComponent;
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

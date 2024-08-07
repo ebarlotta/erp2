@@ -46,23 +46,23 @@
                             </thead>
                             <tbody>
                                 @if ($categorias)
-                                @foreach ($categorias as $categoria)
-                                    <tr>
-                                        <td class="border px-4 py-2 text-left">{{ $categoria->name }}</td>
-                                        <td class="border px-4 py-2">
-                                            <div class="flex justify-center">
-                                                @if(session('categoriasdeproductos.Editar'))
-                                                    <!-- Editar  -->
-                                                    <x-editar id="{{ $categoria->id }}"></x-editar>
-                                                @endif
-                                                @if(session('categoriasdeproductos.Eliminar'))
-                                                    <!-- Eliminar -->
-                                                    <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
-                                                @endif
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    @foreach ($categorias as $categoria)
+                                        <tr>
+                                            <td class="border px-4 py-2 text-left">{{ $categoria->name }}</td>
+                                            <td class="border px-4 py-2">
+                                                <div class="flex justify-center">
+                                                    @if(session('categoriasdeproductos.Editar'))
+                                                        <!-- Editar  -->
+                                                        <x-editar id="{{ $categoria->id }}"></x-editar>
+                                                    @endif
+                                                    @if(session('categoriasdeproductos.Eliminar'))
+                                                        <!-- Eliminar -->
+                                                        <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @endif
                             </tbody>
                         </table>                        

@@ -34,18 +34,18 @@
                     </thead>
                     <tbody>
                         @foreach ($beneficios as $beneficio)
-                        <tr>
-                            <!-- <td class="border px-4 py-2">{{ $beneficio->id }}</td> -->
-                            <td class="border px-4 py-2">{{ $beneficio->descripcionbeneficio }}</td>
-                            <td class="border px-4 py-2">
-                                <div class="flex justify-center">
-                                    <!-- Editar  -->
-                                    <x-editar id="{{$beneficio->id}}"></x-editar>
-                                    <!-- Eliminar -->
-                                    <x-eliminar id="{{$beneficio->id}}"></x-eliminar>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <!-- <td class="border px-4 py-2">{{ $beneficio->id }}</td> -->
+                                <td class="border px-4 py-2">{{ $beneficio->descripcionbeneficio }}</td>
+                                <td class="border px-4 py-2">
+                                    <div class="flex justify-center">
+                                        <!-- Editar  -->
+                                        <x-editar id="{{$beneficio->id}}"></x-editar>
+                                        <!-- Eliminar -->
+                                        <x-eliminar id="{{$beneficio->id}}"></x-eliminar>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

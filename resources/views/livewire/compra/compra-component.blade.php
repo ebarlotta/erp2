@@ -439,8 +439,7 @@
 												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfcuenta" wire:change="gfiltro()" style="box-shadow: 2px 2px 5px #999;">
 													<option value=""></option>
 													@foreach ($cuentas as $cuenta)
-														<option value="{{ $cuenta->id }}">{{ $cuenta->name }}
-														</option>
+														<option value="{{ $cuenta->id }}">{{ $cuenta->name }}</option>
 													@endforeach
 												</select>
 											</div>
@@ -594,7 +593,7 @@
 												<select class="pl-2 ml-2 text-xs rounded-md h-7 leading-none mr-5" wire:model="carea">
 													<option value="0">Todas</option>
 													@foreach ($areas as $area)
-													<option value="{{ $area->id }}">{{ $area->name }}</option>
+														<option value="{{ $area->id }}">{{ $area->name }}</option>
 													@endforeach
 												</select>
 											</div>
@@ -640,9 +639,7 @@
 											<select class="px-2 col-11 rounded-md h-8 leading-none" wire:model="ccProveedor">
 												<option value="0">-- Todos -- </option>
 												@foreach ($ccProveedores as $proveedor)
-													<option value="{{ $proveedor->id }}">
-														{{ $proveedor->name }}
-													</option>
+													<option value="{{ $proveedor->id }}">{{ $proveedor->name }}</option>
 												@endforeach
 											</select>
 											@error('ccProveedor') <span class="text-red-500">{{ $message }}</span>@enderror

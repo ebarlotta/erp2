@@ -71,7 +71,7 @@
                 <td class="border text-end mr-3 pr-3">{{ number_format($registro->RetencionGan, 2, ',', '.') }}</td>
                 <td class="border text-end mr-3 pr-3">{{ number_format($registro->NetoComp, 2, ',', '.') }}
                 </td>
-            </tr>
+            </tr> }
         @endforeach
         <tr class="bg-secondary">
             <td class="border text-end text-white fw-bold"></td>

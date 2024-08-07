@@ -27,8 +27,7 @@
 							{{ $usuariosdelaempresa[0]['email'] }}
 							{{ $lista[0] }} --}}
 							<div style="display: flex; flex-wrap: wrap; justify-content: center;">
-								@foreach ($usuariosdelaempresa as $usx)
-								
+								@foreach ($usuariosdelaempresa as $usx)								
 									<div style="width: max-content; background-color: rgb(160, 233, 100);border-radius: 20px;height: 5rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
 										<div style="position: inherit; justify-content: end; display: flex; margin-right: -21px; margin-top: 5px;" placeholder="Eliminar" wire:click="EliminarUsuario(1)">
 											<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20">

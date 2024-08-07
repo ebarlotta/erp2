@@ -38,12 +38,12 @@
 					@include('livewire.empresa-modulos.createempresamodulos')
 				@endif
 				@if ($empresas)
-				<div class="flex">
-					<div class="h-full" style="width: 40%">
-						Empresas
-						@foreach ($empresas as $empresa)
-							<ul>
-								<li class="border text-left @if ($seleccionado == $empresa->id) bg-red-100 @endif" wire:click="CargarModulos({{ $empresa->id }})">
+					<div class="flex">
+						<div class="h-full" style="width: 40%">
+							Empresas
+							@foreach ($empresas as $empresa)
+								<ul>
+									<li class="border text-left @if ($seleccionado == $empresa->id) bg-red-100 @endif" wire:click="CargarModulos({{ $empresa->id }})">
 										<div class="w-full p-3 hover:scale-110 transition-all duration-500">
 											<div class="flex rounded overflow-hidden border">
 												@if($empresa->imagen) 
@@ -59,21 +59,19 @@
 												</div>
 											</div>
 										</div>
-								</li>
-							</ul>
-								
-						@endforeach
-						<div class="w-full">{{ $datos->links() }}</div>
-					</div>
+									</li>
+								</ul>								
+							@endforeach
+							<div class="w-full">{{ $datos->links() }}</div>
+						</div>
 
-					</td>
-					<td>
-						<div style="width: 40%">
-							<div class="bg-transparent">Módulos</div>
-								@if ($modulosdelaempresa)
-									@foreach ($modulosdelaempresa as $modulo)
-										<ul>
-											<li class="border px-4 text-left bg-red-100">
+						<td>
+							<div style="width: 40%">
+								<div class="bg-transparent">Módulos</div>
+									@if ($modulosdelaempresa)
+										@foreach ($modulosdelaempresa as $modulo)
+											<ul>
+												<li class="border px-4 text-left bg-red-100">
 													<div class="w-full p-2 hover:scale-110 transition-all duration-500">
 														<div class="flex rounded overflow-hidden border">
 															<img class="block flex-none bg-cover" src="{{ asset('images/'. $modulo['imagen']) }}" style="width: 70px; height: 70px;">
@@ -92,13 +90,15 @@
 															{{-- @endif --}}
 														</div>
 													</div>
-											</li>
-										</ul>											
-									@endforeach
-								@endif
+												</li>
+											</ul>											
+										@endforeach
+									@endif
+								</div>
 							</div>
-						</div>
-					 @else
+						</td>
+					</div>
+				@else
 					<h1>No hay datos</h1>
 				@endif
 			</div>

@@ -14,7 +14,7 @@
                     <select class="form-control" wire:model="informe_id">
                         <option value="">-</option>
                         @foreach($informes as $informe)
-                        <option value="{{$informe->id}}">{{$informe->nombreinforme}}</option>
+                            <option value="{{$informe->id}}">{{$informe->nombreinforme}}</option>
                         @endforeach
                     </select>
                     @error('informe_id') <span class="text-red-500">{{ $message }}</span>@enderror
@@ -29,7 +29,7 @@
                     <select class="form-control" wire:model="area_id">
                         <option value="">-</option>
                         @foreach($areas as $area)
-                        <option value="{{$area->id}}">{{$area->areasdescripcion}}</option>
+                            <option value="{{$area->id}}">{{$area->areasdescripcion}}</option>
                         @endforeach
                     </select>
                     @error('area_id') <span class="text-red-500">{{ $message }}</span>@enderror
@@ -39,7 +39,7 @@
                     <select class="form-control" wire:model="escala_id">
                         <option value="">-</option>
                         @foreach($escalas as $escala)
-                        <option value="{{$escala->id}}">{{$escala->nombreescala}}</option>
+                            <option value="{{$escala->id}}">{{$escala->nombreescala}}</option>
                         @endforeach
                     </select>
                     @error('escala_id') <span class="text-red-500">{{ $message }}</span>@enderror

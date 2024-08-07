@@ -63,38 +63,38 @@
                         <div class="men-thumb-item col-md-12">
                             <ul>
                                 @foreach($detalles as $detalle)
-                                <li class="minicartk-item col-11 shadow-xl" style="box-shadow: 2px 2px 5px #999;border-radius: 5px;">
-                                    <div class="men-thumb-item flex col-12">
-                                        <div class="col-2">
-                                            @if($detalle->ruta<>'sin_imagen.jpg') <img src="{{ asset('images2/'.$detalle->ruta)}}" alt="" style="width: 100%;height: 100%; padding:3px;">
-                                            @else <img src="{{ asset('images/sin_imagen.jpg')}}" alt="" style="width: 100%;height: 100%; padding:3px;">
-                                            @endif
-                                        </div>
+                                    <li class="minicartk-item col-11 shadow-xl" style="box-shadow: 2px 2px 5px #999;border-radius: 5px;">
+                                        <div class="men-thumb-item flex col-12">
+                                            <div class="col-2">
+                                                @if($detalle->ruta<>'sin_imagen.jpg') <img src="{{ asset('images2/'.$detalle->ruta)}}" alt="" style="width: 100%;height: 100%; padding:3px;">
+                                                @else <img src="{{ asset('images/sin_imagen.jpg')}}" alt="" style="width: 100%;height: 100%; padding:3px;">
+                                                @endif
+                                            </div>
 
-                                        <div class="col-6">{{$detalle->name}}
-                                            <div>
-                                                @if($detalle->descuento>0)
-                                                    {{ __("labels.Discount")}}: {{$detalle->descuento }} %
-                                                @endif
+                                            <div class="col-6">{{$detalle->name}}
+                                                <div>
+                                                    @if($detalle->descuento>0)
+                                                        {{ __("labels.Discount")}}: {{$detalle->descuento }} %
+                                                    @endif
+                                                </div>
+                                                <div class="minicartk-details-price">
+                                                    @if($detalle->descuento>0)
+                                                        <del class="minicartk-price bold">$ {{number_format($detalle->precio_venta * $detalle->cantidad,2, ',', '.') }}</del>
+                                                        <span class="minicartk-price bold">$ {{number_format($detalle->precio_venta * $detalle->cantidad * (1-$detalle->descuento/100),2, ',', '.') }}</span>
+                                                    @else
+                                                        <span class="minicartk-price bold">$ {{number_format($detalle->precio_venta * $detalle->cantidad,2, ',', '.') }}</span>
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <div class="minicartk-details-price">
-                                                @if($detalle->descuento>0)
-                                                    <del class="minicartk-price bold">$ {{number_format($detalle->precio_venta * $detalle->cantidad,2, ',', '.') }}</del>
-                                                    <span class="minicartk-price bold">$ {{number_format($detalle->precio_venta * $detalle->cantidad * (1-$detalle->descuento/100),2, ',', '.') }}</span>
-                                                @else
-                                                    <span class="minicartk-price bold">$ {{number_format($detalle->precio_venta * $detalle->cantidad,2, ',', '.') }}</span>
-                                                @endif
+                                            <div class="flex col-2 mt-1">
+                                                <input class="minicartk-quantity col-12" data-minicartk-idx="0" name="quantity_1" type="text" pattern="[0-9]*" value="{{ $detalle->cantidad }}" autocomplete="off" style="text-align: center;" wire:change="ActualizarCantidad({{ $detalle->id }},{{ $detalle->cantidad }})" wire:onblur="ActualizarCantidad({{ $detalle->id }},{{ $detalle->cantidad }})">
+                                                
                                             </div>
-                                        </div>
-                                        <div class="flex col-2 mt-1">
-                                            <input class="minicartk-quantity col-12" data-minicartk-idx="0" name="quantity_1" type="text" pattern="[0-9]*" value="{{ $detalle->cantidad }}" autocomplete="off" style="text-align: center;" wire:change="ActualizarCantidad({{ $detalle->id }},{{ $detalle->cantidad }})" wire:onblur="ActualizarCantidad({{ $detalle->id }},{{ $detalle->cantidad }})">
-                                            
-                                        </div>
-                                        <div class="minicartk-details-remove col-2" style="vertical-align: center;justify-content: center;display: flex;">
-                                            <button type="button" class="minicartk-remove" data-minicartk-idx="0" wire:click="Descontar({{$detalle->productos_id}})">×</button>
-                                        </div>
-                                    </div> 
-                                </li>
+                                            <div class="minicartk-details-remove col-2" style="vertical-align: center;justify-content: center;display: flex;">
+                                                <button type="button" class="minicartk-remove" data-minicartk-idx="0" wire:click="Descontar({{$detalle->productos_id}})">×</button>
+                                            </div>
+                                        </div> 
+                                    </li>
                                 @endforeach
                             </ul>
                             <div class="minicartk-footer">

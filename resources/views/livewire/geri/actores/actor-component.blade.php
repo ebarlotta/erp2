@@ -93,35 +93,35 @@
                 </thead>
                 <tbody>
                     @if($actores)
-                    @foreach ($actores as $actor)
-                    <tr>
-                        <td class="border px-4 py-2 col-3" style="width: 10%">{{ $actor->nombre }}</td>
-                        <td class="border px-4 py-2 col-2">{{ $actor->TipoDePersona->tipodepersona }}</td>
-                        <td class="border px-4 py-2">
-                            <div class="flex justify-center">
-                                <!-- Gestionar -->
-                                <div>
-                                    {{-- <a href="{{ route('agentegestionar')}} "> --}}
-                                    {{-- <button class="hidden sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold py-2 px-4 mr-2 rounded">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                        </svg>
-                                        Gestionar
-                                    </button> --}}
-                                    {{-- </a> --}}
-                                    
+                        @foreach ($actores as $actor)
+                        <tr>
+                            <td class="border px-4 py-2 col-3" style="width: 10%">{{ $actor->nombre }}</td>
+                            <td class="border px-4 py-2 col-2">{{ $actor->TipoDePersona->tipodepersona }}</td>
+                            <td class="border px-4 py-2">
+                                <div class="flex justify-center">
+                                    <!-- Gestionar -->
+                                    <div>
+                                        {{-- <a href="{{ route('agentegestionar')}} "> --}}
+                                        {{-- <button class="hidden sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold py-2 px-4 mr-2 rounded">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                            </svg>
+                                            Gestionar
+                                        </button> --}}
+                                        {{-- </a> --}}
+                                        
+                                    </div>
+                                    <x-gestionar id="{{$actor->id}}">Gestionar</x-gestionar>
+                                    <!-- Editar  -->
+                                    <x-editar id="{{$actor->id}}"></x-editar>
+                                    <!-- Eliminar -->
+                                    <x-eliminar id="{{$actor->id}}"></x-eliminar>
+                                    <!-- Agregar -->
+                                    <x-agregar id="{{$actor->id}}"></x-agregar>
                                 </div>
-                                <x-gestionar id="{{$actor->id}}">Gestionar</x-gestionar>
-                                <!-- Editar  -->
-                                <x-editar id="{{$actor->id}}"></x-editar>
-                                <!-- Eliminar -->
-                                <x-eliminar id="{{$actor->id}}"></x-eliminar>
-                                <!-- Agregar -->
-                                <x-agregar id="{{$actor->id}}"></x-agregar>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
+                            </td>
+                        </tr>
+                        @endforeach
                     @endif
                 </tbody>
             </table>

@@ -1,4 +1,4 @@
-@foreach($campos as $campo)
+{{-- @foreach($campos as $campo)
 NombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombreNombre {{ $campo->NombreCampo }}
 
-@foreach
+@foreach --}}

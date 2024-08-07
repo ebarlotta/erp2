@@ -307,23 +307,23 @@
                                                     <td style="border: 1px solid black;">Opciones</td>
                                                 </tr>
                                                 @foreach($certificados as $certificado)
-                                                <tr>
-                                                    <td style="border: 1px solid black;vertical-align: middle;">
-                                                        {{ $certificado->alias }}
-                                                    </td>
-                                                    <td style="border: 1px solid black;vertical-align: middle;">
-                                                        {{-- Seleccionar Punto de Venta --}}
-                                                        {{-- <select name="" id=""> --}}
-                                                            {{ $certificado_PtoVta }}
-                                                            {{-- @foreach($puntosdeventas as $puntodeventa)
-                                                                <option value=""></option>
-                                                            @endforeach --}}
-                                                        {{-- </select> --}}
-                                                    </td>
-                                                    <td style="border: 1px solid black;">
-                                                        <input class="btn btn-info shadow-md p-3 m-3" type="button" value="Solicitar Autorización" wire:click="AutorizarCertificado()">
-                                                    </td>
-                                                </tr>
+                                                    <tr>
+                                                        <td style="border: 1px solid black;vertical-align: middle;">
+                                                            {{ $certificado->alias }}
+                                                        </td>
+                                                        <td style="border: 1px solid black;vertical-align: middle;">
+                                                            {{-- Seleccionar Punto de Venta --}}
+                                                            {{-- <select name="" id=""> --}}
+                                                                {{ $certificado_PtoVta }}
+                                                                {{-- @foreach($puntosdeventas as $puntodeventa)
+                                                                    <option value=""></option>
+                                                                @endforeach --}}
+                                                            {{-- </select> --}}
+                                                        </td>
+                                                        <td style="border: 1px solid black;">
+                                                            <input class="btn btn-info shadow-md p-3 m-3" type="button" value="Solicitar Autorización" wire:click="AutorizarCertificado()">
+                                                        </td>
+                                                    </tr>
                                                 @endforeach
                                             </table>
                                             

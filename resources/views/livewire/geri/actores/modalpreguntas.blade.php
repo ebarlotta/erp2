@@ -42,7 +42,7 @@
                                 {{-- <textarea wire:model="temporal" required></textarea> --}}
                                 <button type="submit">Enviar respuesta</button>
                             </form>
-    <!-- Cantidad: <input class="mr-1 shadow bg-gray-300" type="textbox" size="10" wire:change.prevent="TomarRespuesta({{ $pregunta->id }}, {{ $temporal }},'')" wire:model="temporal"> -->
+                            {{-- Cantidad: <input class="mr-1 shadow bg-gray-300" type="textbox" size="10" wire:change.prevent="TomarRespuesta({{ $pregunta->id }}, {{ $temporal }},'')" wire:model="temporal"> --}}
                             </td>
                         </tr>
                     @endif

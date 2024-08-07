@@ -62,6 +62,7 @@
                                                                 <x-eliminar id="{{ $cuenta->id }}"></x-eliminar>
                                                             </div>
                                                         @endif
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>

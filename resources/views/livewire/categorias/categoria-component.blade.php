@@ -43,17 +43,17 @@
                             </thead>
                             <tbody>
                                 @foreach ($datos as $categoria)
-                                <tr>
-                                    <td class="border px-4 py-2">{{ $categoria->nombrecategoria }}</td>
-                                    <td class="border px-4 py-2">
-                                        <div class="block justify-center flex" style="width: 20%; margin: auto; justify-content: space-around;align-items: center;">
-                                            <!-- Editar  -->
-                                            <x-editar id="{{ $categoria->id }}"></x-editar>
-                                            <!-- Eliminar -->
-                                            <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td class="border px-4 py-2">{{ $categoria->nombrecategoria }}</td>
+                                        <td class="border px-4 py-2">
+                                            <div class="block justify-center flex" style="width: 20%; margin: auto; justify-content: space-around;align-items: center;">
+                                                <!-- Editar  -->
+                                                <x-editar id="{{ $categoria->id }}"></x-editar>
+                                                <!-- Eliminar -->
+                                                <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
