@@ -21,7 +21,7 @@
                     </x-nav-link>
                 </div>
             </div>
-{{-- @if(Auth::user()) --}}
+@if(Auth::user())
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Teams Dropdown -->
 
@@ -230,5 +230,5 @@
             </div>
         </div>
     </div>
-{{-- @endif --}}
+@endif
 </nav>

@@ -313,11 +313,13 @@ return [
             'text' => 'Empleados',
             'url'  => 'empleados',
             'icon' => 'fas fa-fw fa-building',
+            'can'  => 'empleados.Ver',
         ],
         [
             'text' => 'Haberes',
             'url'  => 'haberes',
             'icon' => 'fas fa-fw fa-building',
+            'can'  => 'haberes.Ver',
         ],
 
         ['header' => 'GERI'],

@@ -2,11 +2,18 @@
 
 namespace App\Http\Livewire\Roles;
 
+use App\Models\EmpresaUsuario;
 use App\Models\Modulo;
 use App\Models\Roles;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+// use Illuminate\Foundation\Auth\User;
 
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Commands\CreatePermission;
+
+// use Spatie\Permission\Traits\HasRoles;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +22,10 @@ class RolesComponent extends Component
 {
     public $name, $roles, $rol_id, $permisos, $permisoshabilitados, $modulo_name, $modulos, $modulo_seleccionado;
     public $buscar;
+
+    // use HasRoles;
+
+    // protected $guard_name = 'web';
 
     // FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR Enzo
     
@@ -26,13 +37,58 @@ class RolesComponent extends Component
         } else {
             $this->roles = Roles::orderBy('name','ASC')->get();
         }
+
+        // $user = User::find(Auth::user()->id);   // Asigna el rol al usuario
+        // $user->syncRoles(['Administrador']);
+
+        $this->name = "Administrador";
+        // // // dd($this->name);
+
+        // $permissions = Permission::all();
+        // $user = User::find(1);
+        // $user->syncPermissions($permissions);  // Borra todos los permisos del Rol
+        
+        // dd($user);
+        // $permission = Permission::findByName('agregar');
+        // $role->givePermissionTo($permission);
+        
+        // $role->givePermissionTo(['guard_name'=>'web','name'=>'agregar']);
+
+
+        //$user->syncPermissions();  // Borra todos los permisos del Rol
+        //$user->givePermissionTo('agregar');
+
+
+        // dd($user->getPermissionsViaRoles());
+        // $role = Role::findByName($this->name);
+        // // dd($permission);
+        // $permission->assignRole($role);
+
+        // dd($role->getPermissionsViaRoles('Usuario'));
+        
+        // $a= $role->getAllPermissions();
+        // $role->syncPermissions($a);
+        // // $a = User::getAllPermissions();
+        // dd($role);
+        // dd($role->permissions);
+        
+        // $user->hasRole('Usuario');
+
+        // $user = User::getRole('Administrador');
+        // $user = Role::syncRole('Administrador');
+        // $user = Role::all(); // Trae todos los roles
+        // // $user = User::getRole('Administrador');
+        // $user = User::doesntHave('roles')->get();
+        
+        // $user = User::role('Administrador')->get();
+        // $user = User::getRole;
+        // $roles = Auth::user()->getRoleNames();
+        // $permissions = $user->permissions;
+        // dd($role->hasPermissionTo('areas.Agregar'));
         return view('livewire.roles.roles-component')->extends('layouts.adminlte');
     }
 
-    public function showNew()
-    {
-        $this->reset('name');
-    }
+    public function showNew() { $this->reset('name'); }
 
     public function showEdit($id)
     {
@@ -102,13 +158,29 @@ class RolesComponent extends Component
         }
     }
 
-    public function AgregarPermiso($idPermiso) {
-        $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='.$idPermiso.' and role_id='.$this->rol_id;
+    public function AgregarPermiso($permision_id) {
+        $usuarios = EmpresaUsuario::where('rol_id', $this->rol_id)->get();  //Busca los usuarios que tienen el mismo rol elegido
+        $permiso_a_agregar = Permission::where('id',$permision_id)->get('name'); // Busca los datos del permiso a agregar
+        
+        foreach($usuarios as $usuario) {    // Itera los usuarios
+            $user = User::find($usuario->id);   // Busca a cada usuario y
+            $user->givePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions
+        }
+        
+        // $role = Role::findByName($this->name);
+        // $role->givePermissionTo('areas.ver');        
+        // $role = Role::findByName($this->name);
+        // $permissions = Permission::all(); // trae una lista de todos los permisos
+        // $permission = Permission::findById($idPermiso);
+        // $user->syncPermissions($permission);  // Agrega sólo el permiso elegido
+        // $user->syncPermissions($permissions);  // Borra todos los permisos del Rol
+
+        $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='.$permision_id.' and role_id='.$this->rol_id;
         $bux = db::select($aux);
         // dd($bux);
         if(count($bux)) { dd ('Ya dado de alta'); }
         else { 
-            $a = 'INSERT INTO role_has_permissions (permission_id, role_id) VALUES ('. $idPermiso.', '.$this->rol_id.')';
+            $a = 'INSERT INTO role_has_permissions (permission_id, role_id) VALUES ('. $permision_id.', '.$this->rol_id.')';
             db::select($a);
         }
 
@@ -117,6 +189,16 @@ class RolesComponent extends Component
     }
 
     public function EliminarPermiso($permision_id, $role_id) {
+
+
+        $usuarios = EmpresaUsuario::where('rol_id', $this->rol_id)->get();  //Busca los usuarios que tienen el mismo rol elegido
+        $permiso_a_agregar = Permission::where('id',$permision_id)->get('name'); // Busca los datos del permiso a agregar
+        
+        foreach($usuarios as $usuario) {    // Itera los usuarios
+            $user = User::find($usuario->id);   // Busca a cada usuario y
+            $user->revokePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions
+        }
+
         $a = 'DELETE FROM role_has_permissions WHERE permission_id = '. $permision_id .' and role_id = '. $role_id;
         db::select($a);
 

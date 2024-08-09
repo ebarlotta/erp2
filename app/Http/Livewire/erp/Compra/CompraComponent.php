@@ -61,6 +61,10 @@ class CompraComponent extends Component
     public $filtro, $combodetalle;                // Comprobantes
 
     public function render() {
+
+                
+        if ( !Auth::check() ) { return view('welcome');  return route('dashboard'); }
+
         //dd($this->empresa_id);
 
         // !isset($this->ccAgrupadoComp) ?? $this->ccAgrupadoComp=true; 

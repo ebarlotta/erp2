@@ -11,10 +11,21 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
+use Spatie\Permission\Traits\HasRoles;
+
+// class User extends Authenticatable implements
+// AuthorizableContract,
+// CanResetPasswordContract
 class User extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+AuthenticatableContract,
+AuthorizableContract,
+CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+    
+    use HasRoles;
+
+    // public function guardName(){
+    //     return "web";
+    // }
 }

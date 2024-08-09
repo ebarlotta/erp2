@@ -16,7 +16,15 @@ use App\Models\erp\Certificado;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+
+// include_once __DIR__.'/Afip.php';
+
+// use Afip as Afip;
+
+// include_once 'Afip.php';
 use Afip;
+use ElectronicBilling;
+
 use Illuminate\Support\Facades\Storage;
 
 
@@ -25,7 +33,8 @@ class VentaComponent extends Component
 
     public $areas, $cuentas, $ivas, $clientes;       // Globales
     public $empresa_id; public $tabActivo=1; public $venta_id;
-    private $afip;
+    public $afipvar;
+    // private $afip;
     public $certificado_tax_id, $certificado_crt, $certificado_key, $certificado_id, $certificado_alias;
     
     //Comprobantes
@@ -75,7 +84,7 @@ class VentaComponent extends Component
         // $this->productos = Producto::where('empresa_id', $this->empresa_id)->orderBy('name','asc')->get();
 
         //Desactivado Temporalmente
-        // $this->ConstructorFacturacion();
+        $this->ConstructorFacturacion();
 
         return view('livewire.venta.venta-component')->extends('layouts.adminlte');
     }
@@ -115,7 +124,7 @@ class VentaComponent extends Component
     public function ConstructorFacturacion() {
 
         $certificados = Certificado::where('empresa_id','=',session('empresa_id'))->get();
-        // console.log($certificados);
+        // dd($certificados);
         if(count($certificados)) { 
             $this->certificado_id = $certificados[0]['id'];
             // dd($certificados[0]['id']);
@@ -123,27 +132,30 @@ class VentaComponent extends Component
             $this->certificado_alias = $certificados[0]['alias'];
             $this->certificado_crt = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
             $this->certificado_key = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
-            $this->afip = new Afip(array(
+            
+            $this->afipvar = new ElectronicBilling($this->afipvar);
+
+            $this->afipvar = new Afip(array(
                 'CUIT' => $this->certificado_tax_id,
                 'cert' => $this->certificado_crt,
                 'key' =>  $this->certificado_key,
                 'access_token' => env('AFIP_ACCESS_TOKEN'),
             ));     
         }
-        
     }
+
     public function GenerarFactura() {
         
         // CUIT del contribuyente
         $tax_id = 30712141790;
-        $afip = new Afip(array(
+        $afipvar = new Afip(array(
             'CUIT' => $this->certificado_tax_id,
             'cert' => $this->certificado_crt,
             'key' =>  $this->certificado_key,
             'access_token' => env('AFIP_ACCESS_TOKEN'),
         ));
 
-        $taxpayer_details = $afip->RegisterInscriptionProof->GetTaxpayerDetails($tax_id);
+        $taxpayer_details = $afipvar->RegisterInscriptionProof->GetTaxpayerDetails($tax_id);
         dd($taxpayer_details);
 
         // $res['CAE']; //CAE asignado el comprobante
