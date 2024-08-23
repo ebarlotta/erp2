@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\erp\Venta;
 
+use AfipController;
 use App\Models\Area;
 use App\Models\Cuenta;
 use App\Models\EmpresaUsuario;
@@ -16,14 +17,20 @@ use App\Models\erp\Certificado;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 // include_once __DIR__.'/Afip.php';
 
 // use Afip as Afip;
 
 // include_once 'Afip.php';
-use Afip;
-use ElectronicBilling;
+// use Afip;
+// use ElectronicBilling;
+
+// use AfipController;
+// use SoapClient;
+// use SoapFault;
+include('AfipControllerGuzze.php');
 
 use Illuminate\Support\Facades\Storage;
 
@@ -33,8 +40,7 @@ class VentaComponent extends Component
 
     public $areas, $cuentas, $ivas, $clientes;       // Globales
     public $empresa_id; public $tabActivo=1; public $venta_id;
-    public $afipvar;
-    // private $afip;
+    private $afip;
     public $certificado_tax_id, $certificado_crt, $certificado_key, $certificado_id, $certificado_alias;
     
     //Comprobantes
@@ -66,6 +72,8 @@ class VentaComponent extends Component
 
     public function render()
     {
+        if ( !Auth::check() ) { return view('welcome');  return route('dashboard'); }
+
         // DB::table('modulos')->insert(['name' => 'Empresas', 'pagina' => 'empresagestion','imagen'=>'empresa.jpg','leyenda'=>'ABM de Empresas.']);
 
         $this->gfanio = (int) date("Y");
@@ -77,6 +85,8 @@ class VentaComponent extends Component
             return view('livewire.empresa.empresa-component')->with('empresas', $empresas); 
         }
 
+        //enocianina
+
         $this->areas = Area::where('empresa_id', $this->empresa_id)->ORDERBy('name','asc')->get();
         $this->cuentas = Cuenta::where('empresa_id', $this->empresa_id)->ORDERBy('name','asc')->get();
         $this->clientes = Cliente::where('empresa_id', $this->empresa_id)->ORDERBy('name','asc')->get();
@@ -84,6 +94,8 @@ class VentaComponent extends Component
         // $this->productos = Producto::where('empresa_id', $this->empresa_id)->orderBy('name','asc')->get();
 
         //Desactivado Temporalmente
+
+        // $a = new AfipController($this->service,$this->cuit,$this->token,$this->sign);
         $this->ConstructorFacturacion();
 
         return view('livewire.venta.venta-component')->extends('layouts.adminlte');
@@ -130,32 +142,101 @@ class VentaComponent extends Component
             // dd($certificados[0]['id']);
             $this->certificado_tax_id = $certificados[0]['tax_id'];
             $this->certificado_alias = $certificados[0]['alias'];
-            $this->certificado_crt = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
-            $this->certificado_key = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
             
-            $this->afipvar = new ElectronicBilling($this->afipvar);
+            $path = storage_path('app/' . 'certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
+            $cert = file_get_contents($path);
+            $this->certificado_crt = $cert;
+            // $this->certificado_crt = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
 
-            $this->afipvar = new Afip(array(
+            $path = storage_path('app/' . 'certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
+            $key = file_get_contents($path);
+            $this->certificado_key = $key;
+            // $this->certificado_key = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
+            
+            // Certificado (Puede estar guardado en archivos, DB, etc)
+            // Key (Puede estar guardado en archivos, DB, etc)
+            // dd($path);
+            // $cert = file_get_contents('certificados/certificado.crt');
+            // $key  = file_get_contents('key.key');
+            
+            // 'https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL',
+            // 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?op= FECAESolicitar',
+
+            $a = new \AfipControllerGuzze(
+                'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL',
+                $this->certificado_tax_id,
+                env('AFIP_ACCESS_TOKEN'),
+                $this->certificado_key
+            );
+            
+            $a->callSoapFunction('POST',[]);
+            dd($a);
+
+            $this->afip = new Afip(array(
                 'CUIT' => $this->certificado_tax_id,
                 'cert' => $this->certificado_crt,
                 'key' =>  $this->certificado_key,
                 'access_token' => env('AFIP_ACCESS_TOKEN'),
-            ));     
+            ));
+            // $this->afip = new Afip(array(
+            //     'CUIT' => $this->certificado_tax_id,
+            //     'cert' => $this->certificado_crt,
+            //     'key' =>  $this->certificado_key,
+            //     'access_token' => env('AFIP_ACCESS_TOKEN'),
+            // ));
+            
+            // $this->GenerarFactura();
         }
     }
 
     public function GenerarFactura() {
         
+        
+        
+        
+        // Uso del controlador
+        $wsdl = 'https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL'; // URL del WSDL del web service
+        $cuit = $this->certificado_tax_id; //'20-12345678-9'; // CUIT del usuario
+        $token = env('AFIP_ACCESS_TOKEN'); // Token de autenticación
+        $sign = $this->certificado_crt; //'YOUR_SIGN'; // Firma de autenticación
+
+        $afip = new AfipController($wsdl, $cuit, $token, $sign);
+
+        // $afip = $this->iniciar($wsdl, $cuit, $token, $sign);
+        
+        // Ejemplo de llamada a un método del web service
+        $response = $afip->callWebService('ConsultaPuntosVenta', []);
+        print_r($response);
+        
+        dd('termino');
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // CUIT del contribuyente
         $tax_id = 30712141790;
-        $afipvar = new Afip(array(
+        $afip = new Afip(array(
             'CUIT' => $this->certificado_tax_id,
             'cert' => $this->certificado_crt,
             'key' =>  $this->certificado_key,
             'access_token' => env('AFIP_ACCESS_TOKEN'),
         ));
 
-        $taxpayer_details = $afipvar->RegisterInscriptionProof->GetTaxpayerDetails($tax_id);
+        // dd($afip );
+        $voucher_types = $afip->ElectronicBilling->GetVoucherTypes();
+        
+        $taxpayer_details = $afip->RegisterInscriptionProof->GetTaxpayerDetails($tax_id);
         dd($taxpayer_details);
 
         // $res['CAE']; //CAE asignado el comprobante

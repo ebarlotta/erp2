@@ -6,10 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "afipsdk/afip.php": "^1.1",
         "arielmejiadev/larapex-charts": "^2.1",
         "barryvdh/laravel-dompdf": "^2.2",
         "dompdf/dompdf": "^2.0.8",
-        "guzzlehttp/guzzle": "^7.8",
+        "guzzlehttp/guzzle": "^7.9.2",
         "jeroennoten/laravel-adminlte": "^3.11",
         "laravel/framework": "^11.9",
         "laravel/jetstream": "^5.1",
@@ -17,7 +18,8 @@
         "laravel/tinker": "^2.9",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^3.0",
-        "spatie/laravel-permission": "^6.9"
+        "spatie/laravel-permission": "^6.9",
+        "phpseclib/phpseclib": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

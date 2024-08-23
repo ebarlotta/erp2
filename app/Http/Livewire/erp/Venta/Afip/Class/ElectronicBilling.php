@@ -13,8 +13,8 @@ class ElectronicBilling extends AfipWebService {
 	var $soap_version 	= SOAP_1_2;
 	var $WSDL 			= 'wsfe-production.wsdl';
 	var $URL 			= 'https://servicios1.afip.gov.ar/wsfev1/service.asmx';
-	// var $WSDL_TEST 		= 'wsfe.wsdl';
-	// var $URL_TEST 		= 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx';
+	var $WSDL_TEST 		= 'wsfe.wsdl';
+	var $URL_TEST 		= 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx';
 
 	function __construct($afip) {
         parent::__construct($afip, array('service' => 'wsfe'));
@@ -434,6 +434,15 @@ class ElectronicBilling extends AfipWebService {
 
 		$ta = $this->afip->GetServiceTA('wsfe');
 
+		dd($ta->token);
+		dd(array(
+			'Auth' => array( 
+				'Token' => $ta->token,
+				'Sign' 	=> $ta->sign,
+				'Cuit' 	=> $this->afip->CUIT
+				)
+			));
+
 		return array(
 			'Auth' => array( 
 				'Token' => $ta->token,
@@ -458,8 +467,8 @@ class ElectronicBilling extends AfipWebService {
 	private function _CheckErrors($operation, $results)
 	{
 		$res = $results->{$operation.'Result'};
-
-		if ($operation == 'FECAESolicitar') {
+		
+		if ($operation == 'FECAESolicitar' && isset($res->FeDetResp)) {
 			if (is_array($res->FeDetResp->FECAEDetResponse)) {
 				$res->FeDetResp->FECAEDetResponse = $res->FeDetResp->FECAEDetResponse[0];
 			}
@@ -477,3 +486,4 @@ class ElectronicBilling extends AfipWebService {
 	}
 
 }
+
