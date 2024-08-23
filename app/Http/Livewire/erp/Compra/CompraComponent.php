@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-use Afip;
-use ElectronicBilling;
+// use Afip;
+// use ElectronicBilling;
 
 class CompraComponent extends Component
 {
@@ -90,19 +90,19 @@ class CompraComponent extends Component
             } else {
                 return view('empresas'); 
 
-                return redirect('https://stackoverflow.com/');
-                return Redirect::to('/')->with(['type' => 'error','message' => 'Your message']);
-                return redirect()->intended('http://heera.it');
+                // return redirect('https://stackoverflow.com/');
+                // return Redirect::to('/')->with(['type' => 'error','message' => 'Your message']);
+                // return redirect()->intended('http://heera.it');
 
-                return redirect('/')->with(Auth::logout());
-                $this->redirect('/dashboard'); 
+                // return redirect('/')->with(Auth::logout());
+                // $this->redirect('/dashboard'); 
 
-                // $this->redirect(Auth::login($user)); 
-                $this->redirect('/'); 
-                return redirect(route('areas'));
-                return view('dashboard'); 
-                return redirect()->route('areas'); 
-                return redirect()->intended('areas');
+                // // $this->redirect(Auth::login($user)); 
+                // $this->redirect('/'); 
+                // return redirect(route('areas'));
+                // return view('dashboard'); 
+                // return redirect()->route('areas'); 
+                // return redirect()->intended('areas');
             }
         }
         $this->areas = Area::where('empresa_id', $this->empresa_id)->ORDERBY('name')->get();
@@ -113,6 +113,7 @@ class CompraComponent extends Component
         $this->productos = Producto::where('empresa_id', $this->empresa_id)->orderBy('name','asc')->get();
         
         return view('livewire.compra.compra-component')->extends('layouts.app2');
+        // return view('livewire.erp.compra.compra-component')->extends('layouts.app2');
         // return view('livewire.compra.compra-component')->extends('layouts.adminlte');
     }
     

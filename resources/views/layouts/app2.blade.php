@@ -55,7 +55,7 @@
         @endif --}}
 
         <!-- Page Content -->
-        <livewire:compra.compra-component />
+        <livewire:erp.compra.compra-component />
         
         @section('content')
             <main>
