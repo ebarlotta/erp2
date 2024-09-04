@@ -25,11 +25,13 @@
                         </div>
                     @endif
                     <div class="text-left">
-                        @if(session('empresas.Agregar'))
+                        @can('empresagestion.Ver')
+                        {{-- @if(session('empresas.Agregar')) --}}
                             <button wire:click="CrearEmpresa()" class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded">
                                 Crear empresa
                             </button>
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                     </div>
                 </div>
                 @if ($isModalOpen)

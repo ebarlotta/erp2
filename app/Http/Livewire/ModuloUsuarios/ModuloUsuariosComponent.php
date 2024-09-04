@@ -39,7 +39,7 @@ class ModuloUsuariosComponent extends Component
         //$modulos = Modulo::get()->sortBy('id')->paginate(4);
         //$this->modulos = Modulo::all();
         //$datos = Modulo::paginate(10);
-        return view('livewire.modulo-usuarios.modulo-usuarios-component',['datos'=> Modulo::orderby('name')->paginate(3),])->extends('layouts.adminlte')
+        return view('livewire.modulo-usuarios.modulo-usuarios-component',['datos'=> Modulo::orderby('name')->paginate(8),])->extends('layouts.adminlte')
         ->section('content'); //Enzo
     }
 
@@ -86,7 +86,14 @@ class ModuloUsuariosComponent extends Component
 
     public function AgregarUsuario($user_id)
     {
-        ModuloUsuario::create(['modulo_id' => $this->moduloseleccionado->id, 'user_id' => $user_id, 'modificado_user_id'=>Auth()->user()->id]);
+        if(isset($this->moduloseleccionado->id) && isset( $user_id) && isset(Auth()->user()->id)) {
+            ModuloUsuario::create([
+                'modulo_id' => $this->moduloseleccionado->id, 
+                'user_id' => $user_id, 
+                'modificado_user_id'=>Auth()->user()->id]
+            );
+        } else { session()->flash('message', 'Se ha producido un error, revise los datos y vuelva a intentarlo'); }
+
         $this->closeModalPopover();
         // $this->usuarios = User::all();
         $this->CargarUsuarios($this->moduloseleccionado->id);

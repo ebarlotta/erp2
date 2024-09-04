@@ -26,6 +26,7 @@ class EmpresaUsuariosComponent extends Component
     public $seleccionado=1;
     public $roles;
     public $usuarioSeleccionado, $id_rolActual;
+    public $id_NuevoRol;
 
     use WithPagination;
 
@@ -113,5 +114,16 @@ class EmpresaUsuariosComponent extends Component
 
         $this->id_rolActual = $this->usuarioSeleccionado[0]['rol_id'];
         $this->roles = Roles::all();            
+    }
+
+    // public function SeleccionarNuevoRol() {
+    //     $this->id_NuevoRol = $id;
+    // }
+    
+    public function ActualizarRol() {
+        // dd($this->id_NuevoRol);
+        $usuario = EmpresaUsuario::find($this->usuarioSeleccionado[0]->id);
+        $usuario->update(['rol_id'=> $this->id_NuevoRol]);
+        session()->flash('message', 'Actualizado');
     }
 }

@@ -24,12 +24,18 @@ class AreaComponent extends Component
 
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        // $this->areas = Area::where('empresa_id', $this->empresa_id)->get();
-        $this->areas = Area::where('empresa_id', '=', $this->empresa_id)->paginate(7);
+        // $role = auth()->user();
+        // dd($role->permissions);
+        if(auth()->user()->hasPermissionTo('areas.Ver')) {
+            $this->empresa_id=session('empresa_id');
+            // $this->areas = Area::where('empresa_id', $this->empresa_id)->get();
+            $this->areas = Area::where('empresa_id', '=', $this->empresa_id)->paginate(7);
 
-        return view('livewire.area.area-component',['areas' => $this->areas])->extends('layouts.adminlte');
-        // return view('livewire.area.area-component',['datos'=> Area::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+            return view('livewire.area.area-component',['areas' => $this->areas])->extends('layouts.adminlte');
+            // return view('livewire.area.area-component',['datos'=> Area::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function create()

@@ -15,7 +15,6 @@ class EmpresaModulosComponent extends Component
 {
 
     use WithPagination;
-    use WithPagination;
 
     public $isModalOpen = false;
 

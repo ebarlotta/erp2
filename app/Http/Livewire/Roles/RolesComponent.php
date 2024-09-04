@@ -32,12 +32,7 @@ class RolesComponent extends Component
     public function render()
     {
         $this->modulos = Modulo::all();
-        if ($this->buscar) {
-            $this->roles = Roles::where('name', 'LIKE', "%" . $this->buscar . "%")->get();
-        } else {
-            $this->roles = Roles::orderBy('name','ASC')->get();
-        }
-
+        $this->Filtrar();
         // $user = User::find(Auth::user()->id);   // Asigna el rol al usuario
         // $user->syncRoles(['Administrador']);
 
@@ -88,6 +83,14 @@ class RolesComponent extends Component
         return view('livewire.roles.roles-component')->extends('layouts.adminlte');
     }
 
+    public function Filtrar() {
+        if ($this->buscar) {
+            $this->roles = Roles::where('name', 'LIKE', "%" . $this->buscar . "%")->get();
+        } else {
+            $this->roles = Roles::orderBy('name','ASC')->get();
+        }
+    }
+    
     public function showNew() { $this->reset('name'); }
 
     public function showEdit($id)

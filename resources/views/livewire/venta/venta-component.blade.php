@@ -741,9 +741,52 @@
 							{{-- Cuentas Corrientes  --}}
 							{{-- =================== --}}
 							<div class="{{ $tabActivo != 4 ? 'hidden' : '' }}">
-								<div class="flex flex-auto justify-center">
-									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
+								<div class="flex justify-center">
+									{{-- <img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36"> --}}
+									<div class="block mb-4 justify-start">
+										Cliente<br>
+										<select class="px-2 col-11 rounded-md h-8 leading-none" wire:model="ccCliente">
+											<option value="0">-- Todos -- </option>
+											@foreach ($ccClientes as $cliente)
+												<option value="{{ $cliente->id }}">{{ $cliente->name }}</option>
+											@endforeach
+										</select>
+										@error('ccCliente') <span class="text-red-500">{{ $message }}</span>@enderror
+									</div>
+									<div class="block mb-4 justify-start">
+										Agrupado por:<br>
+										<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccAgrupadoComp">
+											<option value="1">Comprobante</option>
+											<option value="0">Detalle</option>
+										</select>
+									</div>
+								
+									<div class="block mb-4 justify-start">
+										Desde <br>
+										<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
+									</div>
+								
+									<div class="block mb-4 justify-center">
+										Hasta <br>
+										<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
+									</div>
+									<div class="block mb-4 justify-center">
+										Mes <br>
+										*
+									</div>
+									<div class="block mb-4 justify-center">
+										Área <br>
+										*
+									</div>
+									<div class="block mb-4 justify-center">
+										Cuenta <br>
+										*
+									</div>
+									<div class="block mb-4 justify-center">
+										<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
+									</div>
 								</div>
+								{!! $CuentasCorrientesHtml !!}
 							</div>
 							<div class="{{ $tabActivo != 5 ? 'hidden' : '' }}">
 								<div class="flex flex-auto justify-center">

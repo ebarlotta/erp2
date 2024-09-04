@@ -632,92 +632,50 @@
 							{{-- Cuentas Corrientes  --}}
 							{{-- =================== --}}
 							<div class="{{ $tabActivo != 4 ? 'hidden' : '' }}">
-								{{-- <div class="flex justify-center"> --}}
-									<div class="flex justify-center">
-										<div class="block mb-4 justify-start">
-											Proveedor<br>
-											<select class="px-2 col-11 rounded-md h-8 leading-none" wire:model="ccProveedor">
-												<option value="0">-- Todos -- </option>
-												@foreach ($ccProveedores as $proveedor)
-													<option value="{{ $proveedor->id }}">{{ $proveedor->name }}</option>
-												@endforeach
-											</select>
-											@error('ccProveedor') <span class="text-red-500">{{ $message }}</span>@enderror
-										</div>
-										<div class="block mb-4 justify-start">
-												Agrupado por:<br>
-												<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccAgrupadoComp">
-													<option value="1">Comprobante</option>
-													<option value="0">Detalle</option>
-												</select>
-											{{-- <div>
-												<div class="flex">
-													<input class="text-xs rounded-md h-7 ml-5" type="Checkbox" name="opcion" wire:model="ccAgrupadoComp" wire:click="subfiltro"> Comprobante
-												</div>
-												<div class="flex">
-													<input class="text-xs rounded-md h-7 ml-5" type="Checkbox" Name="opcion" wire:model="ccAgrupadoDeta" wire:click="subfiltro"> Detalle
-												</div>
-											</div> --}}
-										</div>
-										<div class="block mb-4 justify-start">
-											Desde <br>
-											<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
-										</div>
-									
-										<div class="block mb-4 justify-center">
-											Hasta <br>
-											<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
-										</div>
-										<div class="block mb-4 justify-center">
-											Mes <br>
-											*
-										</div>
-										<div class="block mb-4 justify-center">
-											Área <br>
-											*
-										</div>
-										<div class="block mb-4 justify-center">
-											Cuenta <br>
-											*
-										</div>
-										<div class="block mb-4 justify-center">
-											<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
-										</div>
+								<div class="flex justify-center">
+									<div class="block mb-4 justify-start">
+										Proveedor<br>
+										<select class="px-2 col-11 rounded-md h-8 leading-none" wire:model="ccProveedor">
+											<option value="0">-- Todos -- </option>
+											@foreach ($ccProveedores as $proveedor)
+												<option value="{{ $proveedor->id }}">{{ $proveedor->name }}</option>
+											@endforeach
+										</select>
+										@error('ccProveedor') <span class="text-red-500">{{ $message }}</span>@enderror
 									</div>
-
-									{!! $CuentasCorrientesHtml !!}
-									{{-- <div class="flex justify-center">
-										<table class="table table-stripped w-75">
-											<tr bgcolor="lightGray">
-												<td align="center">Fecha</td>
-												<td align="center">Comp.</td>
-												<td>Proveedor</td>
-												<td>Monto Comprado</td>
-												<td>Monto Pagado</td>
-												<td>Saldo</td>
-												<td>Área</td>
-												<td>Cuenta</td>
-											</tr>
-											@if($detallesCC)
-												@foreach ($detallesCC as $detalleCC )
-													<tr>
-														<td align="center">{{ substr($detalleCC->fecha,8,2).'-'.substr($detalleCC->fecha,5,2).'-'. substr($detalleCC->fecha,0,4) }}</td>
-														<td>{{ $detalleCC->comprobante }}</td>
-														<td>{{ $detalleCC->proveedor }}</td>
-														<td align="right" class="pr-2">{{ number_format($detalleCC->NetoComp, 2, ',', '.') }}</td>
-														<td align="right" class="pr-2">{{ number_format($detalleCC->MontoPAgadoComp, 2, ',', '.') }}</td>
-														<td align="right">{{ number_format($saldo=$saldo+$detalleCC->NetoComp-$detalleCC->MontoPAgadoComp, 2, ',', '.') }}</td>
-														<td>{{ $detalleCC->area }}</td>
-														<td>{{ $detalleCC->cuenta }}</td>
-													</tr>
-												@endforeach
-											@endif
-										</table>
-									</div> --}}
-								{{-- </div> --}}
-								{{-- <div class="flex flex-auto justify-center">
-									<img src="{{ asset('images/under-construction.jpg') }}" alt="" class="w-36">
-								</div> --}}
+									<div class="block mb-4 justify-start">
+										Agrupado por:<br>
+										<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="ccAgrupadoComp">
+											<option value="1">Comprobante</option>
+											<option value="0">Detalle</option>
+										</select>
+									</div>
+								</div>
+								<div class="block mb-4 justify-start">
+									Desde <br>
+									<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
+								</div>
+							
+								<div class="block mb-4 justify-center">
+									Hasta <br>
+									<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
+								</div>
+								<div class="block mb-4 justify-center">
+									Mes <br>
+									*
+								</div>
+								<div class="block mb-4 justify-center">
+									Área <br>
+									*
+								</div>
+								<div class="block mb-4 justify-center">
+									Cuenta <br>
+									*
+								</div>
+								<div class="block mb-4 justify-center">
+									<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
+								</div>
+								{!! $CuentasCorrientesHtml !!}
 							</div>
 							{{-- Libros de IVA  --}}
 							{{-- ============== --}}

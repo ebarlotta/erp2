@@ -258,8 +258,11 @@ return [
         // ],
         
         // ['header' => 'account_settings'],
-        ['header' => 'GESTIÓN DE EMPRESAS'],
+        ['header' => 'GESTIÓN DE EMPRESAS',
+            'can' => 'administracion.Ver',
+        ],
         [
+            'can' => 'administracion.Ver',
             'text' => 'Administración',
             'url'  => 'tags',
             'icon' => 'fas fa-fw fa-building',
@@ -303,11 +306,14 @@ return [
             ],
         ],
 
-        ['header' => 'ERP'],
+        ['header' => 'ERP',
+            'can' => 'administracion.Ver',
+        ],
         [
             'text' => 'Categorías Profesionales',
             'url'  => 'categoriaprofesional',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'categoriaprofesional.Ver',
         ],
         [
             'text' => 'Empleados',
@@ -322,11 +328,14 @@ return [
             'can'  => 'haberes.Ver',
         ],
 
-        ['header' => 'GERI'],
+        ['header' => 'GERI',
+            'can' => 'geri.Ver',
+        ],
         [
             'text' => 'Ajustes',
             'url'  => 'settings',
             'icon' => 'fas fa-fw fa-cogs',
+            'can' => 'geri.Ver',
             'submenu' => [
                 [
                     'text' => 'Gestión de Actores',
@@ -389,102 +398,126 @@ return [
             ],
         ],
 
-        ['header' => 'MÓDULOS'],
+        ['header' => 'MÓDULOS',
+            'can' => 'modulos.Ver',
+        ],
         [
             'text' => 'Ajustes',
             'url'  => 'tags',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'modulos.Ver',
             'submenu' => [
                 [
                     'text' => 'Areas',
                     'url'  => 'areas',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'areas.Ver',
                 ],
                 [
                     'text' => 'Categorías',
                     'url'  => 'categorias',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'categorias.Ver',
                 ],    
                 [
                     'text' => 'Clientes',
                     'url'  => 'clientes',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'clientes.Ver',
                 ],
                 [
                     'text' => 'Cuentas',
                     'url'  => 'cuentas',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'cuentas.Ver',
                 ],
                 [
                     'text' => 'Elementos',
                     'url'  => 'elementos',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'elementos.Ver',
                 ],
                 [
                     'text' => 'Estados Civiles',
                     'url'  => 'estadosciviles',
                     'icon' => 'fas fa-fw fa-venus-mars',
+                    'can' => 'estadosciviles.Ver',
                 ],
                 [
                     'text' => 'Tipos de Documentos',
                     'url'  => 'tiposdedocumentos',
                     'icon' => 'fas fa-fw fa-card',
+                    'can' => 'tiposdedocumentos.Ver',
                 ],                                
                 [
                     'text' => 'Unidades',
                     'url'  => 'unidades',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'unidades.Ver',
                 ],
                 [
                     'text' => 'Proveedores',
                     'url'  => 'proveedores',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'proveedores.Ver',
                 ],
                 [
                     'text' => 'Localización',
                     'icon' => 'fas fa-fw fa-cogs',
+                    'can' => 'localizacion.Ver',
                     'submenu' => [
                         [
                             'text' => 'Localidades',
                             'url'  => 'localidades',
+                            'can' => 'localidades.Ver',
                         ],
                         [
                             'text' => 'Nacionalidades',
                             'url'  => 'nacionalidad',
+                            'can' => 'nacionalidad.Ver',
                         ],
                         [
                             'text' => 'Provincias',
                             'url'  => 'provincias',
+                            'can' => 'provincias.Ver',
                         ],
                     ],
                 ],
 
             ],
         ],
-        ['header' => 'GESTIÓN CARRITO'],
+        ['header' => 'GESTIÓN CARRITO',
+            'can' => 'carrito.Ver',
+        ],
         [
             'text' => 'Productos',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'carrito.Ver',
             'submenu' => [
                 [
                     'text' => 'Agregar Etiqueta',
                     'url'  => 'producto/tag',
+                    'can' => 'tags.Ver',
                 ],
                 [
                     'text' => 'Agregar Producto',
                     'url'  => 'producto/create',
+                    'can' => 'productos.Ver',
                 ],
                 [
                     'text' => 'Modificar / Eliminar',
                     'url'  => 'producto',
+                    'can' => 'tags.Modificar',
                 ],
                 [
                     'text' => 'Gestión de Producto',
                     'url'  => 'productos',
+                    'can' => 'tags.Modificar',
                 ],
                 [
                     'text' => 'Registrar Bajas',
                     'url'  => 'productobajas',
+                    'can' => 'tags.Eliminar',
                 ],   
             ],
         ],
@@ -492,43 +525,54 @@ return [
             'text' => 'Etiquetas',
             'url'  => 'tags',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'tags.Ver',
         ],
         [
             'text' => 'Estados',
             'url'  => 'estados',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'estados.Ver',
         ],        
         [
             'text' => 'Categorías de Productos',
             'url'  => 'categoriaproducto',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'categoriaproducto.Ver',
         ],        
         [
             'text' => 'Vista de usuario',
             'url'  => 'carts',
+            'can' => 'carts.Ver',
         ],
 
-        ['header' => 'GESTIÓN INFORMES'],
+        ['header' => 'GESTIÓN INFORMES',
+            'can' => 'informe.Ver',
+        ],
 
         [
             'text' => 'Informes',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'informe.Ver',
             'submenu' => [
                         [
                             'text' => 'Permisos a Informes',
                             'url'  => 'tablas',
+                            'can' => 'informe.Modificar',
                         ],
                         [
                             'text' => 'Visualizar Informes',
                             'url'  => 'tablasver',
+                            'can' => 'informe.Ver',
                         ],
                         [
                             'text' => 'Editar/Eliminar Informes',
                             'url'  => 'tablas-edit',
+                            'can' => 'informe.Eliminar',
                         ],
                         [
                             'text' => 'Diseñar Informes',
                             'url'  => 'tablas-disenar',
+                            'can' => 'informe.Modificar',
                         ],
                     ],
                 ],
@@ -537,6 +581,7 @@ return [
             'text' => 'Generales',
             'url'  => 'settings',
             'icon' => 'fas fa-fw fa-cogs',
+            'can' => 'generales.Ver',            
                 'submenu' => [
                     [
                         'text' => 'Otras Cosas',

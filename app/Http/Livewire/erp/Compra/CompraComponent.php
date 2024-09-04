@@ -65,10 +65,6 @@ class CompraComponent extends Component
                 
         if ( !Auth::check() ) { return view('welcome');  return route('dashboard'); }
 
-        //dd($this->empresa_id);
-
-        // !isset($this->ccAgrupadoComp) ?? $this->ccAgrupadoComp=true; 
-        // if () { $anio = date("Y"); } 
         $anio = date("Y");
         if(is_null($this->gfanio)) { $this->gfanio = $anio; }; //La primara vez que inicia revisa si es nulo y en ese caso cambia al año actual, sino no lo toca más
     
@@ -79,8 +75,8 @@ class CompraComponent extends Component
         $this->cdesde = date($anio.'-01-01');
         $this->chasta = date($anio.'-12-31');
         $this->ccdesde = date($anio.'-01-01');
-        $this->cchasta = date($anio.'-12-31');        
-
+        $this->cchasta = date($anio.'-12-31');      
+        
         if (!is_null(session('empresa_id'))) { $this->empresa_id = session('empresa_id'); } 
         else { 
             if(Auth::user()) {

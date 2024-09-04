@@ -18,13 +18,18 @@
                                         <div class="flex d-flex justify-content-beetwen">
                                             <div class="flex d-flex col-9">
                                                 <h4>Listado de Roles</h4>
-                                                <button type="button" class="ml-3 mb-1 btn btn-info" wire:click="showNew()" data-toggle="modal" data-target="#ModalEdit">
+                                                <button type="button" class="ml-3 mb-1 btn btn-info" wire:click="showNew()" data-toggle="modal" data-target="#ModalNuevoRol">
                                                     Nuevo
                                                 </button>
                                             </div>
                                             <div class="col-3">
-                                                <input wire:model="buscar" type="text" class="form-control rounded-md" placeholder="Buscar">
+                                                <input wire:model="buscar" type="text" class="form-control rounded-md" placeholder="Buscar" wire:keyup="Filtrar()">
                                             </div>
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                         <table class="table table-hover text-nowrap table-rounded">
                                             <tr>
@@ -188,9 +193,41 @@
                 </div>
             </div>
 
+
+            <!-- Modal Nuevo Rol -->
+            <!-- ======================== -->
+
+            <div wire:ignore.self class="modal fade" id="ModalNuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content" style="width: inherit">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Coloque el Nombre del Nuevo Rol</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="px-3 py-3">
+                            <div>
+                                <input type="text" class="form-control" wire:model="name">
+                            </div>
+                            <div class="pt-3">
+                                <button type="button" class="btn btn-success" data-dismiss="modal" wire:click="store()" data-toggle="modal" data-target="#ModalConfirmaNuevoRol">
+                                    <i class="fa-solid fa-pen-to-square"></i>Agregar
+                                </button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" aria-label="Close">
+                                    <i class="fa-solid fa-pen-to-square"></i>Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Modal Confirma Nuevo Rol -->
             <!-- ======================== -->
-            <div class="modal fade" id="ModalConfirmaNuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+            <div wire:ignore.self class="modal fade" id="ModalConfirmaNuevoRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog " role="document">
                     <div class="modal-content" style="width: inherit">
                         <div class="modal-header">

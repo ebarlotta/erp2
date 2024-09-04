@@ -38,7 +38,7 @@
                                     </div>
                                 @endforeach
                                 {{-- {{ $usuarioSeleccionado }} --}}
-                                <select class="form-control col-12" wire:model="txtRol" wire:change="ActualizarRol();">
+                                <select class="form-control col-12" wire:model="id_NuevoRol" >
                                     @foreach ($roles as $rol)
                                         @if($id_rolActual==$rol->id)
                                             <option value="{{ $rol->id }}" selected>{{ $rol->name }}</option>
@@ -48,6 +48,7 @@
                                         @endif
                                     @endforeach
                                 </select>
+                                <input type="button" class="form-control btn-info" value="Actualizar" wire:click="ActualizarRol()">
                             </div>
                         </div>
                         @if (session()->has('message'))
