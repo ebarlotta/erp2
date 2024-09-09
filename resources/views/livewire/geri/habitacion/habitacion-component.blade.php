@@ -20,10 +20,12 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nueva Habitación</x-crear>
-            @if ($isModalOpen)
-                @include('livewire.geri.habitacion.createhabitacion')
-            @endif
+            @can('habitaciones.Agregar')
+                <x-crear>Nueva Habitación</x-crear>
+                @if ($isModalOpen)
+                    @include('livewire.geri.habitacion.createhabitacion')
+                @endif
+            @endcan
             <div style="width: 100%">
             <table class="table-fixed w-full sm:max-width: 450px">  <!--  table-fixed  class="w-full     style="display: block; overflow-x: auto; sm:max-width: 450px""-->
                 <thead>
@@ -73,10 +75,14 @@
                                 </td>
                                 <td class="border px-1 py-2">
                                     <div class=" justify-center" style="display: inline-grid;">
-                                        <!-- Editar  -->
-                                        <x-editar id="{{$habitacion->id}}" class="w-8/12"></x-editar><br>
-                                        <!-- Eliminar -->
-                                        <x-eliminar id="{{$habitacion->id}}" class="w-8/12"></x-eliminar>
+                                        @can('habitaciones.Modificar')
+                                            <!-- Editar  -->
+                                            <x-editar id="{{$habitacion->id}}" class="w-8/12"></x-editar><br>
+                                        @endcan
+                                        @can('habitaciones.Eliminar')
+                                            <!-- Eliminar -->
+                                            <x-eliminar id="{{$habitacion->id}}" class="w-8/12"></x-eliminar>
+                                        @endcan
                                     </div>
                                 </td>
                             </tr>

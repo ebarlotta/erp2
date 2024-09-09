@@ -23,15 +23,17 @@
 							</div>
 						</div>
 					@endif
-					@if ($seleccionado)
+					{{-- @if ($seleccionado) --}}
 					<div class="text-left flex">
-						<button wire:click="mostrarmodal()"	class="col-2 bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded">
-							Agregar Producto
-						</button>
+						@can('productos.Agregar')
+							<button wire:click="mostrarmodal()"	class="col-2 bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded">
+								Agregar Producto
+							</button>
+						@endcan
 						<input class="form-control col-2 ml-2" type="text" wire:model="search" placeholder="Introduzca Filtro" wire:keyup="Filtrar">
-                        <div class="col justify-end">{{ $productos->links() }}</div>
+                        {{-- <div class="col justify-end">{{ $productos->links() }}</div> --}}
 					</div>
-					@endif
+					{{-- @endif --}}
 				</div>
 
 				@if($isModalOpenFileUpload)
@@ -205,7 +207,12 @@
 						<th>Estado</th>
 					</thead>
 					@foreach ($productos as $producto)
-						<tr wire:click="edit({{ $producto->id }})">
+						@can('productos.Modificar')
+							<tr wire:click="edit({{ $producto->id }})">
+						@endcan
+						@cannot('productos.Modificar')
+							<tr>
+						@endcannot
 							<td>
 								@if($producto->ruta != 'sin_imagen.jpg') 
 									<img class="block rounded-md flex-none bg-cover" src="{{ asset('images2/'.$producto->ruta) }}" style="width:70px; height: 70px;">	

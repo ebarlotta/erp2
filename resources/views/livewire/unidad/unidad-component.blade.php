@@ -26,12 +26,14 @@
                     @endif
 
                     <div class="flex justify-around">
-                        @if(session('Unidades.Agregar'))
+                        @can('unidades.Agregar')
+                        {{-- @if(session('Unidades.Agregar')) --}}
                             <x-crear>Nueva Unidad</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.unidad.createunidad')
                             @endif
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                         <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                     </div>
                     <div style="display: block">
@@ -49,14 +51,18 @@
                                         <td class="border px-4 py-2 text-left">{{ $unidad->name }}</td>
                                         <td class="border px-4 py-2">
                                             <div class="flex justify-center">
-                                                @if(session('Unidades.Editar'))
+                                                @can('unidades.Modificar')
+                                                {{-- @if(session('Unidades.Editar')) --}}
                                                     <!-- Editar  -->
                                                     <x-editar id="{{ $unidad->id }}"></x-editar>
-                                                @endif
-                                                @if(session('Unidades.Eliminar'))
+                                                {{-- @endif --}}
+                                                @endcan
+                                                @can('unidades.Eliminar')
+                                                {{-- @if(session('Unidades.Eliminar')) --}}
                                                     <!-- Eliminar -->
                                                     <x-eliminar id="{{ $unidad->id }}"></x-eliminar>
-                                                @endif
+                                                {{-- @endif --}}
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

@@ -20,11 +20,13 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nuevos Estados de Personas</x-crear>
-            <!-- <button wire:click="create()" class="bg-green-500 text-blue font-bold py-2 px-4 rounded my-3">Crear Estado de Personas</button> -->
-            @if ($isModalOpen)
-            @include('livewire.geri.personactivo.createpersonactivo')
-            @endif
+            @can('personactivo.Agregar')
+                <x-crear>Nuevos Estados de Personas</x-crear>
+                <!-- <button wire:click="create()" class="bg-green-500 text-blue font-bold py-2 px-4 rounded my-3">Crear Estado de Personas</button> -->
+                @if ($isModalOpen)
+                    @include('livewire.geri.personactivo.createpersonactivo')
+                @endif
+            @endcan
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -38,10 +40,14 @@
                         <td class="border px-4 py-2">{{ $estado->estado }}</td>
                         <td class="border px-4 py-2">
                             <div class="flex justify-center">
-                                <!-- Editar  -->
-                                <x-editar id="{{$estado->id}}"></x-editar>
-                                <!-- Eliminar -->
-                                <x-eliminar id="{{$estado->id}}"></x-eliminar>
+                                @can('personactivo.Modificar')
+                                    <!-- Editar  -->
+                                    <x-editar id="{{$estado->id}}"></x-editar>
+                                @endcan
+                                @can('personactivo.Eliminar')
+                                    <!-- Eliminar -->
+                                    <x-eliminar id="{{$estado->id}}"></x-eliminar>
+                                @endcan
                             </div>
                         </td>
                     </tr>

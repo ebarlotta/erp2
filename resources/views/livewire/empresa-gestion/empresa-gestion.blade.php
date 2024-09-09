@@ -46,7 +46,7 @@
                                     <div class="w-full hover:scale-105 transition-all duration-500" style="hover:background-color=pink">
                                         <div class="rounded overflow-hidden border hover:bg-red-100 d-flex flex col-12">
                                             @if($empresa->imagen) 
-                                                <img class="block flex-none bg-cover col-2 p-2" src="{{ asset(''. $empresa->imagen) }}" style="width: 70px; height: 70px; border-radius: 15px;">
+                                                <img class="block flex-none bg-cover col-2 p-2" src="{{ asset('images/'. $empresa->imagen) }}" style="width: 70px; height: 70px; border-radius: 15px;">
                                             @else
                                                 <img class="block flex-none bg-cover col-2 p-2" src="{{ asset('images/sin_imagen.jpg') }}" style="width: 70px; height: 70px; border-radius: 15px;">
                                             @endif

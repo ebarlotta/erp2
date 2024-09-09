@@ -72,3 +72,12 @@ Empresas -> Arreglar agregar distintos roles al usuario agregado
 Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento
 
 Estructura de tabla modulo_usuarios -> Revisar índices en la tabla
+
+Dar de Alta una categoría de producto
+Revisar Compra simple ->permisos y funcionamiento
+Generar todos los permisos para haberes
+Generar todos los permisos para Ventas
+Revisar Venta simple ->permisos y funcionamiento
+Geri ->
+Estados de Personas
+Tipos de Personas

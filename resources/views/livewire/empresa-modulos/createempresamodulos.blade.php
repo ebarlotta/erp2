@@ -13,19 +13,70 @@
 						<div class="mb-4">
 							<div style="width: 100%;background-color: bisque;border-radius: 20px;height: 5rem;justify-content: center;display: flex; margin: 4px;	align-items: center; text-align: center; padding-top:1px; font-size: 2rem;">
 								{{ $empresaseleccionada->name }}
-							</div>
-							<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+							|</div>
+							<div>
+
+								<table border="1" class="table table-striped">
+									<tr><td>Módulo</td><td>Activo/Desactivado</td></tr>
+									@foreach ($modulosnuevos as $modulo)
+									{{-- <div class="d-flex"> --}}
+										{{-- <div style="width: max-content;background-color: bisque;border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;"> --}}
+											<tr>
+												<td>
+													{{ $modulo->name }}
+												</td>
+												<td>
+													@if($modulo->modulo_id)
+														<img src="{{ asset('images/activo.jpg') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})">
+													@endif
+												</td>
+												<td>
+													@if(is_null($modulo->modulo_id))
+														<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20" wire:click="EliminarModulo({{ $modulo->id }})">		
+													@endif
+												</td>
+											</tr>
+											{{-- <p style="margin-top: -10px;">{{ $modulo->name }}</p>
+											@if($modulo->modulo_id)
+											<img src="{{ asset('images/activo.jpg') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})">
+											@else
+											<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20" wire:click="EliminarModulo({{ $modulo->id }})">
+											@endif --}}
+										{{-- </div> --}}
+									{{-- </div> --}}
+									@endforeach
+								</table>
+
+
+								{{-- @foreach ($modulosNOempresa as $modulo)
+									<div class="d-flex"> --}}
+										{{-- <div style="width: max-content;background-color: bisque;border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;"> --}}
+											{{-- <p style="margin-top: -10px;">{{ $modulo->name }}</p>
+											<img src="{{ asset('images/activo.jpg') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})"> --}}
+										{{-- </div> --}}
+									{{-- </div>
+								@endforeach
+								<div>
+									@foreach ($modulosdelaempresa as $modx)
+										<div class="d-flex">
+											<b>{{ $modx['name'] }}</b>
+											<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20" wire:click="EliminarModulo({{ $modx['id'] }})">
+										</div>
+									@endforeach
+								</div>
+							</div> --}}
+							{{-- <div style="display: flex; flex-wrap: wrap; justify-content: center;">
 								@foreach ($modulosNOempresa as $modulo)
 									<div style="width: max-content;background-color: bisque;border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
 										<div style="position: inherit; justify-content: end; display: flex; margin-right: -21px; margin-top: 5px;" placeholder="Agregar" wire:click="AgregarModulo({{ $modulo->id }})">
 											<img src="{{ asset('images/activo.jpg') }}" width="20" height="20">
 										</div>
 										<p style="margin-top: -10px;">{{ $modulo->name }}</p>
-										<p style="margin-top: -14px;">{{ $modulo->email }}</p>
+										<p style="margin-top: -14px;">{{ $modulo->email }}pepepe</p>
 									</div>
 								@endforeach
-							</div>
-							<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+							</div> --}}
+							{{-- <div style="display: flex; flex-wrap: wrap; justify-content: center;">
 								@if ($modulosdelaempresa)
 									@foreach ($modulosdelaempresa as $modx)
 										<div style="width: max-content; background-color: rgb(160, 233, 100);border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
@@ -36,7 +87,7 @@
 										</div>
 									@endforeach
 								@endif
-							</div>
+							</div> --}}
 						</div>
 
 						<div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

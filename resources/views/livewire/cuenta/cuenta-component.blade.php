@@ -26,13 +26,15 @@
                     @endif
 
                     <div class="flex justify-around">
-                        @if(session('Cuentas.Agregar'))
+                        @can('cuentas.Agregar')
+                        {{-- @if(session('Cuentas.Agregar')) --}}
                             <x-crear>Nueva Cuenta</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.cuenta.createcuentas')
                             @endif
                             <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                     </div>
                     <div style="display: block">
 
@@ -51,17 +53,21 @@
                                             <td class="border px-4 py-2">
                                                 <div class="flex justify-center">
                                                     <div class="sm:flex justify-center">
-                                                        @if(session('Cuentas.Editar'))
+                                                        @can('areas.Modificar')
+                                                        {{-- @if(session('Cuentas.Editar')) --}}
                                                             <!-- Editar  -->
                                                             <x-editar id="{{ $cuenta->id }}"></x-editar>
                                                         </div>
-                                                        @endif
-                                                        @if(session('Cuentas.Eliminar'))
+                                                        {{-- @endif --}}
+                                                        @endcan
+                                                        @can('areas.Eliminar')
+                                                        {{-- @if(session('Cuentas.Eliminar')) --}}
                                                             <div class="sm:flex justify-center">
                                                                 <!-- Eliminar -->
                                                                 <x-eliminar id="{{ $cuenta->id }}"></x-eliminar>
                                                             </div>
-                                                        @endif
+                                                        {{-- @endif --}}
+                                                        @endcan
                                                     </div>
                                                 </div>
                                             </td>

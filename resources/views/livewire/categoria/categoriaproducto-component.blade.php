@@ -27,13 +27,15 @@
                     @endif
 
                     <div class="flex justify-around">
-                        @if(session('categoriasdeproductos.Agregar'))
+                        @can('categoriaproducto.Agregar')
+                        {{-- @if(session('categoriasdeproductos.Agregar')) --}}
                             <x-crear>Nueva Categoría Producto</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.categoria.createcategoriaproducto')
                             @endif
                             <div class="w-1/2 justify-end">{{ $categorias->links() }}</div>
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                     </div>
 
                     <div style="display: block">
@@ -51,14 +53,18 @@
                                             <td class="border px-4 py-2 text-left">{{ $categoria->name }}</td>
                                             <td class="border px-4 py-2">
                                                 <div class="flex justify-center">
-                                                    @if(session('categoriasdeproductos.Editar'))
-                                                        <!-- Editar  -->
-                                                        <x-editar id="{{ $categoria->id }}"></x-editar>
-                                                    @endif
-                                                    @if(session('categoriasdeproductos.Eliminar'))
-                                                        <!-- Eliminar -->
-                                                        <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
-                                                    @endif
+                                                    @can('categoriaproducto.Modificar')
+                                                        {{-- @if(session('categoriasdeproductos.Editar')) --}}
+                                                            <!-- Editar  -->
+                                                            <x-editar id="{{ $categoria->id }}"></x-editar>
+                                                        {{-- @endif --}}
+                                                    @endcan
+                                                    @can('categoriaproducto.Eliminar')
+                                                        {{-- @if(session('categoriasdeproductos.Eliminar')) --}}
+                                                            <!-- Eliminar -->
+                                                            <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
+                                                        {{-- @endif --}}
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

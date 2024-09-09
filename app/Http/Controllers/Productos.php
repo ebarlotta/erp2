@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoriaproducto;
-use App\Models\Estado;
-use App\Models\Producto;
+use App\Models\erp\Producto;
+use App\Models\erp\Tag;
+use App\Models\erp\Categoriaproducto;
+use App\Models\erp\ProductoTag;
+
 use App\Models\Proveedor;
+use App\Models\Estado;
 use App\Models\Unidad;
-use App\Models\Tag;
-use App\Models\ProductoTag;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -33,9 +34,9 @@ class Productos extends Controller
         // ->where('productos.empresa_id', '=', session('empresa_id'))
         // ->paginate(4);
         $this->productos = Producto::all();
-        dd($this->productos);
+        // dd($this->productos);
 
-        return view('producto.index')->with(['productos' => $this->productos]);
+        return view('livewire.producto.producto-component')->with(['productos' => $this->productos])->extends('layouts.adminlte');
         //return view('producto.index',compact('productos'));
     }
 
@@ -54,7 +55,7 @@ class Productos extends Controller
 
         $tags = Tag::where('empresa_id','=',session('empresa_id'))->get();
 
-        return view('producto.create', compact('unidades','categoria_productos','proveedores','estados','productos','tags'));
+        return view('livewire.producto.createproductos', compact('unidades','categoria_productos','proveedores','estados','productos','tags'));
     }
 
     /**
@@ -216,9 +217,13 @@ class Productos extends Controller
 
     public function tag() {
 
+        $tags = Tag::where('empresa_id','=',session('empresa_id'))->get();
+
         $productos = Producto::where('empresa_id','=',session('empresa_id'))->paginate(4);
 
+        return view('livewire.tag.tag-component',compact('productos','tags'))->extends('layouts.adminlte');
         return view('producto.tag',compact('productos'));
+        
     }
 
     public function tagedit(Producto $producto) {

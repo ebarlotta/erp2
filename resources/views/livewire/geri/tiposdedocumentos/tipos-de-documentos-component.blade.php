@@ -20,11 +20,13 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nuevos Tipos de Documentos</x-crear>
-            <!-- <button wire:click="create()" class="bg-green-500 text-blue font-bold py-2 px-4 rounded my-3">Crear Tipo de Documento</button> -->
-            @if ($isModalOpen)
-            @include('livewire.geri.tiposdedocumentos.createtiposdedocumentos')
-            @endif
+            @can('tiposdedocumentos.Agregar')
+                <x-crear>Nuevos Tipos de Documentos</x-crear>
+                <!-- <button wire:click="create()" class="bg-green-500 text-blue font-bold py-2 px-4 rounded my-3">Crear Tipo de Documento</button> -->
+                @if ($isModalOpen)
+                    @include('livewire.geri.tiposdedocumentos.createtiposdedocumentos')
+                @endif
+            @endcan
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -38,10 +40,14 @@
                         <td class="border px-4 py-2">{{ $tipodedocumento->tipodocumento }}</td>
                         <td class="border px-4 py-2">
                             <div class="flex justify-center">
-                                <!-- Editar  -->
-                                <x-editar id="{{$tipodedocumento->id}}"></x-editar>
-                                <!-- Eliminar -->
-                                <x-eliminar id="{{$tipodedocumento->id}}"></x-eliminar>
+                                @can('tiposdedocumentos.Modificar')
+                                    <!-- Editar  -->
+                                    <x-editar id="{{$tipodedocumento->id}}"></x-editar>
+                                @endcan
+                                @can('tiposdedocumentos.Eliminar')
+                                    <!-- Eliminar -->
+                                    <x-eliminar id="{{$tipodedocumento->id}}"></x-eliminar>
+                                @endcan
                             </div>
                         </td>
                     </tr>

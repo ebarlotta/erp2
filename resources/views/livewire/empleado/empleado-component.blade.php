@@ -25,13 +25,15 @@
                         </div>
                     @endif
                     <div class="flex justify-around">
-                        @if(session('Empleados.Agregar'))
+                        @can('empleados.Agregar')
+                        {{-- @if(session('Empleados.Agregar')) --}}
                             <x-crear>Nuevo Empleado</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.empleado.createempleados')
                             @endif  
                             <div class="w-full">{{ $datos->links() }}</div>
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                     </div>
                     <label for="">Buscar por nombre</label><input class="shadow-md m-1" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 3px;" wire:model="search" type="search" placeholder="Ingresa nombre o cuit">
                     <select wire:model="listaactivos">
@@ -58,18 +60,22 @@
                                             <td class="border px-4 py-2 text-left">{{ $empleado->dni }}</td>
                                             <td class="border px-4 py-2">
                                                 <div class="flex justify-center">
-                                                    @if(session('Empleados.Editar'))
+											        @can('empleados.Modificar')
+                                                    {{-- @if(session('Empleados.Editar')) --}}
                                                         <div class="sm:flex justify-center">
                                                             <!-- Editar  -->
                                                             <x-editar id="{{ $empleado->id }}"></x-editar>
                                                         </div>
-                                                    @if(session('Empleados.Eliminar'))
-                                                    @endif
+                                                    @endcan
+											        @can('empleados.Eliminar')
+                                                    {{-- @if(session('Empleados.Eliminar')) --}}
+                                                    {{-- @endif --}}
                                                         <div class="sm:flex justify-center">
                                                             <!-- Eliminar -->
                                                             <x-eliminar id="{{ $empleado->id }}"></x-eliminar>
                                                         </div>
-                                                    @endif
+                                                    {{-- @endif --}}
+        											@endcan
                                                 </div>
                                             </td>
                                         </tr>

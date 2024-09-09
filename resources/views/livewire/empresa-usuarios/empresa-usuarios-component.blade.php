@@ -53,7 +53,7 @@
                                             <div class="flex rounded overflow-hidden border">
                                                 @if($empresa->imagen) 
                                                 <img class="block rounded-md flex-none bg-cover"
-                                                    src="{{ asset('/'. $empresa->imagen) }}"
+                                                    src="{{ asset('images/'. $empresa->imagen) }}"
                                                     style="width: 100px; height: 100px;">
                                                 @else
                                                 <img class="block rounded-md flex-none bg-cover"

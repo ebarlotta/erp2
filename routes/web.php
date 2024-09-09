@@ -4,12 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Charts\Graficos\Chart;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImprimirPDF;
-use App\Http\Controllers\Productos;
 // use App\Http\Livewire\Empresa\EmpresaComponent;
 
 use App\Http\Controllers\SocialController;
-use App\Http\Livewire\erp\Cart\Cart;
-use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
 use App\Http\Livewire\Compra\CompraSimpleComponent;
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -31,15 +28,6 @@ Route::middleware([
 // Login with Facebook
 Route::get('login-facebook', [App\Http\Controllers\Auth\LoginSocialController::class,'redirect_facebook']);
 Route::get('facebook-callback-url', [App\Http\Controllers\Auth\LoginSocialController::class,'callback_facebook']);
-
-Route::get('producto/addtag/{product_id}/{tag_id}', [Productos::class, 'addtag'])->name('producto.addtag');
-Route::get('producto/deltag/{product_id}/{tag_id}', [Productos::class, 'deltag'])->name('producto.deltag');
-Route::get('producto/tag', [Productos::class, 'tag'])->name('producto.tag');
-Route::get('producto/{producto}/tagedit', [Productos::class, 'tagedit'])->name('producto.tagedit');
-Route::resource('producto',Productos::class);
-Route::get('producto/productobajas', [Productos::class, 'productobajas'])->name('producto.productobajas');
-Route::get('carts',Cart::class)->name('carts');
-Route::get('payments',PaymentComponent::class)->name('payments');
 Route::post('/home',[HomeController::class,'upload']);
 
 //Route::get('empresagestion',EmpresaGestion::class)->name('empresagestion');

@@ -26,15 +26,17 @@
                     @endif
 
                     <div class="flex justify-around">
-                        <x-crear>Nuevo Ingrediente</x-crear>
-                        <a href="menu">
-                            <button class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded my-3">
-                                Volver al menú
-                            </button>
-                        </a>
-                        @if ($isModalOpen)
-                            @include('livewire.geri.ingredientes.createingrediente')
-                        @endif
+                        @can('ingredientes.Agregar')
+                            <x-crear>Nuevo Ingrediente</x-crear>
+                            <a href="menu">
+                                <button class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded my-3">
+                                    Volver al menú
+                                </button>
+                            </a>
+                            @if ($isModalOpen)
+                                @include('livewire.geri.ingredientes.createingrediente')
+                            @endif
+                        @endcan
                         <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                     </div>
                     <div style="display: block">
@@ -58,10 +60,14 @@
                                         <td>{{$ingrediente->unidades['name']}}</td>
                                         <td style="width: 20%;">
                                             <div style="display: flex">
-                                                <!-- Editar  -->
-                                                <x-editar id="{{ $ingrediente->id }}"></x-editar>
-                                                <!-- Eliminar -->
-                                                <x-eliminar id="{{ $ingrediente->id }}"></x-eliminar>
+                                                @can('ingredientes.Modificar')
+                                                    <!-- Editar  -->
+                                                    <x-editar id="{{ $ingrediente->id }}"></x-editar>
+                                                @endcan
+                                                @can('ingredientes.Eliminar')
+                                                    <!-- Eliminar -->
+                                                    <x-eliminar id="{{ $ingrediente->id }}"></x-eliminar>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

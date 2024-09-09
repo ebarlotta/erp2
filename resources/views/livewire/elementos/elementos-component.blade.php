@@ -26,7 +26,9 @@
                     @endif
 
                     <div class="flex justify-around">
-                        <x-crear>Nuevo Elemento</x-crear>
+                        @can('elementos.Agregar')
+                            <x-crear>Nuevo Elemento</x-crear>
+                        @endcan
 
                         <div class="flex">
                             <div wire:click="cambiarSeleccion('Medicamento')" @if($seleccionado=='Medicamento') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Medicamento" checked><label class="mr-4" for="huey">Medicamento</label></div>
@@ -63,20 +65,24 @@
                                             <td class="border px-4 py-2">{{ $elemento->stock_minimo }}</td>
                                             <td class="border px-4 py-2">
                                                 <div class="block justify-center flex" style="width: 20%; margin: auto; justify-content: space-around;align-items: center;">
-                                                    <!-- Editar  -->
-                                                    <x-editar id="{{ $elemento->elemento_id }}"></x-editar>
-                                                    <!-- Eliminar -->
-                                                    <button wire:click="delete({{ $elemento->elemento_id }})" class="lg:hidden bg-red-300 hover:bg-red-400 text-black-900 font-bold py-1 px-1 mt-1 rounded">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                        </svg>
-                                                    </button>
-                                                    <button wire:click="delete({{ $elemento->elemento_id }})" class="hidden lg:flex bg-red-300 hover:bg-red-400 text-black-900 font-bold py-2 px-4 rounded mt-1w">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                                        </svg>
-                                                        Eliminar
-                                                    </button>
+                                                    @can('elementos.Modificar')
+                                                        <!-- Editar  -->
+                                                        <x-editar id="{{ $elemento->elemento_id }}"></x-editar>
+                                                    @endcan
+                                                    @can('categorias.Eliminar')
+                                                        <!-- Eliminar -->
+                                                        <button wire:click="delete({{ $elemento->elemento_id }})" class="lg:hidden bg-red-300 hover:bg-red-400 text-black-900 font-bold py-1 px-1 mt-1 rounded">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                        </button>
+                                                        <button wire:click="delete({{ $elemento->elemento_id }})" class="hidden lg:flex bg-red-300 hover:bg-red-400 text-black-900 font-bold py-2 px-4 rounded mt-1w">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                            </svg>
+                                                            Eliminar
+                                                        </button>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

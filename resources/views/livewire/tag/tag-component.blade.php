@@ -25,14 +25,16 @@
                         </div>
                     @endif
                     <div class="flex justify-around">
-                        @if(session('Etiquetas.Agregar'))
+                        @can('tags.Agregar')
+                        {{-- @if(session('Etiquetas.Agregar')) --}}
                             <x-crear>Nueva Etiqueta</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.tag.createtag')
                             @endif
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                         <input type="text" wire:model="search" placeholder="Introduzca Filtro" wire:keyup="Filtrar">
-                        <div class="w-1/2 justify-end">{{ $tags->links() }}</div>
+                        {{-- <div class="w-1/2 justify-end">{{ $tags->links() }}</div> --}}
                     </div>
                     <table class="table-fixed table-striped w-full mt-2">
                         <thead>
@@ -50,14 +52,18 @@
                                         <td class="border px-4 py-2 text-left">{{ $tag->valor }}</td>
                                         <td class="border px-4 py-2">
                                             <div class="flex justify-center">
-                                                @if(session('Etiquetas.Editar'))
+                                                @can('tags.Modificar')
+                                                {{-- @if(session('Etiquetas.Editar')) --}}
                                                     <!-- Editar  -->
                                                     <x-editar id="{{ $tag->id }}"></x-editar>
-                                                @endif
-                                                @if(session('Etiquetas.Eliminar'))
+                                                {{-- @endif --}}
+                                                @endcan
+                                                @can('tags.Eliminar')
+                                                {{-- @if(session('Etiquetas.Eliminar')) --}}
                                                     <!-- Eliminar -->
                                                     <x-eliminar id="{{ $tag->id }}"></x-eliminar>
-                                                @endif
+                                                {{-- @endif --}}
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

@@ -37,9 +37,11 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    @if(session('Clientes.Editar'))
+                    @can('clientes.Agregar')
+                    {{-- @if(session('Clientes.Editar')) --}}
                         <x-guardar></x-guardar>
-                    @endif
+                    {{-- @endif --}}
+                    @endcan
                     <x-cerrar></x-cerrar>
                 </div>
             </form>

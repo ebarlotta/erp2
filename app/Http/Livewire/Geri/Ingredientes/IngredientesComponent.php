@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Geri\Ingredientes;
 
-use App\Models\Geri\Categorias;
 use App\Models\Geri\Ingredientes;
+
+use App\Models\Categorias;
 use App\Models\Unidad;
 
 use Livewire\Component;

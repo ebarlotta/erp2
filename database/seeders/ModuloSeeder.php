@@ -15,10 +15,25 @@ class ModuloSeeder extends Seeder
     public function run()
     {
         DB::table('modulos')->insert(['name' => 'Empresas', 'pagina' => 'empresagestion','imagen'=>'empresa.jpg','leyenda'=>'ABM de Empresas.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Módulos x Empresa', 'pagina' => 'empresamodulos','imagen'=>'empresamodulos.jpg','leyenda'=>'ABM de Módulos x Empresa.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Gestión de Módulos', 'pagina' => 'gestionmodulo','imagen'=>'gestionmodulos.jpg','leyenda'=>'Gestión de Módulos.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Usuarios x Empresa', 'pagina' => 'empresausuarios','imagen'=>'empresausuarios.jpg','leyenda'=>'Gestión de Usuarios x Empresa.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Módulos x Usuario', 'pagina' => 'modulousuarios','imagen'=>'modulousuarios.jpg','leyenda'=>'Gestión de Módulos x Usuarios.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Roles', 'pagina' => 'roles','imagen'=>'roles.jpg','leyenda'=>'Gestión de Roles.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Certificados', 'pagina' => 'certificado','imagen'=>'certificados.jpg','leyenda'=>'Gestión de Certificados.','habilitado'=>1]);
+        
+
         DB::table('modulos')->insert(['name' => 'Unidades', 'pagina' => 'unidades','imagen'=>'unidades.jpg','leyenda'=>'Permite individualizar a cada producto con sus unidades de medida precisa a la hora de tener un control del stock de los mismos.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Cuentas', 'pagina' => 'cuentas','imagen'=>'cuentas.jpg','leyenda'=>'Divida los movimientos en distintas cuentas contables que puede utilizar para filtrar información.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Areas', 'pagina' => 'areas','imagen'=>'areas.jpg','leyenda'=>'Genere áreas/sectores/unidades de negocio de su organización para poder llevar un control más detallado.','habilitado'=>1]);
-
+        DB::table('modulos')->insert(['name' => 'Elementos', 'pagina' => 'elementos','imagen'=>'elementos.jpg','leyenda'=>'Gestione distintos tipos de elementos a utilizar dentro del sistema.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Estados_Civiles', 'pagina' => 'estadosciviles','imagen'=>'estadosciviles.jpg','leyenda'=>'Gestione distintos tipos de Estados civiles de las personas dentro del sistema.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Tipos_de_documentos', 'pagina' => 'tiposdedocumentos','imagen'=>'tiposdedocumentos.jpg','leyenda'=>'Gestione distintos tipos de Documentos dentro del sistema.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Localidades', 'pagina' => 'localidades','imagen'=>'localidades.jpg','leyenda'=>'Gestione las distintas localidades dentro del sistema.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Nacionalidad', 'pagina' => 'nacionalidad','imagen'=>'nacionalidad.jpg','leyenda'=>'Gestione distintos tipos de Nacionalidades dentro del sistema.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Provincias', 'pagina' => 'provincias','imagen'=>'provincias.jpg','leyenda'=>'Gestione distintas Provincias dentro del sistema.','habilitado'=>1]);
+        
+        
         DB::table('modulos')->insert(['name' => 'Clientes', 'pagina' => 'clientes','imagen'=>'clientes.jpg','leyenda'=>'Agregue nuevos clientes o modifique los datos ya ingresados.','habilitado'=>1]);    //erp 
         DB::table('modulos')->insert(['name' => 'Compras', 'pagina' => 'compras','imagen'=>'compras.jpg','leyenda'=>'Registre todos los comprobantes de las compras/gastos realizados. Ingrese al stock los productos adquiridos.','habilitado'=>1]);   //erp 
         DB::table('modulos')->insert(['name' => 'Empleados', 'pagina' => 'empleados','imagen'=>'empleados.jpg','leyenda'=>'Realice altas, modificaciones, y bajas del personal que desarrolla las actividades en su organización.','habilitado'=>1]);   //erp 
@@ -44,6 +59,5 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Menú', 'pagina' => 'menu','imagen'=>'menu.jpg','leyenda'=>'Gestione los distintos menúes a servir.','habilitado'=>1]);    // Geri
         DB::table('modulos')->insert(['name' => 'otrascosas', 'pagina' => 'otrascosas','imagen'=>'haberes.jpg','leyenda'=>'Otras cosas.','habilitado'=>1]);    // Geri
         DB::table('modulos')->insert(['name' => 'Perfil', 'pagina' => 'profile','imagen'=>'haberes.jpg','leyenda'=>'Modifique los datos personales.','habilitado'=>1]);   // Geri
-    
     }
 }

@@ -1,6 +1,6 @@
-@extends('layouts.cart')
+{{-- @extends('layouts.cart') --}}
 
-@section('content')
+{{-- @section('content') --}}
 
 <div>
         <!-- //top-header -->
@@ -412,7 +412,7 @@
                     <div class="wrapper">
                         <!-- first section (nuts) -->
                         <div class="product-sec1">
-                            <h3 class="heading-tittle">{{ $categoria->name}}</h3>
+                            {{-- <h3 class="heading-tittle">{{ $categoria->name}}</h3> --}}
                             {{-- @foreach ($categorias as $categoria) --}}
                             @foreach ($datos as $producto)
                                 <div class="col-md-4 product-men">

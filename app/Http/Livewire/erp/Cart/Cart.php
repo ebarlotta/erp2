@@ -30,6 +30,8 @@ class Cart extends Component
     public $D60=false;
     public $valor;
 
+    public $minRangePrice,$maxRangePrice,$empresa,$categorias,$detalles,$ofertas_especiales,$productos,$producto_detail,$data,$categoria;
+
     // public $empresas;   // Utilizado para redireccionar en el caso de que no esté logueado
 
     public function render()
@@ -72,20 +74,20 @@ class Cart extends Component
             
             $this->minRangePrice = $this->productos->min('precio_compra');
             $this->maxRangePrice = $this->productos->max('precio_compra');
-            return view('livewire.cart.index',['datos'=> Producto::whereraw($filtro)->orderby('categoriaproductos_id')->paginate(18),]);    
+            return view('livewire.cart.index',['datos'=> Producto::whereraw($filtro)->orderby('categoriaproductos_id')->paginate(18),])->extends('layouts.cart');    
             // return view('livewire.cart.index',['datos'=> Producto::whereraw(' empresa_id = ' . session('empresa_id') . ' and (' . $filtro . ')')->orderby('categoriaproductos_id')->paginate(18),]);    
         } else {
             $this->productos = Producto::where('empresa_id','=',session('empresa_id'))->get();
             $this->minRangePrice = $this->productos->min('precio_compra');
             $this->maxRangePrice = $this->productos->max('precio_compra');
-            return view('livewire.cart.index',['datos'=> Producto::where('empresa_id','=',session('empresa_id'))->orderby('categoriaproductos_id')->paginate(18),]);
+            return view('livewire.cart.index',['datos'=> Producto::where('empresa_id','=',session('empresa_id'))->orderby('categoriaproductos_id')->paginate(18),])->extends('layouts.cart');
         }
 
         $this->minRangePrice = $this->productos->min('precio_compra');
         $this->maxRangePrice = $this->productos->max('precio_compra');
      // $this->user_id = Auth::user()->id;
      
-        return view('livewire.cart.index',['datos'=> Producto::where('empresa_id','=',session('empresa_id'))->orderby('categoriaproductos_id')->paginate(18),]);
+        return view('livewire.cart.index',['datos'=> Producto::where('empresa_id','=',session('empresa_id'))->orderby('categoriaproductos_id')->paginate(18),])->extends('layouts.carts');
         // return view('livewire.cart.index',['datos'=> Producto::where('empresa_id','=',session('empresa_id'))->orderby('categoriaproductos_id')->paginate(18),]);
     }
 

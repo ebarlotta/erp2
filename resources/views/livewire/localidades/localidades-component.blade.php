@@ -20,10 +20,12 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nueva Localidad</x-crear>
-            @if ($isModalOpen)
-                @include('livewire.localidades.createlocalidades')
-            @endif
+            @can('localidades.Agregar')
+                <x-crear>Nueva Localidad</x-crear>
+                @if ($isModalOpen)
+                    @include('livewire.localidades.createlocalidades')
+                @endif
+            @endcan
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -39,10 +41,14 @@
                         <td class="border px-4 py-2">{{ $localidad->localidad_cp }}</td>
                         <td class="border px-4 py-2">
                             <div class="flex justify-center">
-                                <!-- Editar  -->
-                                <x-editar id="{{$localidad->id}}"></x-editar>
-                                <!-- Eliminar -->
-                                <x-eliminar id="{{$localidad->id}}"></x-eliminar>
+                                @can('localidades.Modificar')
+                                    <!-- Editar  -->
+                                    <x-editar id="{{$localidad->id}}"></x-editar>
+                                @endcan
+                                @can('localidades.Eliminar')
+                                    <!-- Eliminar -->
+                                    <x-eliminar id="{{$localidad->id}}"></x-eliminar>
+                                @endcan
                             </div>
                         </td>
                     </tr>

@@ -28,6 +28,8 @@ class EmpresaModulosComponent extends Component
     public $empresaseleccionada;
     public $seleccionado = 1;
 
+    public $modulosnuevos; 
+
     public function render()
     {
         // if(!isset($this->modulosglobales)) { $this->modulosglobales = Modulo::all(); }
@@ -76,7 +78,10 @@ class EmpresaModulosComponent extends Component
             // dd($this->modulosdelaempresa);
             $this->modulosdelaempresa=json_decode($this->modulosdelaempresa, true);
         $this->modulosNOempresa = Modulo::all();
-        //dd($this->modulosNOempresa);
+
+        $this->modulosnuevos = DB::select("SELECT * FROM `modulos` left join empresa_modulos on modulos.id = empresa_modulos.modulo_id and empresa_modulos.empresa_id = " . $this->empresaseleccionada->id); 
+        
+        // dd($this->modulosnuevos);
 
     }
 

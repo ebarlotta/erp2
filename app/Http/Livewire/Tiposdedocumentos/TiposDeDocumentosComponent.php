@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Geri\Tiposdedocumentos;
+namespace App\Http\Livewire\Tiposdedocumentos;
 
-use App\Models\Geri\TiposDocumentos;
+use App\Models\TiposDocumentos;
 
 use Livewire\Component;
 

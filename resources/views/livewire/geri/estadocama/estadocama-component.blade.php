@@ -20,10 +20,12 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nueva Cama</x-crear>
-            @if ($isModalOpen)
-            @include('livewire.geri.estadocama.createcama')
-            @endif
+            @can('estadocama.Agregar')
+                <x-crear>Nueva Cama</x-crear>
+                @if ($isModalOpen)
+                    @include('livewire.geri.estadocama.createcama')
+                @endif
+            @endcan
             <div>
             <table class="w-full table table-striped" style="overflow-x: auto; ">  <!--  table-fixed  class="w-full "-->
                     <tr class="bg-gray-100">
@@ -85,10 +87,14 @@
                             </td>
                             <td class="border px-1 py-2">
                                 <div class="flex justify-center">
-                                    <!-- Editar  -->
-                                    <x-editar id="{{$cama->id}}" class="w-8/12"></x-editar>
-                                    <!-- Eliminar -->
-                                    <x-eliminar id="{{$cama->id}}" class="w-8/12"></x-eliminar>
+                                    @can('estadocama.Modificar')
+                                        <!-- Editar  -->
+                                        <x-editar id="{{$cama->id}}" class="w-8/12"></x-editar>
+                                    @endcan
+                                    @can('estadocama.Eliminar')
+                                        <!-- Eliminar -->
+                                        <x-eliminar id="{{$cama->id}}" class="w-8/12"></x-eliminar>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

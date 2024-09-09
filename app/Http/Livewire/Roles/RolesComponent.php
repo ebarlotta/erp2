@@ -31,7 +31,7 @@ class RolesComponent extends Component
     
     public function render()
     {
-        $this->modulos = Modulo::all();
+        $this->modulos = Modulo::orderby('name')->get(); ///all();
         $this->Filtrar();
         // $user = User::find(Auth::user()->id);   // Asigna el rol al usuario
         // $user->syncRoles(['Administrador']);
@@ -164,12 +164,23 @@ class RolesComponent extends Component
     public function AgregarPermiso($permision_id) {
         $usuarios = EmpresaUsuario::where('rol_id', $this->rol_id)->get();  //Busca los usuarios que tienen el mismo rol elegido
         $permiso_a_agregar = Permission::where('id',$permision_id)->get('name'); // Busca los datos del permiso a agregar
-        
         foreach($usuarios as $usuario) {    // Itera los usuarios
             $user = User::find($usuario->id);   // Busca a cada usuario y
-            $user->givePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions
+            $user->givePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
+
+            $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='. $permision_id .' and role_id='.$this->rol_id;
+            $bux = db::select($aux); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
+            if(count($bux)) { 
+                dd ('Ya dado de alta'); 
+            } else {
+                $aux = 'INSERT INTO role_has_permissions (permission_id, role_id) VALUES ('.$permision_id.', '.$this->rol_id . ')';
+                $bux = db::select($aux);
+            }
+            // $role = Role::findByName($this->name);
+            // $permission = \Spatie\Permission\Models\Permission::findByName($permiso_a_agregar[0]->name, 'web');
+            // $permission->assignRole($role->name); // Asegúrate de que coincidan con el mismo guard       
         }
-        
+
         // $role = Role::findByName($this->name);
         // $role->givePermissionTo('areas.ver');        
         // $role = Role::findByName($this->name);
@@ -178,32 +189,21 @@ class RolesComponent extends Component
         // $user->syncPermissions($permission);  // Agrega sólo el permiso elegido
         // $user->syncPermissions($permissions);  // Borra todos los permisos del Rol
 
-        $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='.$permision_id.' and role_id='.$this->rol_id;
-        $bux = db::select($aux);
-        // dd($bux);
-        if(count($bux)) { dd ('Ya dado de alta'); }
-        else { 
-            $a = 'INSERT INTO role_has_permissions (permission_id, role_id) VALUES ('. $permision_id.', '.$this->rol_id.')';
-            db::select($a);
-        }
-
         //Recarga la información
         $this->SeleccionarModulo($this->modulo_seleccionado,$this->modulo_name);
     }
 
     public function EliminarPermiso($permision_id, $role_id) {
-
-
         $usuarios = EmpresaUsuario::where('rol_id', $this->rol_id)->get();  //Busca los usuarios que tienen el mismo rol elegido
         $permiso_a_agregar = Permission::where('id',$permision_id)->get('name'); // Busca los datos del permiso a agregar
         
         foreach($usuarios as $usuario) {    // Itera los usuarios
             $user = User::find($usuario->id);   // Busca a cada usuario y
-            $user->revokePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions
+            $user->revokePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
+            
+            $a = 'DELETE FROM role_has_permissions WHERE permission_id = '. $permision_id .' and role_id = '. $role_id;
+            db::select($a); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
         }
-
-        $a = 'DELETE FROM role_has_permissions WHERE permission_id = '. $permision_id .' and role_id = '. $role_id;
-        db::select($a);
 
         //Recarga la información
         $this->SeleccionarModulo($this->modulo_seleccionado,$this->modulo_name);

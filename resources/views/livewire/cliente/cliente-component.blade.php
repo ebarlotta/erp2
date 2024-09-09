@@ -25,12 +25,14 @@
                         </div>
                     @endif
                     <div class="flex justify-around">
-                        @if(session('Clientes.Agregar'))
+                        @can('clientes.Agregar')
+                        {{-- @if(session('Clientes.Agregar')) --}}
                             <x-crear>Nuevo Cliente</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.cliente.createclientes')
                             @endif
-                        @endif
+                        {{-- @endif --}}
+                        @endcan
                         <div style="display: block">
                             <label for="">Buscar por cuit</label><input class="shadow-md m-1" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 3px;" wire:model="search" type="search" placeholder="Ingresa cuit">
                         </div>        
@@ -56,18 +58,22 @@
                                         <td class="border px-4 py-2 text-left hidden md:table-cell md:visible">{{ $cliente->telefono }}</td>
                                         <td class="border px-4 py-2">
                                             <div class="flex justify-center">
-                                                @if(session('Clientes.Editar'))
+                                                @can('clientes.Modificar')
+                                                {{-- @if(session('Clientes.Editar')) --}}
                                                     <div class="sm:flex justify-center">
                                                         <!-- Editar  -->
                                                         <x-editar id="{{ $cliente->id }}"></x-editar>
                                                     </div>
-                                                @endif
-                                                @if(session('Clientes.Eliminar'))
+                                                {{-- @endif --}}
+                                                @endcan
+                                                @can('clientes.Eliminar')
+                                                {{-- @if(session('Clientes.Eliminar')) --}}
                                                     <div class="sm:flex justify-center">
                                                         <!-- Eliminar -->
                                                         <x-eliminar id="{{ $cliente->id }}"></x-eliminar>
                                                     </div>
-                                                @endif
+                                                {{-- @endif --}}
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

@@ -26,10 +26,12 @@
                     @endif
 
                     <div class="flex justify-around">
-                        <x-crear>Nueva Categoria</x-crear>
-                        @if ($isModalOpen)
-                            @include('livewire.categorias.createcategoria')
-                        @endif
+                        @can('categorias.Agregar')
+                            <x-crear>Nueva Categoria</x-crear>
+                            @if ($isModalOpen)
+                                @include('livewire.categorias.createcategoria')
+                            @endif
+                        @endcan
                         <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                     </div>
                     <div style="display: block">
@@ -47,10 +49,14 @@
                                         <td class="border px-4 py-2">{{ $categoria->nombrecategoria }}</td>
                                         <td class="border px-4 py-2">
                                             <div class="block justify-center flex" style="width: 20%; margin: auto; justify-content: space-around;align-items: center;">
-                                                <!-- Editar  -->
-                                                <x-editar id="{{ $categoria->id }}"></x-editar>
-                                                <!-- Eliminar -->
-                                                <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
+                                                @can('categorias.Modificar')
+                                                    <!-- Editar  -->
+                                                    <x-editar id="{{ $categoria->id }}"></x-editar>
+                                                @endcan
+                                                @can('categorias.Eliminar')
+                                                    <!-- Eliminar -->
+                                                    <x-eliminar id="{{ $categoria->id }}"></x-eliminar>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

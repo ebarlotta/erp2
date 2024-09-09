@@ -20,10 +20,12 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nuevo Motivo</x-crear>
-            @if ($isModalOpen)
-                @include('livewire.geri.motivoegreso.createmotivoegreso')
-            @endif
+            @can('motivoegreso.Agregar')
+                <x-crear>Nuevo Motivo</x-crear>
+                @if ($isModalOpen)
+                    @include('livewire.geri.motivoegreso.createmotivoegreso')
+                @endif
+            @endcan
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -37,10 +39,14 @@
                         <td class="border px-4 py-2">{{ $motivo->motivoegresoDescripcion }}</td>
                         <td class="border px-4 py-2">
                             <div class="flex justify-center">
-                                <!-- Editar  -->
-                                <x-editar id="{{$motivo->id}}"></x-editar>
-                                <!-- Eliminar -->
-                                <x-eliminar id="{{$motivo->id}}"></x-eliminar>
+                                @can('motivoegreso.Modificar')
+                                    <!-- Editar  -->
+                                    <x-editar id="{{$motivo->id}}"></x-editar>
+                                @endcan
+                                @can('motivoegreso.Eliminar')
+                                    <!-- Eliminar -->
+                                    <x-eliminar id="{{$motivo->id}}"></x-eliminar>
+                                @endcan
                             </div>
                         </td>
                     </tr>

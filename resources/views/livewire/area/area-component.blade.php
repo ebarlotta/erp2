@@ -27,13 +27,15 @@
                     @endif
                 
                     <div class="flex justify-around">
-                        @if(session('areas.Agregar'))
+                        {{-- @if(session('areas.Agregar')) --}}
+                        @can('areas.Agregar')
                             <x-crear>Nueva Área</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.area.createareas')
                             @endif
-                            <div class="w-1/2 justify-end">{{ $areas->links() }}</div>
-                        @endif
+                        @endcan
+                        {{-- @endif --}}
+                        <div class="w-1/2 justify-end">{{ $areas->links() }}</div>
                     </div>
                     <div style="display: block">
                         <table class="table-fixed table-striped w-full">
@@ -50,14 +52,18 @@
                                             <td class="border px-4 py-2 text-left">{{ $area->name }}</td>
                                             <td class="border px-4 py-2">
                                                 <div class="flex justify-center">
-                                                    @if(session('areas.Editar'))
-                                                        <!-- Editar  -->
-                                                        <x-editar id="{{ $area->id }}"></x-editar>
-                                                    @endif
-                                                    @if(session('areas.Eliminar'))
+                                                    @can('areas.Modificar')
+                                                        {{-- @if(session('areas.Modificar')) --}}
+                                                            <!-- Editar  -->
+                                                            <x-editar id="{{ $area->id }}"></x-editar>
+                                                        {{-- @endif --}}
+                                                    @endcan
+                                                    @can('areas.Eliminar')
+                                                    {{-- @if(session('areas.Eliminar')) --}}
                                                         <!-- Eliminar -->
                                                         <x-eliminar id="{{ $area->id }}"></x-eliminar>
-                                                    @endif
+                                                    {{-- @endif --}}
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

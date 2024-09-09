@@ -63,10 +63,10 @@
             <!-- Modal Alta/Modificación Rol -->
             <!-- ================================== -->
             <div wire:ignore.self class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog " role="document">
+                <div class="modal-dialog " role="document" style="width: 200%; margin-left:30%; width: 55rem">
                     <div class="modal-content" style="width: inherit">
                         <div class="modal-header">
-                            <h5 class="modal-title">Alta/Modificación Roles1</h5>
+                            <h5 class="modal-title">Alta/Modificación Roles</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

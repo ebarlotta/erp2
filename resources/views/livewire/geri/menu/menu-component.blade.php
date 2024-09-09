@@ -28,10 +28,12 @@
                         @include('livewire.geri.menu.gestionarmenu')
                     @else
                         <div class="flex justify-around">
+                        @can('menu.Agregar')
                             <x-crear>Nuevo Menú</x-crear>
                             @if ($isModalOpen)
                                 @include('livewire.geri.menu.createmenu')
                             @endif
+                        @endcan
                             <div><a href="{{ route('ingredientes') }}">
                                     <button wire:click="create()"
                                         class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded my-3">
@@ -77,10 +79,15 @@
                                                 <div style="display: flex">
                                                     <!-- Gestionar  -->
                                                     <x-gestionar id="{{ $menu->id }}"></x-gestionar>
-                                                    <!-- Editar  -->
-                                                    <x-editar id="{{ $menu->id }}"></x-editar>
-                                                    <!-- Eliminar -->
-                                                    <x-eliminar id="{{ $menu->id }}"></x-eliminar>
+
+                                                    @can('menu.Modificar')
+                                                        <!-- Editar  -->
+                                                        <x-editar id="{{ $menu->id }}"></x-editar>
+                                                    @endcan
+                                                    @can('menu.Eliminar')
+                                                        <!-- Eliminar -->
+                                                        <x-eliminar id="{{ $menu->id }}"></x-eliminar>
+                                                    @endcan
                                                 </div>
                                             </td>
                                         </tr>

@@ -18,7 +18,7 @@ class NacionalidadComponent extends Component
     {
         //dd(Nacionalidad::all());
         $this->nacionalidades = DB::table('nacionalidads')->get();
-        return view('livewire.geri.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidades'=>$this->nacionalidades])->extends('layouts.adminlte');
+        return view('livewire.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidades'=>$this->nacionalidades])->extends('layouts.adminlte');
         //return "Hola";
     }
 
@@ -28,7 +28,7 @@ class NacionalidadComponent extends Component
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;
-        return view('livewire.geri.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidad_descripcion'=>$this->nacionalidad_descripcion])->extends('layouts.adminlte');
+        return view('livewire.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidad_descripcion'=>$this->nacionalidad_descripcion])->extends('layouts.adminlte');
     }
 
     public function openModalPopover()

@@ -66,9 +66,15 @@
                             </select>
                         </div>
                         <div class="rounded border-black border p-2 ml-2" style="font-size: 0.8rem;">
-                            <input type="submit" class="btn btn-success" value="Alta Categoría" wire:click="AgregarNuevaCategoria" align="right">
-                            <input type="submit" class="btn btn-primary" value="Actualizar Categoría" wire:click="ActualizarCategoria" align="right">
-                            <input type="submit" class="btn btn-warning" value="Modificar Categoría" wire:click="ModificarCategoria" align="right">
+                            @can('categoriaprofesional.Agregar')
+                                <input type="submit" class="btn btn-success" value="Alta Categoría" wire:click="AgregarNuevaCategoria" align="right">
+                            @endcan
+                            @can('categoriaprofesional.Modificar')
+                                <input type="submit" class="btn btn-primary" value="Actualizar Categoría" wire:click="ActualizarCategoria" align="right">
+                            @endcan
+                            @can('categoriaprofesional.Eliminar')
+                                <input type="submit" class="btn btn-warning" value="Modificar Categoría" wire:click="ModificarCategoria" align="right">
+                            @endcan
                         </div>
                     </div>
                 </td>

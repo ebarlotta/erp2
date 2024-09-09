@@ -20,10 +20,12 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nueva Escolaridad</x-crear>
-            @if ($isModalOpen)
-                @include('livewire.geri.escolaridades.createescolaridades')
-            @endif
+            @can('escolaridades.Agregar')
+                <x-crear>Nueva Escolaridad</x-crear>
+                @if ($isModalOpen)
+                    @include('livewire.geri.escolaridades.createescolaridades')
+                @endif
+            @endcan
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -37,10 +39,14 @@
                             <td class="border px-4 py-2">{{ $escolaridad->escolaridadDescripcion }}</td>
                             <td class="border px-4 py-2">
                                 <div class="flex justify-center">
-                                    <!-- Editar  -->
-                                    <x-editar id="{{$escolaridad->id}}"></x-editar>
-                                    <!-- Eliminar -->
-                                    <x-eliminar id="{{$escolaridad->id}}"></x-eliminar>
+                                    @can('escolaridades.Modificar')
+                                        <!-- Editar  -->
+                                        <x-editar id="{{$escolaridad->id}}"></x-editar>
+                                    @endcan
+                                    @can('escolaridades.Eliminar')
+                                        <!-- Eliminar -->
+                                        <x-eliminar id="{{$escolaridad->id}}"></x-eliminar>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

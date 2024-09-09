@@ -247,7 +247,7 @@ return [
         [
             'text' => 'blog',
             'url'  => 'blog',
-            'can'  => 'manage-blog',
+//            'can'  => 'manage-blog',
         ],
         // [
         //     'text'        => 'Las paginaspages',
@@ -259,10 +259,11 @@ return [
         
         // ['header' => 'account_settings'],
         ['header' => 'GESTIÓN DE EMPRESAS',
-            'can' => 'administracion.Ver',
+//            'can' => 'administracion.Ver',
         ],
+        
         [
-            'can' => 'administracion.Ver',
+            'canany' => ['empresagestion.Ver','empresamodulos.Ver','gestionmodulos.Ver','modulousuarios.Ver','roles.Ver','certificados.Ver'],
             'text' => 'Administración',
             'url'  => 'tags',
             'icon' => 'fas fa-fw fa-building',
@@ -271,49 +272,155 @@ return [
                     'text' => 'Gestión de empresas',
                     'url'  => 'empresagestion',
                     'icon' => 'fas fa-fw fa-building',
-                    // 'can' => 'empresas.Agregar',
+                    'can' => 'empresagestion.Ver',
                 ],
                 [
                     'text' => 'Módulos x Empresa',
                     'url'  => 'empresamodulos',
                     'icon' => 'fas fa-fw fa-chart-pie',
+                    'can' => 'empresamodulos.Ver',
                 ],
                 [
                     'text' => 'Gestión de Módulos',
                     'url'  => 'gestionmodulos',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'gestionmodulo.Ver',
                 ],
                 [
                     'text' => 'Usuarios x Empresa',
                     'url'  => 'empresausuarios',
                     'icon' => 'fas fa-fw fa-users',
+                    'can' => 'empresausuarios.Ver',
                 ],
                 [
                     'text' => 'Usuarios x Módulo',
                     'url'  => 'modulousuarios',
                     'icon' => 'fas fa-fw fa-user-cog',
+                    'can' => 'modulousuarios.Ver',
                 ],
                 [
                     'text' => 'Gestión de Roles',
                     'url'  => 'roles',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'roles.Ver',
                 ],
                 [
                     'text' => 'Gestión de Certificados',
                     'url'  => 'certificados',
                     'icon' => 'fas fa-fw fa-building',
+                    'can' => 'certificado.Ver',
                 ],
             ],
         ],
+            [
+                'text' => 'Areas',
+                'url'  => 'areas',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'areas.Ver',
+            ],
+            [
+                'text' => 'Categorías',
+                'url'  => 'categorias',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'categorias.Ver',
+            ],    
+            [
+                'text' => 'Cuentas',
+                'url'  => 'cuentas',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'cuentas.Ver',
+            ],
+            [
+                'text' => 'Elementos',
+                'url'  => 'elementos',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'elementos.Ver',
+            ],
+            [
+                'text' => 'Estados',
+                'url'  => 'estados',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'estados.Ver',
+            ],                
+            [
+                'text' => 'Estados Civiles',
+                'url'  => 'estadosciviles',
+                'icon' => 'fas fa-fw fa-venus-mars',
+                'can' => 'estadosciviles.Ver',
+            ],
+            [
+                'text' => 'Proveedores',
+                'url'  => 'proveedores',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'proveedores.Ver',
+            ],
+            [
+                'text' => 'Tipos de Documentos',
+                'url'  => 'tiposdedocumentos',
+                'icon' => 'fas fa-fw fa-card',
+                'can' => 'tiposdedocumentos.Ver',
+            ],     
+            [
+                'text' => 'Unidades',
+                'url'  => 'unidades',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'unidades.Ver',
+            ],
+            [
+                'text' => 'Localización',
+                'icon' => 'fas fa-fw fa-cogs',
+                'canany' => ['localidades.Ver','nacionalidad.Ver','provincias.Ver'],
+                'submenu' => [
+                    [
+                        'text' => 'Localidades',
+                        'url'  => 'localidades',
+                        'can' => 'localidades.Ver',
+                    ],
+                    [
+                        'text' => 'Nacionalidades',
+                        'url'  => 'nacionalidad',
+                        'can' => 'nacionalidad.Ver',
+                    ],
+                    [
+                        'text' => 'Provincias',
+                        'url'  => 'provincias',
+                        'can' => 'provincias.Ver',
+                    ],
+                ],
+            ],        
 
         ['header' => 'ERP',
-            'can' => 'administracion.Ver',
+//            'can' => 'administracion.Ver',
         ],
+        [
+            'text' => 'Categorías de Productos',
+            'url'  => 'categoriaproducto',
+            'icon' => 'fas fa-fw fa-building',
+            'can' => 'categoriaproducto.Ver',
+        ],        
         [
             'text' => 'Categorías Profesionales',
             'url'  => 'categoriaprofesional',
             'icon' => 'fas fa-fw fa-building',
             'can' => 'categoriaprofesional.Ver',
+        ],
+        [
+            'text' => 'Clientes',
+            'url'  => 'clientes',
+            'icon' => 'fas fa-fw fa-building',
+            'can' => 'clientes.Ver',
+        ],
+        [
+            'text' => 'Compras',
+            'url'  => 'compras',
+            'icon' => 'fas fa-fw fa-building',
+            'can' => 'compras.Ver',
+        ],
+        [
+            'text' => 'Compras Simple',
+            'url'  => 'VentaSimple?Compras',
+            'icon' => 'fas fa-fw fa-building',
+            'can' => 'compras.Ver',
         ],
         [
             'text' => 'Empleados',
@@ -327,177 +434,30 @@ return [
             'icon' => 'fas fa-fw fa-building',
             'can'  => 'haberes.Ver',
         ],
-
-        ['header' => 'GERI',
-            'can' => 'geri.Ver',
-        ],
         [
-            'text' => 'Ajustes',
-            'url'  => 'settings',
-            'icon' => 'fas fa-fw fa-cogs',
-            'can' => 'geri.Ver',
-            'submenu' => [
-                [
-                    'text' => 'Gestión de Actores',
-                    'icon' => 'fas fa-fw fa-cogs',
-                    'submenu' => [
-                        [
-                            'text' => 'Estado de Actores',
-                            'url'  => 'personactivo',
-                            'icon' => 'fas fa-fw fa-bed',
-                        ],
-                        [
-                            'text' => 'Tipo de Actor',
-                            'url'  => 'tiposdepersonas',
-                            'icon' => 'fas fa-fw fa-object-group',
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Gestión Menú',
-                    'icon' => 'fas fa-fw fa-cogs',
-                    'submenu' => [
-                        [
-                            'text' => 'Ingredientes',
-                            'url'  => 'ingredientes',
-                        ],
-                        [
-                            'text' => 'Menúes',
-                            'url'  => 'menu',
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Beneficios',
-                    'url'  => 'beneficios',
-                    'icon' => 'fas fa-fw fa-usd',
-                ],
-                [
-                    'text' => 'Estado de Camas',
-                    'url'  => 'estadocama',
-                    'icon' => 'fas fa-fw fa-bed',
-                ],
-                [
-                    'text' => 'Escolaridades',
-                    'url'  => 'escolaridades',
-                ],
-                [
-                    'text' => 'Grado de Dependencia',
-                    'url'  => 'gradodependencia',
-                    'icon' => 'fas fa-fw fa-blind',
-                ],
-                [
-                    'text' => 'Habitaciones',
-                    'url'  => 'habitaciones',
-                    'icon' => 'fas fa-fw fa-bed',
-                ],
-                [
-                    'text' => 'Motivos de Egresos',
-                    'url'  => 'motivoegreso',
-                ],
-            ],
-        ],
-
-        ['header' => 'MÓDULOS',
-            'can' => 'modulos.Ver',
-        ],
-        [
-            'text' => 'Ajustes',
-            'url'  => 'tags',
+            'text' => 'Ventas',
+            'url'  => 'ventas',
             'icon' => 'fas fa-fw fa-building',
-            'can' => 'modulos.Ver',
-            'submenu' => [
-                [
-                    'text' => 'Areas',
-                    'url'  => 'areas',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'areas.Ver',
-                ],
-                [
-                    'text' => 'Categorías',
-                    'url'  => 'categorias',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'categorias.Ver',
-                ],    
-                [
-                    'text' => 'Clientes',
-                    'url'  => 'clientes',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'clientes.Ver',
-                ],
-                [
-                    'text' => 'Cuentas',
-                    'url'  => 'cuentas',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'cuentas.Ver',
-                ],
-                [
-                    'text' => 'Elementos',
-                    'url'  => 'elementos',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'elementos.Ver',
-                ],
-                [
-                    'text' => 'Estados Civiles',
-                    'url'  => 'estadosciviles',
-                    'icon' => 'fas fa-fw fa-venus-mars',
-                    'can' => 'estadosciviles.Ver',
-                ],
-                [
-                    'text' => 'Tipos de Documentos',
-                    'url'  => 'tiposdedocumentos',
-                    'icon' => 'fas fa-fw fa-card',
-                    'can' => 'tiposdedocumentos.Ver',
-                ],                                
-                [
-                    'text' => 'Unidades',
-                    'url'  => 'unidades',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'unidades.Ver',
-                ],
-                [
-                    'text' => 'Proveedores',
-                    'url'  => 'proveedores',
-                    'icon' => 'fas fa-fw fa-building',
-                    'can' => 'proveedores.Ver',
-                ],
-                [
-                    'text' => 'Localización',
-                    'icon' => 'fas fa-fw fa-cogs',
-                    'can' => 'localizacion.Ver',
-                    'submenu' => [
-                        [
-                            'text' => 'Localidades',
-                            'url'  => 'localidades',
-                            'can' => 'localidades.Ver',
-                        ],
-                        [
-                            'text' => 'Nacionalidades',
-                            'url'  => 'nacionalidad',
-                            'can' => 'nacionalidad.Ver',
-                        ],
-                        [
-                            'text' => 'Provincias',
-                            'url'  => 'provincias',
-                            'can' => 'provincias.Ver',
-                        ],
-                    ],
-                ],
-
-            ],
+            'can' => 'ventas.Ver',
         ],
-        ['header' => 'GESTIÓN CARRITO',
-            'can' => 'carrito.Ver',
+        [
+            'text' => 'Venta Simple',
+            'url'  => 'VentaSimple?Ventas',
+            'icon' => 'fas fa-fw fa-building',
+            'can' => 'ventas.Ver',
         ],
+//         ['header' => 'GESTIÓN CARRITO',
+// //            'can' => 'carrito.Ver',
+//         ],
         [
             'text' => 'Productos',
             'icon' => 'fas fa-fw fa-building',
-            'can' => 'carrito.Ver',
+            'can' => 'productos.Ver',
             'submenu' => [
                 [
                     'text' => 'Agregar Etiqueta',
                     'url'  => 'producto/tag',
-                    'can' => 'tags.Ver',
+                    'can' => 'tags.Agregar',
                 ],
                 [
                     'text' => 'Agregar Producto',
@@ -528,51 +488,208 @@ return [
             'can' => 'tags.Ver',
         ],
         [
-            'text' => 'Estados',
-            'url'  => 'estados',
-            'icon' => 'fas fa-fw fa-building',
-            'can' => 'estados.Ver',
-        ],        
-        [
-            'text' => 'Categorías de Productos',
-            'url'  => 'categoriaproducto',
-            'icon' => 'fas fa-fw fa-building',
-            'can' => 'categoriaproducto.Ver',
-        ],        
-        [
             'text' => 'Vista de usuario',
             'url'  => 'carts',
             'can' => 'carts.Ver',
         ],
 
+        ['header' => 'GERI',
+            'can' => 'geri.Ver',
+        ],
+        [
+            'text' => 'Ajustes',
+            'url'  => 'settings',
+            'icon' => 'fas fa-fw fa-cogs',
+            'can' => 'geri.Ver',
+            'submenu' => [
+                [
+                    'text' => 'Gestión de Actores',
+                    'icon' => 'fas fa-fw fa-cogs',
+                    'can' => 'actor.Ver',
+                    'submenu' => [
+                        [
+                            'text' => 'Estado de Actores',
+                            'url'  => 'personactivo',
+                            'icon' => 'fas fa-fw fa-bed',
+                        ],
+                        [
+                            'text' => 'Tipo de Actor',
+                            'url'  => 'tiposdepersonas',
+                            'icon' => 'fas fa-fw fa-object-group',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Beneficios',
+                    'url'  => 'beneficios',
+                    'icon' => 'fas fa-fw fa-usd',
+                    'can' => 'beneficios.Ver',
+                ],
+                [
+                    'text' => 'Escolaridades',
+                    'url'  => 'escolaridades',
+                    'can' => 'escolaridades.Ver',
+                ],
+                [
+                    'text' => 'Estado de Camas',
+                    'url'  => 'estadocama',
+                    'icon' => 'fas fa-fw fa-bed',
+                    'can' => 'estadocama.Ver',
+                ],
+                [
+                    'text' => 'Grado de Dependencia',
+                    'url'  => 'gradodependencia',
+                    'icon' => 'fas fa-fw fa-blind',
+                    'can' => 'gradodependencia.Ver',
+                ],
+                [
+                    'text' => 'Habitaciones',
+                    'url'  => 'habitaciones',
+                    'icon' => 'fas fa-fw fa-bed',
+                    'can' => 'habitaciones.Ver',
+                ],
+                [
+                    'text' => 'Motivos de Egresos',
+                    'url'  => 'motivoegreso',
+                    'can' => 'motivoegreso.Ver',
+                ],
+                [
+                    'text' => 'Gestión Menú',
+                    'icon' => 'fas fa-fw fa-cogs',
+                    'submenu' => [
+                        [
+                            'text' => 'Ingredientes',
+                            'url'  => 'ingredientes',
+                            'can' => 'ingredientes.Ver',
+                        ],
+                        [
+                            'text' => 'Menúes',
+                            'url'  => 'menu',
+                            'can' => 'menu.Ver',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+
+        // ['header' => 'MÓDULOS',
+//            'can' => 'modulos.Ver',
+        // ],
+        // [
+            // 'text' => 'Ajustes',
+            // 'url'  => 'tags',
+            // 'icon' => 'fas fa-fw fa-building',
+// //            'can' => 'modulos.Ver',
+            // 'submenu' => [
+//                 [
+                    // 'text' => 'Areas',
+                    // 'url'  => 'areas',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'areas.Ver',
+                // ],
+                // [
+                    // 'text' => 'Categorías',
+                    // 'url'  => 'categorias',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'categorias.Ver',
+                // ],    
+                // [
+                    // 'text' => 'Cuentas',
+                    // 'url'  => 'cuentas',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'cuentas.Ver',
+                // ],
+                // [
+                    // 'text' => 'Elementos',
+                    // 'url'  => 'elementos',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'elementos.Ver',
+                // ],
+                // [
+                    // 'text' => 'Estados',
+                    // 'url'  => 'estados',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'estados.Ver',
+                // ],                
+                // [
+                    // 'text' => 'Estados Civiles',
+                    // 'url'  => 'estadosciviles',
+                    // 'icon' => 'fas fa-fw fa-venus-mars',
+                //    'can' => 'estadosciviles.Ver',
+                // ],
+                // [
+                    // 'text' => 'Proveedores',
+                    // 'url'  => 'proveedores',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'proveedores.Ver',
+                // ],
+                // [
+                    // 'text' => 'Tipos de Documentos',
+                    // 'url'  => 'tiposdedocumentos',
+                    // 'icon' => 'fas fa-fw fa-card',
+                //    'can' => 'tiposdedocumentos.Ver',
+                // ],     
+                // [
+                    // 'text' => 'Unidades',
+                    // 'url'  => 'unidades',
+                    // 'icon' => 'fas fa-fw fa-building',
+                //    'can' => 'unidades.Ver',
+                // ],
+                // [
+                    // 'text' => 'Localización',
+                    // 'icon' => 'fas fa-fw fa-cogs',
+                //    'can' => 'localizacion.Ver',
+                    // 'submenu' => [
+                        // [
+                            // 'text' => 'Localidades',
+                            // 'url'  => 'localidades',
+                        //    'can' => 'localidades.Ver',
+                        // ],
+                        // [
+                            // 'text' => 'Nacionalidades',
+                            // 'url'  => 'nacionalidad',
+                        //    'can' => 'nacionalidad.Ver',
+                        // ],
+                        // [
+                            // 'text' => 'Provincias',
+                            // 'url'  => 'provincias',
+                        //    'can' => 'provincias.Ver',
+                        // ],
+                    // ],
+                // ],
+// 
+            // ],
+        // ],
+
+
         ['header' => 'GESTIÓN INFORMES',
-            'can' => 'informe.Ver',
+            'can' => 'tablasver.Ver',
         ],
 
         [
             'text' => 'Informes',
             'icon' => 'fas fa-fw fa-building',
-            'can' => 'informe.Ver',
+            'can' => 'tablasver.Ver',
             'submenu' => [
                         [
                             'text' => 'Permisos a Informes',
                             'url'  => 'tablas',
-                            'can' => 'informe.Modificar',
+                            'can' => 'tablasver.Modificar',
                         ],
                         [
                             'text' => 'Visualizar Informes',
                             'url'  => 'tablasver',
-                            'can' => 'informe.Ver',
+                            'can' => 'tablasver.Ver',
                         ],
                         [
                             'text' => 'Editar/Eliminar Informes',
                             'url'  => 'tablas-edit',
-                            'can' => 'informe.Eliminar',
+                            'can' => 'tablasver.Eliminar',
                         ],
                         [
                             'text' => 'Diseñar Informes',
                             'url'  => 'tablas-disenar',
-                            'can' => 'informe.Modificar',
+                            'can' => 'tablasver.Modificar',
                         ],
                     ],
                 ],
@@ -581,7 +698,7 @@ return [
             'text' => 'Generales',
             'url'  => 'settings',
             'icon' => 'fas fa-fw fa-cogs',
-            'can' => 'generales.Ver',            
+//            'can' => 'generales.Ver',            
                 'submenu' => [
                     [
                         'text' => 'Otras Cosas',

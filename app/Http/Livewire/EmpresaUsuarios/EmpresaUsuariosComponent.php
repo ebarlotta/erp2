@@ -121,9 +121,10 @@ class EmpresaUsuariosComponent extends Component
     // }
     
     public function ActualizarRol() {
-        // dd($this->id_NuevoRol);
+        //dd($this->id_NuevoRol);
         $usuario = EmpresaUsuario::find($this->usuarioSeleccionado[0]->id);
-        $usuario->update(['rol_id'=> $this->id_NuevoRol]);
+        $usuario->update(['rol_id'=> (int)$this->id_NuevoRol]);
+        // dd($usuario);
         session()->flash('message', 'Actualizado');
     }
 }

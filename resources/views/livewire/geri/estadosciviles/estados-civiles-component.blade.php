@@ -20,10 +20,12 @@
                 </div>
             </div>
             @endif
-            <x-crear>Nuevo Estado Civil</x-crear>
-            @if ($isModalOpen)
-            @include('livewire.geri.estadosciviles.createestadosciviles')
-            @endif
+            @can('estadosciviles.Agregar')
+                <x-crear>Nuevo Estado Civil</x-crear>
+                @if ($isModalOpen)
+                    @include('livewire.geri.estadosciviles.createestadosciviles')
+                @endif
+            @endcan
             <table class="table-fixed w-full">
                 <thead>
                     <tr class="bg-gray-100">
@@ -37,10 +39,14 @@
                             <td class="border px-4 py-2">{{ $estadocivil->estadocivil }}</td>
                             <td class="border px-4 py-2">
                                 <div class="flex justify-center">
-                                    <!-- Editar  -->
-                                    <x-editar id="{{$estadocivil->id}}"></x-editar>
-                                    <!-- Eliminar -->
-                                    <x-eliminar id="{{$estadocivil->id}}"></x-eliminar>
+                                    @can('estadosciviles.Modificar')
+                                        <!-- Editar  -->
+                                        <x-editar id="{{$estadocivil->id}}"></x-editar>
+                                    @endcan
+                                    @can('estadosciviles.Eliminar')
+                                        <!-- Eliminar -->
+                                        <x-eliminar id="{{$estadocivil->id}}"></x-eliminar>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

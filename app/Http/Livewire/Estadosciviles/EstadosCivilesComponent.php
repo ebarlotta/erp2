@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Geri\Estadosciviles;
+namespace App\Http\Livewire\Estadosciviles;
 
-use App\Models\Geri\EstadosCiviles;
+use App\Models\EstadosCiviles;
 use Livewire\Component;
 
 class EstadosCivilesComponent extends Component
