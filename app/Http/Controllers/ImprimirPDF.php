@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 // use Barryvdh\DomPDF\Facade as PDF;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\DB;
-use App\Http\Livewire\Haberes\HaberesComponent as Haber;
+use App\Http\Livewire\erp\Haberes\HaberesComponent as Haber;
 class ImprimirPDF extends Controller
 {
 

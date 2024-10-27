@@ -81,3 +81,5 @@ Revisar Venta simple ->permisos y funcionamiento
 Geri ->
 Estados de Personas
 Tipos de Personas
+Beneficios
+
