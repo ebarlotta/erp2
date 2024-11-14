@@ -412,7 +412,7 @@ class ImprimirPDF extends Controller
                                                             $htmlConcepto = '';
                                                             foreach ($Haber->Conceptos as $Concepto) {
                                                                 $htmlConcepto = $htmlConcepto . '
-                                                                <tr style="height: 14px; padding:10px; line-height:10px">
+                                                                <tr style="height: 10px; padding:10px; line-height:7px">
                                                                     <td>'. substr(str_repeat(0, 4).$Concepto['orden'], - 4) . '</td>
                                                                     <td colspan="2">'. $Concepto['name'] .'</td>
                                                                     <td align="center">'.  '   '.$Concepto['cantidad'] .' </td>

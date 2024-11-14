@@ -199,7 +199,7 @@ class RolesComponent extends Component
         
         foreach($usuarios as $usuario) {    // Itera los usuarios
             $user = User::find($usuario->id);   // Busca a cada usuario y
-            $user->revokePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
+            $b = $user->revokePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
             
             $a = 'DELETE FROM role_has_permissions WHERE permission_id = '. $permision_id .' and role_id = '. $role_id;
             db::select($a); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
