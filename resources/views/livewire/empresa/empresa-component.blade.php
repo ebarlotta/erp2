@@ -51,7 +51,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-        <script>
+        {{-- <script>
             var ctx = document.getElementById('compras').getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'line',
@@ -118,5 +118,5 @@
                     }
                 }
             });
-        </script>
+        </script> --}}
     </div>
