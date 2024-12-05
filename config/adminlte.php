@@ -313,6 +313,12 @@ return [
             ],
         ],
             [
+                'text' => 'Actores',
+                'url'  => 'actores',
+                'icon' => 'fas fa-fw fa-building',
+                'can' => 'actores.Ver',
+            ],
+            [
                 'text' => 'Areas',
                 'url'  => 'areas',
                 'icon' => 'fas fa-fw fa-building',
@@ -494,7 +500,7 @@ return [
         ],
 
         ['header' => 'GERI',
-            'can' => 'geri.Ver',
+            // 'can' => 'geri.Ver',
         ],
         [
             'text' => 'Ajustes',

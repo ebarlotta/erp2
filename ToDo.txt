@@ -2,7 +2,6 @@
 
 MÓDULOS -> migrar los módulos de Geri a Erp -> REALIZADO 30/07/2024
 Agregar "Signo" a la tabla unidades -> REALIZADO 30/07/2024
-No migrar recursos -> SE MIGRÓ PARA NO PERDER INFORMACIÓN SI MÁS ADELANTE NO ES NECESARIO SE ELIMINA
 Una Vez Revisado todo comenzar con la migración de controladores, interfaces y modelos y migraciones -> SE COMENZÓ EL 30/07/2024
 Empresa_usuarios está mas desarrollado en erp2 que tiene Roles -> Se decide no migrarla desde Geri 30/07/2024
 
@@ -14,14 +13,45 @@ habilitada      usar geri
 nombretitular   usar geri
 dnititular      usar geri       HECHO 02/08/2024
 - Redactar denuevo las leyendas de los módulos en el ModuloSeeder REALIZADO 02/08/2024
-
-Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración REALIZADO 02/08/2024
-
+- Ivas unificar nombre de campos, creo que el de geri no está tan desarrollado -> Agregar campo empresa_id realizando nuevamente la migración REALIZADO 02/08/2024
 - Modulos_usuario Geri tiene un campo más -> Revisado 04/08/2024
 - Modulos_usuario -> Agregar funcionalidad en el controlador de quien modifica el registro -> REALIZADO 04/08/2024
 - Seeder de Empresa_Modulos debe habilitar a la empresa los módulos básicos para trabajar cada vez que se crea una -> REALIZADO 04/08/2024
-- Arreglar los botones de Categorias que aparezcan horizontamlmente -> REALIZADO 04/08/2024
+- Arreglar los botones de Categorias que aparezcan horizontalmente -> REALIZADO 04/08/2024
+- Empresas -> controlar casillero de habilitada -> REALIZADO 06/07/2024
+- Usuarios x Módulo -> Hacer Paginación x 7 -> REALIZADO 26/08/24
+- Actualizar Roles -> No funciona -> REALIZADO 26/08/24
+- Se agregaron los permisos de Agregar/Eliminar/Modificar/Ver de módulos adicionales -> REALIZADO 26/08/24
+- Usuarios x Módulo -> hay que revisar funcionamiento -> REALIZADO 26/08/24
+- Revisar Tabs a los que les falta funcionalidad en ERP -> REALIZADO
+- Terminar de configurar Permission y Roles -> REALIZADO
+- Permitir abrir sólo módulos habilitados -> REALIZADO
+- Empresas -> Arreglar que cargue la imagen al dar de alta -> REALIZADO
 
+
+- tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
+- tblPagos hacer que al pagar por billeteras virtuales se impacte el pago en la tabla de Ventas
+- Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos
+
+- Empresas -> Arreglar agregar distintos roles al usuario agregado
+- Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento
+- Estructura de tabla modulo_usuarios -> Revisar índices en la tabla
+- Dar de Alta una categoría de producto
+- Revisar Compra simple ->permisos y funcionamiento
+- Generar todos los permisos para haberes
+- Generar todos los permisos para Ventas
+- Revisar Venta simple ->permisos y funcionamiento
+- Geri ->
+    - Estados de Personas
+    - Tipos de Personas
+    - Beneficios
+
+
+
+
+
+
+No migrar recursos -> SE MIGRÓ PARA NO PERDER INFORMACIÓN SI MÁS ADELANTE NO ES NECESARIO SE ELIMINA
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 -- Ingredientes no se si es necesario empresa_id -> Se entiende que Elementos tiene el id necesario 05/08/2024
 -- Artículos       Puede incluirse en Productos -> Se entiende que Elementos tiene el id necesario 05/08/2024
@@ -34,22 +64,10 @@ Elementos
 Artículos
 Descartables
 
-- Empresas -> controlar casillero de habilitada -> REALIZADO 06/07/2024
-
-Usuarios x Módulo -> Hacer Paginación x 7 -> REALIZADO 26/08/24
-Actualizar Roles -> No funciona -> REALIZADO 26/08/24
-Se agregaron los permisos de Agregar/Eliminar/Modificar/Ver de módulos adicionales -> REALIZADO 26/08/24
-Usuarios x Módulo -> hay que revisar funcionamiento -> REALIZADO 26/08/24
-
-Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
-
+- Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
 - FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
-- Revisar Tabs a los que les falta funcionalidad
-- Terminar de configurar Permission y Roles
 
-Permitir abrir sólo módulos habilitados
-
-Cambiar ícono
+- Cambiar ícono
 Gestión de Módulos
 Gestión de Roles
 Gestión de Certificados
@@ -59,27 +77,3 @@ CanonMensual    Puede incluirse en venta de Producto/servicio
 Terminar módulo VentaMostrador
 Hacer Paciente_Medicamentos
 Hacer StockMedicamentos
-
-tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
-
-tblPagos hacer que al pagar por billeteras virtuales se impacte el pago en la tabla de Ventas
-
-Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos
-
-Empresas -> Arreglar que cargue la imagen al dar de alta 
-Empresas -> Arreglar agregar distintos roles al usuario agregado
-
-Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento
-
-Estructura de tabla modulo_usuarios -> Revisar índices en la tabla
-
-Dar de Alta una categoría de producto
-Revisar Compra simple ->permisos y funcionamiento
-Generar todos los permisos para haberes
-Generar todos los permisos para Ventas
-Revisar Venta simple ->permisos y funcionamiento
-Geri ->
-Estados de Personas
-Tipos de Personas
-Beneficios
-

@@ -87,17 +87,29 @@ class EmpresaModulosComponent extends Component
 
     public function AgregarModulo($modulo_id)
     {
-        EmpresaModulo::create(['empresa_id' => $this->empresaseleccionada->id, 'modulo_id' => $modulo_id]);
+        $a = EmpresaModulo::where('empresa_id', "=", $this->empresaseleccionada->id)
+        ->where('modulo_id', "=", $modulo_id)->delete();
+        // EmpresaModulo::create(['empresa_id' => $this->empresaseleccionada->id, 'modulo_id' => $modulo_id]);
         $this->closeModalPopover();
         $this->modulos = Modulo::all();
         $this->CargarModulos($this->empresaseleccionada->id);
         return view('livewire.empresa-modulos.empresa-modulos-component');
     }
 
-    public function EliminarModulo($modulo_id)
+    public function EliminarModulo($modulo_name)
     {
-        $a = EmpresaModulo::where('empresa_id', "=", $this->empresaseleccionada->id)
-            ->where('modulo_id', "=", $modulo_id)->delete();
+        $a = Modulo::where('name',$modulo_name)->get();
+        $relacion = new EmpresaModulo;
+        $relacion->empresa_id = $this->empresaseleccionada->id;
+        $relacion->modulo_id = $a[0]->id;
+        $relacion->save();
+        // $a = EmpresaModulo::join('moduloss','empresa_modulos.modulo_id','=','modulos.id')
+        // ->where('empresa_id', "=", $this->empresaseleccionada->id)
+        // ->where('modulos.name','=',$modulo_name)->get();
+
+        // dd($a);
+        // $a = EmpresaModulo::where('empresa_id', "=", $this->empresaseleccionada->id)
+        //     ->where('modulo_id', "=", $modulo_id)->delete();
         $this->closeModalPopover();
         $this->modulos = Modulo::all();
         $this->CargarModulos($this->empresaseleccionada->id);

@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Geri\Actores;
 
 use App\Models\Nacionalidad;
 use App\Models\Localidades;
-use App\Models\Areas;
+use App\Models\Area;
 use App\Models\EmpresaUsuario;
 use App\Models\Iva;
+use App\Models\TiposDocumentos;
+use App\Models\EstadosCiviles;
+
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Geri\Actor;
@@ -17,14 +20,14 @@ use App\Models\Geri\Actores\ActorPersonal;
 use App\Models\Geri\Actores\ActorProveedor;
 use App\Models\Geri\Actores\ActorReferente;
 use App\Models\Geri\Actores\ActorVendedor;
-use App\Models\Geri\Agente;
-use App\Models\Geri\AgenteInforme;
+// use App\Models\Geri\Agente;
+use App\Models\Geri\Agenteinforme;
+
 use App\Models\Geri\Beneficios;
 use App\Models\Geri\Camas;
 use App\Models\Geri\Cliente;
 use App\Models\Geri\Empresa;
 use App\Models\Geri\Escolaridades;
-use App\Models\Geri\EstadosCiviles;
 use App\Models\Geri\GradoDependencia;
 use App\Models\Geri\Habitacion;
 use App\Models\Geri\Informes\Informe;
@@ -36,7 +39,6 @@ use App\Models\Geri\Referente;
 use App\Models\Geri\Sexo;
 use App\Models\Geri\Sociales\DatosSocial;
 use App\Models\Geri\TipoDePersona;
-use App\Models\Geri\TiposDocumentos;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TraitUseAdaptation\Alias;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -114,7 +116,7 @@ class ActorComponent extends Component
             'periodoNuevo' => 'required',
             'profesional_id_Nuevo' => 'required',
         ]);
-        $a= new AgenteInforme;
+        $a= new Agenteinforme;
         $a->agente_id = $this->actor_id;
         $a->informe_id=$this->nuevo_informe_id;
         $a->nroperiodo=$this->periodoNuevo;
@@ -142,6 +144,7 @@ class ActorComponent extends Component
         $actor = Actor::find($id);
         $this->CargaDatosdelActor($actor);
         $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
+        // dd($agente);
         $this->CargaDatosdelAgente($agente); 
         $this->isModalOpenGestionar=!$this->isModalOpenGestionar;
     }
@@ -150,7 +153,7 @@ class ActorComponent extends Component
         $this->listadoinformes = null;
         switch ($informe) {
             case 'Sociales':{ 
-                $this->listadoinformes = Areas::join('informes','areas.id','informes.area_id')
+                $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
                 ->where('areasdescripcion','=','Social')
                 ->get();
                 if(count($this->listadoinformes)) {
@@ -161,7 +164,7 @@ class ActorComponent extends Component
                 break;
             }
             case 'Medicos':{ 
-                $this->listadoinformes = Areas::join('informes','areas.id','informes.area_id')
+                $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
                 ->where('areasdescripcion','=','Médica')
                 ->get();
                 if(count($this->listadoinformes)) {
@@ -172,19 +175,19 @@ class ActorComponent extends Component
                 break;
             }
             case 'Nutricional':{ 
-                $this->listadoinformes = Areas::join('informes','areas.id','informes.area_id')
+                $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
                 ->where('areasdescripcion','=','Nutricional')
                 ->get();
                 break;
             }
             case 'HistoriaDeVida':{ 
-                $this->listadoinformes = Areas::join('informes','areas.id','informes.area_id')
+                $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
                 ->where('areasdescripcion','=','Historia De Vida')
                 ->get();
                 break;
             }
             case 'Pagos':{ 
-                $this->listadoinformes = Areas::join('informes','areas.id','informes.area_id')
+                $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
                 ->where('areasdescripcion','=','Administración')
                 ->get();
                 break;
@@ -200,7 +203,7 @@ class ActorComponent extends Component
     }
 
     public function MostrarInformes($informe_id) {
-        $this->listadoinformesGenerados = AgenteInforme::where('informe_id','=',$informe_id)
+        $this->listadoinformesGenerados = Agenteinforme::where('informe_id','=',$informe_id)
         ->where('agente_id','=',$this->actor_id)
         ->orderby('anio')->orderby('nroperiodo')->get();
     }
@@ -315,6 +318,7 @@ class ActorComponent extends Component
     }
     
     public function store() {
+        if(is_null(session('empresa_id'))) return redirect()->route('login');
         $this->validate([
             'name' => 'required', 
             'documento' => 'required|integer',
@@ -344,6 +348,14 @@ class ActorComponent extends Component
             'urlfoto' => asset('images/sin_imagen.jpg'),
             'activo' => 1,
         ]);
+// dd($a->id);
+        switch($this->tipopersona_id) {
+            case 1:
+                $agente = new ActorAgente;
+                $agente->actor_id = $a->id;
+                $agente->save();
+                break;
+        }
 
         // if($this->tipopersona_id==2) {
         //     $b = new ActorReferente;
@@ -354,7 +366,8 @@ class ActorComponent extends Component
         //     $this->actor_id = $b->id;
         // }
 
-        session()->flash('message', $this->actor_id ? 'Actor Actualizado/a.' : 'Actor Creada.');
+        if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); }
+        session()->flash('message', $this->actor_id ? 'Actor Actualizado/a.' : 'Actor Creado.');
 
         $this->closeModalPopover();
         $this->resetCreateForm();
@@ -363,7 +376,7 @@ class ActorComponent extends Component
     public function edit($id)
     {
         $actor = Actor::findOrFail($id);
-        $this->id = $id;
+        // $this->id = $id;
         $this->actor_id=$id;
         $this->name = $actor->nombre;
         $this->domicilio = $actor->domicilio;
@@ -392,14 +405,13 @@ class ActorComponent extends Component
     public function agregar($id)
     {
         $actor = Actor::findOrFail($id);
-        // dd($actor);
-        $this->id = $id; 
+        // $this->id = $id; 
         switch ($actor->tipopersona_id) {
             case 1: { // Agente
                 $this->referentes = Actor::where('tipopersona_id','=',2)->get(); 
-                $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
+                $agente = ActorAgente::where('actor_id','=',$actor->id)->get(); 
                 $this->CargaDatosdelAgente($agente);    
-                $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();           
+                $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();
                 break; 
             }
             case 2: {
@@ -483,18 +495,26 @@ class ActorComponent extends Component
         $this->tipopersona_id = $actor->tipopersona_id;
         $this->personactivo_id = $actor->personactivo_id;
         $this->email_verified_at = $actor->email_verified_at;
+        
+        // dd($actor->id);
 
         switch ($actor->tipopersona_id) {
-            case 1: //Agente
-                // dd($actor->id);
-                $actor = ActorAgente::findOrFail($actor->id);
+            case 1: { //Agente
+                $datosactor = ActorAgente::where('actor_id','=',$actor->id)->get();
+                // dd($datosactor);
+                // $datosactor = ActorAgente::findOrFail($actor->id);
+                if($datosactor) {
                 $this->fingreso=$actor->fingreso;
                 $this->fegreso = $actor->fegreso;
                 $this->alias = $actor->alias;
                 $this->peso = $actor->peso;
                 $this->referente_id = $actor->referente_id;
                 $this->cama_id = $actor->cama_id;
-            break;
+                } else {
+                    session()->flash('message', 'Debe editar los datos del actor mediante el botón Agregar');
+                }
+                break;
+            }
         }
     }
 
@@ -530,7 +550,7 @@ class ActorComponent extends Component
                     'referente_id' => 'integer',
                     'cama_id' => 'integer',
                 ]);
-                $a = ActorAgente::updateOrCreate(['id' => $this->actor_id], [
+                $a = ActorAgente::updateOrCreate(['actor_id' => $this->actor_id], [
                 'fingreso' => $this->fingreso,
                 'fegreso' => $this->fegreso,
                 'alias' => $this->alias,

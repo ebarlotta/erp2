@@ -36,7 +36,7 @@ class Actor extends Model {
 	}
 
    public function TipoDocumento() {
-		return $this->hasOne('\\App\Models\Geri\TiposDocumentos','id','tipos_documento')->get();
+		return $this->hasOne('\\App\Models\TiposDocumentos','id','tipos_documento')->get();
 	}
 
    public function Sexo() {
@@ -44,11 +44,11 @@ class Actor extends Model {
    }
 
    public function Nacionalidad() {
-      return $this->hasOne('\\App\Models\Geri\Nacionalidad','id','nacionalidad_id')->get();
+      return $this->hasOne('\\App\Models\Nacionalidad','id','nacionalidad_id')->get();
    }
 
    public function Localidad() {
-      return $this->hasOne('\\App\Models\Geri\Localidades','id','localidad_id')->get();
+      return $this->hasOne('\\App\Models\Localidades','id','localidad_id')->get();
    }
 
    public function Beneficio() {

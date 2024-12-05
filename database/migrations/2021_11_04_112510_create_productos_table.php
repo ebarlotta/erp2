@@ -28,7 +28,6 @@ class CreateProductosTable extends Migration
             $table->double('calificacion')->nullable()->default(0);
             $table->boolean('descuento_especial')->nullable()->default(0);
             $table->double('precio_venta')->default(0);
-            /home/enzo/Escritorio/proyectos/erp2/public/cart/images/a2.jpg
             $table->unsignedBigInteger('unidads_id');
             $table->unsignedBigInteger('categoriaproductos_id');
             $table->unsignedBigInteger('estados_id');

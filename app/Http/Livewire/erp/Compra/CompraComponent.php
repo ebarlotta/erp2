@@ -546,7 +546,6 @@ class CompraComponent extends Component
             $Saldo=$Saldo+$registro->NetoComp-$registro->MontoPagadoComp;
             $Cantidad=$Cantidad+$registro->CantidadLitroComp;
             $NetoT = $NetoT + $registro->NetoComp;
-            
             $this->filtro=$this->filtro."
             <tr wire:click=\"gCargarRegistro(". $registro->id .")\">
                 <td class=\"p-0 text-right\" style=\"width: auto;\">".substr($Fecha,0,6).substr($Fecha,8,2)."</td>
@@ -568,33 +567,33 @@ class CompraComponent extends Component
                 <td class=\"p-0 col d-none d-sm-table-cell text-right\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</td>
                 <td class=\"p-0 col d-none d-sm-table-cell text-right\">$Area->name</td>
                 <td class=\"p-0 col d-none d-sm-table-cell text-right\">$Cuenta->name</td>
-            </tr>";
-            // $this->filtro=$this->filtro."
-            //     <div class=\"flex col-12 fse-1 md:fse-0\" wire:click=\"gCargarRegistro(". $registro->id .")\">
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">$Fecha</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">$registro->comprobante</div>
-            //     <div class=\"col-2 border border-secondary\"\">$Proveedor->name</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary text-center hidden sm:hidden md:hidden lg:block xl:block \"\">$registro->detalle</div>
-            //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->BrutoComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">".number_format($MontoIva, 2,'.','')."</div>
-            //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->ExentoComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->ImpInternoComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->PercepcionIvaComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->RetencionIB, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->RetencionGan, 2,'.','')."</div>
-            //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->NetoComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">".number_format($registro->MontoPagadoComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($Saldo, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->CantidadLitroComp, 2,'.','')."</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$registro->ParticIva</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$Area->name</div>
-            //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$Cuenta->name</div>
-            // </div>";
+                </tr>";
+                // $this->filtro=$this->filtro."
+                //     <div class=\"flex col-12 fse-1 md:fse-0\" wire:click=\"gCargarRegistro(". $registro->id .")\">
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">$Fecha</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">$registro->comprobante</div>
+                //     <div class=\"col-2 border border-secondary\"\">$Proveedor->name</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary text-center hidden sm:hidden md:hidden lg:block xl:block \"\">$registro->detalle</div>
+                //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->BrutoComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">".number_format($MontoIva, 2,'.','')."</div>
+                //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->ExentoComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->ImpInternoComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->PercepcionIvaComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->RetencionIB, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->RetencionGan, 2,'.','')."</div>
+                //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->NetoComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">".number_format($registro->MontoPagadoComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($Saldo, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->CantidadLitroComp, 2,'.','')."</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$registro->ParticIva</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$Area->name</div>
+                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$Cuenta->name</div>
+                // </div>";
 
 
-            // $this->filtro=$this->filtro."<tr class=\"bg-red-200 hover:bg-red-100\" wire:click=\"gCargarRegistro(". $registro->id .")\"><td class=\"border border-green-600\">$Fecha</td><td class=\"border border-green-600 text-right\">$registro->comprobante</td><td class=\"border border-green-600\">$Proveedor->name</td><td class=\"border border-green-600 text-right\">$registro->detalle</td><td class=\"border border-green-600 text-right\">".number_format($registro->BrutoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoIva, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->ExentoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->ImpInternoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->PercepcionIvaComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->RetencionIB, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->RetencionGan, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->NetoComp, 2,'.','')."</td><td class=\"text-red-600 border border-green-600 text-right\">".number_format($registro->MontoPagadoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($Saldo, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->CantidadLitroComp, 2,'.','')."</td><td class=\"border border-green-600\">$registro->ParticIva</td><td class=\"border border-green-600\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</td><td class=\"border border-green-600\">".$Area->name."</td><td class=\"border border-green-600\">".$Cuenta->name."</td></tr>
-            // </tr>";
+                // $this->filtro=$this->filtro."<tr class=\"bg-red-200 hover:bg-red-100\" wire:click=\"gCargarRegistro(". $registro->id .")\"><td class=\"border border-green-600\">$Fecha</td><td class=\"border border-green-600 text-right\">$registro->comprobante</td><td class=\"border border-green-600\">$Proveedor->name</td><td class=\"border border-green-600 text-right\">$registro->detalle</td><td class=\"border border-green-600 text-right\">".number_format($registro->BrutoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoIva, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->ExentoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->ImpInternoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->PercepcionIvaComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->RetencionIB, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->RetencionGan, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->NetoComp, 2,'.','')."</td><td class=\"text-red-600 border border-green-600 text-right\">".number_format($registro->MontoPagadoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($Saldo, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->CantidadLitroComp, 2,'.','')."</td><td class=\"border border-green-600\">$registro->ParticIva</td><td class=\"border border-green-600\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</td><td class=\"border border-green-600\">".$Area->name."</td><td class=\"border border-green-600\">".$Cuenta->name."</td></tr>
+                // </tr>";
         }
 
         $this->filtro=$this->filtro."<tr>
@@ -617,12 +616,10 @@ class CompraComponent extends Component
         <td class=\"p-0 d-none d-sm-table-cell\"></td>
         <td class=\"p-0 d-none d-sm-table-cell\"></td>
         <td class=\"p-0 d-none d-sm-table-cell\"></td>
-    </tr> 
-    </tbody>
-        </table>
-        
-    </div>";
-    
+        </tr> 
+        </tbody>
+        </table>    
+        </div>";
 
         // $this->filtro=$this->filtro."
         // <div class=\"col-12 fse-1  md:fse-0 flex border table-auto w-full border border-green-800 border-collapse bg-gray-300 rounded-md\">
@@ -647,7 +644,6 @@ class CompraComponent extends Component
         //         <div class=\"xs:col-flex1\"\"></div>
         //         <div class=\"xs:col-flex1\"\"></div>
         // </div>    ";
-        
 
         // $this->filtro = $this->filtro."<tr class=\"bg-gradient-to-r from-purple-400 via-pink-500 to-red-500\"><td></td><td></td><td></td><td class=\"border border-green-600\">Totales</td><td class=\"border border-green-600 text-right\">".number_format($Bruto, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoIvaT, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($Exento, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($ImpInterno, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($PerIva, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($RetIB, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($RetGan, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($NetoT, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoPagado, 2,'.','')."</td><td class=\"border border-green-600 text-right\"><strong>".number_format($Saldo, 2,'.','')."</strong></td><td class=\"border border-green-600 text-right\">".number_format($Cantidad, 2,'.','')."</td></tr>";
         // $this->filtro=$this->filtro."</table>";
@@ -671,6 +667,7 @@ class CompraComponent extends Component
         }
         return $caso;
     }
+
     public function gsetanio($dato){
         $this->gfanio=$dato;
         $this->gfiltro();

@@ -15,13 +15,13 @@ class CreateActorAgentesTable extends Migration
     {
         Schema::create('actor_agentes', function (Blueprint $table) {
             $table->id();
-            $table->date('fingreso');
+            $table->date('fingreso')->nullable();
             $table->date('fegreso')->nullable();
             $table->string('alias')->nullable();
-            $table->double('peso_id');
+            $table->double('peso_id')->nullable();
             $table->unsignedBigInteger('actor_id');
             $table->unsignedBigInteger('actor_referente')->nullable();
-            $table->unsignedBigInteger('cama_id');
+            $table->unsignedBigInteger('cama_id')->nullable();
             $table->unsignedBigInteger('datossociales_id')->nullable();  //hacer
             $table->unsignedBigInteger('datosmedicos_id')->nullable();   //hacer
             $table->unsignedBigInteger('motivos_egreso_id')->nullable();

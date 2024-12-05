@@ -140,7 +140,7 @@
                                         Ningún permiso habilitado
                                     @endif
 
-                                    @can('areas.Agregar') SII @else NOOO @endcan
+                                    {{-- @can('areas.Agregar') SII @else NOOO @endcan --}}
                                         {{-- @if($role->hasPermissionTo('areas.Agregar')) entra @else no entra @endif --}}
                                         {{-- @if(auth()->user()->can('agregar','web')) SI PUEDE AGREGAR @else NO, No puede @endif --}}
                                         {{-- @haspermission('agregar', 'web') PUEDE AGREGAR @else No puede  --}}

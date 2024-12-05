@@ -75,7 +75,7 @@
 											</div>
 											<div class="bg-white rounded-b flex flex-col justify-between leading-normal">
 												<div class="text-black font-bold text-xl mb-2 leading-tight">
-													<img class="block w-15 h-15 flex-none bg-cover"	src="{{  asset('images/activo.jpg') }}" width="40" height="40">
+													<img class="block w-15 h-15 flex-none bg-cover"	src="{{  asset('images/activo.png') }}" width="40" height="40">
 												</div>
 											</div>
 										</div>

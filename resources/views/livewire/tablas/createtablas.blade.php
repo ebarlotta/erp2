@@ -30,7 +30,7 @@
                                     <div class="flex">
                                     @if($item->relac_id )
                                         <div class="shadow-md m-1 flex" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 8px; height: 45px;" wire:click="ModalOkAsignar({{$item->relac_id}},{{ $item->tabla_id }})">
-                                            {{ $item->name }}<img src="{{ asset('images/activo.jpg') }}" style="width: 30px;height: 20px;margin: 5px 10px 0px 12px; padding-right: 10px;"></div>
+                                            {{ $item->name }}<img src="{{ asset('images/activo.png') }}" style="width: 30px;height: 20px;margin: 5px 10px 0px 12px; padding-right: 10px;"></div>
                                     @else
                                         <div class="shadow-md m-1 flex" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 8px; height: 45px;" wire:click="ModalOkAsignar(0,{{ $item->tabla_id }})">
                                             {{ $item->name }}<img src="{{ asset('images/pasivo.jpg') }}" style="width: 30px;height: 20px;margin: 5px 10px 0px 12px; padding-right: 10px;">

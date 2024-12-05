@@ -27,18 +27,19 @@
 												</td>
 												<td>
 													@if($modulo->modulo_id)
-														<img src="{{ asset('images/activo.jpg') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})">
+														<img src="{{ asset('images/activo.png') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})">
 													@endif
 												</td>
 												<td>
-													@if(is_null($modulo->modulo_id))
-														<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20" wire:click="EliminarModulo({{ $modulo->id }})">		
+													@if($modulo->modulo_id===NULL)
+													{{-- @if(is_null($modulo->modulo_id)) --}}
+														<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20" wire:click="EliminarModulo('{{ $modulo->name }}')">		
 													@endif
 												</td>
 											</tr>
 											{{-- <p style="margin-top: -10px;">{{ $modulo->name }}</p>
 											@if($modulo->modulo_id)
-											<img src="{{ asset('images/activo.jpg') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})">
+											<img src="{{ asset('images/activo.png') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})">
 											@else
 											<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20" wire:click="EliminarModulo({{ $modulo->id }})">
 											@endif --}}
@@ -52,7 +53,7 @@
 									<div class="d-flex"> --}}
 										{{-- <div style="width: max-content;background-color: bisque;border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;"> --}}
 											{{-- <p style="margin-top: -10px;">{{ $modulo->name }}</p>
-											<img src="{{ asset('images/activo.jpg') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})"> --}}
+											<img src="{{ asset('images/activo.png') }}" width="20" height="20" wire:click="AgregarModulo({{ $modulo->id }})"> --}}
 										{{-- </div> --}}
 									{{-- </div>
 								@endforeach
@@ -69,7 +70,7 @@
 								@foreach ($modulosNOempresa as $modulo)
 									<div style="width: max-content;background-color: bisque;border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
 										<div style="position: inherit; justify-content: end; display: flex; margin-right: -21px; margin-top: 5px;" placeholder="Agregar" wire:click="AgregarModulo({{ $modulo->id }})">
-											<img src="{{ asset('images/activo.jpg') }}" width="20" height="20">
+											<img src="{{ asset('images/activo.png') }}" width="20" height="20">
 										</div>
 										<p style="margin-top: -10px;">{{ $modulo->name }}</p>
 										<p style="margin-top: -14px;">{{ $modulo->email }}pepepe</p>
