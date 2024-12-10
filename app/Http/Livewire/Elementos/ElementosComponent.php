@@ -111,7 +111,7 @@ class ElementosComponent extends Component
                 break;
         }
 
-        Elemento::updateOrCreate(['id' => $this->elemento_id], [
+        $a = Elemento::updateOrCreate(['id' => $this->elemento_id], [
             'name'=> $this->name,
             'existencia'=> $this->existencia,
             'precio_compra'=> $this->precio_compra,
@@ -122,10 +122,18 @@ class ElementosComponent extends Component
             'empresa_id'=> session('empresa_id'),
         ]);
         switch ($this->seleccionado) {
-            case "Medicamento" : ElementoMedicamento::updateOrCreate(['elemento_id' => $this->elemento_id], ['pedira' => $this->pedira, 'elemento_id' => $this->elemento_id, 'psiquiatrico' => true,]); break;
-            case "Ingrediente" : ElementoIngrediente::updateOrCreate(['elemento_id' => $this->elemento_id], ['estado_id' => $this->estado_id,'elemento_id' => $this->elemento_id,]); break;
+            case "Medicamento" : 
+                ElementoMedicamento::updateOrCreate(['elemento_id' => $a->id], [
+                'pedira' => $this->pedira, 'elemento_id' => $a->id, 
+                'psiquiatrico' => true,]); 
+                break;
+            case "Ingrediente" : 
+                ElementoIngrediente::updateOrCreate(['elemento_id' => $a->id], [
+                'estado_id' => $this->estado_id,
+                'elemento_id' => $a->id,]); 
+                break;
             case "Producto" : 
-                ElementoProducto::updateOrCreate(['elemento_id' => $this->elemento_id], [
+                ElementoProducto::updateOrCreate(['elemento_id' => $a->id], [
                     'barra'=> $this->barra,
                     'qr'=> $this->qr,
                     'descuento'=> $this->descuento,
@@ -135,16 +143,30 @@ class ElementosComponent extends Component
                     'precio_venta'=> $this->precio_venta,
                     'lote'=> $this->lote,
                     'ruta'=> $this->ruta,
-                    'elemento_id'=> $this->elemento_id,
+                    'elemento_id'=> $a->id,
                     'estado_id'=> $this->estado_id,
                     'proveedor_id'=> $this->proveedor_id,
                 ]); 
                 break;
-            case "Descartable" : ElementoDescartable::updateOrCreate(['elemento_id' => $this->elemento_id], ['descripcion' => $this->descripcion,'elemento_id' => $this->elemento_id,'pendiente' => true,]); break;
-            case "Articulo" : ElementoArticulo::updateOrCreate(['elemento_id' => $this->elemento_id], ['precioventa' => $this->precio_venta,'marca' => $this->marca, 'lista_id' =>$this->lista_id,'elemento_id' => $this->elemento_id,]); break;
+            case "Descartable" : 
+                ElementoDescartable::updateOrCreate(['elemento_id' => $a->id], [
+                    'descripcion' => $this->descripcion,
+                    'elemento_id' => $a->id,'pendiente' => true,
+                ]); 
+                break;
+            case "Articulo" : 
+                ElementoArticulo::updateOrCreate(['elemento_id' => $a->id], [
+                    'precio_venta' => $this->precio_venta,
+                    'marca' => $this->marca, 
+                    'lista_id' =>$this->lista_id,
+                    'elemento_id' => $a->id,
+                ]); 
+                break;
         }
-        session()->flash('message', $this->elemento_id ? $this->seleccionado . ' Actualizado.' : $this->seleccionado . ' Creado.');
+        session()->flash('message', $a->id ? $this->seleccionado . ' Actualizado.' : $this->seleccionado . ' Creado.');
+        
         $this->elemento_id = null; // Borra de la memoria el Elemento con el que se estaba trabajando
+        
         $this->closeModalPopover();
         $this->borrarDatos();
     }

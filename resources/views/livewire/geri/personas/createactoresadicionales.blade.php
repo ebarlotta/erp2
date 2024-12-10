@@ -81,12 +81,12 @@
                                 
                                 <div class="mb-2 col-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2">Cant. hijos varones</label>
-                                    <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cantidad de hijos varones" wire:model="canthijosvarones">
+                                    <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cantidad de hijos varones" wire:model="canthijosvarones" min="0" value="0">
                                     @error('canthijosvarones') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2">Cant. hijas mujeres</label>
-                                    <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cantidad de hijas mujeres" wire:model="canthijasmujeres">
+                                    <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cantidad de hijas mujeres" wire:model="canthijasmujeres" min="0" value="0">
                                     @error('canthijasmujeres') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">

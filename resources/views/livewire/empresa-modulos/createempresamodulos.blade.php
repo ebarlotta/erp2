@@ -17,7 +17,7 @@
 							<div>
 
 								<table border="1" class="table table-striped">
-									<tr><td>Módulo</td><td>Activo/Desactivado</td></tr>
+									<tr><td>Módulo</td><td>Activo</td><td>Inactivo</td></tr>
 									@foreach ($modulosnuevos as $modulo)
 									{{-- <div class="d-flex"> --}}
 										{{-- <div style="width: max-content;background-color: bisque;border-radius: 20px;height: 4rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;"> --}}

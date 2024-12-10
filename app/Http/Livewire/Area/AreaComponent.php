@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Livewire\Area;
-use Illuminate\Support\Facades\DB;
-
 
 use App\Models\Area;
-use App\Models\Modulo;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-
 
 class AreaComponent extends Component
 {

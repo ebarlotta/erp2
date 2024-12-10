@@ -29,7 +29,13 @@ class ModuloComponent extends Component
             ->section('content');
         } else {
             // dd(Auth::user()->id);
-            $userid=auth()->user()->id;
+            return view('livewire.llevaralogin')->extends('layouts.adminlte');
+            // if(is_null(session('empresa_id'))) return $this->redirect('/public/public/login');
+            // if(is_null(session('empresa_id'))) {
+            //     return redirect()->route('login');
+            // } else {
+            //     $userid=auth()->user()->id;
+            // }
             $empresas= EmpresaUsuario::where('user_id',$userid)->get();
             $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))->get('modulo_id');
 
@@ -45,6 +51,11 @@ class ModuloComponent extends Component
             return view('livewire.empresa.empresa-component',compact('empresas','compras','ventas'))->extends('layouts.adminlte');
         }
     }
+
+    public function LlevarALogin() {
+        return redirect('public/public/login');
+    }
+
     public function EnrutarModulo($NombreModulo) {
         session(['moduloactivo' => $NombreModulo]);
         return redirect(strtolower($NombreModulo));

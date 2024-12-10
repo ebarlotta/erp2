@@ -77,3 +77,4 @@ CanonMensual    Puede incluirse en venta de Producto/servicio
 Terminar módulo VentaMostrador
 Hacer Paciente_Medicamentos
 Hacer StockMedicamentos
+Hacer interfaz de Listas

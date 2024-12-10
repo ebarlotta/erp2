@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Condicioniva;
 use App\Models\Modulo;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         // \App\Models\User::factory(10)->create();
         $this->call(IvaSeeder::class);
+        $this->call(CondicionivaSeeder::class);
         
         DB::table('empresas')->insert(['name' => 'Empresa de Pruebas','direccion' => 'Dirección','cuit' => '20123456789','ib' => '012345678','imagen' => 'BarBer.png','establecimiento' => '0','telefono' => '12345678','actividad' => 'Desarrollo','actividad1' => 'Software','menu' => '2','email'=>'enzo@gmail.com','habilitada'=>true,'nombretitular'=>'Enzo','dnititular'=>'1234',]);
         

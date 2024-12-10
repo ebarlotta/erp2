@@ -30,6 +30,7 @@ class CreateActorsTable extends Migration
             $table->unsignedBigInteger('empresa_id');
             $table->unsignedBigInteger('tipopersona_id');
             $table->unsignedBigInteger('personactivo_id');
+            $table->unsignedBigInteger('condicioniva_id')->default(1);
             $table->string('urlfoto');
             $table->boolean('activo');
 
@@ -44,6 +45,7 @@ class CreateActorsTable extends Migration
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->foreign('tipopersona_id')->references('id')->on('tipo_de_personas');
             $table->foreign('personactivo_id')->references('id')->on('person_activos');
+            $table->foreign('condicioniva_id')->references('id')->on('condicionivas');
             
         });
     }

@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('listas', function (Blueprint $table) {
+        Schema::create('condicionivas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->double('porcentaje')->default(0);
-            $table->unsignedBigInteger('empresa_id');
-            $table->foreign('empresa_id')->references('id')->on('empresas');
-            
+            $table->string('descripcion');
+            $table->boolean('activo');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('listas');
+        Schema::dropIfExists('condicionivas');
     }
 };

@@ -65,7 +65,7 @@
                         </div>
                     </div>                    
                     <div style="display:flex; flex-wrap:wrap;">                                               
-                        <div class="mb-2 col-3">
+                        <div class="mb-2 col-2">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Tipo de Persona</label>
                             <select name="tipopersona_id" class="form-control" wire:model="tipopersona_id">
                                 <option value="">-</option>
@@ -76,7 +76,7 @@
                             @error('tipopersona_id') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
 
-                        <div class="mb-2 col-3">
+                        <div class="mb-2 col-2">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Nacionalidad</label>
                             <select name="nacionalidad_id" class="form-control"  wire:model="nacionalidad_id">
                                 <option value="">-</option>
@@ -86,7 +86,7 @@
                             </select>
                             @error('nacionalidad_id') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-2 col-3">
+                        <div class="mb-2 col-2">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Localidad</label>
                             <select name="localidad_id" class="form-control"  wire:model="localidad_id">
                                 <option value="">-</option>
@@ -96,7 +96,17 @@
                             </select>
                             @error('localidad_id') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
-                        <div class="mb-2 col-3">
+                        <div class="mb-2 col-2">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Responsable Iva</label>
+                            <select name="condicioniva_id"  class="form-control" wire:model="condicioniva_id">
+                                <option value=""></option>
+                                @foreach($ivas as $iva)
+                                    <option value="{{ $iva->id }}">{{ $iva->descripcion}}</option>
+                                @endforeach
+                            </select>
+                            @error('condicioniva_id') <span class="text-red-500">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="mb-2 col-2">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Estado de Persona</label>
                             <select name="personactivo_id" class="form-control"  wire:model="personactivo_id">
                                 <option value="">-</option>

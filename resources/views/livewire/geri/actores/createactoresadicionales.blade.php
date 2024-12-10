@@ -191,7 +191,7 @@
                                     <select class="col-12 form-control" name="iva_id" id="" wire:model="iva_id" style="box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;">
                                         <option value="">-</option>
                                         @foreach($ivas as $iva)
-                                            <option value="{{ $iva->id }}">{{ $iva->descripcioniva}}</option>
+                                            <option value="{{ $iva->id }}">{{ $iva->descripcion}}</option>
                                         @endforeach
                                     </select>
                                     @error('iva_id') <span class="text-red-500">{{ $message }}</span>@enderror

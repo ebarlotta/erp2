@@ -27,6 +27,7 @@ class Actor extends Model {
 		'activo',
 		'tipopersona_id',
       'personactivo_id',
+      'condicioniva_id',
       // 'estado_id',
       // 'email_verified_at',
 	];

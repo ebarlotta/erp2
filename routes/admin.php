@@ -80,6 +80,7 @@ use App\Http\Livewire\Geri\Ingredientes\IngredientesComponent;
 use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
 use App\Http\Livewire\erp\Cart\Cart;
 use App\Http\Controllers\Productos;
+use App\Http\Livewire\Listas\ListaComponent;
 
 // use App\Http\Livewire\Empresa\EmpresaComponent;
 // use App\Http\Livewire\EmpresaGestion\EmpresaGestion;
@@ -127,6 +128,7 @@ Route::get('empresamodulos',EmpresaModulosComponent::class)->name('empresamodulo
 Route::get('empresausuarios',EmpresaUsuariosComponent::class)->name('empresausuarios');
 Route::get('estados',EstadoComponent::class)->name('estados');
 Route::get('haberes',HaberesComponent::class)->name('haberes');
+Route::get('listas',ListaComponent::class)->name('listas');
 Route::get('localidades',LocalidadesComponent::class)->name('localidades');
 Route::get('modulos',ModuloComponent::class)->name('modulos');
 Route::get('modulousuarios',ModuloUsuariosComponent::class)->name('modulousuarios');

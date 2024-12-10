@@ -307,7 +307,7 @@ return [
                 [
                     'text' => 'Gestión de Certificados',
                     'url'  => 'certificados',
-                    'icon' => 'fas fa-fw fa-building',
+                    'icon' => 'fa fa-certificate',
                     'can' => 'certificado.Ver',
                 ],
             ],
@@ -315,25 +315,25 @@ return [
             [
                 'text' => 'Actores',
                 'url'  => 'actores',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-users',
                 'can' => 'actores.Ver',
             ],
             [
                 'text' => 'Areas',
                 'url'  => 'areas',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-cube',
                 'can' => 'areas.Ver',
             ],
             [
                 'text' => 'Categorías',
                 'url'  => 'categorias',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-cubes',
                 'can' => 'categorias.Ver',
             ],    
             [
                 'text' => 'Cuentas',
                 'url'  => 'cuentas',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-crosshairs',
                 'can' => 'cuentas.Ver',
             ],
             [
@@ -355,26 +355,32 @@ return [
                 'can' => 'estadosciviles.Ver',
             ],
             [
+                'text' => 'Listas',
+                'url'  => 'listas',
+                'icon' => 'fa fa-clone',
+                'can' => 'listas.Ver',
+            ],
+            [
                 'text' => 'Proveedores',
                 'url'  => 'proveedores',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-truck',
                 'can' => 'proveedores.Ver',
             ],
             [
                 'text' => 'Tipos de Documentos',
                 'url'  => 'tiposdedocumentos',
-                'icon' => 'fas fa-fw fa-card',
+                'icon' => 'fa fa-server',
                 'can' => 'tiposdedocumentos.Ver',
             ],     
             [
                 'text' => 'Unidades',
                 'url'  => 'unidades',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-thermometer-empty',
                 'can' => 'unidades.Ver',
             ],
             [
                 'text' => 'Localización',
-                'icon' => 'fas fa-fw fa-cogs',
+                'icon' => 'fa fa-arrows',
                 'canany' => ['localidades.Ver','nacionalidad.Ver','provincias.Ver'],
                 'submenu' => [
                     [
@@ -419,13 +425,13 @@ return [
         [
             'text' => 'Compras',
             'url'  => 'compras',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-bar-chart',
             'can' => 'compras.Ver',
         ],
         [
             'text' => 'Compras Simple',
             'url'  => 'VentaSimple?Compras',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-bar-chart',
             'can' => 'compras.Ver',
         ],
         [
@@ -443,13 +449,13 @@ return [
         [
             'text' => 'Ventas',
             'url'  => 'ventas',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-area-chart',
             'can' => 'ventas.Ver',
         ],
         [
             'text' => 'Venta Simple',
             'url'  => 'VentaSimple?Ventas',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-area-chart',
             'can' => 'ventas.Ver',
         ],
 //         ['header' => 'GESTIÓN CARRITO',
@@ -457,7 +463,7 @@ return [
 //         ],
         [
             'text' => 'Productos',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-shopping-bag',
             'can' => 'productos.Ver',
             'submenu' => [
                 [
@@ -490,11 +496,12 @@ return [
         [
             'text' => 'Etiquetas',
             'url'  => 'tags',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-tags',
             'can' => 'tags.Ver',
         ],
         [
             'text' => 'Vista de usuario',
+            'icon' => 'fa fa-eye',
             'url'  => 'carts',
             'can' => 'carts.Ver',
         ],

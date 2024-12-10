@@ -13,8 +13,8 @@ class MenuComponent extends Component
     public $isModalOpen = false;
     public $isModalOpenGestionar = false;
     public $menu, $menu_id;
-    public $menues, $nombremenu, $menuactivo, $tiempopreparacion;
-    public $ingredientesdelmenu, $ingredientes, $ingredientea, $cantidad; 
+    public $menues, $nombremenu, $menuactivo=true, $tiempopreparacion;
+    public $ingredientesdelmenu, $ingredientes, $ingredientea, $cantidad, $ingredienteagestionar; 
     
     public $empresa_id;
     
@@ -34,6 +34,11 @@ class MenuComponent extends Component
         return view('livewire.geri.menu.createmenu')->with('isModalOpen', $this->isModalOpen)->with('menu', $this->menu);
     }
 
+    // public function CapturaIngrediente_id($ingredienteagestionar_id) {
+    //     dd($this->cantidad);
+    //     $this->ingredienteagestionar = $ingredienteagestionar_id;
+    //     dd($ingredienteagestionar_id);
+    // }
     public function show($id)
     {
         $this->openModalPopoverGestionar();
@@ -80,7 +85,7 @@ class MenuComponent extends Component
     private function resetCreateForm(){
         $this->menu_id = '';
         $this->tiempopreparacion = '';
-        $this->menuactivo = '';
+        // $this->menuactivo = '';
         $this->nombremenu = '';
     }
     
@@ -105,7 +110,6 @@ class MenuComponent extends Component
     public function edit($id)
     {
         $menu = Menu::findOrFail($id);
-        $this->id = $id;
         $this->menu_id=$id;
         $this->nombremenu = $menu->nombremenu;
         $this->tiempopreparacion = $menu->tiempopreparacion;
@@ -123,9 +127,11 @@ class MenuComponent extends Component
     public function AgregarElementoAlMenu() {
         // dd($this->cantidad);
         //Si Cantidad es numerico, si es positivo, si no es nulo
+        // dd($this->ingredienteagestionar);
+
         $this->validate([
             'cantidad' => 'required|min:0.00001|numeric',
-            'ingredienteagestionar' => 'required|unique:menuingredientes,ingrediente_id,menu_id',
+            // 'ingredienteagestionar' => 'required|unique:menuingredientes,ingrediente_id,menu_id',
         ]);
         if(is_null($this->ingredienteagestionar)) {
             session()->flash('message', 'Debe seleccionar un ingrediente');

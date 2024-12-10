@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('elemento_articulos', function (Blueprint $table) {
             $table->id();
             $table->double('precio_venta');
-            $table->double('marca')->nullable();
+            $table->string('marca')->nullable();
             $table->unsignedBigInteger('lista_id');
             $table->unsignedBigInteger('elemento_id');
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Geri\Actores;
 use App\Models\Nacionalidad;
 use App\Models\Localidades;
 use App\Models\Area;
+use App\Models\Condicioniva;
 use App\Models\EmpresaUsuario;
 use App\Models\Iva;
 use App\Models\TiposDocumentos;
@@ -47,7 +48,7 @@ use Livewire\Component;
 class ActorComponent extends Component
 {
     public $persona_descripcion, $actor_id, $iva_id, $fingreso, $fegreso, $peso, $telefono, $nombreempresa, $motivosegresos, $gradodependencia, $referente_id;
-    public $actores, $ivas, $referentes;
+    public $actores, $ivas, $condicioniva_id, $referentes;
     
     public $tipos_documentos, $estados_civiles, $tipos_de_personas, $nacionalidades, $localidades, $beneficios, $grados_dependencias, $escolaridades, $camas, $person_activos, $sexos, $datossociales_id, $historiadevida;
 
@@ -75,7 +76,7 @@ class ActorComponent extends Component
     public $mostrarinformeespecifico=false, $informeespecifico;
     public $modalpreguntas=false;
 
-    public $vinculo, $modalidad,$ultimaocupacion,$viviendapropia,$canthijosvarones,$canthijasmujeres, $activo;
+    public $vinculo, $modalidad,$ultimaocupacion,$viviendapropia,$canthijosvarones=0,$canthijasmujeres=0, $activo;
 
     public function render()
     {
@@ -94,7 +95,8 @@ class ActorComponent extends Component
         $this->escolaridades = Escolaridades::all();    // Carga escolaridades
         $this->sexos = Sexo::all();     // Carga sexos 
         $this->person_activos = PersonActivo::all();    // Carga los distintos estados Alta/Baja/En proceso de baja
-        $this->ivas = Iva::all();   // Carga las distintas ivas
+        // $this->ivas = Iva::all();   // Carga las distintas ivas
+        $this->ivas = Condicioniva::all();   // Carga las distintas ivas
         // Carga las distintas camas y sus habitaciones de cada empresa
         $this->camas = json_decode(DB::table('cama_habitacions')
             ->join('habitacions', 'habitacions.id', '=', 'cama_habitacions.habitacion_id')
@@ -102,6 +104,10 @@ class ActorComponent extends Component
             ->orderBy('cama_id')
             ->get(),true);
         if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
+        else {
+            $this->Filtrar();
+        }
+    
         return view('livewire.geri.actores.actor-component',['radios'=>$this->radios])->extends('layouts.adminlte');
     }
     
@@ -142,11 +148,14 @@ class ActorComponent extends Component
     public function show($id) {
         $this->cama_id = '';
         $actor = Actor::find($id);
-        $this->CargaDatosdelActor($actor);
-        $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
-        // dd($agente);
-        $this->CargaDatosdelAgente($agente); 
-        $this->isModalOpenGestionar=!$this->isModalOpenGestionar;
+
+        if($actor->tipopersona_id==1) {
+            $this->CargaDatosdelActor($actor);
+            $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
+            // dd($agente);
+            // $this->CargaDatosdelAgente($this->actor_id); 
+            $this->isModalOpenGestionar=!$this->isModalOpenGestionar;
+        }
     }
 
     public function CargarInforme($informe) {
@@ -253,8 +262,13 @@ class ActorComponent extends Component
 
     public function Filtrar() {
         switch ($this->radios) {
+        // switch ($a) {
             case 'Todos': $this->actores = Actor::orderby('nombre')->where('nombre','like','%'.$this->searchActor.'%')->get(); break;
-            case 'Agentes': $this->actores = Actor::where('tipopersona_id','=',1)->where('nombre','like','%'.$this->searchActor.'%')->orderby('nombre')->get(); break;
+            case 'Agentes': 
+                $this->actores = Actor::where('tipopersona_id','=',1)->get();
+                // $this->actores = Actor::where('tipopersona_id','=',1)->where('nombre','like','%'.$this->searchActor.'%')->orderby('nombre')->get();
+                // dd($this->actores );
+                break;
             case 'Referentes': $this->actores = Actor::where('tipopersona_id','=',2)->where('nombre','like','%'.$this->searchActor.'%')->orderby('nombre')->get(); break;
             case 'Personal': $this->actores = Actor::where('tipopersona_id','=',3)->where('nombre','like','%'.$this->searchActor.'%')->orderby('nombre')->get(); break;
             case 'Proveedores': $this->actores = Actor::where('tipopersona_id','=',4)->where('nombre','like','%'.$this->searchActor.'%')->orderby('nombre')->get(); break;
@@ -315,6 +329,7 @@ class ActorComponent extends Component
         $this->localidad_id = null ;
         $this->beneficio_id = null ;
         $this->personactivo_id = null ;
+        $this->condicioniva_id =null;
     }
     
     public function store() {
@@ -328,7 +343,9 @@ class ActorComponent extends Component
             'localidad_id' => 'required|integer',
             'beneficio_id' => 'required|integer',
             'personactivo_id' => 'required|integer',
+            'condicioniva_id' => 'required',
         ]);
+        
         $a = actor::updateOrCreate(['id' => $this->actor_id], [
             'nombre' => $this->name, 
             'domicilio' => $this->domicilio, 
@@ -344,17 +361,26 @@ class ActorComponent extends Component
             'escolaridad_id' =>  1, //$this->escolaridad_id, 
             'personactivo_id' =>  $this->personactivo_id,
             'tipopersona_id' => $this->tipopersona_id,
+            'condicioniva_id' => $this->condicioniva_id,
             'empresa_id' => session('empresa_id'),
             'urlfoto' => asset('images/sin_imagen.jpg'),
             'activo' => 1,
         ]);
-// dd($a->id);
+
+        // dd($a->id);
         switch($this->tipopersona_id) {
             case 1:
                 $agente = new ActorAgente;
                 $agente->actor_id = $a->id;
                 $agente->save();
                 break;
+            case 4:
+                $agente = new ActorProveedor();
+                $agente->actor_id = $a->id;
+                $agente->iva_id = 1;
+                $agente->save();
+                break;
+    
         }
 
         // if($this->tipopersona_id==2) {
@@ -390,6 +416,9 @@ class ActorComponent extends Component
         $this->localidad_id = $actor->localidad_id;
         $this->beneficio_id = $actor->obrasocial_id;
         $this->escolaridad_id = $actor->escolaridad_id ;
+        $this->condicioniva_id = $actor->condicioniva_id;
+
+        if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
 
         $this->openModalPopover();
     }
@@ -409,9 +438,9 @@ class ActorComponent extends Component
         switch ($actor->tipopersona_id) {
             case 1: { // Agente
                 $this->referentes = Actor::where('tipopersona_id','=',2)->get(); 
-                $agente = ActorAgente::where('actor_id','=',$actor->id)->get(); 
-                $this->CargaDatosdelAgente($agente);    
                 $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();
+                $agente = ActorAgente::where('actor_id','=',$actor->id)->get(); 
+                $this->CargaDatosdelAgente($agente[0]->id);  
                 break; 
             }
             case 2: {
@@ -424,6 +453,7 @@ class ActorComponent extends Component
                         $this->canthijosvarones = $referente[0]->canthijosvarones;
                         $this->canthijasmujeres = $referente[0]->canthijasmujeres;
                         $this->actor_id = $referente[0]->actor_id;
+                        $this->condicioniva_id = $actor->condicioniva_id;
                         $this->activo = $referente[0]->activo;
                     }
                     break;
@@ -438,24 +468,28 @@ class ActorComponent extends Component
                     $this->nrotramite = $personal[0]->nrotramite;
                     $this->patente = $personal[0]->patente;
                     $this->nrocta = $personal[0]->nrocta;
+                    $this->condicioniva_id = $actor->condicioniva_id;
                     $this->activo = $personal[0]->activo;
                 }
                 break;
             case 4: //Proveedor
                 $proveedor = ActorProveedor::where('actor_id','=',$this->actor_id)->get();
                 if($proveedor->isNotEmpty()) {
+                    $this->condicioniva_id = $actor->condicioniva_id;
                     $this->iva_id = $proveedor[0]->iva_id;
                 }
                 break;
             case 5: //Cliente
                 $cliente = ActorCliente::where('actor_id','=',$this->actor_id)->get();
                 if($cliente->isNotEmpty()) {
+                    $this->condicioniva_id = $actor->condicioniva_id;
                     $this->iva_id = $cliente[0]->iva_id;
                 }
                 break;
             case 6: // Vendedor
                     $vendedor = ActorVendedor::where('actor_id','=',$this->actor_id)->get();
                 if($vendedor->isNotEmpty()) {
+                    $this->condicioniva_id = $actor->condicioniva_id;
                     $this->iva_id = $vendedor[0]->iva_id;
                 }
                     break;
@@ -464,6 +498,7 @@ class ActorComponent extends Component
                 if($empresa->isNotEmpty()) {
                     $this->iva_id = $empresa[0]->iva_id;
                     $this->caracterdeltitular = $empresa[0]->caracterdeltitular;
+                    $this->condicioniva_id = $actor->condicioniva_id;
                     $this->actividad = $empresa[0]->actividad;
                 }
                     break;
@@ -495,50 +530,56 @@ class ActorComponent extends Component
         $this->tipopersona_id = $actor->tipopersona_id;
         $this->personactivo_id = $actor->personactivo_id;
         $this->email_verified_at = $actor->email_verified_at;
+        $this->condicioniva_id = $actor->condicioniva_id;
         
         // dd($actor->id);
 
-        switch ($actor->tipopersona_id) {
-            case 1: { //Agente
-                $datosactor = ActorAgente::where('actor_id','=',$actor->id)->get();
-                // dd($datosactor);
-                // $datosactor = ActorAgente::findOrFail($actor->id);
-                if($datosactor) {
-                $this->fingreso=$actor->fingreso;
-                $this->fegreso = $actor->fegreso;
-                $this->alias = $actor->alias;
-                $this->peso = $actor->peso;
-                $this->referente_id = $actor->referente_id;
-                $this->cama_id = $actor->cama_id;
-                } else {
-                    session()->flash('message', 'Debe editar los datos del actor mediante el botón Agregar');
-                }
-                break;
-            }
-        }
+        // switch ($actor->tipopersona_id) {
+        //     case 1: { //Agente
+        //         $datosactor = ActorAgente::where('actor_id','=',$actor->id)->get();
+        //         // dd($datosactor);
+        //         // $datosactor = ActorAgente::findOrFail($actor->id);
+        //         if($datosactor) {
+        //         $this->fingreso=$actor->fingreso;
+        //         $this->fegreso = $actor->fegreso;
+        //         $this->alias = $actor->alias;
+        //         $this->peso = $actor->peso;
+        //         $this->referente_id = $actor->referente_id;
+        //         $this->cama_id = $actor->cama_id;
+        //         } else {
+        //             session()->flash('message', 'Debe editar los datos del actor mediante el botón Agregar');
+        //         }
+        //         break;
+        //     }
+        // }
     }
 
-    public function CargaDatosdelAgente($agente) {
+    public function CargaDatosdelAgente($agente_id) {
         // Datos del Agente
-        if($agente->isNotEmpty()) {
+        $agente = ActorAgente::where('id','=',$agente_id)->get();
+        if($agente) {
+            // if($agente->isNotEmpty()) {
             $this->fingreso = $agente[0]->fingreso;
             $this->fegreso = $agente[0]->fegreso;
             $this->peso = $agente[0]->peso_id;
             $this->cama_id = $agente[0]->cama_id;
             $this->alias = $agente[0]->alias;
-            if(is_null($agente[0]['grado_dependencia_id'])) $this->gradodependencia='-'; else $this->gradodependencia = GradoDependencia::where('id','=',$agente[0]['grado_dependencia_id'])->get()[0]['gradodependenciaDescripcion'];
-            if(is_null($agente[0]->actor_referente)) $this->actor_referente = '-'; else $this->actor_referente = Actor::where('id','=',$agente[0]->actor_referente)->get()[0]['nombre'];
-            $this->referentes = Actor::where('tipopersona_id','=',2)->get();
+            $this->referente_id = $agente[0]->actor_referente;
+            
+            // if(is_null($agente[0]['grado_dependencia_id'])) $this->gradodependencia='-'; else $this->gradodependencia = GradoDependencia::where('id','=',$agente[0]['grado_dependencia_id'])->get()[0]['gradodependenciaDescripcion'];
+            // if(is_null($agente[0]->actor_referente)) $this->actor_referente = '-'; else $this->actor_referente = Actor::where('id','=',$agente[0]->actor_referente)->get()[0]['nombre'];
+            // $this->referentes = Actor::where('tipopersona_id','=',2)->get();
 
-            if(is_null($agente[0]->motivos_egreso_id))  $this->motivosegresos='-'; else $this->motivosegresos = $agente[0]->MotivosEgreso()[0]['motivoegresoDescripcion'];
-            $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();           
-            $this->datossociales_id = $agente[0]->datossociales_id;
+            // if(is_null($agente[0]->motivos_egreso_id))  $this->motivosegresos='-'; else $this->motivosegresos = $agente[0]->MotivosEgreso()[0]['motivoegresoDescripcion'];
+            // $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();           
+            // $this->datossociales_id = $agente[0]->datossociales_id;
 
-            if(!is_null($agente[0]->datossociales_id)) {
-                $this->historiadevida = DatosSocial::findOrFail($agente[0]->datossociales_id)->historiadevida;
-            } 
-            $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();           
-        }        
+            // if(!is_null($agente[0]->datossociales_id)) {
+            //     $this->historiadevida = DatosSocial::findOrFail($agente[0]->datossociales_id)->historiadevida;
+            // } 
+            // $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();   
+            // dd($agente[0]->alias)        ;
+        }
     }
 
     public function storeAdicionalActor() {
@@ -617,6 +658,7 @@ class ActorComponent extends Component
                 ]);
                 $a = ActorProveedor::updateOrCreate(['actor_id' => $this->actor_id], [
                     'iva_id' => $this->iva_id,
+                    'condicioniva_id' => $this->condicioniva_id,
                 ]);
                 session()->flash('message', 'Se guardaron los datos');
                 break;

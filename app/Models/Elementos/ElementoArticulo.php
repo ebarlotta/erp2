@@ -11,7 +11,7 @@ class ElementoArticulo extends Elemento
     use HasFactory;
 
     protected $fillable=[
-        'precioventa',
+        'precio_venta',
         'marca',
         'lista_id',
         'elemento_id',

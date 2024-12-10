@@ -23,50 +23,50 @@
             <div class="flex d-flex" style="flex-wrap: wrap;">
                 <x-crear>Alta de Actores</x-crear>
                 <div class="flex d-flex align-middle" style="margin-top: 23px">
-                    <div class="form-check mx-3">
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Todos">
+                    <div class="form-check mx-3" wire:click="Filtrar()">
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Todos">
                         <label class="form-check-label" for="flexRadioDefault1">
                             Todos
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Agentes" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Agentes" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Agentes
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Referentes" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios"  type="radio" value="Referentes" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Referentes
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Personal" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Personal" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Personal
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Proveedores" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Proveedores" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Proveedores
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Clientes" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Clientes" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Clientes
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Vendedores" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Vendedores" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Vendedores
                         </label>
                     </div>
-                    <div class="form-check mx-3"> 
-                        <input class="form-check-input" wire:model="radios" wire:click="Filtrar()" type="radio" value="Empresas" checked>
+                    <div class="form-check mx-3" wire:click="Filtrar()"> 
+                        <input class="form-check-input" wire:model="radios" type="radio" value="Empresas" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Empresas
                         </label>
@@ -100,7 +100,7 @@
                             <td class="border px-4 py-2">
                                 <div class="flex justify-center">
                                     <!-- Gestionar -->
-                                    <div>
+                                    {{-- <div> --}}
                                         {{-- <a href="{{ route('agentegestionar')}} "> --}}
                                         {{-- <button class="hidden sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold py-2 px-4 mr-2 rounded">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -110,7 +110,7 @@
                                         </button> --}}
                                         {{-- </a> --}}
                                         
-                                    </div>
+                                    {{-- </div> --}}
                                     <x-gestionar id="{{$actor->id}}">Gestionar</x-gestionar>
                                     <!-- Editar  -->
                                     <x-editar id="{{$actor->id}}"></x-editar>

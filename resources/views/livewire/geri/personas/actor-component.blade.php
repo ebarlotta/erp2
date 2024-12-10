@@ -44,7 +44,7 @@
                                         <x-editar id="{{$actor->id}}"></x-editar>
                                         <!-- Eliminar -->
                                         <x-eliminar id="{{$actor->id}}"></x-eliminar>
-                                        <!-- Agragar -->
+                                        <!-- Agregar -->
                                         <x-agregar id="{{$actor->id}}"></x-agregar>
                                     </div>
                                 </td>

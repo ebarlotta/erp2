@@ -68,6 +68,7 @@ class EmpresaModulosComponent extends Component
             ->join('empresas',  'empresas.id', '=', 'empresa_modulos.empresa_id',)
             ->where('empresas.id', $this->empresaseleccionada->id)
             ->select('modulos.*', 'empresas.name as empresa')
+            ->orderby('name')
             ->get();
             // $this->modulosdelaemp = $this->modulosdelaempresa;
             // $array = json_decode($this->modulosdelaempresa, true);
@@ -79,7 +80,7 @@ class EmpresaModulosComponent extends Component
             $this->modulosdelaempresa=json_decode($this->modulosdelaempresa, true);
         $this->modulosNOempresa = Modulo::all();
 
-        $this->modulosnuevos = DB::select("SELECT * FROM `modulos` left join empresa_modulos on modulos.id = empresa_modulos.modulo_id and empresa_modulos.empresa_id = " . $this->empresaseleccionada->id); 
+        $this->modulosnuevos = DB::select("SELECT * FROM `modulos` left join empresa_modulos on modulos.id = empresa_modulos.modulo_id and empresa_modulos.empresa_id = " . $this->empresaseleccionada->id.' ORDER by name ASC'); 
         
         // dd($this->modulosnuevos);
 

@@ -5,13 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lista extends Model
+class Condicioniva extends Model
 {
     use HasFactory;
-
-    protected $fillable=[
-        'name',
-        'porcentaje',
-        'empresa_id',
-    ];
 }
