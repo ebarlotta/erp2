@@ -12,6 +12,9 @@ class Lista extends Model
     protected $fillable=[
         'name',
         'porcentaje',
+        'vigenciadesde',
+        'vigenciahasta',
+        'activo',
         'empresa_id',
     ];
 }

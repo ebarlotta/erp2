@@ -199,8 +199,9 @@
 				@if ($productos)
 				<table class="w-full table table-striped">
 					<thead>
+						<th>Foto</th>
 						<th>Productos</th>
-						<thExistenciath>
+						<th>Existencia</th>
 						<th>Stock Mínimo</th>
 						<th>Precio Compra</th>
 						<th>Precio Venta</th>

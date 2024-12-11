@@ -62,8 +62,16 @@ class EmpresaComponent extends Component
             return view('livewire.empresa.empresa-component')->extends('layouts.adminlte');
         }
         else {
-            return redirect(route('login'));
+            return view('livewire.llevaralogin')->extends('layouts.adminlte');
+            return view('public/login');
+            $this->Redirecciona();
+            return redirect()->route('login');
+            // return redirect(route('login'));
         }
+    }
+
+    public function LlevarALogin() {
+        return redirect('public/public/login');
     }
 
     public function cargamodulos($id) {

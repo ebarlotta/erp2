@@ -513,12 +513,11 @@ return [
             'text' => 'Ajustes',
             'url'  => 'settings',
             'icon' => 'fas fa-fw fa-cogs',
-            'can' => 'geri.Ver',
             'submenu' => [
                 [
                     'text' => 'Gestión de Actores',
                     'icon' => 'fas fa-fw fa-cogs',
-                    'can' => 'actor.Ver',
+                    // 'can' => 'actor.Ver',
                     'submenu' => [
                         [
                             'text' => 'Estado de Actores',
@@ -531,6 +530,16 @@ return [
                             'icon' => 'fas fa-fw fa-object-group',
                         ],
                     ],
+                ],
+                [
+                    'text' => 'Estado de Actores',
+                    'url'  => 'personactivo',
+                    'icon' => 'fas fa-fw fa-bed',
+                ],
+                [
+                    'text' => 'Tipo de Actor',
+                    'url'  => 'tiposdepersonas',
+                    'icon' => 'fas fa-fw fa-object-group',
                 ],
                 [
                     'text' => 'Beneficios',
@@ -676,7 +685,8 @@ return [
 
 
         ['header' => 'GESTIÓN INFORMES',
-            'can' => 'tablasver.Ver',
+            // 'can' => 'tablasver.Ver',
+            'canany' => ['tablasver.Ver','tablas.Ver'],
         ],
 
         [

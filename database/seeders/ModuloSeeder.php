@@ -34,7 +34,10 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Provincias', 'pagina' => 'provincias','imagen'=>'provincias.jpg','leyenda'=>'Gestione distintas Provincias dentro del sistema.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Actores', 'pagina' => 'actores','imagen'=>'actores.jpg','leyenda'=>'En este módulo se podrán gestionar todos los actores que participan en el sistema, tales como Clientes, Proveedores, Empleados.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Listas', 'pagina' => 'listas','imagen'=>'listas.jpg','leyenda'=>'Cree, modifique y elimine listas de precios para distintos tipos de clientes','habilitado'=>1]);
-        
+        DB::table('modulos')->insert(['name' => 'Categorías Profesionales', 'pagina' => 'categoriaprofesional','imagen'=>'categoriaprofesional.jpg','leyenda'=>'Gestiona las categorías profesionales de los empleados','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Beneficios', 'pagina' => 'beneficios','imagen'=>'beneficios.jpg','leyenda'=>'Gestiona los distintos tipos de beneficios/obras sociales','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Escolaridades', 'pagina' => 'escolaridades','imagen'=>'escolaridades.jpg','leyenda'=>'Gestiona las escolaridades de las personas','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Tablas/Informes', 'pagina' => 'tablas','imagen'=>'tablas.jpg','leyenda'=>'Gestiona informes','habilitado'=>1]);
         
         DB::table('modulos')->insert(['name' => 'Clientes', 'pagina' => 'clientes','imagen'=>'clientes.jpg','leyenda'=>'Agregue nuevos clientes o modifique los datos ya ingresados.','habilitado'=>1]);    //erp 
         DB::table('modulos')->insert(['name' => 'Compras', 'pagina' => 'compras','imagen'=>'compras.jpg','leyenda'=>'Registre todos los comprobantes de las compras/gastos realizados. Ingrese al stock los productos adquiridos.','habilitado'=>1]);   //erp 

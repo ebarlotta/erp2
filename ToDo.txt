@@ -27,26 +27,30 @@ dnititular      usar geri       HECHO 02/08/2024
 - Terminar de configurar Permission y Roles -> REALIZADO
 - Permitir abrir sólo módulos habilitados -> REALIZADO
 - Empresas -> Arreglar que cargue la imagen al dar de alta -> REALIZADO
+- Dar de Alta una categoría de producto -> REALIZADO 10/12/2024
+- Hacer interfaz de Listas -> REALIZADO 10/12/2024
+- Empresas -> Arreglar agregar distintos roles al usuario agregado -> REALIZADO
+
+- Revisar Compra simple ->permisos y funcionamiento -> REVISADO 11/12/2024
+- Revisar Venta simple ->permisos y funcionamiento -> REVISADO 11/12/2024
+- Estructura de tabla modulo_usuarios -> Revisar índices en la tabla -> REVISADO 11/12/2024
+- Generar todos los permisos para Ventas -> REVISADO 11/12/2024
+- Gestión de Módulos -> FUNCIONANDO 11/12/2024
+- Gestión de Roles -> FUNCIONANDO 11/12/2024
+
+- Generar todos los permisos para haberes
 
 
 - tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
 - tblPagos hacer que al pagar por billeteras virtuales se impacte el pago en la tabla de Ventas
 - Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos
+- Agregar campo de Buscar en la interfaz de Elementos
 
-- Empresas -> Arreglar agregar distintos roles al usuario agregado
 - Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento
-- Estructura de tabla modulo_usuarios -> Revisar índices en la tabla
-- Dar de Alta una categoría de producto
-- Revisar Compra simple ->permisos y funcionamiento
-- Generar todos los permisos para haberes
-- Generar todos los permisos para Ventas
-- Revisar Venta simple ->permisos y funcionamiento
 - Geri ->
     - Estados de Personas
     - Tipos de Personas
     - Beneficios
-
-
 
 
 
@@ -67,14 +71,14 @@ Descartables
 - Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
 - FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
 
-- Cambiar ícono
-Gestión de Módulos
-Gestión de Roles
-Gestión de Certificados
-Desarrollar Faltantes de Stock  
-Desarrollar RelPacienteMenu
-CanonMensual    Puede incluirse en venta de Producto/servicio
-Terminar módulo VentaMostrador
-Hacer Paciente_Medicamentos
-Hacer StockMedicamentos
-Hacer interfaz de Listas
+- Gestión de Certificados
+
+- Desarrollar Faltantes de Stock  
+
+- Desarrollar RelPacienteMenu
+
+- CanonMensual    Puede incluirse en venta de Producto/servicio
+
+- Terminar módulo VentaMostrador
+- Hacer Paciente_Medicamentos
+- Hacer StockMedicamentos

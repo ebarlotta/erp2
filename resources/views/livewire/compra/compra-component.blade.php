@@ -71,8 +71,9 @@
 											@can('compras.Eliminar')
 												<button class="rounded-md bg-red-300 px-6 py-1 mx-2 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalDelete">Eliminar</button>
 											@endcan
-											<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalAgregarDetalle">Agregar Productos</button>
-										
+											@can('compras.ComprasAgregarProductos.Ver')
+												<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999;" wire:click="openModalAgregarDetalle">Agregar Productos</button>
+											@endcan
 											<div class=" right-0">
 												@if (session()->has('message'))
 													<div class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" role="alert">

@@ -4,6 +4,7 @@ namespace App\Models\erp;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Estado;
 
 class Producto extends Model
 {
@@ -42,6 +43,7 @@ class Producto extends Model
 
     public function estado()
     {
-        return $this->hasOne('App\Models\erp\Estado','id');
+        return $this->hasOne(Estado::class,'id','estados_id');
+        // return $this->hasOne('App\Models\Estado','id');
     }
 }

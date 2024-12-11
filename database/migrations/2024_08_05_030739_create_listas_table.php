@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->double('porcentaje')->default(0);
+            $table->date('vigenciadesde')->nullable();
+            $table->date('vigenciahasta')->nullable();
+            $table->boolean('activo')->default(true);
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas');
             

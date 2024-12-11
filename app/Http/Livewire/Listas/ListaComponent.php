@@ -11,9 +11,7 @@ class ListaComponent extends Component
 {
 
     public $isModalOpen = false;
-    public $lista, $porcentaje, $lista_id;
-    public $name;
-    public $empresa_id;
+    public $lista, $porcentaje, $lista_id, $name, $empresa_id, $vigenciadesde, $vigenciahasta, $activo;
     protected $listas;
 
     use WithPagination;
@@ -45,6 +43,9 @@ class ListaComponent extends Component
     private function resetCreateForm(){
         $this->lista_id = '';
         $this->name = '';
+        $this->activo = '';
+        $this->vigenciadesde = '';
+        $this->vigenciahasta = '';
     }
     
     public function store()
@@ -56,6 +57,9 @@ class ListaComponent extends Component
         Lista::updateOrCreate(['id' => $this->lista_id], [
             'name' => $this->name,
             'porcentaje' => $this->porcentaje,
+            'activo' => $this->activo,
+            'vigenciadesde' => $this->vigenciadesde,
+            'vigenciahasta' => $this->vigenciahasta,
             'empresa_id' => session('empresa_id'),
         ]);
 
@@ -71,6 +75,9 @@ class ListaComponent extends Component
         $this->lista_id=$id;
         $this->name = $lista->name;
         $this->porcentaje = $lista->porcentaje;
+        $this->activo = $lista->activo;
+        $this->vigenciadesde = $lista->vigenciadesde;
+        $this->vigenciahasta = $lista->vigenciahasta;
         $this->openModalPopover();
     }
     
@@ -80,4 +87,10 @@ class ListaComponent extends Component
         session()->flash('message', 'Lista Eliminada.');
     }
 
+    public function habilitar($id,$estado)
+    {
+        $lista = Lista::find($id);
+        if($estado) { $lista->activo = 0; } else { $lista->activo = 1; }
+        $lista->save();
+    }
 }

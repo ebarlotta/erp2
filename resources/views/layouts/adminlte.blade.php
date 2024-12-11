@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', session('nombre_empresa'))
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <script src="cart/js/taildwind.js"></script>
 

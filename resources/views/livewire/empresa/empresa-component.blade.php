@@ -15,7 +15,7 @@
                             wire:click="cargamodulos({{ $empresa['id'] ? $empresa['id'] : 0 }})">
                             {{ $empresa['name'] }}
 
-                            <img class="rounded-md" src="{{ asset('' . $empresa['imagen']) }}"
+                            <img class="rounded-md" src="{{ asset('images/' . $empresa['imagen']) }}"
                                 style="margin: auto; margin-top: 10px; width: 150px; height: 150px;">
                             <!-- <img wire:click="cargamodulos({{ $empresa['id'] }})" class="rounded-md" src="{{ asset('/images2/' . $empresa['imagen']) }}" style="margin: auto; margin-top: 10px; width: 150px; height: 150px;"> -->
                     </div>

@@ -11,7 +11,7 @@ use Livewire\WithPagination;
 class CategoriaproductoComponent extends Component
 {
     public $isModalOpen = false;
-    public $categoria, $categoria_id;
+    public $categoria, $categoria_id, $name;
     protected $categorias;
 
     public $empresa_id;
@@ -71,7 +71,6 @@ class CategoriaproductoComponent extends Component
     public function edit($id)
     {
         $categoria = Categoriaproducto::findOrFail($id);
-        $this->id = $id;
         $this->categoria_id=$id;
         $this->name = $categoria->name;
         
