@@ -43,7 +43,7 @@
                                         Descricpion <br><input class="form-control" type="text" wire:model="name">
                                     </div>
                                     <div style="margin-left: 10px;">
-                                        Unidades <br><input class="form-control" type="text" wire:model="unidad" disabled>
+                                        Unidades <br><input class="form-control" type="text" wire:model="unidad">
                                 {{-- <td rowspan="8" align="center"><br>
                                     <table class="table table-responsive table-hover" style="font-size:8px;"
                                         frame="border" rules="none" border="1px">

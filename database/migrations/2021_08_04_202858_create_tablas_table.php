@@ -17,7 +17,7 @@ class CreateTablasTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('encabezadocolumna');
-            $table->string('ordenarporcampo');
+            $table->string('ordenarporcampo')->nullable();
             $table->integer('cantidadfila');
             $table->integer('cantidadcolumna');
             $table->unsignedBigInteger('empresa_id');

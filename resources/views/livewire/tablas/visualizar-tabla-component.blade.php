@@ -98,8 +98,9 @@
                 </table>
             </div>
             <div class="block">
-                <h3>Vista Previa</h3>
-                <div class="p-2 shadow-lg" style="background:linear-gradient(90deg, lightblue 20%, white 50%); width:93%; height:100%; display: flex; margin: 1.25rem; border-radius: 10px;" style="width: 100%;">
+                <h3>Vista Previa</h3> 
+                {{-- width:93%; height:100%; display: flex;  --}}
+                <div class="p-2 shadow-lg" style="background:linear-gradient(90deg, lightblue 20%, white 50%); margin: 1.25rem; border-radius: 10px;" style="width: 100%;">
                     {!! $visualizar !!} 
                 </div>
             </div>

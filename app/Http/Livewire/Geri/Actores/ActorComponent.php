@@ -658,7 +658,7 @@ class ActorComponent extends Component
                 ]);
                 $a = ActorProveedor::updateOrCreate(['actor_id' => $this->actor_id], [
                     'iva_id' => $this->iva_id,
-                    'condicioniva_id' => $this->condicioniva_id,
+                    'condicion_id' => $this->condicioniva_id,
                 ]);
                 session()->flash('message', 'Se guardaron los datos');
                 break;
@@ -668,6 +668,7 @@ class ActorComponent extends Component
                 ]);
                 $a = ActorCliente::updateOrCreate(['actor_id' => $this->actor_id], [
                     'iva_id' => $this->iva_id,
+                    'condicion_id' => $this->condicioniva_id,
                 ]);
                 session()->flash('message', 'Se guardaron los datos');
                 break;

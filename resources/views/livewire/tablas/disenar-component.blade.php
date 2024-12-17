@@ -64,9 +64,9 @@
                                 <label>Color Fondo</label>
                                 <select wire:model="txtcolorfondo" class="form-control col-12">
                                     <option value="lightblue">Celeste</option>
-                                    <option value="lightred">Rojo</option>
+                                    <option value="red">Rojo</option>
                                     <option value="lightgreen">Verde</option>
-                                    <option value="lightblue">Azul</option>
+                                    <option value="blue">Azul</option>
                                     <option value="lightsalmon">Marrón</option>
                                     <option value="white">Blanco</option>
                                     <option value="black">Negro</option>

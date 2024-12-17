@@ -25,6 +25,8 @@
                             <div class="flex d-flex flex-wrap">
                                 {{-- si es Agente --}}
                                 @if($tipopersona_id==1)  
+                                    <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Medicamentos')">Medicamentos</label>
+                                    <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Descartables')">Descartables</label>
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Sociales')">Informes Sociales</label>
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Medicos')">Informes Médicos</label>
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Nutricional')">Informes Nutricionales</label>           

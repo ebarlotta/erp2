@@ -129,37 +129,37 @@
                             <!-- Personal -->
                             @if($tipopersona_id==3)
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">modalidad</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">Modalidad</label>
                                     <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="modalidad" wire:model="modalidad">
                                     @error('modalidad') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">fingreso</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">Fecha de Ingreso</label>
                                     <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="fingreso" wire:model="fingreso">
                                     @error('fingreso') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>                            
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">iminimo</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">Ingreso Mínimo</label>
                                     <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="iminimo" wire:model="iminimo">
                                     @error('iminimo') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">cbu</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">CBU Bancaria</label>
                                     <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="cbu" wire:model="cbu">
                                     @error('cbu') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">nrotramite</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">Número de Trámite</label>
                                     <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="nrotramite" wire:model="nrotramite">
                                     @error('nrotramite') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">patente</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">Patente Vehículo</label>
                                     <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="patente" wire:model="patente">
                                     @error('patente') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>
                                 <div class="mb-2 col-4">
-                                    <label class="block text-gray-700 text-sm font-bold mb-2">nrocta</label>
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">Nro Cuenta Bancaria</label>
                                     <input type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="nrocta" wire:model="nrocta">
                                     @error('nrocta') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>

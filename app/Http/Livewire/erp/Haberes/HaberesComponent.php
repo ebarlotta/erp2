@@ -215,6 +215,9 @@ class HaberesComponent extends Component
     // }
 
     public function AltaRecibo($a, $m) {
+        //Controla si hay empleados dados de alta antes de hacer cualquier actividad
+        
+        if($this->IdEmpleado==0) return session()->flash('messageOk', 'Debe dar de alta a algún empleado');
         //Carga los datos del recibo actual 
         $reciboActual = Recibo::where('perpago', $a . $m)
             ->where('empleado_id', $this->empleadoseleccionado)

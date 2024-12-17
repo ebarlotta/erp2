@@ -17,8 +17,10 @@ class CreateActorClientesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('iva_id');
             $table->unsignedBigInteger('actor_id');
+            $table->unsignedBigInteger('condicion_id')->default(1);
 
             $table->foreign('iva_id')->references('id')->on('ivas');
+            $table->foreign('condicion_id')->references('id')->on('condicionivas');
             $table->foreign('actor_id')->references('id')->on('actors');
 
             $table->timestamps();

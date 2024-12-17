@@ -67,7 +67,6 @@ class ClienteComponent extends Component
     private function resetCreateForm()
     {
         $this->cliente_id = '';
-
         $this->name = '';
         $this->direccion = '';
         $this->cuil = '';

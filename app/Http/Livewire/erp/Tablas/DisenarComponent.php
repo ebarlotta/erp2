@@ -25,7 +25,7 @@ class DisenarComponent extends Component
     public $tabla_id, $registro_id;
 
     public $txttitulo, $txtcantidadfila, $txtcantidadcolumna;
-    public $txtfila, $txtcolumna, $txtcolorfondo, $txtalineacion, $txtexpresion;
+    public $txtfila, $txtcolumna, $txtcolorfondo, $txtalineacion, $txtexpresion, $visualizartabla;
     
     public function render()
     {
@@ -44,7 +44,7 @@ class DisenarComponent extends Component
             'cantidadcolumna' => 'required|integer',
             'encabezadocolumna' => 'required',
         ]);
-        Tabla::updateOrCreate(['id' => $this->id], [
+        $tabla = Tabla::updateOrCreate(['id' => $this->tabla_id], [
             'name' => $this->name,
             'cantidadfila' => $this->cantidadfila,
             'cantidadcolumna' => $this->cantidadcolumna,
@@ -52,7 +52,18 @@ class DisenarComponent extends Component
             'empresa_id' => session('empresa_id'),
         ]);
 
-        session()->flash('message', $this->id ? 'Tabla Actualizada.' : 'Tabla Creada.');
+        $sql = "INSERT INTO registros (`titulo`, `tabla_id`, `fila`, `columna`, `expresion`, `colorfondocelda`, `alineacion`) VALUES";
+        for($i=1;$i<=$this->cantidadfila;$i++) {
+            for($j=1;$j<=$this->cantidadcolumna;$j++) { 
+                $sql = $sql . " ('".$this->name."', ". $tabla->id.", ".$i.", ".$j.",'0' , 'white', 'center'),";
+            }
+        }
+        $sql = substr($sql,0,strlen($sql)-1).";";
+        DB::insert($sql);
+
+        // dd($sql);
+
+        session()->flash('message', $this->tabla_id ? 'Tabla Actualizada.' : 'Tabla Creada.');
         $this->Resetear();
         $this->CargarTablas();
     }
@@ -84,6 +95,7 @@ class DisenarComponent extends Component
         for($i=1;$i<=$this->cantidadfila;$i++) {
             $aux = $aux . '<tr>';
             for($j=1;$j<=$this->cantidadcolumna;$j++) {
+                
                 if(substr($a[$p]['expresion'],0,1)=='*') {
                     $sql = substr($a[$p]['expresion'],1,strlen($a[$p]['expresion']));
                     $reg = db::select($sql);
@@ -168,7 +180,7 @@ class DisenarComponent extends Component
                 $Iva27 = 0;
                 $SumIva = 0;
                 
-                $this->visualizar = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 10px; font-weight : 300;" border="1">
+                $this->visualizartabla = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 10px; font-weight : 300;" border="1">
                 <tbody>
                 <tr style="font-weight:bold; border-top: 3px solid; font-size:14px">
                     <td colspan=9>Libros IVA Ventas 2024</td>
@@ -194,7 +206,7 @@ class DisenarComponent extends Component
                     ->where('empresa_id','=',session('empresa_id'))
                     ->get();
                     foreach($sql as $sql1) {
-                        $this->visualizar = $this->visualizar .'
+                        $this->visualizartabla = $this->visualizartabla .'
                     <tr>
                         <td bgcolor="white" align="left">'. $this->ConvierteMesEnTexto($i).'</td>
                         <td bgcolor="white" align="right">'.number_format($sql1->BrutoComp,2).'</td>
@@ -217,7 +229,7 @@ class DisenarComponent extends Component
                     }
                     
                 }
-                $this->visualizar = $this->visualizar .'
+                $this->visualizartabla = $this->visualizartabla .'
                 <tr style="font-weight:bold; border-top: 3px solid;">
                     <td bgcolor="white" align="left">Totales</td>
                     <td bgcolor="white" align="right">'.number_format($BrutoComp,2).'</td>
@@ -243,8 +255,8 @@ class DisenarComponent extends Component
                 $Iva27 = 0;
                 $SumIva = 0;
 
-                //$this->visualizar = $this->AgregarEncabezado('Libros IVA Compras');
-                $this->visualizar = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 10px; font-weight : 300;" border="1">
+                //$this->visualizartabla = $this->AgregarEncabezado('Libros IVA Compras');
+                $this->visualizartabla = '<table class="table table-responsive table-hover" style="font-family : Verdana; font-size : 10px; font-weight : 300;" border="1">
                 <tbody>
                 <tr style="font-weight:bold; border-top: 3px solid; font-size:14px">
                     <td colspan=9>Libros IVA Compras 2024</td>
@@ -270,7 +282,7 @@ class DisenarComponent extends Component
                     ->where('empresa_id','=',session('empresa_id'))
                     ->get();
                     foreach($sql as $sql1) {
-                        $this->visualizar = $this->visualizar .'
+                        $this->visualizartabla = $this->visualizartabla .'
                     <tr>
                         <td bgcolor="white" align="left">'. $this->ConvierteMesEnTexto($i).'</td>
                         <td bgcolor="white" align="right">'.number_format($sql1->BrutoComp,2).'</td>
@@ -293,7 +305,7 @@ class DisenarComponent extends Component
                     }
                     
                 }
-                    $this->visualizar = $this->visualizar .'
+                    $this->visualizartabla = $this->visualizartabla .'
                     <tr style="font-weight:bold; border-top: 3px solid;">
                         <td bgcolor="white" align="left">Totales</td>
                         <td bgcolor="white" align="right">'.number_format($BrutoComp,2).'</td>
@@ -503,7 +515,7 @@ class DisenarComponent extends Component
                         </table>';
 
                         
-                $this->visualizar = $r;
+                $this->visualizartabla = $r;
                 break;
         }
     }

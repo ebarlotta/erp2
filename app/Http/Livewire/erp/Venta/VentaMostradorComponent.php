@@ -45,20 +45,26 @@ class VentaMostradorComponent extends Component
     public $cliente_id, $iva_cliente, $cliente_name;
     public $iva_id, $monto_iva=0;
     public $problema;
+    public $nro_Fact;
 
     public function render()
     {
         if (!is_null(session('empresa_id'))) {
             $this->empresa_id = session('empresa_id');
         } else {
-            $userid = auth()->user()->id;
-            $empresas = EmpresaUsuario::where('user_id', $userid)->get();
-            return view('livewire.empresa.empresa-component')->with('empresas', $empresas);
+            return view('livewire.llevaralogin')->extends('layouts.adminlte');
+            // $userid = auth()->user()->id;
+            // $empresas = EmpresaUsuario::where('user_id', $userid)->get();
+            // return view('livewire.empresa.empresa-component')->with('empresas', $empresas);
         }
 
         $this->productos = Producto::where('empresa_id', $this->empresa_id)->where('name', 'like', '%' . $this->search . '%')->orderBy('name', 'asc')->get();
         $this->clientes = Cliente::where('empresa_id', $this->empresa_id)->where('name', 'like', '%' . $this->searchCliente . '%')->orderBy('name', 'asc')->get();
         return view('livewire.ventasmostrador.ventamostrador')->extends('layouts.adminlte');
+    }
+
+    public function LlevarALogin() {
+        return redirect('public/public/login');
     }
 
     public function seleccionarproducto($id)
@@ -147,17 +153,30 @@ class VentaMostradorComponent extends Component
 
     public function openModalProducto() {
         $this->ModalProducto = !$this->ModalProducto;
+        $this->nro_Fact=$this->BuscarMayorNumeroDeFactura();
         //$this->CargarListado();
     }
 
     public function openModalCliente() {
         $this->ModalCliente = !$this->ModalCliente;
+        $this->nro_Fact=$this->BuscarMayorNumeroDeFactura();
         //$this->CargarListado();
     }
 
     public function openModalVenta() {
         $this->ModalVenta = !$this->ModalVenta;
+        $this->productosseleccionados = null;
+        $this->cliente_id = null;
+        $this->cliente_name  = null;
+        //Eliminar Movimientos "Temporales" de más de 2 horas
+        $this->EliminarMoviemientosViejos();
         //$this->CargarListado();
+    }
+
+    public function EliminarMoviemientosViejos() {
+        Venta::where('ParticIva','=','Temporal')
+        ->where('created_at', '<', now()->subHours(2)) // Filtrar registros con más de 2 horas de antigüedad
+        ->delete();
     }
 
     public function openModalError() {
@@ -196,10 +215,7 @@ class VentaMostradorComponent extends Component
     {
         $productosseleccionados = Ventas_Productos::where('ventas_id', $this->idVenta->id)
             ->join('productos', 'ventas__productos.productos_id', '=', 'productos.id')
-            ->get('ventas__ public $orden = 1;
-            public $suma = 0;
-            public $montopagado = 0;
-            public $cambio = 0;productos.*');
+            ->get('ventas__productos.*');
         $orden = 1;
         foreach ($productosseleccionados as $prod) {
             $affectedRows = Ventas_Productos::where("id", $prod->id)->update(["orden" => $orden]);

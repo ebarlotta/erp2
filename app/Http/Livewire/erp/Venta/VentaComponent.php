@@ -572,15 +572,15 @@ class VentaComponent extends Component
                 <td class=\"p-0 text-right\" style=\"white-space: nowrap;\" class=\" text-left\">$Cliente->name</td>";
                 
                 //Comprobante común de color gris
-                if($registro->ParticIva=='No') { $this->filtro=$this->filtro."<td class=\" text-left\"><div style=\"background-color: lightslategray;width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\"></div></td>"; }
+                if($registro->ParticIva=='No') { $this->filtro=$this->filtro."<td class=\" text-left\" style=\"padding: 0px 10px;\"><div style=\"background-color: lightslategray;width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\"></div></td>"; }
                 // Si va a ser registrado en iva entonces
                 if($registro->ParticIva=='Si') {
                     // Si está cerrado lo coloca de color marrón
-                    if($registro->Cerrado>1) { $this->filtro=$this->filtro."<td class=\" text-left\"><div style=\"background-color: brown;width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\"></div></td>"; }                
+                    if($registro->Cerrado>1) { $this->filtro=$this->filtro."<td class=\" text-left\" style=\"padding: 0px 10px;\"><div style=\"background-color: brown;width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\"></div></td>"; }                
                     // Si Es un comprobante que está preparado para ser enviado a AFIP
-                    if($registro->Cerrado==0)  { $this->filtro=$this->filtro."<td class=\" text-left\"><div wire:click=\"openModalGenerarFactura();\" style=\"background-color: rgb(238, 238, 79);width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\" value=\" >\"> </div></td>"; }
+                    if($registro->Cerrado==0)  { $this->filtro=$this->filtro."<td class=\" text-left\" style=\"padding: 0px 10px;\"><div wire:click=\"openModalGenerarFactura();\" style=\"background-color: rgb(238, 238, 79);width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\" value=\" >\"> </div></td>"; }
                     // Si es un comprobante que ha sido enviado a AFIP pero todavía no se encuentra cerrado
-                    if($registro->Cerrado==-1) { $this->filtro=$this->filtro."<td class=\" text-left\"><div style=\"background-color: rgb(242, 120, 120); width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\"><img src=\"images/archivo-pdf.svg\"></div></td>"; }
+                    if($registro->Cerrado==-1) { $this->filtro=$this->filtro."<td class=\" text-left\" style=\"padding: 0px 10px;\"><div style=\"background-color: rgb(242, 120, 120); width: 20px;border-radius: 7px;height: 20px;margin-right: 3px;\"><img src=\"images/archivo-pdf.svg\"></div></td>"; }
                 }
                 
                 $this->filtro=$this->filtro."

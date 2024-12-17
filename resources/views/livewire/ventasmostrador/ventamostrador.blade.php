@@ -1,4 +1,14 @@
 <div>
+    <style type="text/css"> 
+    img {
+      transition: transform 0.5s ease;
+    }
+
+    img:hover {
+      transform: scale(6);
+    }
+    </style>
+
     @if($ModalProducto)
         <!-- <div class="flex items-end justify-center mt-24 pt-4 px-4 pb-20 text-center sm:block sm:p-0" style="background-color: beige; "> -->
         <div class="fixed inset-0 transition-opacity" style="z-index: 999;">
@@ -107,6 +117,7 @@
         </div> <!-- /.modal-dialog -->
         <!-- </div> <br><br> -->
     @endif
+
     @if($ModalCliente)
         <!-- <div class="flex items-end justify-center mt-24 pt-4 px-4 pb-20 text-center sm:block sm:p-0" style="background-color: beige; "> -->
         <div class="fixed inset-0 transition-opacity" style="z-index: 999;">
@@ -166,7 +177,8 @@
                                             @foreach($clientes as $cliente)
                                             <tr class="odd">
                                                 <td> <button class="btn btn-info" id="btn_selecionar{{ $cliente->id}}" wire:click="seleccionarCliente({{ $cliente->id}})"> Selecionar </button></td>
-                                                <td> <img src="{{ asset('images/'. $cliente->ruta) }}" alt="Sin imagen" style="height: 50px;width: 50px;"> </td>
+                                                <td> <img src="{{ asset('images/sin_imagen.jpg') }}" alt="Sin imagen" style="height: 50px;width: 50px;"> </td>
+                                                {{-- <td> <img src="{{ asset('images/'. $cliente->ruta) }}" alt="Sin imagen" style="height: 50px;width: 50px;"> </td> --}}
                                                 <td>{{ $cliente->name }}</td>
                                                 <!-- <td>{{ $cliente->descripcion }}</td> -->
                                                 <!-- <td class="text-right">{{ number_format($cliente->existencia, 2, ',', '.') }}</td>
@@ -216,14 +228,14 @@
                     <div class="table table-responsive">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                             <div class="row  bg-green-600">
-                                <div class="col-sm-12 col-md-5">
+                                {{-- <div class="col-sm-12 col-md-5">
                                     <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Mostrando 1 a 5 de 7 Productos</div>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-12 col-md-7">
                                     COMPROBANTE ALMACENADO
                                 </div>
                                 <div class="p-3 mb-3" wire:click="openModalVenta();">
-                                    <input type="button" value="Cerrar" name="" id="" >
+                                    <input type="button" value="Cerrar" class="btn btn-info" >
                                 </div>
                             </div>
                         </div>
@@ -254,7 +266,7 @@
                                     OCURRIO UN ERROR: {{ $problema }}
                                 </div>
                                 <div class="p-3 mb-3" wire:click="openModalError();">
-                                    <input type="button" value="Cerrar" name="" id="" >
+                                    <input type="button" value="Cerrar" class="btn btn-info">
                                 </div>
                             </div>
                         </div>
@@ -269,7 +281,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1 class="m-0">Ventas -  <input type="text" style="text-align: center" value="{{ $cliente_id ? $cliente_name : 'Ninguno' }}" disabled=""></h1>
+                    <h1 class="m-0">Ventas -  <input type="text" style="text-align: center" value="{{ $cliente_id ? $cliente_name : 'Ninguno' }}" disabled=""> - Comprobante {{ $nro_Fact }}</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->

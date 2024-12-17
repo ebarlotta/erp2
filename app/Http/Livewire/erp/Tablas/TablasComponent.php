@@ -22,7 +22,7 @@ class TablasComponent extends Component
     public $rel_id;
     public $empresa_id;
     public $users;
-    public $ListadeTablas;
+    public $ListadeTablas, $relac_id;
     use WithPagination;
 
 
@@ -39,12 +39,14 @@ class TablasComponent extends Component
     public function CargarInformesHabilitados($usuario_id) {
         
         $this->tablas = TablaUsuario::join('tablas', 'tabla_usuarios.tabla_id','=', 'tablas.id')
-        ->where('tablas.empresa_id','=',session('empresa_id'))
-        // ->where('tablas.empresa_id','=',$this->empresa_id)
+        ->where('tablas.empresa_id  ','=',session('empresa_id'))
         ->where('tabla_usuarios.user_id','=',$usuario_id)
-        // ->where('tabla_usuarios.user_id','=',Auth::user()->id)
         ->get();
+
+        // ->where('tablas.empresa_id','=',$this->empresa_id)
+        // ->where('tabla_usuarios.user_id','=',Auth::user()->id)
         // dd($this->tablas);
+
         $this->user_id = $usuario_id;   // Establece el ide de ususario con el que se va a trabajar
         session(['AsignacionOk'=>null]); // Borra cartel
     }
@@ -81,6 +83,8 @@ class TablasComponent extends Component
     
     public function ModalOkAsignar($relac_id,$tabla_id)
     {
+        // dd($tabla_id);
+
         $this->relac_id = $relac_id;
         $this->tabla_id = $tabla_id;
         $this->ModalOk = !$this->ModalOk;
@@ -88,14 +92,13 @@ class TablasComponent extends Component
 
     public function AsignarInforme() {
 
-//        $condiciones = [['user_id', '=', $this->user_id],['tabla_ifind($this->rel_id;
+        //        $condiciones = [['user_id', '=', $this->user_id],['tabla_ifind($this->rel_id;
 
         $a = TablaUsuario::find($this->relac_id);
             
         
 
         //$a=TablaUsuario::where('user_id',$this->user_id)->where('tabla_id',$this->tabla_id);
-        //dd($a);
         if($a) {
             $a = TablaUsuario::destroy($this->relac_id);
             session(['AsignacionOk'=>'Se eliminó correctamente']);

@@ -11,6 +11,7 @@ class ActorCliente extends Model
 
     protected $fillable=[
         'iva_id',
+        'condicioniva_id',
         'actor_id',
     ];
 }

@@ -38,15 +38,18 @@ dnititular      usar geri       HECHO 02/08/2024
 - Gestión de Módulos -> FUNCIONANDO 11/12/2024
 - Gestión de Roles -> FUNCIONANDO 11/12/2024
 
-- Generar todos los permisos para haberes
+- Generar todos los permisos para haberes -> REVISADO 13/12/2024
+- Terminar módulo VentaMostrador -> REALIZADO 13/12/2024
 
+- Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento -> REVISADO. Se mejoró el funcionamiento 17/12/2024
+- Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024 ->REVISDO 16/12/2024
 
 - tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
 - tblPagos hacer que al pagar por billeteras virtuales se impacte el pago en la tabla de Ventas
 - Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos
 - Agregar campo de Buscar en la interfaz de Elementos
 
-- Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento
+
 - Geri ->
     - Estados de Personas
     - Tipos de Personas
@@ -68,7 +71,6 @@ Elementos
 Artículos
 Descartables
 
-- Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024
 - FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
 
 - Gestión de Certificados
@@ -79,6 +81,6 @@ Descartables
 
 - CanonMensual    Puede incluirse en venta de Producto/servicio
 
-- Terminar módulo VentaMostrador
 - Hacer Paciente_Medicamentos
+
 - Hacer StockMedicamentos

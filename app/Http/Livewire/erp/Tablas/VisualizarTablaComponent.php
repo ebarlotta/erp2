@@ -9,6 +9,7 @@ use App\Models\erp\Tabla;
 use App\Models\erp\Venta;
 use App\Models\erp\Comprobante;
 use App\Models\erp\TablaUsuario;
+use App\Models\erp\Registro;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,8 @@ class VisualizarTablaComponent extends Component
     public $isModalOpen = false;
     public $visualizar;
     public $ListadeTablas;
+
+    public $cantidadfila, $cantidadcolumna, $encabezadocolumna;  //Utilizadas estas variables para dibujar la vista previa
 
     public function render()
     {
@@ -412,9 +415,50 @@ class VisualizarTablaComponent extends Component
                         
                 $this->visualizar = $r;
                 break;
+            default:
+                $this->DibujarTabla($NombreInforme);
+                break;
         }
     }
     
+    public function DibujarTabla($NombreInforme) {
+
+
+        $tabla = Tabla::where('name','=',$NombreInforme)->where('empresa_id','=',session('empresa_id'))->get();
+        
+        $this->cantidadfila = $tabla[0]->cantidadfila;
+        $this->cantidadcolumna = $tabla[0]->cantidadcolumna;
+        $this->encabezadocolumna = $tabla[0]->encabezadocolumna;
+        $a = Registro::where('tabla_id',$tabla[0]->id)
+        ->orderby('fila')
+        ->orderby('columna')
+        ->get();
+
+        
+        // $aux = '';
+        // dd($this->cantidadcolumna);
+        $p = 0;
+        $aux = '<table style="width:100%; border: 1px solid black;\">';
+        for($i=1;$i<=$this->cantidadfila;$i++) {
+            $aux = $aux . '<tr>';
+            for($j=1;$j<=$this->cantidadcolumna;$j++) {
+                
+                if(substr($a[$p]['expresion'],0,1)=='*') {
+                    $sql = substr($a[$p]['expresion'],1,strlen($a[$p]['expresion']));
+                    $reg = db::select($sql);
+                    $dato = $reg[0]->dato;
+                } else {
+                    $dato= $a[$p]['expresion'];
+                }
+                $aux = $aux . '<td style="border: 1px solid black; background-color:'.$a[$p]['colorfondocelda'].'; text-align: '.$a[$p]['alineacion'].';" wire:click="CargarDato('.$i.','.$j.','.$a[$p]['id'].')">' . $dato . '</td>';
+                $p++;
+            }
+            $aux = $aux . '</tr>';
+        }
+        $this->visualizar = $aux . '</table>';
+        // dd($this->mostrartabla);
+    }
+
     public function GenerarPDF($nombre) {
         $this->Visualizar($nombre);
         $html = $this->visualizar;

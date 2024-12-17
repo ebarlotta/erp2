@@ -23,7 +23,7 @@ class CreateVentasProductosTable extends Migration
             $table->integer('orden')->default(0);
 
             $table->foreign('productos_id')->references('id')->on('productos');
-            $table->foreign('ventas_id')->references('id')->on('ventas');
+            $table->foreign('ventas_id')->references('id')->on('ventas')->onDelete('cascade');
             $table->timestamps();
         });
     }
