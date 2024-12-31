@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => session('nombre_empresa'), //'AdminLTE 3',
+    'title' => 'AdminLTE 3',
     'title_prefix' => '',
     'title_postfix' => '',
 

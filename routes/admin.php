@@ -192,7 +192,7 @@ Route::get('personascampos',PersonasCamposComponent::class)->name('personascampo
 Route::get('personactivo',PersonActivoComponent::class)->name('crudPersonActivo');
 Route::get('personas',ActorComponent::class)->name('personas');
 Route::get('tiposdedocumentos',TiposDeDocumentosComponent::class)->name('crudTiposDeDocumentos');
-Route::get('tiposdepersonas',TiposDePersonasComponent::class)->name('crudTiposDePersonas');
+Route::get('tiposdepersonas',TiposDePersonasComponent::class)->name('tiposdepersonas');
 Route::get('pdf/informes', ActorComponent::class, 'showPDF');
 
 Route::get('modalpreguntas',[ActorComponent::class,'ResponderInforme1'])->name('modalpreguntas');

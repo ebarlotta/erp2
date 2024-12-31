@@ -1,4 +1,17 @@
 <div>
+    <style>
+        /* Estilo para las celdas de la tabla */
+        td {
+            border: 1px solid #ddd;
+            text-align: center;
+            transition: background-color 0.3s ease; /* Suaviza el cambio de color */
+        }
+
+        /* Cambia el color de fondo al pasar el ratón por encima */
+        td:hover {
+            background-color: #f0f0f0; /* Color de fondo al hacer hover */
+        }
+    </style>
     <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0" style="background-color: beige; ">
             <div class="fixed inset-0 transition-opacity">
@@ -90,8 +103,17 @@
                                     @endforeach
                                 @else
                                     No hay informes configurados por el momento
-                                @endif 
+                                @endif
                             </div>
+                            {{-- <div class="col-12" style="overflow: auto; background-color: lemonchiffon"> --}}
+                                {{-- Medicamentos --}}
+                                <input type="button" wire:click="openModalNuevaIndicacion('Medicamentos')" class="btn btn-info sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold ml-2 rounded" style="max-height: 31px;" value="+">
+                                @if($listadomedicamentos)   
+                                    {!! $visualizarMedicamentos !!}                                
+                                @else
+                                    No hay medicamentos configurados por el momento
+                                @endif
+                            {{-- </div> --}}
                             <div class="col-12 " style="display: flex; flex-wrap: wrap; background-color: beige; margin-top:10px">
                                 @if($listadoinformesGenerados)
                                     @foreach($listadoinformesGenerados as $informe3)

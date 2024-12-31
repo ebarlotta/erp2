@@ -6,6 +6,9 @@ use App\Models\Nacionalidad;
 use App\Models\Localidades;
 use App\Models\Area;
 use App\Models\Condicioniva;
+use App\Models\DiasDeLaSemana;
+use App\Models\Elementos\Elemento;
+use App\Models\Elementos\ElementoMedicamento;
 use App\Models\EmpresaUsuario;
 use App\Models\Iva;
 use App\Models\TiposDocumentos;
@@ -33,6 +36,7 @@ use App\Models\Geri\GradoDependencia;
 use App\Models\Geri\Habitacion;
 use App\Models\Geri\Informes\Informe;
 use App\Models\Geri\Informes\InformeRespuestas;
+use App\Models\Geri\Medicamento;
 use App\Models\Geri\PersonActivo;
 use App\Models\Geri\Personas;
 use App\Models\Geri\Pregunta;
@@ -40,6 +44,8 @@ use App\Models\Geri\Referente;
 use App\Models\Geri\Sexo;
 use App\Models\Geri\Sociales\DatosSocial;
 use App\Models\Geri\TipoDePersona;
+use App\Models\Indicaciones;
+use App\Models\MomentosDelDia;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Stmt\TraitUseAdaptation\Alias;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -78,6 +84,10 @@ class ActorComponent extends Component
 
     public $vinculo, $modalidad,$ultimaocupacion,$viviendapropia,$canthijosvarones=0,$canthijasmujeres=0, $activo;
 
+    public $dias, $momentos;
+    public $visualizarMedicamentos, $listadomedicamentos, $listadoDescartables, $listadoMenues;
+    public $CantidadAModificar, $mostrarModificarIndicacion, $mostrarNuevaIndicacion, $MomentoAModificar, $ElementoAModificar, $DiaAModificar, $NuevaIndicacion, $elementos;
+
     public function render()
     {
         //Busca el id de la empresa relacionada con el usuario que está logueado
@@ -95,6 +105,8 @@ class ActorComponent extends Component
         $this->escolaridades = Escolaridades::all();    // Carga escolaridades
         $this->sexos = Sexo::all();     // Carga sexos 
         $this->person_activos = PersonActivo::all();    // Carga los distintos estados Alta/Baja/En proceso de baja
+        $this->dias = DiasDeLaSemana::all();
+        $this->momentos = MomentosDelDia::all();
         // $this->ivas = Iva::all();   // Carga las distintas ivas
         $this->ivas = Condicioniva::all();   // Carga las distintas ivas
         // Carga las distintas camas y sus habitaciones de cada empresa
@@ -207,8 +219,154 @@ class ActorComponent extends Component
                     $this->informe_id=$this->listadoinformes[0]->id;
                 }
             }
+
+            case 'Medicamentos':{
+                
+                //Busca todos los medicamentos que tiene el actor
+                $this->listadomedicamentos = Indicaciones::join('elementos','indicaciones.elemento_id','elementos.id')
+                ->join('momentos_del_dias','momentos_del_dias.id','indicaciones.momento_del_dia_id')
+                ->join('dias_de_la_semanas','dias_de_la_semanas.id','indicaciones.dia_de_la_semana_id')
+                ->where('elementos.empresa_id','=',session('empresa_id'))
+                ->where('actor_id','=',$this->actor_id)
+                ->orderby('dia_de_la_semana_id','asc')
+                ->orderby('momento_del_dia_id','asc')
+                ->orderby('elemento_id','asc')
+                ->get();
+                $cant=$this->listadomedicamentos->groupBy('elemento_id')->toArray();
+
+                $matriz = '';
+                $i=0;
+                foreach ($cant as $clave => $subArray) { 
+                    // dd($subArray[0]);
+                    // $matriz = $matriz .  "Clave principal: " . $subArray;
+                
+                    // for($i=0;$i<count($cant);$i++) {
+                    //Genera el primer encabezado
+                    $NombreMedicamento = $subArray[0]['name'];
+                    // $NombreMedicamento = $this->listadomedicamentos[$i]->name;
+                    $matriz = $matriz . '
+                    <div class="card sm:col-11 shadow-md rounded-l-md transform transition duration-500 hover:scale-105" style="margin: 1%;box-shadow: 10px 5px 5px gray; height: max-content; border: lightgray; border-style: ridge; border-width: thin;">
+                        <div class="card-body" style="height: 100%; padding: 0.25rem;">
+                            <p>
+                                <table class="w-full">
+                                    <tr>
+                                        <td rowspan=5><b class="ml-2">'.$NombreMedicamento.'</b></td>
+                                        <td><b class="ml-2">Momento</b></td>
+                                        <td><b class="ml-2">Lunes</b></td>
+                                        <td><b class="ml-2">Martes</b></td>
+                                        <td><b class="ml-2">Miércoles</b></td>
+                                        <td><b class="ml-2">Jueves</b></td>
+                                        <td><b class="ml-2">Viernes</b></td>
+                                        <td><b class="ml-2">Sábado</b></td>
+                                        <td><b class="ml-2">Domingo</b></td>
+                                    </tr>';
+
+                    $registro = Indicaciones::join('elementos','indicaciones.elemento_id','elementos.id')
+                    ->join('momentos_del_dias','momentos_del_dias.id','indicaciones.momento_del_dia_id')
+                    ->join('dias_de_la_semanas','dias_de_la_semanas.id','indicaciones.dia_de_la_semana_id')
+                    ->where('elementos.empresa_id','=',session('empresa_id'))
+                    ->where('elemento_id','=',$subArray[0]['elemento_id'])
+                    // ->where('elemento_id','=',$this->listadomedicamentos[$i]->elemento_id)
+                    // ->where('elemento_id','=',$this->listadomedicamentos[$i]->elemento_id)
+                    ->orderby('dia_de_la_semana_id','asc')
+                    ->orderby('momento_del_dia_id','asc')
+                    ->orderby('elemento_id','asc')
+                    ->get();
+
+                    $indice=0;
+                    
+                    // $registros = $matriz;
+                    $registros = '';
+                    for($momentos=1;$momentos<=count($this->momentos);$momentos++) {
+                        $registros = $registros . '<tr>';
+                        switch ($momentos) { 
+                            case(1) : $registros = $registros . '<td><b class="ml-2">Mañana</b></td>';break;
+                            case(2) : $registros = $registros . '<td><b class="ml-2">Almuerzo</b></td>';break;
+                            case(3) : $registros = $registros . '<td><b class="ml-2">Mediatarde</b></td>';break;
+                            case(4) : $registros = $registros . '<td><b class="ml-2">Cena</b></td>';break;                                                        
+                        }
+                        for($dias=1;$dias<=count($this->dias);$dias++) {
+                            
+                            if($momentos==$registro[$indice]->momento_del_dia_id && $dias==$registro[$indice]->dia_de_la_semana_id) {
+                                $registros = $registros . '<td class="text-center" wire:click="ModificarIndicacion('.$momentos.','.$dias.','.$subArray[0]['elemento_id'].')">'. $registro[$indice]->cantidad.'</td>'; 
+                                if($indice<count($registro)-1) { $indice++; } 
+                            }
+                            else {
+                                $registros = $registros . '<td class="text-center" wire:click="ModificarIndicacion('.$momentos.','.$dias.','.$subArray[0]['elemento_id'].')">0</td>';
+                            }
+                        }
+                        $registros = $registros . '</tr>';
+                    }
+                    $matriz = $matriz . $registros;
+                    $matriz = $matriz . '</table></p></div></div>';
+                    $i++;
+                }
+                $this->visualizarMedicamentos = $matriz;
+                break;
+            }
+            
+            case 'Descartables':{
+                // dd('encontrado');
+                $this->listadoDescartables = Medicamento::all();
+                break;
+            }
+            case 'Menúes':{
+                // dd('encontrado');
+                $this->listadoMenues = Medicamento::all();
+                break;
+            }
         }
         $this->listadoinformesGenerados=null;
+    }
+
+    public function ModificarIndicacion($momento, $dia, $elemento_id) {
+        $a = Indicaciones::where('dia_de_la_semana_id','=',$dia)
+        ->where('momento_del_dia_id','=',$momento)
+        ->where('elemento_id','=',$elemento_id)
+        ->where('actor_id','=',$this->actor_id)
+        ->get();
+        if(count($a)) { 
+            $this->CantidadAModificar = $a[0]->cantidad; 
+        } else { $this->CantidadAModificar=0; }
+
+        $this->MomentoAModificar = $momento; 
+        $this->ElementoAModificar = $elemento_id; 
+        $this->DiaAModificar = $dia; 
+
+        $this->mostrarModificarIndicacion = true;
+    }
+
+    public function storeModificarIndicacion() {
+        Indicaciones::updateOrCreate(
+            [
+                'dia_de_la_semana_id' => $this->DiaAModificar,
+                'momento_del_dia_id' => $this->MomentoAModificar,
+                'elemento_id' => $this->ElementoAModificar,
+                'actor_id' => $this->actor_id,
+            ],
+            [
+                'cantidad' => $this->CantidadAModificar,
+            ]
+        );
+        // Indicaciones::updateOrCreate(['dia_de_la_semana_id' => $this->MomentoAModificar,'momento_del_dia_id','=',$this->DiaAModificar,'elemento_id','=',$this->ElementoAModificar,'actor_id','=',$this->actor_id], ['cantidad' => $this->CantidadAModificar,]); 
+        $this->mostrarModificarIndicacion = false;
+        $this->CargarInforme('Medicamentos');
+    }
+
+    public function storeNuevaIndicacion() {
+        Indicaciones::updateOrCreate(
+            [
+                'dia_de_la_semana_id' => 1,
+                'momento_del_dia_id' => 1,
+                'elemento_id' => $this->NuevaIndicacion,
+                'actor_id' => $this->actor_id,
+            ],
+            [
+                'cantidad' => 0,
+            ]
+        );
+        $this->mostrarNuevaIndicacion = false;
+        $this->CargarInforme('Medicamentos');
     }
 
     public function MostrarInformes($informe_id) {
@@ -316,7 +474,17 @@ class ActorComponent extends Component
         $this->personalmedico = Actor::where('tipopersona_id','=',3)->get(); 
         $this->nuevo_informe_id = $id; }
     public function cerrarModalNuevoInforme() { $this->ModalNuevoInforme=false; }
-
+    public function cerrarModalModificarIndicacion() { $this->mostrarModificarIndicacion = false; }
+    public function cerrarModalNuevaIndicacion() { $this->mostrarNuevaIndicacion = false; }
+    public function openModalNuevaIndicacion($caso) { 
+        switch ($caso) {
+            case 'Medicamentos': 
+                $this->elementos = Elemento::join('elemento_medicamentos','elemento_medicamentos.elemento_id','elementos.id')
+                ->where('empresa_id','=',session('empresa_id'))->orderby('name')->get();
+                break;
+        }
+    $this->mostrarNuevaIndicacion = true; }
+    
 
     private function resetCreateForm(){
         $this->name = '';

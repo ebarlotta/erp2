@@ -104,7 +104,7 @@ class ElementosComponent extends Component
                 ]); 
                 break;
             case "Descartable" : 
-                $this->validate(['descripcion'=> 'required',]);
+                // $this->validate(['descripcion'=> 'required',]);
                 break;
             case "Articulo" : 
                 $this->validate(['precio_venta'=> 'required|numeric|min:0','lista_id'=> 'required',]);
@@ -166,6 +166,7 @@ class ElementosComponent extends Component
         session()->flash('message', $a->id ? $this->seleccionado . ' Actualizado.' : $this->seleccionado . ' Creado.');
         
         $this->elemento_id = null; // Borra de la memoria el Elemento con el que se estaba trabajando
+        $this->ruta = null;
         
         $this->closeModalPopover();
         $this->borrarDatos();

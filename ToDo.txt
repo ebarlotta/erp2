@@ -44,19 +44,17 @@ dnititular      usar geri       HECHO 02/08/2024
 - Revisar Vistaprevia.blade.php antigua para ver que información tenía en su momento -> REVISADO. Se mejoró el funcionamiento 17/12/2024
 - Revisar otras tablas faltantes que estaban en las hojas impresas -> Empezando en Geri 03/08/2024 ->REVISDO 16/12/2024
 
+- Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos -> REVISADO por ahora no se tendrá en cuenta
+- Agregar campo de Buscar en la interfaz de Elementos -> REALIZADO 26/12/2024
+
+- Geri ->  REALIZADO 29/12/2024
+    - Estados de Personas   Ok
+    - Tipos de Personas     Ok
+    - Beneficios            OK
+
+
 - tblCheques      Puede utilizarse el nombre Documentos - Revisar Backup para ver como se utilizaban
 - tblPagos hacer que al pagar por billeteras virtuales se impacte el pago en la tabla de Ventas
-- Pensar si la tabla recordset es necesaria desarrollarla ya que podría ser un Patron que tenga el mismo formato para hacer solicitudes a la base de datos
-- Agregar campo de Buscar en la interfaz de Elementos
-
-
-- Geri ->
-    - Estados de Personas
-    - Tipos de Personas
-    - Beneficios
-
-
-
 
 No migrar recursos -> SE MIGRÓ PARA NO PERDER INFORMACIÓN SI MÁS ADELANTE NO ES NECESARIO SE ELIMINA
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
@@ -65,11 +63,12 @@ Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 -- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización -> Se entiende que Elementos tiene el id necesario 05/08/2024
 -- Camas no se si es necesario empresa_id -> Si es necesario. Se agrega 05/08/2024
 
-Medicamentos
+Medicamentos    REVISAR PORQUE HAY DOS INTERFACES MEDICAMENTOS Y ELEMENTOS-MEDICAMENTOS
 Ingredientes    REALIZADO 05/07/2024
-Elementos
-Artículos
-Descartables
+
+
+
+- Hacer Paciente_Medicamentos
 
 - FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
 
@@ -81,6 +80,8 @@ Descartables
 
 - CanonMensual    Puede incluirse en venta de Producto/servicio
 
-- Hacer Paciente_Medicamentos
-
 - Hacer StockMedicamentos
+
+Elementos -> Agregar Imágenes
+Artículos -> Agregar Imágenes
+Descartables -> Agregar Imágenes

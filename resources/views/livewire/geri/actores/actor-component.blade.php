@@ -81,6 +81,8 @@
             @if ($isModalOpen) @include('livewire.geri.actores.createactores') @endif
             @if ($isModalOpenAdicionales) @include('livewire.geri.actores.createactoresadicionales') @endif
             @if ($isModalOpenGestionar) @include('livewire.geri.actores.createactores2') @endif
+            @if ($mostrarModificarIndicacion) @include('livewire.geri.actores.modalModificarIndicacion') @endif
+            @if ($mostrarNuevaIndicacion) @include('livewire.geri.actores.modalNuevaIndicacion') @endif
             @if ($modalpreguntas) @include('livewire.geri.actores.modalpreguntas') @endif
 
             <table class="table-fixed">

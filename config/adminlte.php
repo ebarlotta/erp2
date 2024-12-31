@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => session('nombre_empresa'), //'AdminLTE 3',
+    'title' => 'AdminLTE 3',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -543,11 +543,6 @@ return [
                     'can' => 'escolaridades.Ver',
                 ],
                 [
-                    'text' => 'Estado de Actores',
-                    'url'  => 'personactivo',
-                    'icon' => 'fas fa-fw fa-bed',
-                ],
-                [
                     'text' => 'Estado de Camas',
                     'url'  => 'estadocama',
                     'icon' => 'fas fa-fw fa-bed',
@@ -574,11 +569,6 @@ return [
                     'text' => 'Motivos de Egresos',
                     'url'  => 'motivoegreso',
                     'can' => 'motivoegreso.Ver',
-                ],
-                [
-                    'text' => 'Tipo de Actor',
-                    'url'  => 'tiposdepersonas',
-                    'icon' => 'fas fa-fw fa-object-group',
                 ],
                 [
                     'text' => 'Gestión Menú',

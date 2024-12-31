@@ -61,6 +61,10 @@
                             @error('ruta') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         {{-- Variaciones --}}
+
+                        {{-- Medicamentos --}}
+                        {{-- ============ --}}
+
                         @if($seleccionado=='Medicamento') 
                             <div class="mb-4 col-3">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Pedir A:</label>
@@ -73,6 +77,10 @@
                                 @error('psiquiatrico') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         @endif
+
+                        {{-- Ingrediente --}}
+                        {{-- =========== --}}
+
                         @if($seleccionado=='Ingrediente') 
                             <div class="mb-4 col-3">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Estado:</label>
@@ -85,6 +93,8 @@
                                 @error('estado_id') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         @endif
+                        {{-- Producto --}}
+                        {{-- ======== --}}
                         @if($seleccionado=='Producto') 
                             <div class="mb-4 col-2">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Código de Barra:</label>
@@ -148,6 +158,10 @@
                                 @error('descripcion') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         @endif
+
+                        {{-- Descartable --}}
+                        {{-- =========== --}}
+
                         @if($seleccionado=='Descartable') 
                             <div class="mb-4 col">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
@@ -155,6 +169,10 @@
                                 @error('descripcion') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>
                         @endif
+
+                        {{-- Artículo --}}
+                        {{-- ======== --}}
+
                         @if($seleccionado=='Articulo') 
                             <div class="mb-4 col-2">
                                 <label class="block text-gray-700 text-sm font-bold mb-2">Marca</label>
