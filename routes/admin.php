@@ -76,11 +76,13 @@ use App\Http\Livewire\Geri\Interfaces\InterfacesComponent;
 use App\Http\Livewire\Geri\Medicamentos\MedicamentosComponent;
 use App\Http\Livewire\Geri\Menu\MenuComponent;
 use App\Http\Livewire\Geri\Ingredientes\IngredientesComponent;
+use App\Http\Livewire\Geri\PlanAlimentarioComponent;
 
 use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
 use App\Http\Livewire\erp\Cart\Cart;
 use App\Http\Controllers\Productos;
 use App\Http\Livewire\Listas\ListaComponent;
+
 
 // use App\Http\Livewire\Empresa\EmpresaComponent;
 // use App\Http\Livewire\EmpresaGestion\EmpresaGestion;
@@ -191,6 +193,7 @@ Route::get('motivoegreso',MotivoegresoComponent::class)->name('motivoegreso');
 Route::get('personascampos',PersonasCamposComponent::class)->name('personascampos');
 Route::get('personactivo',PersonActivoComponent::class)->name('crudPersonActivo');
 Route::get('personas',ActorComponent::class)->name('personas');
+Route::get('planesalimentarios',PlanAlimentarioComponent::class)->name('planesalimentarios');
 Route::get('tiposdedocumentos',TiposDeDocumentosComponent::class)->name('crudTiposDeDocumentos');
 Route::get('tiposdepersonas',TiposDePersonasComponent::class)->name('tiposdepersonas');
 Route::get('pdf/informes', ActorComponent::class, 'showPDF');

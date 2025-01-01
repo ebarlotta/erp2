@@ -1,14 +1,5 @@
 <div>
     <x-titulo>Elementos</x-titulo>
-    {{-- <x-slot name="header">
-        <div class="flex">
-            <!-- //Comienza en submenu de encabezado -->
-
-            <!-- Navigation Links -->
-            @livewire('submenu')
-        </div>
-
-    </x-slot> --}}
 
     <div class="content-center flex">
         <div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">

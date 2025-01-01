@@ -484,7 +484,6 @@ class ActorComponent extends Component
                 break;
         }
     $this->mostrarNuevaIndicacion = true; }
-    
 
     private function resetCreateForm(){
         $this->name = '';

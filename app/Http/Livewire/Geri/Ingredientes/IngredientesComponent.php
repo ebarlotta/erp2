@@ -27,7 +27,7 @@ class IngredientesComponent extends Component
         $this->unidades = Unidad::where('empresa_id', $this->empresa_id)->get();
         $this->ingredientes = Ingredientes::where('empresa_id', $this->empresa_id)->get();
         //dd($this->ingredientes->categorias['nombrecategoria']);
-        return view('livewire.geri.ingredientes.ingrediente-component',['datos'=> Ingredientes::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        return view('livewire.geri.ingredientes.ingrediente-component',['datos'=> Ingredientes::where('empresa_id', $this->empresa_id)->paginate(7),])->extends('layouts.adminlte');
     }
 
     public function create()
@@ -38,25 +38,11 @@ class IngredientesComponent extends Component
         return view('livewire.geri.ingredientes.createingrediente')->with('isModalOpen', $this->isModalOpen)->with('nombreingrediente', $this->nombreingrediente);
     }
 
-    public function openModalPopover()
-    {
-        $this->isModalOpen = true;
-    }
+    public function openModalPopover() { $this->isModalOpen = true; }
+    public function closeModalPopover() { $this->isModalOpen = false; }
+    private function resetCreateForm(){ $this->ingrediente_id = ''; $this->nombreingrediente = ''; }
 
-    public function closeModalPopover()
-    {
-        $this->isModalOpen = false;
-    }
-
-    private function resetCreateForm(){
-        $this->ingrediente_id = '';
-
-        $this->nombreingrediente = '';
-    }
-    
-    public function store()
-    {
-        //dd($this->unidades);
+    public function store() {
         $this->validate([
             'nombreingrediente' => 'required',
             'unidades' => 'required',
@@ -78,7 +64,7 @@ class IngredientesComponent extends Component
     public function edit($id)
     {
         $ingrediente = Ingredientes::findOrFail($id);
-        $this->id = $id;
+        // $this->id = $id;
         $this->ingrediente_id=$id;
         $this->nombreingrediente = $ingrediente->nombreingrediente;
         $this->unidad_id = $ingrediente->unidad_id;
@@ -87,8 +73,7 @@ class IngredientesComponent extends Component
         $this->openModalPopover();
     }
     
-    public function delete($id)
-    {
+    public function delete($id) {
         Ingredientes::find($id)->delete();
         session()->flash('message', 'Ingrediente Eliminada.');
     }

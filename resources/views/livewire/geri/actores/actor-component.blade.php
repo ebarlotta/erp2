@@ -1,14 +1,6 @@
 <div>
     <x-titulo>Actores</x-titulo>
-    {{-- <x-slot name="header">
-        <div class="flex">
-            <!-- //Comienza en submenu de encabezado -->
 
-            <!-- Navigation Links -->
-            @livewire('submenu')
-        </div>
-
-    </x-slot> --}}
     <div class="mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-4">
             @if (session()->has('message'))

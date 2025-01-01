@@ -39,6 +39,7 @@
                                 {{-- si es Agente --}}
                                 @if($tipopersona_id==1)  
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Medicamentos')">Medicamentos</label>
+                                    <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('PlanAlimentario')">Plan Alimentario</label>
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Descartables')">Descartables</label>
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Sociales')">Informes Sociales</label>
                                     <label class="btn btn-info mr-2 rounded-md mt-2" wire:click="CargarInforme('Medicos')">Informes Médicos</label>
@@ -70,7 +71,10 @@
                                             <tr><td>Escolaridad</td><td>{{ $escolaridad_id }}</td> </tr>
                                             <tr><td>Teléfono</td><td>{{ $telefono}}</td> </tr>
                                             <tr><td>Empresa_id</td><td>{{ $nombreempresa }}</td> </tr>
-                                            <tr><td>Activo</td><td>@if($activo) SI @else NO @endif </td></tr>
+                                            <tr>
+                                                <td>Activo</td>
+                                                <td></td>
+                                            </tr>
                                             <tr><td>FIngreso</td><td>{{ $fingreso }}</td> </tr>
                                             <tr><td>FEgreso</td><td>{{ $fegreso }}</td> </tr>
                                             <tr><td>Peso</td><td>{{ $peso }}</td> </tr>
