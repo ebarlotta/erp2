@@ -584,6 +584,11 @@ return [
                             'url'  => 'menu',
                             'can' => 'menu.Ver',
                         ],
+                        [
+                            'text' => 'Planes Alimentarios',
+                            'url'  => 'planesalimentarios',
+                            // 'can' => 'ingredientes.Ver',
+                        ],
                     ],
                 ],
             ],
