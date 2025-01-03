@@ -167,7 +167,6 @@ class CompraComponent extends Component
                 $saldo = $subtotalesGenerales[$i]->saldo;
                 //Comienza a iterar en todos los registros a nivel detallado que encontró
                 for($j=0; $CantParcial>$j ; $j++) {
-                    // dd($subParciales[0]);
                     // $sub = $subParciales[$CantParcial]; // Convierte el registro en un array para poder utilizarlo más adelante
                     $sub = $subParciales[$j]; // Convierte el registro en un array para poder utilizarlo más adelante
                     // ".number_format($subParciales[$i]->saldo, 2, ',', '.')."
@@ -211,7 +210,6 @@ class CompraComponent extends Component
                 $saldo = $subtotalesGenerales[$i]->saldo;
                 //Comienza a iterar en todos los registros a nivel detallado que encontró
                 for($j=0; $CantParcial>$j ; $j++) {
-                    // dd($subParciales[0]);
                     // $sub = $subParciales[$CantParcial]; // Convierte el registro en un array para poder utilizarlo más adelante
                     $sub = $subParciales[$j]; // Convierte el registro en un array para poder utilizarlo más adelante
                     // ".number_format($subParciales[$i]->saldo, 2, ',', '.')."
@@ -227,77 +225,6 @@ class CompraComponent extends Component
         $html = $html . '<tr><td colspan=9></td></tr><tr  bgcolor="lightGray" style="font-size:16px"><td colspan=7></td><td><b>Saldo Final</b></td><td><b>'.number_format($saldoFinal, 2, ',', '.') .'</b></td></tr>';
         $html = $html . ' </tbody></table></div>';
         $this->CuentasCorrientesHtml = $html;
-
-                // dd($subtotales1);
-
-            // $subtotales = DB::table('ListadoCuentasCorrientes')
-            // ->groupByRaw('area_id')
-            // ->get();
-
-            // $subtotales = DB::select('SELECT * FROM ListadoCuentasCorrientes');
-            
-
-// create view ListadoCuentasCorrientes as
-// SELECT comprobantes.fecha, 
-// comprobantes.comprobante, 
-// comprobantes.NetoComp, 
-// comprobantes.MontoPagadoComp,
-// comprobantes.empresa_id,
-// comprobantes.proveedor_id,
-// B.saldo 
-// FROM 
-// comprobantes, 
-// (select comprobante, 
-//   sum(NetoComp-MontoPagadoComp) as saldo, 
-//   empresa_id, 
-//   proveedor_id, 
-//   area_id, 
-//   cuenta_id 
-// FROM comprobantes 
-// GROUP BY
-//   comprobante, empresa_id, proveedor_id) as B 
-// WHERE 
-// comprobantes.comprobante = B.comprobante and 
-// comprobantes.empresa_id=B.empresa_id and 
-// comprobantes.proveedor_id = B.proveedor_id and 
-// comprobantes.area_id = B.area_id and 
-// comprobantes.cuenta_id = B.cuenta_id
-// ORDER by comprobantes.fecha;
-        //     $subtotales = Comprobante::leftjoin('proveedors','comprobantes.proveedor_id','proveedors.id')
-        //     ->leftjoin('cuentas1','comprobantes.cuenta_id','cuentas.id')
-        //     ->leftjoin('areas','comprobantes.area_id','areas.id')
-        //     ->where('comprobantes.proveedor_id','=',$this->ccProveedor)
-        //     ->where('comprobantes.fecha','>=', $this->ccdesde)
-        //     ->where('comprobantes.fecha','<=', $this->cchasta)
-        //     ->where('comprobantes.empresa_id','=', session('empresa_id'))
-        //     ->groupby('comprobante','comprobantes.proveedor_id','proveedors.id','comprobantes.fecha','comprobantes.NetoComp','comprobantes.MontoPagadoComp','proveedors.name','areas.name','cuentas.name')
-        //     ->get(['fecha', 'comprobante', 'NetoComp', 'MontoPAgadoComp', 'proveedors.name as proveedor', 'areas.name as area', 'cuentas.name as cuenta']);
-
-        //     $this->detallesCC = Comprobante::leftjoin('proveedors','comprobantes.proveedor_id','proveedors.id')
-        //     ->leftjoin('cuentas','comprobantes.cuenta_id','cuentas.id')
-        //     ->leftjoin('areas','comprobantes.area_id','areas.id')
-        //     ->where('comprobantes.proveedor_id','=',$this->ccProveedor)
-        //     ->where('comprobantes.fecha','>=', $this->ccdesde)
-        //     ->where('comprobantes.fecha','<=', $this->cchasta)
-        //     ->where('comprobantes.empresa_id','=', session('empresa_id'))
-        //     ->orderby('fecha')
-        //     ->orderby('comprobantes')
-        //     ->get(['fecha', 'comprobante', 'NetoComp', 'MontoPAgadoComp', 'proveedors.name as proveedor', 'areas.name as area', 'cuentas.name as cuenta']);
-        // } else {
-        //     $this->detallesCC = Comprobante::leftjoin('proveedors','comprobantes.proveedor_id','proveedors.id')
-        //     ->leftjoin('cuentas','comprobantes.cuenta_id','cuentas.id')
-        //     ->leftjoin('areas','comprobantes.area_id','areas.id')
-        //     ->where('comprobantes.proveedor_id','=',$this->ccProveedor)
-        //     ->where('comprobantes.fecha','>=', $this->ccdesde)
-        //     ->where('comprobantes.fecha','<=', $this->cchasta)
-        //     ->where('comprobantes.empresa_id','=', session('empresa_id'))
-        //     ->orderby('fecha')
-        //     ->orderby('detalle')
-        //     ->get(['fecha', 'comprobante', 'NetoComp', 'MontoPAgadoComp', 'proveedors.name as proveedor', 'areas.name as area', 'cuentas.name as cuenta']);
-        // }
-
-        // dd($a);
-
 
     }
 
@@ -345,7 +272,6 @@ class CompraComponent extends Component
             ->where('Cerrado','>',0)
             ->get();
 
-            // dd(count($cerrado));
         if(!count($cerrado) || (count($cerrado) && $this->gpartiva='Si')) {
             Comprobante::create([
                 'fecha'             => $this->gfecha,
@@ -408,7 +334,6 @@ class CompraComponent extends Component
                 'gcuenta'           => 'required|integer',
                 'gproveedor'        => 'required|integer',
             ]);
-            //dd($this->gbruto. " " . $this->giva);
             $comp->update([
                 'fecha'             => $this->gfecha,
                 'comprobante'       => $this->gcomprobante,
@@ -470,16 +395,11 @@ class CompraComponent extends Component
             $sqlDetalle = 'SELECT DISTINCT detalle' . $sqlTemp . 'ORDER BY detalle';
         } else { 
             $sqlTemp = substr($sql,8,-38);
-            // dd($sqlTemp); 
             $sqlDetalle = 'SELECT DISTINCT detalle' . $sqlTemp  . ' ORDER BY detalle';
-            // dd($sqlDetalle);
         }
 
         // Extrae los distintos Detalles si es que los hay
-        // $sqlDetalle = substr($sqlDetalle,0,-37);
-        
         $this->detalles = DB::select($sqlDetalle);        
-        // dd($this->detalles);
         //Dibuja el combo Detalles
         $this->combodetalle = '';
         foreach ($this->detalles as $detalle) {
@@ -487,9 +407,6 @@ class CompraComponent extends Component
             '<option value="' . $detalle->detalle .'">'. $detalle->detalle . '</option>';
         }
 			
-        //dd($this->combodetalle);
-        //dd($sql);
-        //dd(json_encode($this->detalles)); 
         //Dibuja el filtro
         $Saldo=0;
         
@@ -522,17 +439,14 @@ class CompraComponent extends Component
                 
             $Cantidad = 0; $MontoPagado = 0; $Neto = 0; $RetGan = 0; $RetIB = 0; $PerIva = 0; $Exento = 0 ;$ImpInterno = 0; $Bruto = 0; $MontoIvaT =0; $NetoT = 0;
         foreach($registros as $registro) {
-            //dd($registro);
             $Fecha = substr($registro->fecha,8,2) ."-". substr($registro->fecha,5,2) ."-". substr($registro->fecha,0,4);
             $Area=Area::find($registro->area_id);
             $Cuenta=Cuenta::find($registro->cuenta_id);
             $Iva=Iva::find($registro->iva_id);
             $Proveedor=Proveedor::find($registro->proveedor_id);
-            //dd($Iva->monto);
             if($Iva->monto==0) { $MontoIva=0; } else {
                 $MontoIva=($registro->BrutoComp*$Iva->monto/100);
             }
-            //dd(number_format($MontoIva, 2,'.',''));
             $Neto = $Neto + $registro->NetoComp;
             //Sumatoria de los registros encontrados para subtotal
             $Bruto = $Bruto + $registro->BrutoComp;
@@ -568,32 +482,6 @@ class CompraComponent extends Component
                 <td class=\"p-0 col d-none d-sm-table-cell text-right\">$Area->name</td>
                 <td class=\"p-0 col d-none d-sm-table-cell text-right\">$Cuenta->name</td>
                 </tr>";
-                // $this->filtro=$this->filtro."
-                //     <div class=\"flex col-12 fse-1 md:fse-0\" wire:click=\"gCargarRegistro(". $registro->id .")\">
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">$Fecha</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">$registro->comprobante</div>
-                //     <div class=\"col-2 border border-secondary\"\">$Proveedor->name</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary text-center hidden sm:hidden md:hidden lg:block xl:block \"\">$registro->detalle</div>
-                //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->BrutoComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">".number_format($MontoIva, 2,'.','')."</div>
-                //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->ExentoComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->ImpInternoComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->PercepcionIvaComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->RetencionIB, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->RetencionGan, 2,'.','')."</div>
-                //     <div class=\"col-2 border border-secondary\"\">".number_format($registro->NetoComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary\"\">".number_format($registro->MontoPagadoComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($Saldo, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">".number_format($registro->CantidadLitroComp, 2,'.','')."</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$registro->ParticIva</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$Area->name</div>
-                //     <div class=\"xs:col-flex1 md:col-flex border border-secondary hidden sm:hidden md:hidden lg:block xl:block \"\">$Cuenta->name</div>
-                // </div>";
-
-
-                // $this->filtro=$this->filtro."<tr class=\"bg-red-200 hover:bg-red-100\" wire:click=\"gCargarRegistro(". $registro->id .")\"><td class=\"border border-green-600\">$Fecha</td><td class=\"border border-green-600 text-right\">$registro->comprobante</td><td class=\"border border-green-600\">$Proveedor->name</td><td class=\"border border-green-600 text-right\">$registro->detalle</td><td class=\"border border-green-600 text-right\">".number_format($registro->BrutoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoIva, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->ExentoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->ImpInternoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->PercepcionIvaComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->RetencionIB, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->RetencionGan, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->NetoComp, 2,'.','')."</td><td class=\"text-red-600 border border-green-600 text-right\">".number_format($registro->MontoPagadoComp, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($Saldo, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($registro->CantidadLitroComp, 2,'.','')."</td><td class=\"border border-green-600\">$registro->ParticIva</td><td class=\"border border-green-600\">" . $this->ConvierteMesEnTexto($registro->PasadoEnMes) . "</td><td class=\"border border-green-600\">".$Area->name."</td><td class=\"border border-green-600\">".$Cuenta->name."</td></tr>
-                // </tr>";
         }
 
         $this->filtro=$this->filtro."<tr>
@@ -619,35 +507,7 @@ class CompraComponent extends Component
         </tr> 
         </tbody>
         </table>    
-        </div>";
-
-        // $this->filtro=$this->filtro."
-        // <div class=\"col-12 fse-1  md:fse-0 flex border table-auto w-full border border-green-800 border-collapse bg-gray-300 rounded-md\">
-            
-        //         <div class=\"xs:col-flex1 md:col-flex border\"></div>
-        //         <div class=\"xs:col-flex1 border\"></div>
-        //         <div class=\"col-2 border\">Totales</div>
-        //         <div class=\"xs:col-flex1 text-center hidden sm:hidden md:hidden lg:block xl:block \"></div>
-        //         <div class=\"col-2 border\"\">".number_format($Bruto, 2,'.','')."</div>
-        //         <div class=\"xs:col-flex1 border\"\">".number_format($MontoIvaT, 2,'.','')."</div>
-        //         <div class=\"col-2\"\">".number_format($Exento, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\">".number_format($ImpInterno, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\">".number_format($PerIva, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\">".number_format($RetIB, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\">".number_format($RetGan, 2,'.','')."</div>
-        //         <div class=\"col-2 border\"\">".number_format($NetoT, 2,'.','')."</div>
-        //         <div class=\"xs:col-flex1 border\"\">".number_format($MontoPagado, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\">".number_format($Saldo, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\">".number_format($Cantidad, 2,'.','')."</div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\"></div>
-        //         <div class=\"hidden sm:hidden md:hidden lg:block xl:block\"\"></div>
-        //         <div class=\"xs:col-flex1\"\"></div>
-        //         <div class=\"xs:col-flex1\"\"></div>
-        // </div>    ";
-
-        // $this->filtro = $this->filtro."<tr class=\"bg-gradient-to-r from-purple-400 via-pink-500 to-red-500\"><td></td><td></td><td></td><td class=\"border border-green-600\">Totales</td><td class=\"border border-green-600 text-right\">".number_format($Bruto, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoIvaT, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($Exento, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($ImpInterno, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($PerIva, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($RetIB, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($RetGan, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($NetoT, 2,'.','')."</td><td class=\"border border-green-600 text-right\">".number_format($MontoPagado, 2,'.','')."</td><td class=\"border border-green-600 text-right\"><strong>".number_format($Saldo, 2,'.','')."</strong></td><td class=\"border border-green-600 text-right\">".number_format($Cantidad, 2,'.','')."</td></tr>";
-        // $this->filtro=$this->filtro."</table>";
-        
+        </div>";        
     }
 
     public function ConvierteMesEnTexto($id) {
@@ -677,26 +537,20 @@ class CompraComponent extends Component
         switch ($interfaz) {
             case "comprobantes" : {
                 //Mes 	Proveedor 	ParticipaIva 	Iva 	Detalle 	Area 	Cuenta 	Año 	Asc. C/Saldo
-                //dd($this->gfmes);
                 if ($this->gfmes<>null) $sql=" PasadoEnMes=" . $this->gfmes;
                 if ($this->gfproveedor) $sql=$sql ? $sql=$sql." and proveedor_id=" . $this->gfproveedor : " proveedor_id=" . $this->gfproveedor;
                 if ($this->gfparticipa) $sql=$sql ? $sql=$sql." and ParticIva='" . $this->gfparticipa . "'" : " ParticIva='" . $this->gfparticipa . "'";
                 if ($this->gfiva) $sql=$sql ? $sql=$sql." and iva_id=" . $this->gfiva : " iva_id=" . $this->gfiva;
-                //dd($this->gfdetalle);
-                //if ($this->gfdetalle<>null) $sql=$sql ? $sql=$sql." and detalle='" . $this->gfdetalle . "'" : " ";
-                // if ($this->gfdetalle=="Todos") $sql=$sql ? $sql=$sql." and detalle='" . $this->gfdetalle . "'" : " detalle='" . $this->gfdetalle . "'";
                 if ($this->gfdetalle<>null) {
                     
                     if ($this->gfdetalle<>"Todos") $sql=$sql . " and detalle='" . $this->gfdetalle. "'";
                 }
-                //dd($sql);
                 if ($this->gfarea) $sql=$sql ? $sql=$sql." and area_id=" . $this->gfarea : " area_id=" . $this->gfarea;
                 if ($this->gfcuenta) $sql=$sql ? $sql=$sql." and cuenta_id=" . $this->gfcuenta : " cuenta_id=" . $this->gfcuenta;
                 if ($this->gfanio) $sql=$sql ? $sql=$sql." and Anio=" . $this->gfanio : " Anio=" . $this->gfanio;
                 $sql=$sql ? $sql=$sql." and empresa_id=" . session('empresa_id') : $sql." empresa_id=" . session('empresa_id');
                 //Fecha	Comprobante	Proveedor	Detalle	Bruto	Iva	exento	Imp.Interno	Percec.Iva	Retenc.IB	Retenc.Gan	Neto	Pagado	Saldo	Cant.Litros	Partic.Iva	Pasado EnMes	Area	Cuenta
                 $sql = "SELECT * FROM comprobantes WHERE" . $sql; // . " ORDER BY fecha, comprobante";
-                // dd($sql);
                 if ($this->fgascendente) { $sql=$sql . " ORDER BY fecha, comprobante"; } else { $sql=$sql . " ORDER BY fecha DESC, comprobante DESC"; }
                 break;
             }
@@ -705,7 +559,6 @@ class CompraComponent extends Component
                 //"SELECT proveedors.name as Name, Saldos.Saldo as Saldo FROM proveedors, (SELECT sum(NetoComp-MontoPagadoComp) as Saldo, comprobantes.proveedor_id as idproveedor FROM comprobantes WHERE fecha>='2021-09-01' and fecha<='2021-09-30' and empresa_id=1     GROUP BY comprobantes.proveedor_id ) as Saldos WHERE proveedors.id = Saldos.idproveedor and Saldos.Saldo>1
                 
                 if ($this->darea==0) { $darea=''; } else { $darea=' and comprobantes.area_id='.$this->darea; }  //Comprueba si se ha seleccionado un area en especìfico
-                // dd($this->darea);
                 if ($this->danio==0) { $danio=''; } else { $danio=' and comprobantes.Anio='.$this->danio; }  //Comprueba si se ha seleccionado un año en especìfico
 
                 if($this->darea<>0) {
@@ -770,24 +623,20 @@ class CompraComponent extends Component
                 $this->MostrarLibrosComponent=true;break;
             };
         }
-        //dd($sql);
         return $sql;
     }
 
     public function gCargarRegistro($id) {
         $registro=Comprobante::find($id);
         $this->comprobante_id = $id;
-        $this->id = $id; //Utilizado para buscar el registro para eliminar
+        // $this->id = $id; //Utilizado para buscar el registro para eliminar
         $this->gfecha= substr($registro->fecha,0,10);
         $this->gcomprobante=$registro->comprobante;
         $this->gdetalle=$registro->detalle;
-        //dd($registro);
-        //dd($this->gdetalle);
         $this->gbruto=number_format($registro->BrutoComp, 2, '.','');
         $this->gpartiva=$registro->ParticIva;
         $a=Iva::find($registro->iva_id);
         $this->iva_value= $a->monto;
-        //  dd($this->iva_value);
         $this->giva2=number_format($registro->MontoIva, 2, '.','');
         $this->gexento=number_format($registro->ExentoComp, 2, '.','');
         $this->gimpinterno=number_format($registro->ImpInternoComp, 2, '.','');
@@ -827,7 +676,6 @@ class CompraComponent extends Component
     }
 
     public function CalcularIva() {
-        //dd($this->iva_value);$a=Iva::find($registro->iva_id);
         $a=Iva::find($this->giva);
         if ($this->gbruto=="") $this->gbruto=0.00;
         $this->iva_value= $a->monto;
@@ -852,21 +700,8 @@ class CompraComponent extends Component
 
     public function CalcularDeudaProveedores($ret) {
         $registros = $this->ProcesaSQLFiltro('deuda'); // Procesa los campos a mostrar
-        //dd($sql);
-        //$registros = DB::select(DB::raw($sql));       // Busca el recordset
-
-        // $registros = DB::table('comprobantes')
-        //             ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id')
-        //             ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
-        //             ->groupBy('proveedors.id')
-        //             //->whereBetween('comprobantes.fecha',["'".$this->ddesde."'","'".$this->dhasta."'"])
-        //             ->where('comprobantes.fecha','>=',$this->ddesde)
-        //             ->where('comprobantes.fecha','<=',$this->dhasta)
-        //             //->orderByDesc('avg_salary')
-        //             ->get();
-
         $this->deudaPDF = $registros;
-        //dd($this->deudaPDF);
+
         //Dibuja el filtro
         $Saldo=0;
         $this->DeudaProveedoresFiltro = "<table class=\"mt-6\" style=\"width:300px\">
@@ -901,8 +736,6 @@ class CompraComponent extends Component
                 <td class=\"text-right bg-gray-300 pr-4\"><b>".number_format($Saldo,2,',','.')."</b></td>
             </tr>
             </table>";
-            //dd("filtro" . $this->DeudaProveedoresFiltro);
-            //$this->deudaPDF = $this->DeudaProveedoresFiltro;
         if($ret) return $this->DeudaProveedoresFiltro;
         //SELECT proveedors.name, Saldos.Saldo FROM proveedors, (SELECT sum(NetoComp-MontoPagadoComp) as Saldo, comprobantes.proveedor_id as idproveedor FROM comprobantes WHERE empresa_id=1 GROUP BY comprobantes.proveedor_id ) as Saldos WHERE proveedors.id = Saldos.idproveedor and Saldos.Saldo>1
     }
@@ -951,7 +784,6 @@ class CompraComponent extends Component
             //Dibuja el filtro
             $Saldo=0;
             $this->LibroFiltro ="<table class=\"w-full mt-8  shadow-lg\" ><tr><td class=\"bg-gray-300 border border-green-400\">Mes</td><td class=\"bg-gray-300 border border-green-400\">Estado</td>";
-            //dd($registros);
             foreach ($registros as $libro) {
                 $NombreMes = $this->ConvierteMesEnTexto($libro->PasadoEnMes);
                 if($libro->Cerrado>0) { $AbiertoCerrado = 'Cerrado'; } else { $AbiertoCerrado = 'Abierto'; }
@@ -964,14 +796,12 @@ class CompraComponent extends Component
     public function CerrarLibro() {
         //$sSql="SELECT * FROM tblComprobantes WHERE Anio=$LibroAnio and Empresa='".$_SESSION['CuitEmpresa']."' and PasadoEnMes='$LibroMes' and ParticipaEnIva='Si'";
         $i=0;
-        dd('jhkhkjh');
         $registros = DB::table('comprobantes')              // Busca la última página utilizada para la empresa seleccionada
             ->where('empresa_id','=',session('empresa_id'))
             ->where('ParticIva','=','Si')
             ->groupByRaw('Anio,PasadoEnMes,Cerrado')
             ->orderBy('Cerrado')
             ->get();
-        dd($registros);
         $UltimaPaginaCerrada = $registros->last()->Cerrado; // Asigna el valor en $UltimaPaginaCerrada
         $registros = DB::table('comprobantes')        // Carga todos los registros que van a ser modificados que corresponden al mes y año
             ->where('Anio','=',$this->lanio)
@@ -1020,9 +850,7 @@ class CompraComponent extends Component
         
         //Encuentra el detalle a eliminar pasa buscar la cantidad que tiene que eliminar
         $eliminar = Compras_Productos::find($id_detalle);
-        //dd($eliminar);
         $cant_a_eliminar = $eliminar->cantidad*-1;
-
 
         $detalle = new Compras_Productos;
         $detalle->comprobantes_id = $this->comprobante_id;
@@ -1047,7 +875,6 @@ class CompraComponent extends Component
         ->where('comprobantes_id',$this->comprobante_id)
         ->get(['compras__productos.*','productos.name']);
         //falta el where
-        //dd($this->glistado_prod);
     }
 
 
