@@ -21,8 +21,8 @@
             <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle col-11 sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form class="col-12">
                 <!-- Controles -->
-                @if($mostrarinformeespecifico) @include('livewire.actores.informessociales') @endif
-                @if($ModalNuevoInforme) @include('livewire.actores.nuevoInforme') @endif
+                @if($mostrarinformeespecifico) @include('livewire.geri.actores.informessociales') @endif
+                @if($ModalNuevoInforme) @include('livewire.geri.actores.nuevoInforme') @endif
                 
                 <div class="container">
                     <div class="row" style="margin-left: 15%">
@@ -91,6 +91,16 @@
                         </div>
                         <div class="col-8 bg-gray-300 card border border-primary shadow-0 mt-3" style="display: block;">
                             <div>INFORMES DISPONIBLES</div>
+
+                            @if (session()->has('message'))
+                                <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md my-3" role="alert">
+                                    <div class="flex">
+                                        <div>
+                                            <p class="text-xm bg-lightgreen">{{ session('message') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="col-12" style="display: flex; overflow: auto; background-color: lemonchiffon">
                                 @if($listadoinformes)                                   
                                     @foreach($listadoinformes as $informe)
@@ -109,7 +119,8 @@
                                     No hay informes configurados por el momento
                                 @endif
                             </div>
-                            {{-- <div class="col-12" style="overflow: auto; background-color: lemonchiffon"> --}}
+
+                            {{-- <div class="col-12" style="display: flex; overflow: auto; background-color: lemonchiffon"> --}}
                                 {{-- Medicamentos --}}
                                 <input type="button" wire:click="openModalNuevaIndicacion('Medicamentos')" class="btn btn-info sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold ml-2 rounded" style="max-height: 31px;" value="+">
                                 @if($listadomedicamentos)   
@@ -117,6 +128,17 @@
                                 @else
                                     No hay medicamentos configurados por el momento
                                 @endif
+                            {{-- </div> --}}
+
+                            {{-- Planes Alimentarios --}}
+                            <div class="col-12" style="display: flex; overflow: auto; background-color: lemonchiffon">
+                                @if($visualizarPlanAlimentario)
+                                    {!! $visualizarPlanAlimentario !!}
+                                @else
+                                    No hay planes configurados por el momento
+                                @endif
+                            </div>
+
                             {{-- </div> --}}
                             <div class="col-12 " style="display: flex; flex-wrap: wrap; background-color: beige; margin-top:10px">
                                 @if($listadoinformesGenerados)

@@ -280,6 +280,7 @@
 											<label for="">Año</label><br>
 											<select class="ml-2 w-full rounded-md h-8 leading-none" wire:model="ganio" style="box-shadow: 2px 2px 5px #999;">
 												<option value=""></option>
+												<option value="2025">2025</option>
 												<option value="2024">2024</option>
 												<option value="2023">2023</option>
 												<option value="2022">2022</option>
@@ -476,6 +477,7 @@
 											</div>
 											<div class="border px-2">Año<br>
 												<select class=" rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gfiltro()" style="box-shadow: 2px 2px 5px #999;">													
+													<option value="2025">2025</option>
 													<option value="2024">2024</option>
 													<option value="2023">2023</option>
 													<option value="2022">2022</option>
@@ -631,6 +633,7 @@
 											<label for="">Años a incluir </label><br>
 											<select class=" text-xs rounded-md h-7 py-0 leading-none" wire:model="danio">
 												<option value="0">Todos</option>
+												<option value="2025">2025</option>
 												<option value="2024">2024</option>
 												<option value="2023">2023</option>
 												<option value="2022">2022</option>
@@ -696,6 +699,7 @@
 												<label for="">Años a incluir</label><br>
 												<select class=" text-xs rounded-md h-7 py-0 leading-none" wire:model="canio">
 													<option value="0">Todos</option>
+													<option value="2025">2025</option>
 													<option value="2024">2024</option>
 													<option value="2023">2023</option>
 													<option value="2022">2022</option>
@@ -822,6 +826,7 @@
 													<label for="">Año</label><br>
 													<select class="mr-4 w-full text-xs rounded-md h-7 leading-none" wire:model="lanio" wire:change="MostrarLibros()">
 														<option value=""></option>
+														<option value="2025">2025</option>
 														<option value="2024">2024</option>
 														<option value="2023">2023</option>
 														<option value="2022">2022</option>

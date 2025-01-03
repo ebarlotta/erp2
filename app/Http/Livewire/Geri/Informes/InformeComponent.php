@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire\Geri\Informes;
 
-use App\Models\Geri\Areas;
+use App\Models\Area as Areas;
+
 use App\Models\Geri\Escala;
 use App\Models\Geri\Informes\Informe;
 use App\Models\Geri\Periodo;
@@ -29,9 +30,9 @@ class InformeComponent extends Component
         $this->escalas = Escala::all();
         $this->preguntas= Pregunta::all();
         $this->informes = Informe::orderby('nombreinforme')->get();
-        $this->areas = Areas::orderby('areasdescripcion')->get();
+        $this->areas = Areas::orderby('name')->get();
 // dd($this->informes);
-        return view('livewire.informes.informe-component');
+        return view('livewire.geri.informes.informe-component')->extends('layouts.adminlte');
     }
 
     public function Mostrar($opcion)
@@ -114,20 +115,24 @@ class InformeComponent extends Component
         $this->pregunta_id = null;
     }
 
-    public function editpregunta($id) {
+    public function editarpregunta($id) {
+        // dd('entro');
         $pregunta = Pregunta::find($id);
         // $pregunta = Pregunta::where('id','=',$id)->get();
+        
         $this->agregar(4);
         $this->informe_id = $pregunta->informe_id;
         $this->area_id = $pregunta->area_id;
         $this->escala_id = $pregunta->escala_id;
         $this->textopregunta = $pregunta->textopregunta;
         $this->pregunta_id = $id;
+
     }
 
-    public function editinforme($id) {
+    public function editarinforme($id) {
         $informe = Informe::find($id);
         // $pregunta = Pregunta::where('id','=',$id)->get();
+        
         $this->agregar(3);
         $this->nombreinforme = $informe->nombreinforme;
         $this->periodo_id = $informe->periodo_id;

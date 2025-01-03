@@ -1,7 +1,7 @@
 <div>
     <div class="row justify-content-center">
-        @if($editpregunta) @include('livewire.informes.editpregunta') @endif
-        @if($editinforme) @include('livewire.informes.editinforme') @endif
+        @if($editpregunta) @include('livewire.geri.informes.editpregunta') @endif
+        @if($editinforme) @include('livewire.geri.informes.editinforme') @endif
 
         <div class="card sm:col-11 col-md-5 shadow-md rounded-l-md transform transition duration-500 hover:scale-105" style="margin: 1%;box-shadow: 10px 5px 5px gray;" wire:click="Mostrar('Periodos')">
             <div class="card-body">
@@ -114,7 +114,7 @@
                                 <td class="col-2">{{ $informe->area->areasdescripcion }}</td>
                                 <td class="col-3">{{ $informe->observaciones }}</td>
                                 <td class="col-1">
-                                    <button wire:click="editinforme({{ $informe->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
+                                    <button wire:click="editarinforme({{ $informe->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                         </svg>
@@ -151,7 +151,11 @@
                                 <td class="col-1">{{ $pregunta->nombreescala->nombreescala }}</td>
                                 <td class="col-2">{{ $pregunta->informe->nombreinforme }}</td>
                                 <td class="col-2">
-                                    <button wire:click="editpregunta({{ $pregunta->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
+                                    {{-- <div wire:click="editpregunta({{ $pregunta->id }})">
+                                        <input type="button" name="" id="" value="prueba">
+                                    </div> --}}
+                                    {{-- <input type="button" class="btn btn-default" wire:click="editpregunta({{ $pregunta->id }})" value="Editar"> --}}
+                                    <button wire:click="editarpregunta({{ $pregunta->id }})" class="hidden sm:flex bg-blue-300 hover:bg-blue-400 text-black-900 font-bold px-4 mr-2 rounded">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
                                         </svg>

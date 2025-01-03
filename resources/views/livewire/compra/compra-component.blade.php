@@ -253,6 +253,7 @@
 											<label style="font-size: 80%;">Año</label>
 											<select class="w-2/3 px-2 rounded-md h-8 leading-none" wire:model="ganio" style="box-shadow: 2px 2px 5px #999;">
 												<option value=""></option>
+												<option value="2025">2025</option>
 												<option value="2024">2024</option>
 												<option value="2023">2023</option>
 												<option value="2022">2022</option>
@@ -454,6 +455,7 @@
 												<label style="font-size: 80%;">Año</label>
 												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gfiltro()" style="box-shadow: 2px 2px 5px #999;">
 												{{-- <select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfanio" wire:change="gsetanio(gfanio)"> --}}
+													<option value="2025">2025</option>
 													<option value="2024">2024</option>
 													<option value="2023">2023</option>
 													<option value="2022">2022</option>
@@ -726,6 +728,7 @@
 													<label for="">Año</label><br>
 													<select class="pl-2 mr-4 w-full text-xs rounded-md h-7 leading-none" wire:model="lanio" wire:change="MostrarLibros()">
 														<option value=""></option>
+														<option value="2025">2025</option>
 														<option value="2024">2024</option>
 														<option value="2023">2023</option>
 														<option value="2022">2022</option>

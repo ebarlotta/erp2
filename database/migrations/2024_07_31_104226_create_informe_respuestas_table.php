@@ -18,12 +18,12 @@ class CreateInformeRespuestasTable extends Migration
             $table->unsignedBigInteger('agente_informes_id');
             $table->unsignedBigInteger('preguntas_id');
             $table->double('cantidad');
-            $table->string('descripcion');
-            $table->text('fotourl')->default(null)->nullable();
+            $table->string('descripcion')->default('Informe');
+            $table->text('fotourl')->default(NULL)->nullable();
 
             $table->timestamps();
 
-            $table->foreign('agente_informes_id')->references('id')->on('agente_informes');
+            $table->foreign('agente_informes_id')->references('id')->on('agenteinformes');
             $table->foreign('preguntas_id')->references('id')->on('preguntas');
         });
     }

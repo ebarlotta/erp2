@@ -29,7 +29,7 @@
                     <select class="form-control" wire:model="area_id">
                         <option value="">-</option>
                         @foreach($areas as $area)
-                            <option value="{{$area->id}}">{{$area->areasdescripcion}}</option>
+                            <option value="{{$area->id}}">{{$area->name}}</option>
                         @endforeach
                     </select>
                     @error('area_id') <span class="text-red-500">{{ $message }}</span>@enderror

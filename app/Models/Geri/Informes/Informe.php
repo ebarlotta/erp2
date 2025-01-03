@@ -2,7 +2,8 @@
 
 namespace App\Models\Geri\Informes;
 
-use App\Models\Geri\Areas;
+use App\Models\Area as Areas;
+
 use App\Models\Geri\Periodo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

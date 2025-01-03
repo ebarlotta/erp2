@@ -39,6 +39,8 @@ use App\Models\Geri\Informes\InformeRespuestas;
 use App\Models\Geri\Medicamento;
 use App\Models\Geri\PersonActivo;
 use App\Models\Geri\Personas;
+use App\Models\Geri\PlanAlimentario;
+use App\Models\Geri\PlanAlimentarioActor;
 use App\Models\Geri\Pregunta;
 use App\Models\Geri\Referente;
 use App\Models\Geri\Sexo;
@@ -87,6 +89,8 @@ class ActorComponent extends Component
     public $dias, $momentos;
     public $visualizarMedicamentos, $listadomedicamentos, $listadoDescartables, $listadoMenues;
     public $CantidadAModificar, $mostrarModificarIndicacion, $mostrarNuevaIndicacion, $MomentoAModificar, $ElementoAModificar, $DiaAModificar, $NuevaIndicacion, $elementos;
+
+    public $plan_alimentario_actor_id, $visualizarPlanAlimentario, $plan_alimentario_elegido;
 
     public function render()
     {
@@ -150,7 +154,7 @@ class ActorComponent extends Component
             $b->preguntas_id = $pregunta->id;
             $b->cantidad = -1;      // Carga -1 si la respuesta está sin contestr aún
             $b->descripcion = '';
-            $b->fotourl = '';
+            $b->fotourl = null;
             $b->save();
         }
         $this->cerrarModalNuevoInforme();
@@ -160,12 +164,18 @@ class ActorComponent extends Component
     public function show($id) {
         $this->cama_id = '';
         $actor = Actor::find($id);
+        $this->plan_alimentario_actor_id=null;
+        $this->plan_alimentario_elegido=null;
 
         if($actor->tipopersona_id==1) {
             $this->CargaDatosdelActor($actor);
             $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
-            // dd($agente);
-            // $this->CargaDatosdelAgente($this->actor_id); 
+            $this->CargarInforme('PlanAlimentario');
+            $a = PlanAlimentarioActor::where('actor_id','=',$this->actor_id)->get();
+            if(count($a)) { 
+                $this->plan_alimentario_actor_id = $a[0]->plan_id; 
+                $this->plan_alimentario_elegido=$a[0]->plan_id;
+            } else { $this->plan_alimentario_elegido = NULL; }
             $this->isModalOpenGestionar=!$this->isModalOpenGestionar;
         }
     }
@@ -175,7 +185,7 @@ class ActorComponent extends Component
         switch ($informe) {
             case 'Sociales':{ 
                 $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
-                ->where('areasdescripcion','=','Social')
+                ->where('name','=','Social')
                 ->get();
                 if(count($this->listadoinformes)) {
                     if($this->listadoinformes) {
@@ -186,7 +196,7 @@ class ActorComponent extends Component
             }
             case 'Medicos':{ 
                 $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
-                ->where('areasdescripcion','=','Médica')
+                ->where('name','=','Médica')
                 ->get();
                 if(count($this->listadoinformes)) {
                     if($this->listadoinformes) {
@@ -197,19 +207,19 @@ class ActorComponent extends Component
             }
             case 'Nutricional':{ 
                 $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
-                ->where('areasdescripcion','=','Nutricional')
+                ->where('name','=','Nutricional')
                 ->get();
                 break;
             }
             case 'HistoriaDeVida':{ 
                 $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
-                ->where('areasdescripcion','=','Historia De Vida')
+                ->where('name','=','Historia De Vida')
                 ->get();
                 break;
             }
             case 'Pagos':{ 
                 $this->listadoinformes = Area::join('informes','areas.id','informes.area_id')
-                ->where('areasdescripcion','=','Administración')
+                ->where('name','=','Administración')
                 ->get();
                 break;
             }
@@ -220,8 +230,7 @@ class ActorComponent extends Component
                 }
             }
 
-            case 'Medicamentos':{
-                
+            case 'Medicamentos':{                
                 //Busca todos los medicamentos que tiene el actor
                 $this->listadomedicamentos = Indicaciones::join('elementos','indicaciones.elemento_id','elementos.id')
                 ->join('momentos_del_dias','momentos_del_dias.id','indicaciones.momento_del_dia_id')
@@ -237,10 +246,6 @@ class ActorComponent extends Component
                 $matriz = '';
                 $i=0;
                 foreach ($cant as $clave => $subArray) { 
-                    // dd($subArray[0]);
-                    // $matriz = $matriz .  "Clave principal: " . $subArray;
-                
-                    // for($i=0;$i<count($cant);$i++) {
                     //Genera el primer encabezado
                     $NombreMedicamento = $subArray[0]['name'];
                     // $NombreMedicamento = $this->listadomedicamentos[$i]->name;
@@ -266,17 +271,13 @@ class ActorComponent extends Component
                     ->join('dias_de_la_semanas','dias_de_la_semanas.id','indicaciones.dia_de_la_semana_id')
                     ->where('elementos.empresa_id','=',session('empresa_id'))
                     ->where('elemento_id','=',$subArray[0]['elemento_id'])
-                    // ->where('elemento_id','=',$this->listadomedicamentos[$i]->elemento_id)
-                    // ->where('elemento_id','=',$this->listadomedicamentos[$i]->elemento_id)
                     ->orderby('dia_de_la_semana_id','asc')
                     ->orderby('momento_del_dia_id','asc')
                     ->orderby('elemento_id','asc')
                     ->get();
 
-                    $indice=0;
-                    
-                    // $registros = $matriz;
-                    $registros = '';
+                    $indice=0; $registros = '';
+
                     for($momentos=1;$momentos<=count($this->momentos);$momentos++) {
                         $registros = $registros . '<tr>';
                         switch ($momentos) { 
@@ -285,8 +286,7 @@ class ActorComponent extends Component
                             case(3) : $registros = $registros . '<td><b class="ml-2">Mediatarde</b></td>';break;
                             case(4) : $registros = $registros . '<td><b class="ml-2">Cena</b></td>';break;                                                        
                         }
-                        for($dias=1;$dias<=count($this->dias);$dias++) {
-                            
+                        for($dias=1;$dias<=count($this->dias);$dias++) {                            
                             if($momentos==$registro[$indice]->momento_del_dia_id && $dias==$registro[$indice]->dia_de_la_semana_id) {
                                 $registros = $registros . '<td class="text-center" wire:click="ModificarIndicacion('.$momentos.','.$dias.','.$subArray[0]['elemento_id'].')">'. $registro[$indice]->cantidad.'</td>'; 
                                 if($indice<count($registro)-1) { $indice++; } 
@@ -304,6 +304,35 @@ class ActorComponent extends Component
                 $this->visualizarMedicamentos = $matriz;
                 break;
             }
+
+            case 'PlanAlimentario':{
+                $a = PlanAlimentarioActor::where('actor_id','=',$this->actor_id)->get();
+                $listado_planes_alimentarios = PlanAlimentario::where('empresa_id','=',session('empresa_id'))->get();
+                $matriz = '
+                <div class="card w-full shadow-md rounded-l-md transform transition duration-500 hover:scale-105" style="margin: 1%;box-shadow: 10px 5px 5px gray; height: max-content; border: lightgray; border-style: ridge; border-width: thin;">
+                    <div class="card-body" style="height: 100%; padding: 0.25rem;">
+                        <p>
+                            <table class="w-full">
+                                <tr>
+                                    <td><b class="ml-2">Plan Alimentario Utilizado</b></td>
+                                    <td>';
+                                    if(count($a)) { $this->plan_alimentario_actor_id = $a[0]->plan_id; }
+                                    $matriz = $matriz . '<select wire:model="plan_alimentario_elegido" wire:change="ActualizarPlanAlimentarioActor()">
+                                                        <option value="">-- Seleccione un Plan Alimentario-- </option>';
+                                    foreach($listado_planes_alimentarios as $plan) {
+                                        if($plan->id == $this->plan_alimentario_actor_id) { $matriz = $matriz . '<option value="'.$plan->id.'" selected>'.$plan->nombre.'</option>'; }
+                                        else { $matriz = $matriz . '<option value="'.$plan->id.'">'.$plan->nombre.'</option>'; }
+                                    }
+                                    $matriz = $matriz . '</select></td>
+                                    </tr>
+                                </table>
+                            <p>
+                        </div>
+                    </div>';
+    
+                $this->visualizarPlanAlimentario = $matriz;
+
+            }
             
             case 'Descartables':{
                 // dd('encontrado');
@@ -317,6 +346,25 @@ class ActorComponent extends Component
             }
         }
         $this->listadoinformesGenerados=null;
+    }
+
+    public function ActualizarPlanAlimentarioActor() {
+        // $a = PlanAlimentarioActor::where('actor_id','=',$this->actor_id)->where('plan_id','=',$this->plan_alimentario_actor_id)->get();
+        // if(count($a)) {
+            PlanAlimentarioActor::updateOrCreate([
+                'actor_id' => $this->actor_id,
+                'plan_id' => $this->plan_alimentario_actor_id
+            ],
+            [
+                'actor_id' => $this->actor_id,
+                'plan_id' => $this->plan_alimentario_elegido
+            ]);
+
+            $this->plan_alimentario_actor_id = $this->plan_alimentario_elegido;
+        // } else {
+
+        session()->flash('message', 'Plan Actualizado');
+        
     }
 
     public function ModificarIndicacion($momento, $dia, $elemento_id) {
@@ -370,15 +418,22 @@ class ActorComponent extends Component
     }
 
     public function MostrarInformes($informe_id) {
+        //select * from `agenteinformes` where `informe_ida` = 1 and `agente_id` = 1 order by `anio` asc, `nroperiodo` asc
         $this->listadoinformesGenerados = Agenteinforme::where('informe_id','=',$informe_id)
         ->where('agente_id','=',$this->actor_id)
+        ->join('informes','agenteinformes.informe_id','informes.id')
+        ->select('agenteinformes.id','agente_id','informe_id','nroperiodo','anio','profesional_id','agenteinformes.empresa_id')
         ->orderby('anio')->orderby('nroperiodo')->get();
+        // dd($this->listadoinformesGenerados);
     }
 
     public function BuscarDatosDelInforme($informe_id) {
-        $this->informeespecifico = InformeRespuestas::where('agente_informes_id','=',$informe_id)
+        dd($informe_id);
+
+        $this->informeespecifico = InformeRespuestas::where('agente_informes_sid','=',$informe_id)
         ->join('preguntas','preguntas.id','preguntas_id')
         ->get(['preguntas_id','cantidad','descripcion','agente_informes_id','fotourl','informe_respuestas.id','textopregunta','escala_id']);
+        
         $this->agente_informes_id=$informe_id;
         $this->mostrarinformeespecifico = true;
     }
@@ -732,20 +787,6 @@ class ActorComponent extends Component
             $this->cama_id = $agente[0]->cama_id;
             $this->alias = $agente[0]->alias;
             $this->referente_id = $agente[0]->actor_referente;
-            
-            // if(is_null($agente[0]['grado_dependencia_id'])) $this->gradodependencia='-'; else $this->gradodependencia = GradoDependencia::where('id','=',$agente[0]['grado_dependencia_id'])->get()[0]['gradodependenciaDescripcion'];
-            // if(is_null($agente[0]->actor_referente)) $this->actor_referente = '-'; else $this->actor_referente = Actor::where('id','=',$agente[0]->actor_referente)->get()[0]['nombre'];
-            // $this->referentes = Actor::where('tipopersona_id','=',2)->get();
-
-            // if(is_null($agente[0]->motivos_egreso_id))  $this->motivosegresos='-'; else $this->motivosegresos = $agente[0]->MotivosEgreso()[0]['motivoegresoDescripcion'];
-            // $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();           
-            // $this->datossociales_id = $agente[0]->datossociales_id;
-
-            // if(!is_null($agente[0]->datossociales_id)) {
-            //     $this->historiadevida = DatosSocial::findOrFail($agente[0]->datossociales_id)->historiadevida;
-            // } 
-            // $this->camas22 = Camas::where('EstadoCama','=',1)->orderby('NroHabitacion')->get();   
-            // dd($agente[0]->alias)        ;
         }
     }
 
