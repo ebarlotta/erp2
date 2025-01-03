@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "afipsdk/afip.php": "^1.1",
+        // "afipsdk/afip.php": "^1.1",
         "arielmejiadev/larapex-charts": "^2.1",
         "barryvdh/laravel-dompdf": "^2.2",
         "dompdf/dompdf": "^2.0.8",

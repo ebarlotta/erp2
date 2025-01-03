@@ -60,6 +60,17 @@ No migrar recursos -> SE MIGRÓ PARA NO PERDER INFORMACIÓN SI MÁS ADELANTE NO 
 Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 -- Ingredientes no se si es necesario empresa_id -> Se entiende que Elementos tiene el id necesario 05/08/2024
 -- Artículos       Puede incluirse en Productos -> Se entiende que Elementos tiene el id necesario 05/08/2024
+
+
+--- /http/venta/ventacomponent.php   ->   // include('AfipControllerGuzze.php');  Se eliminó -> 03/01/2025
+- se eliminó del archivo composer.json  ->  -> 03/01/2025
+- se eliminaron todos los archivos del controlador de Ventas que generaran problema con ps4 -> 03/01/2025
+- Se eliminaron a clsempleados relrecibosempleados etc -> 03/01/2025
+-- Se corrieron los siguientes comandos para poder actualizar todo :
+    - composer clearcache
+    - rm -rf vendor/*
+    - composer install
+
 -- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización -> Se entiende que Elementos tiene el id necesario 05/08/2024
 -- Camas no se si es necesario empresa_id -> Si es necesario. Se agrega 05/08/2024
 
