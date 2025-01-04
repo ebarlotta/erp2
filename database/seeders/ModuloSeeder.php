@@ -16,11 +16,11 @@ class ModuloSeeder extends Seeder
     {
         DB::table('modulos')->insert(['name' => 'Empresas', 'pagina' => 'empresagestion','imagen'=>'empresa.jpg','leyenda'=>'ABM de Empresas.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Módulos x Empresa', 'pagina' => 'empresamodulos','imagen'=>'empresamodulos.jpg','leyenda'=>'ABM de Módulos x Empresa.','habilitado'=>1]);
-        DB::table('modulos')->insert(['name' => 'Gestión de Módulos', 'pagina' => 'gestionmodulo','imagen'=>'gestionmodulos.jpg','leyenda'=>'Gestión de Módulos.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Gestión de Módulos', 'pagina' => 'gestionmodulos','imagen'=>'gestionmodulos.jpg','leyenda'=>'Gestión de Módulos.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Usuarios x Empresa', 'pagina' => 'empresausuarios','imagen'=>'empresausuarios.jpg','leyenda'=>'Gestión de Usuarios x Empresa.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Módulos x Usuario', 'pagina' => 'modulousuarios','imagen'=>'modulousuarios.jpg','leyenda'=>'Gestión de Módulos x Usuarios.','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Roles', 'pagina' => 'roles','imagen'=>'roles.jpg','leyenda'=>'Gestión de Roles.','habilitado'=>1]);
-        DB::table('modulos')->insert(['name' => 'Certificados', 'pagina' => 'certificado','imagen'=>'certificados.jpg','leyenda'=>'Gestión de Certificados.','habilitado'=>1]);
+        DB::table('modulos')->insert(['name' => 'Certificados', 'pagina' => 'certificados','imagen'=>'certificados.jpg','leyenda'=>'Gestión de Certificados.','habilitado'=>1]);
         
 
         DB::table('modulos')->insert(['name' => 'Unidades', 'pagina' => 'unidades','imagen'=>'unidades.jpg','leyenda'=>'Permite individualizar a cada producto con sus unidades de medida precisa a la hora de tener un control del stock de los mismos.','habilitado'=>1]);
@@ -38,7 +38,6 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Beneficios', 'pagina' => 'beneficios','imagen'=>'beneficios.jpg','leyenda'=>'Gestiona los distintos tipos de beneficios/obras sociales','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Escolaridades', 'pagina' => 'escolaridades','imagen'=>'escolaridades.jpg','leyenda'=>'Gestiona las escolaridades de las personas','habilitado'=>1]);
         DB::table('modulos')->insert(['name' => 'Tablas/Informes', 'pagina' => 'tablas','imagen'=>'tablas.jpg','leyenda'=>'Gestiona informes','habilitado'=>1]);
-        // DB::table('modulos')->insert(['name' => 'Provincias', 'pagina' => 'provincias','imagen'=>'estados.jpg','leyenda'=>'Registre las provincias.','habilitado'=>1]);
         
         DB::table('modulos')->insert(['name' => 'Clientes', 'pagina' => 'clientes','imagen'=>'clientes.jpg','leyenda'=>'Agregue nuevos clientes o modifique los datos ya ingresados.','habilitado'=>1]);    //erp 
         DB::table('modulos')->insert(['name' => 'Compras', 'pagina' => 'compras','imagen'=>'compras.jpg','leyenda'=>'Registre todos los comprobantes de las compras/gastos realizados. Ingrese al stock los productos adquiridos.','habilitado'=>1]);   //erp 
@@ -51,7 +50,8 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Categorías de Productos', 'pagina' => 'categoriaproducto','imagen'=>'categoriaproductos.jpg','leyenda'=>'Agrupe sus productos mediante categorías para una búsqueda más dinámica.','habilitado'=>1]);  //erp         
         DB::table('modulos')->insert(['name' => 'Estados', 'pagina' => 'estados','imagen'=>'estados.jpg','leyenda'=>'Los productos pueden cambiar de estados ya que pueden ser nuevos, usados o ser eliminado por algún motivo.','habilitado'=>1]);    //erp         
         DB::table('modulos')->insert(['name' => 'Haberes', 'pagina' => 'haberes','imagen'=>'haberes.jpg','leyenda'=>'Calcule las liquidaciones de haberes de su personal. Revise liquidaciones de períodos anteriores.','habilitado'=>1]);  //erp         
-        DB::table('modulos')->insert(['name' => 'Ventas Mostrador', 'pagina' => 'ventasmostrador','imagen'=>'ventasmostrador.jpg','leyenda'=>'Registre comprobantes de ventas, consulte informes en distintas escalas de tiempo.','habilitado'=>1]);    //erp         
+        DB::table('modulos')->insert(['name' => 'Ventas Mostrador', 'pagina' => 'ventasmostrador','imagen'=>'ventasmostrador.jpg','leyenda'=>'Registre comprobantes de ventas, consulte informes en distintas escalas de tiempo.','habilitado'=>1]);    //erp 
+        DB::table('modulos')->insert(['name' => 'Compra-Ventas Simple', 'pagina' => 'VentaSimple','imagen'=>'compraventa.jpg','leyenda'=>'Registre comprobantes de ventas o de compras facilmente desde su dispositivo móvil, registre rápidamente sus operaciones','habilitado'=>1]);    //erp         
         
         DB::table('modulos')->insert(['name' => 'Categorias', 'pagina' => 'categorias','imagen'=>'categorias.jpg','leyenda'=>'Configure las distintas categorias de Ingredientes.','habilitado'=>1]);    // Geri
         DB::table('modulos')->insert(['name' => 'Estado de Cama', 'pagina' => 'estadocama','imagen'=>'estadocama.jpg','leyenda'=>'Estado individual de cada una de las camas en la institución.','habilitado'=>1]);    // Geri
@@ -66,5 +66,6 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'otrascosas', 'pagina' => 'otrascosas','imagen'=>'haberes.jpg','leyenda'=>'Otras cosas.','habilitado'=>1]);    // Geri
         DB::table('modulos')->insert(['name' => 'Perfil', 'pagina' => 'profile','imagen'=>'haberes.jpg','leyenda'=>'Modifique los datos personales.','habilitado'=>1]);   // Geri
         DB::table('modulos')->insert(['name' => 'Tipos de Personas', 'pagina' => 'tiposdepersonas','imagen'=>'tiposdepersonas.jpg','leyenda'=>'Administra los distintos actores/personas dentro del sistema.','habilitado'=>1]);   // Geri
+        DB::table('modulos')->insert(['name' => 'Planes Alimentarios', 'pagina' => 'planesalimentarios','imagen'=>'planalimentario.jpg','leyenda'=>'Administra los distintos Planes alimentarios de la institución.','habilitado'=>1]);   // Geri
     }
 }

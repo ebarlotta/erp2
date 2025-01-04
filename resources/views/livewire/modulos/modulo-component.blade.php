@@ -19,10 +19,10 @@
                                                 <button type="button" class="ml-3 mb-1 btn btn-info" wire:click="showNew()" data-toggle="modal" data-target="#ModalEdit">
                                                     Nuevo
                                                 </button>
-                                                <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
+                                                <div class="w-1/2 justify-end">{{ $modulos->links() }}</div>
                                             </div>
                                             <div class="col-3">
-                                                <input wire:model="buscar" type="text" class="form-control rounded-md" placeholder="Buscar">
+                                                <input wire:model="buscar" wire:keyup="filtrar()" type="text" class="form-control rounded-md" placeholder="Buscar">
                                             </div>
                                         </div>
                                         <table class="table table-hover text-nowrap table-rounded">
@@ -30,8 +30,8 @@
                                                 <td style="background-color: rgb(164, 157, 157);"><b>Módulo</b></td>
                                                 <td style="background-color: rgb(164, 157, 157);"><b>Opciones</b></td>
                                             </tr>
-                                            @if($datos)
-                                                @foreach ($datos as $modulo)
+                                            @if($modulos)
+                                                @foreach ($modulos as $modulo)
                                                 <tr>
                                                     <td class="d-flex" style="margin: auto"><img class="mr-3 rounded-md" src="images/{{$modulo->imagen}}" alt="" width="50px"> {{ $modulo->name }}</td>
                                                     

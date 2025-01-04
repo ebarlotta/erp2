@@ -244,11 +244,11 @@ return [
         //     'type' => 'sidebar-menu-search',
         //     'text' => 'search',
         // ],
-        [
-            'text' => 'blog',
-            'url'  => 'blog',
-//            'can'  => 'manage-blog',
-        ],
+//         [
+//             'text' => 'blog',
+//             'url'  => 'blog',
+// //            'can'  => 'manage-blog',
+//         ],
         // [
         //     'text'        => 'Las paginaspages',
         //     'url'         => '#',
@@ -308,7 +308,7 @@ return [
                     'text' => 'Gestión de Certificados',
                     'url'  => 'certificados',
                     'icon' => 'fa fa-certificate',
-                    'can' => 'certificado.Ver',
+                    'can' => 'certificados.Ver',
                 ],
             ],
         ],
@@ -587,7 +587,7 @@ return [
                         [
                             'text' => 'Planes Alimentarios',
                             'url'  => 'planesalimentarios',
-                            // 'can' => 'ingredientes.Ver',
+                            'can' => 'planesalimentarios.Ver',
                         ],
                     ],
                 ],

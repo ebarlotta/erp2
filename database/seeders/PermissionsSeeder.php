@@ -15,15 +15,15 @@ class PermissionsSeeder extends Seeder
     public function run()
     {
         //DB::table('ivas')->truncate();
-        DB::table('permissions')->insert(['name'=>'VentasAgregarProductos.Ver','guard_name'=>'web']);
-        DB::table('permissions')->insert(['name'=>'VentasAgregarProductos.Agregar','guard_name'=>'web']);
+        // DB::table('permissions')->insert(['name'=>'VentasAgregarProductos.Ver','guard_name'=>'web']);
+        // DB::table('permissions')->insert(['name'=>'VentasAgregarProductos.Agregar','guard_name'=>'web']);
 
-        DB::table('permissions')->insert(['name'=>'VentasGenerarFactura.Ver','guard_name'=>'web']);
-        DB::table('permissions')->insert(['name'=>'VentasGenerarFactura.Agregar','guard_name'=>'web']);
+        // DB::table('permissions')->insert(['name'=>'VentasGenerarFactura.Ver','guard_name'=>'web']);
+        // DB::table('permissions')->insert(['name'=>'VentasGenerarFactura.Agregar','guard_name'=>'web']);
         
 
-        DB::table('permissions')->insert(['name'=>'ComprasAgregarProductos.Ver','guard_name'=>'web']);
-        DB::table('permissions')->insert(['name'=>'ComprasAgregarProductos.Agregar','guard_name'=>'web']);
+        // DB::table('permissions')->insert(['name'=>'ComprasAgregarProductos.Ver','guard_name'=>'web']);
+        // DB::table('permissions')->insert(['name'=>'ComprasAgregarProductos.Agregar','guard_name'=>'web']);
 
 
         

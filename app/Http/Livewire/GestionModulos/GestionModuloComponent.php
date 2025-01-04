@@ -13,7 +13,7 @@ use Livewire\WithPagination;
 class GestionModuloComponent extends Component
 {
     public $name,$pagina,$imagen,$leyenda, $habilitado;
-    public $modulos;
+    protected $modulos;
     public $permisos;
     public $nombre_permiso;
     public $idpermisoaeliminar;
@@ -28,30 +28,26 @@ class GestionModuloComponent extends Component
 
     public function render()
     {
-        if ($this->buscar) {
-            $this->modulos = Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->get();
+        
+        $this->filtrar();
 
-            return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->orderby('name')->paginate(7),])->extends('layouts.adminlte');
-        } else {
-            $this->modulos = Modulos::where('id','>',0)->get();
-            // dd($this->modulos);
-            // $this->modulos = Modulos::all();
-            return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('id','>',0)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
-        }
+        // if ($this->buscar<>'') {
+        //     $this->modulos = Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->get();
+        //     return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+        // } else {
+        //     $this->modulos = Modulos::where('id','>',0)->get();
+        //     // dd($this->modulos);
+        //     // $this->modulos = Modulos::all();
+            // return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('id','>',0)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+            return view('livewire.modulos.modulo-component',['modulos' => $this->modulos])->extends('layouts.adminlte');
+        // }
     }
 
-    public function showNew()
-    {
-        $this->reset('name');
-    }
+    public function showNew() { $this->reset('name'); }
+    public function showNewPermiso() { $this->reset('nombre_permiso'); }
+    public function ShowActualizar() { $this->ShowButtonActualizar = true; }
 
-    public function showNewPermiso() {
-        $this->reset('nombre_permiso');
-    }
-
-    public function ShowActualizar() {
-        $this->ShowButtonActualizar = true;
-    }
+    public function filtrar() { $this->modulos = Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->orderby('name')->paginate(7); }
 
     public function showEdit($id)
     {

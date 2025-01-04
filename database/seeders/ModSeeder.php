@@ -26,7 +26,8 @@ class ModSeeder extends Seeder
             DB::table('permissions')->insert(['name'=>strtolower($modulo->pagina) . '.Ver','guard_name'=>'web']);
         }
 
-        $modulos = array('EmpresaModulos', 'EmpresaUsuarios', 'ModuloUsuarios', 'Modulo', 'GestionModulo', 'Roles', 'Localidades', 'Nacionalidad', 'Elementos', 'Certificado', 'Tablas', 'Categoriaprofesional', 'Disenar', 'CompraSimple', 'Actor', 'Beneficios', 'EstadosCiviles', 'TiposDePersonas', 'TiposDeDocumentos', 'PersonActivo', 'Escolaridades', 'Informe', 'Medicamentos', 'Persona', 'Carts');
+        $modulos = array('Diseñar', 'PersonActivo', 'Informe', 'Persona', 'Carts');
+        // $modulos = array('EmpresaUsuarios', 'ModuloUsuarios', 'Modulo', 'GestionModulo', 'Roles', 'Localidades', 'Nacionalidad', 'Elementos', 'Certificado', 'Tablas', 'Categoriaprofesional', 'Disenar', 'CompraSimple', 'Actor', 'Beneficios', 'EstadosCiviles', 'TiposDePersonas', 'TiposDeDocumentos', 'PersonActivo', 'Escolaridades', 'Informe', 'Medicamentos', 'Persona', 'Carts');
 
 
         foreach($modulos as $modulo) {

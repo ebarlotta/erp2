@@ -163,15 +163,22 @@ class RolesComponent extends Component
 
     public function AgregarPermiso($permision_id) {
         $usuarios = EmpresaUsuario::where('rol_id', $this->rol_id)->get();  //Busca los usuarios que tienen el mismo rol elegido
+        if(!count($usuarios)) { session()->flash('mensajeFaltaRol', 'Asegurese de relacionar el usuario con la empresa en EmpresaUsuarios.'); }
         $permiso_a_agregar = Permission::where('id',$permision_id)->get('name'); // Busca los datos del permiso a agregar
         foreach($usuarios as $usuario) {    // Itera los usuarios
-            $user = User::find($usuario->id);   // Busca a cada usuario y
-            $b = $user->givePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
-
-            $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='. $permision_id .' and role_id='.$this->rol_id;
+            $user = User::find($usuario->user_id);   // Busca a cada usuario y
+            $aux = 'SELECT * FROM model_has_permissions WHERE permission_id='. $permision_id .' and model_id='.$usuario->user_id;
             $bux = db::select($aux); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
             if(count($bux)) { 
-                dd ('Ya dado de alta'); 
+                session()->flash('mensajePermisoRepetido', 'El permiso que intenta agregar ya se encontraba dado de alta.'); 
+            } else {
+                $b = $user->givePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
+            }
+            $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='. $permision_id .' and role_id='.$this->rol_id;
+            // dd($aux);
+            $bux = db::select($aux); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
+            if(count($bux)) { 
+                session()->flash('mensajePermisoRepetido', 'El permiso que intenta agregar ya se encontraba dado de alta.'); 
             } else {
                 $aux = 'INSERT INTO role_has_permissions (permission_id, role_id) VALUES ('.$permision_id.', '.$this->rol_id . ')';
                 $bux = db::select($aux);
@@ -196,9 +203,8 @@ class RolesComponent extends Component
     public function EliminarPermiso($permision_id, $role_id) {
         $usuarios = EmpresaUsuario::where('rol_id', $this->rol_id)->get();  //Busca los usuarios que tienen el mismo rol elegido
         $permiso_a_agregar = Permission::where('id',$permision_id)->get('name'); // Busca los datos del permiso a agregar
-        
         foreach($usuarios as $usuario) {    // Itera los usuarios
-            $user = User::find($usuario->id);   // Busca a cada usuario y
+            $user = User::find($usuario->user_id);   // Busca a cada usuario y
             $b = $user->revokePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
             
             $a = 'DELETE FROM role_has_permissions WHERE permission_id = '. $permision_id .' and role_id = '. $role_id;

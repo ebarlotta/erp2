@@ -72,6 +72,16 @@
                             </button>
                         </div>
                         <div class="px-3 py-3">
+                            @if(session("mensajeFaltaRol"))
+                                <div class="bg-yellow round-md alert alert-warning">
+                                    {{ session('mensajeFaltaRol') }}
+                                </div>
+                            @endif
+                            @if(session("mensajePermisoRepetido"))
+                                <div class="bg-yellow round-md alert alert-warning">
+                                    {{ session('mensajePermisoRepetido') }}
+                                </div>
+                            @endif
                             <div>
                                 <label for="">Nombre del Rol</label>
                                 @if($name) 
