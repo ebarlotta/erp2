@@ -30,7 +30,7 @@ class ModuloSeeder extends Seeder
         // DB::table('modulos')->insert(['name' => 'Haberes', 'pagina' => 'haberes','imagen'=>'haberes.jpg','leyenda'=>'Calcule las liquidaciones de haberes de su personal. Revise liquidaciones de períodos anteriores.']);
     
         DB::table('modulos')->insert(['name' => 'Areas', 'pagina' => 'empresausuarios','imagen'=>'areas.jpg','leyenda'=>'Genere áreas/sectores/unidades de negocio de su organización para poder llevar un control más detallado.']);
-        DB::table('modulos')->insert(['name' => 'Clientes', 'pagina' => 'empresamodulos','imagen'=>'clientes.jpg','leyenda'=>'Agregue nuevos clientes o modifique los datos ya ingresados.']);
+        // DB::table('modulos')->insert(['name' => 'Clientes', 'pagina' => 'empresamodulos','imagen'=>'clientes.jpg','leyenda'=>'Agregue nuevos clientes o modifique los datos ya ingresados.']);
         DB::table('modulos')->insert(['name' => 'Compras', 'pagina' => 'empresagestion','imagen'=>'proveedores.jpg','leyenda'=>'Registre todos los comprobantes de las compras/gastos realizados. Ingrese al stock los productos adquiridos.']);
         DB::table('modulos')->insert(['name' => 'Cuentas', 'pagina' => 'beneficios','imagen'=>'cuentas.jpg','leyenda'=>'Divida los movimientos en distintas cuentas contables que puede utilizar para filtrar información.']);
         DB::table('modulos')->insert(['name' => 'Empleados', 'pagina' => 'estadociviles','imagen'=>'empleados.jpg','leyenda'=>'Realice altas, modificaciones, y bajas del personal que desarrolla las actividades en su organización.']);
