@@ -250,82 +250,82 @@ class VentaComponent extends Component
 
 
 
-    public function ConstructorFacturacion() {
+    // public function ConstructorFacturacion() {
 
-        $certificados = Certificado::where('empresa_id','=',session('empresa_id'))->get();
-        // dd($certificados);
-        if(count($certificados)) { 
-            $this->certificado_id = $certificados[0]['id'];
-            // dd($certificados[0]['id']);
-            $this->certificado_tax_id = $certificados[0]['tax_id'];
-            $this->certificado_alias = $certificados[0]['alias'];
+    //     $certificados = Certificado::where('empresa_id','=',session('empresa_id'))->get();
+    //     // dd($certificados);
+    //     if(count($certificados)) { 
+    //         $this->certificado_id = $certificados[0]['id'];
+    //         // dd($certificados[0]['id']);
+    //         $this->certificado_tax_id = $certificados[0]['tax_id'];
+    //         $this->certificado_alias = $certificados[0]['alias'];
             
-            $path = storage_path('app/' . 'certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
-            $cert = file_get_contents($path);
-            $this->certificado_crt = $cert;
-            // $this->certificado_crt = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
+    //         $path = storage_path('app/' . 'certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
+    //         $cert = file_get_contents($path);
+    //         $this->certificado_crt = $cert;
+    //         // $this->certificado_crt = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.crt');
 
-            $path = storage_path('app/' . 'certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
-            $key = file_get_contents($path);
-            $this->certificado_key = $key;
-            // $this->certificado_key = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
+    //         $path = storage_path('app/' . 'certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
+    //         $key = file_get_contents($path);
+    //         $this->certificado_key = $key;
+    //         // $this->certificado_key = Storage::disk('local')->get('certificados/'.$certificados[0]['tax_id'].'_'.$certificados[0]['alias'].'.key');
             
-            // Certificado (Puede estar guardado en archivos, DB, etc)
-            // Key (Puede estar guardado en archivos, DB, etc)
-            // dd($path);
-            // $cert = file_get_contents('certificados/certificado.crt');
-            // $key  = file_get_contents('key.key');
+    //         // Certificado (Puede estar guardado en archivos, DB, etc)
+    //         // Key (Puede estar guardado en archivos, DB, etc)
+    //         // dd($path);
+    //         // $cert = file_get_contents('certificados/certificado.crt');
+    //         // $key  = file_get_contents('key.key');
             
-            // 'https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL',
-            // 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?op= FECAESolicitar',
+    //         // 'https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL',
+    //         // 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?op= FECAESolicitar',
 
-            $a = new \AfipControllerGuzze(
-                'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL',
-                $this->certificado_tax_id,
-                env('AFIP_ACCESS_TOKEN'),
-                $this->certificado_key
-            );
+    //         $a = new \AfipControllerGuzze(
+    //             'https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL',
+    //             $this->certificado_tax_id,
+    //             env('AFIP_ACCESS_TOKEN'),
+    //             $this->certificado_key
+    //         );
             
-            $a->callSoapFunction('POST',[]);
-            dd($a);
+    //         $a->callSoapFunction('POST',[]);
+    //         dd($a);
 
-            $this->afip = new Afip(array(
-                'CUIT' => $this->certificado_tax_id,
-                'cert' => $this->certificado_crt,
-                'key' =>  $this->certificado_key,
-                'access_token' => env('AFIP_ACCESS_TOKEN'),
-            ));
-            // $this->afip = new Afip(array(
-            //     'CUIT' => $this->certificado_tax_id,
-            //     'cert' => $this->certificado_crt,
-            //     'key' =>  $this->certificado_key,
-            //     'access_token' => env('AFIP_ACCESS_TOKEN'),
-            // ));
+    //         $this->afip = new Afip(array(
+    //             'CUIT' => $this->certificado_tax_id,
+    //             'cert' => $this->certificado_crt,
+    //             'key' =>  $this->certificado_key,
+    //             'access_token' => env('AFIP_ACCESS_TOKEN'),
+    //         ));
+    //         // $this->afip = new Afip(array(
+    //         //     'CUIT' => $this->certificado_tax_id,
+    //         //     'cert' => $this->certificado_crt,
+    //         //     'key' =>  $this->certificado_key,
+    //         //     'access_token' => env('AFIP_ACCESS_TOKEN'),
+    //         // ));
             
-            // $this->GenerarFactura();
-        }
-    }
+    //         // $this->GenerarFactura();
+    //     }
+    // }
 
-    public function GenerarFactura() {
+    // public function GenerarFactura() {
         
         
         
         
-        // Uso del controlador
-        $wsdl = 'https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL'; // URL del WSDL del web service
-        $cuit = $this->certificado_tax_id; //'20-12345678-9'; // CUIT del usuario
-        $token = env('AFIP_ACCESS_TOKEN'); // Token de autenticación
-        $sign = $this->certificado_crt; //'YOUR_SIGN'; // Firma de autenticación
+    //     // Uso del controlador
+    //     $wsdl = 'https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL'; // URL del WSDL del web service
+    //     $cuit = $this->certificado_tax_id; //'20-12345678-9'; // CUIT del usuario
+    //     $token = env('AFIP_ACCESS_TOKEN'); // Token de autenticación
+    //     $sign = $this->certificado_crt; //'YOUR_SIGN'; // Firma de autenticación
 
-        $afip = new AfipController($wsdl, $cuit, $token, $sign);
+    //     $afip = new AfipController($wsdl, $cuit, $token, $sign);
 
-        // $afip = $this->iniciar($wsdl, $cuit, $token, $sign);
+    //     // $afip = $this->iniciar($wsdl, $cuit, $token, $sign);
         
-        // Ejemplo de llamada a un método del web service
-        $response = $afip->callWebService('ConsultaPuntosVenta', []);
-        print_r($response);
+    //     // Ejemplo de llamada a un método del web service
+    //     $response = $afip->callWebService('ConsultaPuntosVenta', []);
+    //     print_r($response);
         
-        dd('termino');
+    //     dd('termino');
         
         
         
@@ -336,25 +336,25 @@ class VentaComponent extends Component
         
         
         
-        // CUIT del contribuyente
-        $tax_id = 30712141790;
-        $afip = new Afip(array(
-            'CUIT' => $this->certificado_tax_id,
-            'cert' => $this->certificado_crt,
-            'key' =>  $this->certificado_key,
-            'access_token' => env('AFIP_ACCESS_TOKEN'),
-        ));
+    //     // CUIT del contribuyente
+    //     $tax_id = 30712141790;
+    //     $afip = new Afip(array(
+    //         'CUIT' => $this->certificado_tax_id,
+    //         'cert' => $this->certificado_crt,
+    //         'key' =>  $this->certificado_key,
+    //         'access_token' => env('AFIP_ACCESS_TOKEN'),
+    //     ));
 
-        // dd($afip );
-        $voucher_types = $afip->ElectronicBilling->GetVoucherTypes();
+    //     // dd($afip );
+    //     $voucher_types = $afip->ElectronicBilling->GetVoucherTypes();
         
-        $taxpayer_details = $afip->RegisterInscriptionProof->GetTaxpayerDetails($tax_id);
-        dd($taxpayer_details);
+    //     $taxpayer_details = $afip->RegisterInscriptionProof->GetTaxpayerDetails($tax_id);
+    //     dd($taxpayer_details);
 
-        // $res['CAE']; //CAE asignado el comprobante
-        // $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
-        session()->flash('message3', 'Ingresó a generar factura. el valor del modal es '. $this->ModalGenerarFactura);
-    }
+    //     // $res['CAE']; //CAE asignado el comprobante
+    //     // $res['CAEFchVto']; //Fecha de vencimiento del CAE (yyyy-mm-dd)
+    //     session()->flash('message3', 'Ingresó a generar factura. el valor del modal es '. $this->ModalGenerarFactura);
+    // }
 
     public function store() {
         $this->RellenarCamposVacios();            
