@@ -81,6 +81,7 @@ use App\Http\Livewire\Geri\PlanAlimentarioComponent;
 use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
 use App\Http\Livewire\erp\Cart\Cart;
 use App\Http\Controllers\Productos;
+use App\Http\Livewire\Expendio\ExpendioComponent;
 use App\Http\Livewire\Listas\ListaComponent;
 
 
@@ -185,6 +186,7 @@ Route::get('beneficios',clsBeneficios::class)->name('crudBeneficios');
 Route::get('escolaridades',EscolaridadesComponent::class)->name('escolaridades');
 Route::get('estadocama',EstadocamaComponent::class)->name('estadocama');
 Route::get('estadosciviles',EstadosCivilesComponent::class)->name('crudEstadosCiviles');
+Route::get('expendio',ExpendioComponent::class)->name('expendio');
 Route::get('gradodependencia',GradodependenciaComponent::class)->name('gradodependencia');
 Route::get('habitaciones',Habitacion::class)->name('habitaciones');
 Route::get('informes',InformeComponent::class)->name('informes');

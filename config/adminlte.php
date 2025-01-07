@@ -595,6 +595,11 @@ return [
                             'url'  => 'planalimentario',
                             'can' => 'planalimentario.Ver',
                         ],
+                        [
+                            'text' => 'Expendio',
+                            'url'  => 'expendio',
+                            // 'can' => 'planalimentario.Ver',
+                        ],
                     ],
                 ],
             ],

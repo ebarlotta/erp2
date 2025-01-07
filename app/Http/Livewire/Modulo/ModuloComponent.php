@@ -14,6 +14,7 @@ class ModuloComponent extends Component
 {
     public $empresa_id;
     public $modulos;
+    public $porc;
 
     public function render()
     {
@@ -26,7 +27,12 @@ class ModuloComponent extends Component
                 // dd(count($empresa_modulos));
                 $rol = new Roles;
                 $rol->Permisos();
-            
+                
+                // a ----> b    a * b
+                // c ----> d    -----
+                //                c
+                $this->porc = 1 * 10 / count($empresa_modulos);   // Se utiliza la variable porc para calcular el tamaño de cada uno de los íconos
+
                 $this->modulos=Modulo::find($empresa_modulos);
                 return view('livewire.modulo.modulo-component',$this->modulos)->extends('layouts.adminlte')->section('content'); 
             } else { return view('livewire.solicitarhabilitarmodulo')->extends('layouts.adminlte'); }
