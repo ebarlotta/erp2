@@ -6,6 +6,8 @@ use App\Models\Modulo;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
+use App\Models\User;
 
 class ModSeeder extends Seeder
 {
@@ -43,7 +45,18 @@ class ModSeeder extends Seeder
         DB::table('permissions')->insert(['name'=>strtolower('Geri') . '.Ver','guard_name'=>'web']);
         DB::table('permissions')->insert(['name'=>strtolower('Localizacion') . '.Ver','guard_name'=>'web']);
         DB::table('permissions')->insert(['name'=>strtolower('Generales') . '.Ver','guard_name'=>'web']);
-        // DB::table('permissions')->insert(['name'=>strtolower('Informe') . '.Ver','guard_name'=>'web']);
+        DB::table('permissions')->insert(['name'=>strtolower('Informe') . '.Ver','guard_name'=>'web']);
+
+        //Asigna al Usuario Administrador todos los permisos
+        $permisos = Permission::all();
+        $user = User::find(1);   // Busca a cada usuario y
+        foreach($permisos as $permiso) {
+            $user->givePermissionTo($permiso->name); // Agrega en model_has_permissions
+            $aux = 'INSERT INTO role_has_permissions (permission_id, role_id) VALUES ('.$permiso->id.', 1)';
+            db::select($aux);  // Agrega en role_has_permissions
+        }
+
+
 
     }
 }

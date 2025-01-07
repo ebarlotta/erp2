@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\Geri\Menu;
 use App\Models\Geri\MenuPlan;
 use App\Models\Geri\PlanAlimentario;
-
+use App\Models\MomentosDelDia;
 
 class PlanAlimentarioComponent extends Component
 {
@@ -17,6 +17,7 @@ class PlanAlimentarioComponent extends Component
     public $selectunidad=null;
     public $descripcion, $desde, $hasta, $activo=true, $cantidad=1, $menu_elegido, $dia;
     public $listadomenues, $listadomenuesenelplan;
+    public $momentos, $momento_dia_id;
 
     public $empresa_id;
 
@@ -24,6 +25,7 @@ class PlanAlimentarioComponent extends Component
     {
         $this->empresa_id=session('empresa_id');
         $this->planesalimentarios = PlanAlimentario::where('empresa_id', $this->empresa_id)->get();
+        $this->momentos = MomentosDelDia::all();
         return view('livewire.geri.plan-alimentario.plan-alimentario-component',['datos'=> PlanAlimentario::where('empresa_id', $this->empresa_id)->paginate(7),])->extends('layouts.adminlte');
     }
 
@@ -49,9 +51,13 @@ class PlanAlimentarioComponent extends Component
     }
 
     public function CargarRelaciones() {
-        $this->listadomenuesenelplan = MenuPlan::where('plan_id','=',$this->planalimentario_id)->orderby('dia')
+        $this->listadomenuesenelplan = MenuPlan::where('plan_id','=',$this->planalimentario_id)->orderby('dia')->orderby('momentos_del_dias.id')
         ->join('menus','menu_plans.menu_id','menus.id')
-        ->get(['menu_plans.id','menu_id','plan_id','dia','activo','cantidad','nombremenu','tiempopreparacion']);
+        ->join('momentos_del_dias','momentos_del_dias.id','menu_plans.momento_dia_id')
+        ->get();
+        // dd($this->listadomenuesenelplan );
+        // ->join('momentos_del_dias','menu_plans.menu_id','menus.id')
+        // ->get(['menu_plans.id','menu_id','plan_id','dia','activo','cantidad','nombremenu','tiempopreparacion','momento_dia_id']);
     }
 
     private function resetCreateForm(){ $this->planalimentario_id = ''; $this->nombre = ''; }
@@ -70,19 +76,20 @@ class PlanAlimentarioComponent extends Component
             'activo' => $this->activo,
             'empresa_id' => $this->empresa_id,
         ]);
-
+        
         session()->flash('message', $this->planalimentario_id ? 'Plan Alimentario Actualizado.' : 'Plan Alimentario Creado.');
-
+        
         $this->closeModalPopover();
         $this->resetCreateForm();
     }
-
+    
     public function storeDetalle()
     {
         $this->validate([
             'menu_elegido' => 'required',
             'planalimentario_id' => 'required',
             'dia' => 'required',
+            'momento_dia_id' =>'required',
             'cantidad' => 'required',
         ]);
 
@@ -91,6 +98,7 @@ class PlanAlimentarioComponent extends Component
         $menu_plan->menu_id = $this->menu_elegido;
         $menu_plan->dia = $this->dia;
         $menu_plan->cantidad = $this->cantidad;
+        $menu_plan->momento_dia_id = $this->momento_dia_id;
         $menu_plan->save();
 
         session()->flash('message', $this->planalimentario_id ? 'Plan Actualizado.' : 'Plan Creado.');
@@ -101,10 +109,12 @@ class PlanAlimentarioComponent extends Component
     public function edit($id)
     {
         $planalimentario = PlanAlimentario::findOrFail($id);
+        $this->planalimentario_id = $id;
         $this->nombre = $planalimentario->nombre;
         $this->descripcion = $planalimentario->descripcion;
         $this->desde = $planalimentario->desde;
         $this->hasta = $planalimentario->hasta;
+        $this->momento_dia_id = $planalimentario->momento_dia_id;
         $this->activo = $planalimentario->activo;
         
         $this->openModalPopover();

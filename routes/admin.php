@@ -95,9 +95,12 @@ use App\Http\Livewire\Listas\ListaComponent;
 // use App\Http\Controllers\Admin\Settings;
 // use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
-Route::get('/dasboard', function () {
-    return view('empresas');
-})->name('dashboard');
+// Route::get('/dasboard', function () {
+//     return view('dasboard');
+// })->name('dashboard');
+
+Route::get('dashboard', EmpresaComponent::class)->name('dashboard');
+
 
 // Livewire::setUpdateRoute(function ($handle) {
 //     return Route::post('/custom/livewire/update', $handle);
@@ -193,7 +196,7 @@ Route::get('motivoegreso',MotivoegresoComponent::class)->name('motivoegreso');
 Route::get('personascampos',PersonasCamposComponent::class)->name('personascampos');
 Route::get('personactivo',PersonActivoComponent::class)->name('crudPersonActivo');
 Route::get('personas',ActorComponent::class)->name('personas');
-Route::get('planesalimentarios',PlanAlimentarioComponent::class)->name('planesalimentarios');
+Route::get('planalimentario',PlanAlimentarioComponent::class)->name('planalimentario');
 Route::get('tiposdedocumentos',TiposDeDocumentosComponent::class)->name('crudTiposDeDocumentos');
 Route::get('tiposdepersonas',TiposDePersonasComponent::class)->name('tiposdepersonas');
 Route::get('pdf/informes', ActorComponent::class, 'showPDF');

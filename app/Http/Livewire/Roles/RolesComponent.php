@@ -168,14 +168,15 @@ class RolesComponent extends Component
         foreach($usuarios as $usuario) {    // Itera los usuarios
             $user = User::find($usuario->user_id);   // Busca a cada usuario y
             $aux = 'SELECT * FROM model_has_permissions WHERE permission_id='. $permision_id .' and model_id='.$usuario->user_id;
+            // dd($user);
             $bux = db::select($aux); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
             if(count($bux)) { 
                 session()->flash('mensajePermisoRepetido', 'El permiso que intenta agregar ya se encontraba dado de alta.'); 
             } else {
+                // Permission::create(['guard_name' => 'web', 'name' => $permiso_a_agregar[0]->name]);		
                 $b = $user->givePermissionTo($permiso_a_agregar[0]->name);  // Asigna el permiso en la tabla model_has_permissions IMPACTA EN EL MENU IZQUIERDO
             }
             $aux = 'SELECT * FROM role_has_permissions WHERE permission_id='. $permision_id .' and role_id='.$this->rol_id;
-            // dd($aux);
             $bux = db::select($aux); //IMPACTA EN LOS TAGAS QUE APARECEN EN PANTALLA
             if(count($bux)) { 
                 session()->flash('mensajePermisoRepetido', 'El permiso que intenta agregar ya se encontraba dado de alta.'); 

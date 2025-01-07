@@ -70,7 +70,7 @@
                                             <tr><td>Obra Social</td><td>{{ $beneficio_id }}</td> </tr>
                                             <tr><td>Escolaridad</td><td>{{ $escolaridad_id }}</td> </tr>
                                             <tr><td>Teléfono</td><td>{{ $telefono}}</td> </tr>
-                                            <tr><td>Empresa_id</td><td>{{ $nombreempresa }}</td> </tr>
+                                            <tr><td>Empresa</td><td>{{ $nombreempresa }}</td> </tr>
                                             <tr>
                                                 <td>Activo</td>
                                                 <td></td>
@@ -122,7 +122,7 @@
 
                             {{-- <div class="col-12" style="display: flex; overflow: auto; background-color: lemonchiffon"> --}}
                                 {{-- Medicamentos --}}
-                                <input type="button" wire:click="openModalNuevaIndicacion('Medicamentos')" class="btn btn-info sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold ml-2 rounded" style="max-height: 31px;" value="+">
+                                <input type="button" wire:click="openModalNuevaIndicacion('Medicamentos')" class="btn btn-info sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold ml-2 rounded" style="max-height: 31px;" value="+ Agregar Medicamento">
                                 @if($listadomedicamentos)   
                                     {!! $visualizarMedicamentos !!}                                
                                 @else

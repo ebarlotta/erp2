@@ -16,12 +16,14 @@ return new class extends Migration
             $table->unsignedBigInteger('menu_id');
             $table->unsignedBigInteger('plan_id');
             $table->integer('dia');
+            $table->unsignedBigInteger('momento_dia_id');
             $table->double('cantidad');
             $table->boolean('activo')->default(true);
             $table->timestamps();
 
             $table->foreign('menu_id')->references('id')->on('menus');
             $table->foreign('plan_id')->references('id')->on('plan_alimentarios');
+            $table->foreign('momento_dia_id')->references('id')->on('momentos_del_dias');
         });
     }
 

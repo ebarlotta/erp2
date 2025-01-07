@@ -14,6 +14,7 @@ class MenuPlan extends Model
         'menu_id',
         'plan_id',
         'dia',
+        'momento_dia_id',
         'cantidad',
         'activo',
     ];

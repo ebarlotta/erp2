@@ -18,15 +18,18 @@ class ModuloComponent extends Component
     public function render()
     {
         if(session('empresa_id')) {
-            $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))->get('modulo_id');
-            // dd(session('empresa_id'));
+            $empresa_modulos = EmpresaModulo::where('empresa_id',session('empresa_id'))
+            ->where('modulo_usuarios.user_id','=',Auth()->user()->id)
+            ->join('modulo_usuarios','modulo_usuarios.modulo_id','empresa_modulos.modulo_id')
+            ->get('empresa_modulos.modulo_id');
+            if(count($empresa_modulos)) {
+                // dd(count($empresa_modulos));
+                $rol = new Roles;
+                $rol->Permisos();
             
-            $rol = new Roles;
-            $rol->Permisos();
-            
-            $this->modulos=Modulo::find($empresa_modulos);
-            return view('livewire.modulo.modulo-component',$this->modulos)->extends('layouts.adminlte')
-            ->section('content');
+                $this->modulos=Modulo::find($empresa_modulos);
+                return view('livewire.modulo.modulo-component',$this->modulos)->extends('layouts.adminlte')->section('content'); 
+            } else { return view('livewire.solicitarhabilitarmodulo')->extends('layouts.adminlte'); }
         } else {
             // dd(Auth::user()->id);
             return view('livewire.llevaralogin')->extends('layouts.adminlte');

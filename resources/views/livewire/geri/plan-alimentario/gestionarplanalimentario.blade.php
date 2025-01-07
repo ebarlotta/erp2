@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="bg-white px-4  pb-1 sm:pb-1 flex">
-                    <div class="mb-4 col-7">
+                    <div class="mb-4 col-6">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Menúes Disponibles</label>
                         <select class="form-control" wire:model="menu_elegido">
                             <option value="">-- Seleccione un menú --</option>
@@ -34,7 +34,7 @@
                         </select>
                         @error('menu_elegido') <span class="text-red-500">{{ $message }}</span>@enderror
                     </div>
-                    <div class="mb-4 col-3">
+                    <div class="mb-4 col-2">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Día</label>
                         <select class="form-control" wire:model="dia">
                             <option value="">-- Seleccione un día --</option>
@@ -57,6 +57,16 @@
                         @error('menu_elegido') <span class="text-red-500">{{ $message }}</span>@enderror
                     </div>
                     <div class="mb-4 col-2">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Día</label>
+                        <select class="form-control" wire:model="momento_dia_id">
+                            <option value="">-- Seleccione un momento --</option>
+                            @foreach($momentos as $momento)
+                                <option value="{{ $momento->id }}">{{ $momento->descripcion}}</option>
+                            @endforeach                            
+                        </select>
+                        @error('menu_elegido') <span class="text-red-500">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="mb-4 col-2">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Cantidad</label>
                         <input class="form-control" type="text" wire:model="cantidad" value="1">
                         @error('menu_elegido') <span class="text-red-500">{{ $message }}</span>@enderror
@@ -75,6 +85,7 @@
                             <tr>
                                 <td class="py-2"><b>Día</td>
                                 <td><b>Descripción</b></td>
+                                <td><b>Momento</b></td>
                                 <td><b>Tiempo Prop</b>.</td>
                                 <td><b>Cantidad</b></td>
                                 <td><b>Activo</b></td>
@@ -87,6 +98,7 @@
                                 <tr class="{{ $claseFondo }}">
                                     <td class="col-1">{{ $menuadherido->dia . '-'.$menuadherido->dia+14 }}</td>
                                     <td class="text-left pl-2">{{ $menuadherido->nombremenu }}</td>
+                                    <td class="text-left pl-2">{{ $menuadherido->descripcion }}</td>
                                     <td class="col-1">{{ $menuadherido->tiempopreparacion }}</td>
                                     <td class="col-1">{{ $menuadherido->cantidad}}</td>
                                     <td class="col-1">

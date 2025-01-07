@@ -7,7 +7,7 @@
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
             <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle col-3 sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">     
                 <div class="container col-6">
-                    <label for="">Cantidad:</label>
+                    <label class="mt-2">Seleccione el elemento a indicar:</label>
                     <select wire:model="NuevaIndicacion" class="form-control">
                         <option value="">-- Seleccione un elemento --</option>
                         @foreach ($elementos as $elemento)

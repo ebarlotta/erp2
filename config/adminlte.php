@@ -339,7 +339,7 @@ return [
             [
                 'text' => 'Elementos',
                 'url'  => 'elementos',
-                'icon' => 'fas fa-fw fa-building',
+                'icon' => 'fa fa-linode',
                 'can' => 'elementos.Ver',
             ],
             [
@@ -419,43 +419,43 @@ return [
         [
             'text' => 'Clientes',
             'url'  => 'clientes',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fas fa-users',
             'can' => 'clientes.Ver',
         ],
         [
             'text' => 'Compras',
             'url'  => 'compras',
-            'icon' => 'fa fa-bar-chart',
+            'icon' => 'fas fa-fw fa-chart-pie',
             'can' => 'compras.Ver',
         ],
         [
             'text' => 'Compras Simple',
             'url'  => 'VentaSimple?Compras',
-            'icon' => 'fa fa-bar-chart',
+            'icon' => 'fas fa-fw fa-chart-pie',
             'can' => 'compras.Ver',
         ],
         [
             'text' => 'Empleados',
             'url'  => 'empleados',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fas fa-users',
             'can'  => 'empleados.Ver',
         ],
         [
             'text' => 'Haberes',
             'url'  => 'haberes',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fa fa-clone',
             'can'  => 'haberes.Ver',
         ],
         [
             'text' => 'Ventas',
             'url'  => 'ventas',
-            'icon' => 'fa fa-area-chart',
+            'icon' => 'fas fa-fw fa-chart-pie',
             'can' => 'ventas.Ver',
         ],
         [
             'text' => 'Venta Simple',
             'url'  => 'VentaSimple?Ventas',
-            'icon' => 'fa fa-area-chart',
+            'icon' => 'fas fa-fw fa-chart-pie',
             'can' => 'ventas.Ver',
         ],
 //         ['header' => 'GESTIÓN CARRITO',
@@ -513,11 +513,12 @@ return [
             'text' => 'Ajustes',
             'url'  => 'settings',
             'icon' => 'fas fa-fw fa-cogs',
+            'canany' => ['actores.Ver','beneficios.Ver','escolaridades.Ver','estadocama.Ver','gradodependencia.Ver','habitaciones.Ver','medicamentos.Ver','motivoegreso.Ver','menu.Ver'],
             'submenu' => [
                 [
                     'text' => 'Gestión de Actores',
                     'icon' => 'fas fa-fw fa-cogs',
-                    // 'can' => 'actor.Ver',
+                    'can' => 'actores.Ver',
                     'submenu' => [
                         [
                             'text' => 'Estado de Actores',
@@ -534,13 +535,14 @@ return [
                 [
                     'text' => 'Beneficios',
                     'url'  => 'beneficios',
-                    'icon' => 'fas fa-fw fa-usd',
+                    'icon' => 'fa fa-plus-square',
                     'can' => 'beneficios.Ver',
                 ],
                 [
                     'text' => 'Escolaridades',
                     'url'  => 'escolaridades',
                     'can' => 'escolaridades.Ver',
+                    'icon' => 'fa fa-child',
                 ],
                 [
                     'text' => 'Estado de Camas',
@@ -564,15 +566,19 @@ return [
                     'text' => 'Medicamentos',
                     'url'  => 'medicamentos',
                     'can' => 'medicamentos.Ver',
+                    'icon' => 'fa fa-table',
+
                 ],
                 [
                     'text' => 'Motivos de Egresos',
                     'url'  => 'motivoegreso',
+                    'icon' => 'fa fa-external-link-square',
                     'can' => 'motivoegreso.Ver',
                 ],
                 [
                     'text' => 'Gestión Menú',
-                    'icon' => 'fas fa-fw fa-cogs',
+                    'icon' => 'fa fa-cutlery',
+                    'can' => 'menu.Ver',
                     'submenu' => [
                         [
                             'text' => 'Ingredientes',
@@ -586,8 +592,8 @@ return [
                         ],
                         [
                             'text' => 'Planes Alimentarios',
-                            'url'  => 'planesalimentarios',
-                            'can' => 'planesalimentarios.Ver',
+                            'url'  => 'planalimentario',
+                            'can' => 'planalimentario.Ver',
                         ],
                     ],
                 ],

@@ -2,8 +2,10 @@
 
 namespace App\Models\Geri;
 
+use App\Models\Geri\Actores\ActorAgente;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Geri\Actores\ActorReferente;
 
 class Actor extends Model {
 
@@ -68,6 +70,17 @@ class Actor extends Model {
       dd($this->hasManyThrough('\\App\Models\Geri\MotivosEgresos','\\App\Models\Geri\Actores\ActorAgentess')->get());
       // return
    }
+
+   public function actor_referente() {
+      $a = ActorAgente::where('id','=',$this->id)->get('actor_referente');
+      if(count($a)) { 
+         $b = Actor::find($a[0]);
+         return $b; 
+      }
+      return null;
+      // return dd($this->HasOne(Actor::class,'id','actor_referente')->get());
+  }
+
 //    public $id;
 //    public $nombre='';
 //    public $documentotipo_id;

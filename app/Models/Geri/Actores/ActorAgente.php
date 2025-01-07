@@ -4,6 +4,7 @@ namespace App\Models\Geri\Actores;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ActorAgente extends Model
 {
@@ -27,4 +28,5 @@ class ActorAgente extends Model
     public function MotivosEgreso() {
         return $this->hasManyThrough('\\App\Models\Geri\MotivosEgresos','\\App\Models\Geri\Actores\ActorAgente','motivos_egreso_id','id')->get();
     }
+
 }

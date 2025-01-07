@@ -51,7 +51,8 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Estados', 'pagina' => 'estados','imagen'=>'estados.jpg','leyenda'=>'Los productos pueden cambiar de estados ya que pueden ser nuevos, usados o ser eliminado por algún motivo.','habilitado'=>1]);    //erp         
         DB::table('modulos')->insert(['name' => 'Haberes', 'pagina' => 'haberes','imagen'=>'haberes.jpg','leyenda'=>'Calcule las liquidaciones de haberes de su personal. Revise liquidaciones de períodos anteriores.','habilitado'=>1]);  //erp         
         DB::table('modulos')->insert(['name' => 'Ventas Mostrador', 'pagina' => 'ventasmostrador','imagen'=>'ventasmostrador.jpg','leyenda'=>'Registre comprobantes de ventas, consulte informes en distintas escalas de tiempo.','habilitado'=>1]);    //erp 
-        DB::table('modulos')->insert(['name' => 'Compra-Ventas Simple', 'pagina' => 'VentaSimple','imagen'=>'compraventa.jpg','leyenda'=>'Registre comprobantes de ventas o de compras facilmente desde su dispositivo móvil, registre rápidamente sus operaciones','habilitado'=>1]);    //erp         
+        DB::table('modulos')->insert(['name' => 'Compra-Ventas Simple', 'pagina' => 'VentaSimple','imagen'=>'compraventa.jpg','leyenda'=>'Registre comprobantes de ventas o de compras facilmente desde su dispositivo móvil, registre rápidamente sus operaciones','habilitado'=>1]);    //erp
+        DB::table('modulos')->insert(['name' => 'Estado de Personas', 'pagina' => 'personactivo','imagen'=>'personactivo.jpg','leyenda'=>'Registre los distintos estados de las personas que participan.','habilitado'=>1]);    //erp
         
         DB::table('modulos')->insert(['name' => 'Categorias', 'pagina' => 'categorias','imagen'=>'categorias.jpg','leyenda'=>'Configure las distintas categorias de Ingredientes.','habilitado'=>1]);    // Geri
         DB::table('modulos')->insert(['name' => 'Estado de Cama', 'pagina' => 'estadocama','imagen'=>'estadocama.jpg','leyenda'=>'Estado individual de cada una de las camas en la institución.','habilitado'=>1]);    // Geri
@@ -66,6 +67,6 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'otrascosas', 'pagina' => 'otrascosas','imagen'=>'haberes.jpg','leyenda'=>'Otras cosas.','habilitado'=>1]);    // Geri
         DB::table('modulos')->insert(['name' => 'Perfil', 'pagina' => 'profile','imagen'=>'haberes.jpg','leyenda'=>'Modifique los datos personales.','habilitado'=>1]);   // Geri
         DB::table('modulos')->insert(['name' => 'Tipos de Personas', 'pagina' => 'tiposdepersonas','imagen'=>'tiposdepersonas.jpg','leyenda'=>'Administra los distintos actores/personas dentro del sistema.','habilitado'=>1]);   // Geri
-        DB::table('modulos')->insert(['name' => 'Planes Alimentarios', 'pagina' => 'planesalimentarios','imagen'=>'planalimentario.jpg','leyenda'=>'Administra los distintos Planes alimentarios de la institución.','habilitado'=>1]);   // Geri
+        DB::table('modulos')->insert(['name' => 'Planes Alimentarios', 'pagina' => 'planalimentario','imagen'=>'planalimentario.jpg','leyenda'=>'Administra los distintos Planes alimentarios de la institución.','habilitado'=>1]);   // Geri
     }
 }

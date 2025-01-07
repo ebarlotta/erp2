@@ -70,24 +70,27 @@ Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
     - composer clearcache
     - rm -rf vendor/*
     - composer install
+    - Se sube todo al directorio erp2, se actualiza el pull y luego se copia a cp -R erp2/ barber1/ porque parece que hay un problema con la redirección. 
+    el archivo .htaccess se copia por separado ya que no lo copia el cp. Hay que registrar en url register y luego relacionar el usuario en empresausuarios
+
 
 -- Medicamentos se considera que es necesario empresa_id, se deja para una próxima actualización -> Se entiende que Elementos tiene el id necesario 05/08/2024
 -- Camas no se si es necesario empresa_id -> Si es necesario. Se agrega 05/08/2024
 
-Medicamentos    REVISAR PORQUE HAY DOS INTERFACES MEDICAMENTOS Y ELEMENTOS-MEDICAMENTOS
 Ingredientes    REALIZADO 05/07/2024
+- Se mejoró la redirección de las páginas que se vence la sesión y se mejoraron la asignación de permisos a los módulos que tiene habilitado el usuario y la empresa -> 07/01/2025
 
+- Medicamentos    REVISAR PORQUE HAY DOS INTERFACES MEDICAMENTOS Y ELEMENTOS-MEDICAMENTOS
 
+- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR -> Por ahora se consifura cada usuario en particular cada uno de los permisos. Hay que habilitar la posibilidad de copiar usuarios y permisos
+- Hacer Paciente_Medicamentos -> Realizado 07/01/2025 -> Pensar en el tema de la unidad/cantidad
 
-- Hacer Paciente_Medicamentos
-
-- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR
+- Desarrollar RelPacienteMenu -> Se relaciona a travéz del Plan Alimentario que se elige para el paciente
 
 - Gestión de Certificados
 
 - Desarrollar Faltantes de Stock  
 
-- Desarrollar RelPacienteMenu
 
 - CanonMensual    Puede incluirse en venta de Producto/servicio
 

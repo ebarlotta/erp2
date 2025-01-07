@@ -167,10 +167,11 @@ class ActorComponent extends Component
         $this->plan_alimentario_actor_id=null;
         $this->plan_alimentario_elegido=null;
 
-        if($actor->tipopersona_id==1) {
+        if($actor->tipopersona_id==1) {     // Si es un agente, entonces...
             $this->CargaDatosdelActor($actor);
-            $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
-            $this->CargarInforme('PlanAlimentario');
+            // $agente = ActorAgente::where('id','=',$this->actor_id)->get(); 
+            
+            $this->CargarInforme('PlanAlimentario');    // Carga el plan Alimentario, si es que lo hay
             $a = PlanAlimentarioActor::where('actor_id','=',$this->actor_id)->get();
             if(count($a)) { 
                 $this->plan_alimentario_actor_id = $a[0]->plan_id; 
@@ -232,6 +233,7 @@ class ActorComponent extends Component
 
             case 'Medicamentos':{                
                 //Busca todos los medicamentos que tiene el actor
+                
                 $this->listadomedicamentos = Indicaciones::join('elementos','indicaciones.elemento_id','elementos.id')
                 ->join('momentos_del_dias','momentos_del_dias.id','indicaciones.momento_del_dia_id')
                 ->join('dias_de_la_semanas','dias_de_la_semanas.id','indicaciones.dia_de_la_semana_id')
@@ -753,27 +755,11 @@ class ActorComponent extends Component
         $this->personactivo_id = $actor->personactivo_id;
         $this->email_verified_at = $actor->email_verified_at;
         $this->condicioniva_id = $actor->condicioniva_id;
-        
-        // dd($actor->id);
-
-        // switch ($actor->tipopersona_id) {
-        //     case 1: { //Agente
-        //         $datosactor = ActorAgente::where('actor_id','=',$actor->id)->get();
-        //         // dd($datosactor);
-        //         // $datosactor = ActorAgente::findOrFail($actor->id);
-        //         if($datosactor) {
-        //         $this->fingreso=$actor->fingreso;
-        //         $this->fegreso = $actor->fegreso;
-        //         $this->alias = $actor->alias;
-        //         $this->peso = $actor->peso;
-        //         $this->referente_id = $actor->referente_id;
-        //         $this->cama_id = $actor->cama_id;
-        //         } else {
-        //             session()->flash('message', 'Debe editar los datos del actor mediante el botón Agregar');
-        //         }
-        //         break;
-        //     }
-        // }
+        // dd($actor->actor_referente()[0]->nombre);
+        if(!is_null($actor->actor_referente())) {
+            $this->actor_referente = $actor->actor_referente()[0]->nombre;
+            $this->referente_id = $actor->actor_referente()[0]->id;
+        }
     }
 
     public function CargaDatosdelAgente($agente_id) {
