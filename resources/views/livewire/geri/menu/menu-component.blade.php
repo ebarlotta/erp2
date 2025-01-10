@@ -44,12 +44,12 @@
                             </div>
                             <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
                         </div>
-                        <div style="display: block">
+                        <div class="px-4" style="display: block">
 
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Nombre del Menú</th>
+                                        <th scope="col ml-2">Nombre del Menú</th>
                                         <th scope="col">Activo</th>
                                         <th scope="col">Tiempo de Preparción</th>
                                         <th scope="col">Opciones</th>
@@ -58,7 +58,7 @@
                                 <tbody>
                                     @foreach ($datos as $menu)
                                         <tr>
-                                            <td>{{ $menu->nombremenu }}</td>
+                                            <td class="pl-2">{{ $menu->nombremenu }}</td>
                                             <td>
                                                 <div class="flex justify-center">
                                                     @if($menu->menuactivo)

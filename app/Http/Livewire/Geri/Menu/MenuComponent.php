@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Geri\Menu;
 use App\Models\Geri\Menu;
 use App\Models\Geri\Ingredientes;
 use App\Models\Geri\Menuingrediente;
+use App\Models\Elementos\ElementoIngrediente;
+use App\Models\Elementos\Elemento;
 
 use Livewire\Component;
 
@@ -22,6 +24,7 @@ class MenuComponent extends Component
     {
         $this->empresa_id=session('empresa_id');
         $this->menues = Menu::where('empresa_id', $this->empresa_id)->orderby('nombremenu')->get();
+        
         $this->ingredientes = Ingredientes::where('empresa_id', $this->empresa_id)->orderby('nombreingrediente')->get();
         return view('livewire.geri.menu.menu-component',['datos'=> Menu::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
     }
