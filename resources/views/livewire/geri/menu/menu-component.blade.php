@@ -1,15 +1,5 @@
 <div>
     <x-titulo>Menúes</x-titulo>
-    {{-- <x-slot name="header">
-        <div class="flex">
-            <!-- //Comienza en submenu de encabezado -->
-
-            <!-- Navigation Links -->
-            @livewire('submenu')
-        </div>
-
-    </x-slot> --}}
-
     <div class="content-center flex">
         <div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
             <div class="mx-auto sm:px-6 lg:px-8">
@@ -35,7 +25,7 @@
                                 @include('livewire.geri.menu.createmenu')
                             @endif
                         @endcan
-                            <div><a href="{{ route('ingredientes') }}">
+                            <div><a href="{{ route('elementos') }}">
                                     <button wire:click="create()"
                                         class="bg-green-300 hover:bg-green-400 text-white-900 font-bold py-2 px-4 rounded my-3">
                                         Nuevo Ingrediente

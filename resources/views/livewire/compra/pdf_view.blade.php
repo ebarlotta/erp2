@@ -17,7 +17,7 @@
     @endif
     <table class="container col-8">
         <tr class="bg-secondary text-white fw-bold border">
-            <td class="border text-center">Nombre</td>
+            <td class="border" style="text-align: left">Nombre</td>
             @if ($operacion == 'deuda') {
                 <td class="border text-center">Deuda</td> }
             @else {
@@ -25,7 +25,7 @@
             @endif
         </tr>
         {{-- antes --}}
-        {{ $html }}
+        {!! $html !!}
         {{-- despues --}}
         {{-- @foreach ($registros as $registro)
         entró
@@ -48,13 +48,13 @@
             }
         @endforeach --}}
         <tr class="bg-secondary">
-            <td class="colspan-2 text-end border text-white fw-bold">Total {{ $operacion }} a Vendedores</td>
+            <td class="colspan-2 text-left border pl-3 text-white fw-bold">Total {{ $operacion }} a Vendedores</td>
             <td class="border text-end text-white fw-bold">
                 Total {{ number_format($saldototal, 2, ',', '.') }}
             </td>
         </tr>
     </table>
-    {{ $html }}
+    {{-- {{ $html }} --}}
 
 </body>
 

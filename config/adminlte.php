@@ -582,8 +582,8 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Ingredientes',
-                            'url'  => 'ingredientes',
-                            'can' => 'ingredientes.Ver',
+                            'url'  => 'elementos',
+                            'can' => 'elementos.Ver',
                         ],
                         [
                             'text' => 'Menúes',

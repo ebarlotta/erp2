@@ -1,13 +1,5 @@
 <div>
     <x-titulo>Gestión de Menú - {{ $menu[0]['nombremenu'] }}</x-titulo>
-    {{-- <x-slot name="header">
-        <div class="flex">
-            <!-- //Comienza en submenu de encabezado -->
-            <!-- Navigation Links -->
-            @livewire('submenu')
-        </div>
-
-    </x-slot> --}}
 
     <div class="content-center flex">
         <div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
@@ -30,11 +22,12 @@
                                 <tbody>
                                     @foreach ($ingredientesdelmenu as $ingredientedelmenu)
                                         <tr>
-                                            <td>{{$ingredientedelmenu->nombreingrediente}}</td>
+                                            <td>{{$ingredientedelmenu->nombre_elemento}}</td>
+                                            {{-- <td>{{$ingredientedelmenu->nombreingrediente}}</td> --}}
                                             <td>{{$ingredientedelmenu->cantidad}}</td>
-                                            <td>{{$ingredientedelmenu->name}}</td> <!-- Imprime la unidad -->
+                                            <td>{{$ingredientedelmenu->nombre_unidad}}</td> <!-- Imprime la unidad -->
                                             <td>
-                                                <button class="inline-flex justify-center w-full rounded-md border border-transparent px-4 bg-red-300 text-base leading-6 font-bold text-white-900 shadow-sm hover:bg-red-400 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5" wire:click="EliminarRelacion({{ $ingredientedelmenu->menu_id}},{{ $ingredientedelmenu->ingrediente_id}})">Eliminar</button>
+                                                <button class="inline-flex justify-center w-full rounded-md border border-transparent px-4 bg-red-300 text-base leading-6 font-bold text-white-900 shadow-sm hover:bg-red-400 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5" wire:click="EliminarRelacionMenuIngrediente({{ $ingredientedelmenu->menu_id}},{{ $ingredientedelmenu->elemento_id}})">Eliminar</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -52,13 +45,13 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <select class="col-12 btn bg-primary-100" style="background-color: darkgray;" wire:model="ingredienteagestionar">
+                                            <select class="col-12 btn bg-primary-100" style="background-color: darkgray;" wire:model="ingrediente_gestionar_id">
                                                 <option value="0" selected>-</option>
                                                 @foreach ($ingredientes as $ingrediente)
-                                                    <option value="{{ $ingrediente->id }}">{{$ingrediente->nombreingrediente}}</option>
+                                                    <option value="{{ $ingrediente->id }}">{{$ingrediente->name}}</option>
                                                 @endforeach
                                             </select>
-                                            @error('ingredienteagestionar') <span class="text-red-500">{{ $message }}</span>@enderror
+                                            @error('ingrediente_gestionar_id') <span class="text-red-500">{{ $message }}</span>@enderror
                                         </td>
                                         <td>
                                             <input type="text" class="col-12 btn" style="background-color: darkgray;" wire:model="cantidad">

@@ -20,13 +20,13 @@ class ImprimirPDF extends Controller
         ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
         //->whereBetween('comprobantes.fecha',["'".$this->ddesde."'","'".$this->dhasta."'"])
         // ->whereRaw('(NetoComp-MontoPagadoComp)>1')
-        ->where('comprobantes.fecha','>=',$request->ddesde)
-        ->where('comprobantes.fecha','<=',$request->dhasta)
+        ->where('comprobantes.fecha','>=',date($request->ddesde))
+        ->where('comprobantes.fecha','<=',date($request->dhasta))
         ->groupBy('proveedors.id');
         
 
         // $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.* from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= $request->ddesde and `comprobantes`.`fecha` <= $request->dhasta ";
-        $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= $request->ddesde and `comprobantes`.`fecha` <= $request->dhasta group by proveedors.id, proveedors.name";
+        $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= '$request->ddesde' and `comprobantes`.`fecha` <= '$request->dhasta' group by proveedors.id, proveedors.name";
         // dd($sql);
         // $registros = DB::select(DB::raw($sql));
         $registros = DB::select($sql);
@@ -40,7 +40,7 @@ class ImprimirPDF extends Controller
         $saldototal = $this->saldo;
         $operacion = $this->operacion;
         $html = $this->PrepararTabla($registros);
-        dd($html);
+        // dd($sql);
         $pdf = PDF::loadView('livewire.compra.pdf_view',compact('html','saldototal','operacion'));
         
         // download PDF file with download method
@@ -53,12 +53,12 @@ class ImprimirPDF extends Controller
             if ($this->operacion == 'deuda') 
                 {
                     if ($registro->Saldo > 1) {
-                        $html=$html."<tr><td class=\"border text-end  mr-3 pr-3\">". $registros->name . "</td><td class=\"border text-end mr-3 pr-3\">". number_format($registros->Saldo, 2, ',','.') ."</td></tr>";
+                        $html=$html."<tr><td class=\"border text-left pl-3 mr-3 pr-3\">". $registro->name . "</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo, 2, ',','.') ."</td></tr>";
                 } 
                 else 
                 {
                     if ($registro->Saldo < 1) {
-                        $html=$html."<tr><td class=\"border text-end mr-3 pr-3\">". $registro->name ."</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo * -1, 2, ',','.') ."</td></tr>";
+                        $html=$html."<tr><td class=\"border text-left pl-3 mr-3 pr-3\">". $registro->name ."</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo * -1, 2, ',','.') ."</td></tr>";
                     }
                 }
             }

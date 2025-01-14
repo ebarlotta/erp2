@@ -67,16 +67,18 @@ class CompraComponent extends Component
 
         $anio = date("Y");
         if(is_null($this->gfanio)) { $this->gfanio = $anio; }; //La primara vez que inicia revisa si es nulo y en ese caso cambia al año actual, sino no lo toca más
-    
-        if ($this->ddesde==null || $this->dhasta==null || $this->cdesde==null || $this->chasta==null || $this->ccdesde==null || $this->cchasta==null ) { $anio = date("Y"); } 
 
-        $this->ddesde = date($anio.'-01-01');
-        $this->dhasta = date($anio.'-12-31');
-        $this->cdesde = date($anio.'-01-01');
-        $this->chasta = date($anio.'-12-31');
-        $this->ccdesde = date($anio.'-01-01');
-        $this->cchasta = date($anio.'-12-31');      
-        
+        if ($this->ddesde==null || $this->dhasta==null || $this->cdesde==null || $this->chasta==null || $this->ccdesde==null || $this->cchasta==null ) { 
+            
+            $anio = date("Y");
+            $this->ddesde = date($anio.'-01-01');
+            $this->dhasta = date($anio.'-12-31');
+            $this->cdesde = date($anio.'-01-01');
+            $this->chasta = date($anio.'-12-31');
+            $this->ccdesde = date($anio.'-01-01');
+            $this->cchasta = date($anio.'-12-31');      
+        }
+
         if (!is_null(session('empresa_id'))) { $this->empresa_id = session('empresa_id'); } 
         else { 
             if(Auth::user()) {
@@ -534,6 +536,7 @@ class CompraComponent extends Component
     }
     public function ProcesaSQLFiltro($interfaz){
         $sql='';
+
         switch ($interfaz) {
             case "comprobantes" : {
                 //Mes 	Proveedor 	ParticipaIva 	Iva 	Detalle 	Area 	Cuenta 	Año 	Asc. C/Saldo
@@ -560,7 +563,6 @@ class CompraComponent extends Component
                 
                 if ($this->darea==0) { $darea=''; } else { $darea=' and comprobantes.area_id='.$this->darea; }  //Comprueba si se ha seleccionado un area en especìfico
                 if ($this->danio==0) { $danio=''; } else { $danio=' and comprobantes.Anio='.$this->danio; }  //Comprueba si se ha seleccionado un año en especìfico
-
                 if($this->darea<>0) {
                     $sql = DB::table('comprobantes')
                     ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id')

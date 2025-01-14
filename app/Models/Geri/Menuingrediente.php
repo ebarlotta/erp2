@@ -4,7 +4,6 @@ namespace App\Models\Geri;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Ingrediente;
 
 class Menuingrediente extends Model
 {
@@ -12,12 +11,12 @@ class Menuingrediente extends Model
 
     protected $fillable = [
         'menu_id',
-        'ingrediente_id',
+        'elemento_id',
         'cantidad',
     ];
 
-    public function ingredientes()
-    {
-        return $this->belongsToMany(Ingrediente::class);
-    }
+    // public function ingredientes()
+    // {
+    //     return $this->belongsToMany(elemento_id::class);
+    // }
 }

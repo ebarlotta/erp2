@@ -75,7 +75,7 @@ use App\Http\Livewire\Geri\PersonaCampos\PersonasCamposComponent;
 use App\Http\Livewire\Geri\Interfaces\InterfacesComponent;
 use App\Http\Livewire\Geri\Medicamentos\MedicamentosComponent;
 use App\Http\Livewire\Geri\Menu\MenuComponent;
-use App\Http\Livewire\Geri\Ingredientes\IngredientesComponent;
+// use App\Http\Livewire\Geri\Ingredientes\IngredientesComponent;
 use App\Http\Livewire\Geri\PlanAlimentarioComponent;
 
 use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
@@ -190,7 +190,7 @@ Route::get('expendio',ExpendioComponent::class)->name('expendio');
 Route::get('gradodependencia',GradodependenciaComponent::class)->name('gradodependencia');
 Route::get('habitaciones',Habitacion::class)->name('habitaciones');
 Route::get('informes',InformeComponent::class)->name('informes');
-Route::get('ingredientes',IngredientesComponent::class)->name('ingredientes');
+// Route::get('ingredientes',IngredientesComponent::class)->name('ingredientes');
 Route::get('interfaces',InterfacesComponent::class)->name('interfaces');
 Route::get('medicamentos',MedicamentosComponent::class)->name('medicamentos');
 Route::get('menu',MenuComponent::class)->name('menu');

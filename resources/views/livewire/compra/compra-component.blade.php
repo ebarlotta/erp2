@@ -377,7 +377,7 @@
 									</div>
 									{{-- <div> --}}
 
-										<div class="flex flex-wrap fse-1" style="background-color: rgb(199, 233, 233); font-size: 14px;padding-bottom: 10px;">
+										<div class="flex flex-wrap fse-1 justify-content-between" style="background-color: rgb(199, 233, 233); font-size: 14px;padding-bottom: 10px;">
 											<div class="px-2 grid text-left">
 												<label style="font-size: 80%;">Mes</label>
 												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfmes" wire:change="gfiltro()" style="box-shadow: 2px 2px 5px #999;">
@@ -660,29 +660,33 @@
 										</select>
 									</div>
 								</div>
-								<div class="block mb-4 justify-start">
-									Desde <br>
-									<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
+								<div class="flex justify-center">
+									<div class="block mb-4 justify-start">
+										Desde <br>
+										<input class="text-xs rounded-md h-7 ml-5" type="date" wire:model="ccdesde"><br>
+									</div>
+								
+									<div class="block mb-4 justify-center">
+										Hasta <br>
+										<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
+									</div>
+									<div class="block mb-4 justify-center">
+										Mes <br>
+										*
+									</div>
+									<div class="block mb-4 justify-center">
+										Área <br>
+										*
+									</div>
+									<div class="block mb-4 justify-center">
+										Cuenta <br>
+										*
+									</div>
 								</div>
-							
-								<div class="block mb-4 justify-center">
-									Hasta <br>
-									<input class="ml-2 text-xs rounded-md h-7" type="date" wire:model="cchasta"><br>
-								</div>
-								<div class="block mb-4 justify-center">
-									Mes <br>
-									*
-								</div>
-								<div class="block mb-4 justify-center">
-									Área <br>
-									*
-								</div>
-								<div class="block mb-4 justify-center">
-									Cuenta <br>
-									*
-								</div>
-								<div class="block mb-4 justify-center">
-									<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
+								<div class="flex justify-center">									
+									<div class="block mb-4 justify-center">
+										<input class="ml-2 text-xs rounded-md h-7 btn btn-info px-8 py-1 mx-2 mt-3" type="button" wire:click="ListarCuentasCorrientes" value="Calcular"><br>
+									</div>
 								</div>
 								{!! $CuentasCorrientesHtml !!}
 							</div>

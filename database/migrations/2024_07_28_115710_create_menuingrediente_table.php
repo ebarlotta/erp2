@@ -17,14 +17,14 @@ class CreateMenuingredienteTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('menu_id');
-            $table->unsignedBigInteger('ingrediente_id');
+            $table->unsignedBigInteger('elemento_id');
             $table->double('cantidad')->default(0);
 
             $table->timestamps();
 
             //$table->foreignIdFor(PersonActivo::class,'id');
             $table->foreign('menu_id')->references('id')->on('menus');
-            $table->foreign('ingrediente_id')->references('id')->on('ingredientes');
+            $table->foreign('elemento_id')->references('id')->on('elementos');
 
         });
     }
