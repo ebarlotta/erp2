@@ -12,10 +12,10 @@
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif">
-    @if ($operacion == 'deuda') <div class="text-center"><label>Resumen de Deudas</label></div>
-    @else <div class="text-center"><label>Resúmen de Créditos</label></div>
+    @if ($operacion == 'deuda') <div class="text-center mb-2"><label>Resumen de Deudas</label></div>
+    @else <div class="text-center mb-2"><label>Resúmen de Créditos</label></div>
     @endif
-    <table class="container col-8">
+    <table class="container col-10" style="font-size: 11px">
         <tr class="bg-secondary text-white fw-bold border">
             <td class="border" style="text-align: left">Nombre</td>
             @if ($operacion == 'deuda') {
