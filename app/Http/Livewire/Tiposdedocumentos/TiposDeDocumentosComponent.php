@@ -13,9 +13,8 @@ class TiposDeDocumentosComponent extends Component
     public $isModalOpen = false;
     protected $tiposdedocumentos;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('tiposdedocumentos.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('tiposdedocumentos.Ver')) {
             if(session('empresa_id')) {
                 $this->tiposdedocumentos = TiposDocumentos::all();
                 return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component',['isModalOpen' => $this->isModalOpen,'tiposdedocumentos'=> $this->tiposdedocumentos])->extends('layouts.adminlte');

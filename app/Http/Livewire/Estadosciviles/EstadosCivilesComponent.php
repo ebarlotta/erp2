@@ -11,9 +11,8 @@ class EstadosCivilesComponent extends Component
     public $estadosciviles;
     public $isModalOpen = false;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('estadosciviles.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('estadosciviles.Ver')) {
             if(session('empresa_id')) {        
                 $this->estadosciviles = EstadosCiviles::all();
                 return view('livewire.geri.estadosciviles.estados-civiles-component',['isModalOpen'=> $this->isModalOpen,'estadociviles'=>$this->estadosciviles])->extends('layouts.adminlte');

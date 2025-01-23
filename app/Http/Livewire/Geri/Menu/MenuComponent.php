@@ -20,9 +20,8 @@ class MenuComponent extends Component
     
     public $empresa_id;
     
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('menu.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('menu.Ver')) {
             if(session('empresa_id')) {
                 $this->menues = Menu::where('empresa_id', session('empresa_id'))->orderby('nombremenu')->get();
                 $this->ingredientes = ElementoIngrediente::join('elementos', 'elementos.id','elemento_ingredientes.elemento_id')->orderby('elementos.name')->get();

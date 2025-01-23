@@ -35,9 +35,8 @@ class ElementosComponent extends Component
     use WithPagination;
     
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('elementos.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('elementos.Ver')) {
 
             if(session('empresa_id')) {
 

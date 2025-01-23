@@ -12,9 +12,8 @@ class ProvinciasComponent extends Component
     public $provincias;
     public $isModalOpen = false;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('provincias.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('provincias.Ver')) {
             if(session('empresa_id')) {
                 $this->provincias = Provincias::all();
                 return view('livewire.provincias.provincias-component',['isModalOpen'=>$this->isModalOpen,'provincias'=>$this->provincias])->extends('layouts.adminlte');

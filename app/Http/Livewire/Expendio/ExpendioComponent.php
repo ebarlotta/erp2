@@ -13,9 +13,8 @@ class ExpendioComponent extends Component
     public $registros_desayuno, $registros_almuerzo, $registros_mediatarde, $registros_cena;
     public $cerradoDesayuno, $regs;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('expendio.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('expendio.Ver')) {
             if(session('empresa_id')) {
                 $this->fecha = date('Y-m-d');
 

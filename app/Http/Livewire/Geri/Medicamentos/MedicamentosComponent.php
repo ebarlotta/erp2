@@ -13,9 +13,8 @@ class MedicamentosComponent extends Component
     public $medicamentos, $unidades;
     public $isModalOpen, $buscar;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('medicamentos.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('medicamentos.Ver')) {
             if(session('empresa_id')) {
                 if(is_null($this->buscar)) {
                     $this->medicamentos = Medicamento::orderby('nombremedicamento')

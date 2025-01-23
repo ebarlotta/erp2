@@ -14,9 +14,8 @@ class NacionalidadComponent extends Component
     public $nacionalidades;
     public $isModalOpen = false;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('modulousuarios.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('modulousuarios.Ver')) {
             if(session('empresa_id')) {
                 $this->nacionalidades = DB::table('nacionalidads')->get();
                 return view('livewire.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidades'=>$this->nacionalidades])->extends('layouts.adminlte');

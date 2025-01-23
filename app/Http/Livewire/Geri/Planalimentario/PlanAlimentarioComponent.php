@@ -21,9 +21,8 @@ class PlanAlimentarioComponent extends Component
 
     public $empresa_id;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('planalimentario.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('planalimentario.Ver')) {
             if(session('empresa_id')) {
                 $this->empresa_id=session('empresa_id');
                 $this->planesalimentarios = PlanAlimentario::where('empresa_id', $this->empresa_id)->get();

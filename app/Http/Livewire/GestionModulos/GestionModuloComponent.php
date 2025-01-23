@@ -26,9 +26,8 @@ class GestionModuloComponent extends Component
     use WithPagination;
 
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('gestionmodulo.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('gestionmodulo.Ver')) {
             if(session('empresa_id')) {
         
             $this->filtrar();

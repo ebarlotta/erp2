@@ -33,9 +33,8 @@ class ModuloUsuariosComponent extends Component
     public $moduloseleccionado;
     public $seleccionado=1;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('modulousuarios.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('modulousuarios.Ver')) {
             if(session('empresa_id')) {
                 $this->usuariosglobales= User::all();
                 //$modulos = Modulo::get()->sortBy('id')->paginate(4);

@@ -21,9 +21,8 @@ class EmpresaGestion extends Component
     public $empresa;
     public $empresa_id, $name, $direccion, $cuit, $ib, $imagen, $establecimiento, $telefono, $actividad, $actividad1, $menu, $email, $habilitada=true, $nombretitular, $dnititular;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('empresagestion.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('empresagestion.Ver')) {
             if(session('empresa_id')) {
                $this->empresas=Empresa::all();
                 return view('livewire.empresa-gestion.empresa-gestion',['datos'=> Empresa::orderby('name')->paginate(7),])->extends('layouts.adminlte');

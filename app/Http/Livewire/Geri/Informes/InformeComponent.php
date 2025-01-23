@@ -23,9 +23,8 @@ class InformeComponent extends Component
     public $nombreinforme, $periodo_id, $observaciones;
 
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('informe.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('informe.Ver')) {
             if(session('empresa_id')) {
                 $this->periodos = Periodo::all();
                 $this->escalas = Escala::all();

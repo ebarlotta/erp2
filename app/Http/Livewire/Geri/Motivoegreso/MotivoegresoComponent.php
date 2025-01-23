@@ -13,9 +13,8 @@ class MotivoegresoComponent extends Component
     public $motivos;
     public $isModalOpen = false;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('motivoegreso.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('motivoegreso.Ver')) {
             if(session('empresa_id')) {
                 $this->motivos = MotivosEgresos::all();
                 return view('livewire.geri.motivoegreso.motivoegreso-component',['isModalOpen'=>$this->isModalOpen,'motivos'=>$this->motivos])->extends('layouts.adminlte');

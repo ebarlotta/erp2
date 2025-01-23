@@ -18,9 +18,8 @@ class CuentaComponent extends Component
     public $name;
     public $empresa_id;
 
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('areas.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('areas.Ver')) {
             if(session('empresa_id')) {
                 $this->empresa_id=session('empresa_id');
                 $this->cuentas = Cuenta::where('empresa_id', $this->empresa_id)->orderby('name')->get();

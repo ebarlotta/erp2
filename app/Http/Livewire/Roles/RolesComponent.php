@@ -29,9 +29,8 @@ class RolesComponent extends Component
 
     // FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR Enzo
     
-    public function render()
-    {
-        if(auth()->user()->hasPermissionTo('roles.Ver')) {
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('roles.Ver')) {
             if(session('empresa_id')) {
                 $this->modulos = Modulo::orderby('name')->get(); ///all();
                 $this->Filtrar();
