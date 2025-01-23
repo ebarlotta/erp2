@@ -301,7 +301,7 @@ return [
                 [
                     'text' => 'Gestión de Roles',
                     'url'  => 'roles',
-                    'icon' => 'fas fa-fw fa-building',
+                    'icon' => 'fa fa-user-circle',
                     'can' => 'roles.Ver',
                 ],
                 [
@@ -339,7 +339,7 @@ return [
             [
                 'text' => 'Elementos',
                 'url'  => 'elementos',
-                'icon' => 'fa fa-linode',
+                'icon' => 'fa fa-gift',
                 'can' => 'elementos.Ver',
             ],
             [
@@ -380,7 +380,7 @@ return [
             ],
             [
                 'text' => 'Localización',
-                'icon' => 'fa fa-arrows',
+                'icon' => 'fa fa-map-marker',
                 'canany' => ['localidades.Ver','nacionalidad.Ver','provincias.Ver'],
                 'submenu' => [
                     [
@@ -572,7 +572,7 @@ return [
                 [
                     'text' => 'Motivos de Egresos',
                     'url'  => 'motivoegreso',
-                    'icon' => 'fa fa-external-link-square',
+                    'icon' => 'fa fa-arrow-down',
                     'can' => 'motivoegreso.Ver',
                 ],
                 [

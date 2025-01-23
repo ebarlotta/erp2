@@ -76,7 +76,7 @@ use App\Http\Livewire\Geri\Interfaces\InterfacesComponent;
 use App\Http\Livewire\Geri\Medicamentos\MedicamentosComponent;
 use App\Http\Livewire\Geri\Menu\MenuComponent;
 // use App\Http\Livewire\Geri\Ingredientes\IngredientesComponent;
-use App\Http\Livewire\Geri\PlanAlimentarioComponent;
+use App\Http\Livewire\Geri\Planalimentario\PlanAlimentarioComponent;
 
 use App\Http\Livewire\erp\Cart\Payment\PaymentComponent;
 use App\Http\Livewire\erp\Cart\Cart;

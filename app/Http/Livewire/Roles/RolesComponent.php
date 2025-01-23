@@ -31,56 +31,63 @@ class RolesComponent extends Component
     
     public function render()
     {
-        $this->modulos = Modulo::orderby('name')->get(); ///all();
-        $this->Filtrar();
-        // $user = User::find(Auth::user()->id);   // Asigna el rol al usuario
-        // $user->syncRoles(['Administrador']);
+        if(auth()->user()->hasPermissionTo('roles.Ver')) {
+            if(session('empresa_id')) {
+                $this->modulos = Modulo::orderby('name')->get(); ///all();
+                $this->Filtrar();
+                // $user = User::find(Auth::user()->id);   // Asigna el rol al usuario
+                // $user->syncRoles(['Administrador']);
 
-        $this->name = "Administrador";
-        // // // dd($this->name);
+                $this->name = "Administrador";
+                // // // dd($this->name);
 
-        // $permissions = Permission::all();
-        // $user = User::find(1);
-        // $user->syncPermissions($permissions);  // Borra todos los permisos del Rol
-        
-        // dd($user);
-        // $permission = Permission::findByName('agregar');
-        // $role->givePermissionTo($permission);
-        
-        // $role->givePermissionTo(['guard_name'=>'web','name'=>'agregar']);
-
-
-        //$user->syncPermissions();  // Borra todos los permisos del Rol
-        //$user->givePermissionTo('agregar');
+                // $permissions = Permission::all();
+                // $user = User::find(1);
+                // $user->syncPermissions($permissions);  // Borra todos los permisos del Rol
+                
+                // dd($user);
+                // $permission = Permission::findByName('agregar');
+                // $role->givePermissionTo($permission);
+                
+                // $role->givePermissionTo(['guard_name'=>'web','name'=>'agregar']);
 
 
-        // dd($user->getPermissionsViaRoles());
-        // $role = Role::findByName($this->name);
-        // // dd($permission);
-        // $permission->assignRole($role);
+                //$user->syncPermissions();  // Borra todos los permisos del Rol
+                //$user->givePermissionTo('agregar');
 
-        // dd($role->getPermissionsViaRoles('Usuario'));
-        
-        // $a= $role->getAllPermissions();
-        // $role->syncPermissions($a);
-        // // $a = User::getAllPermissions();
-        // dd($role);
-        // dd($role->permissions);
-        
-        // $user->hasRole('Usuario');
 
-        // $user = User::getRole('Administrador');
-        // $user = Role::syncRole('Administrador');
-        // $user = Role::all(); // Trae todos los roles
-        // // $user = User::getRole('Administrador');
-        // $user = User::doesntHave('roles')->get();
-        
-        // $user = User::role('Administrador')->get();
-        // $user = User::getRole;
-        // $roles = Auth::user()->getRoleNames();
-        // $permissions = $user->permissions;
-        // dd($role->hasPermissionTo('areas.Agregar'));
-        return view('livewire.roles.roles-component')->extends('layouts.adminlte');
+                // dd($user->getPermissionsViaRoles());
+                // $role = Role::findByName($this->name);
+                // // dd($permission);
+                // $permission->assignRole($role);
+
+                // dd($role->getPermissionsViaRoles('Usuario'));
+                
+                // $a= $role->getAllPermissions();
+                // $role->syncPermissions($a);
+                // // $a = User::getAllPermissions();
+                // dd($role);
+                // dd($role->permissions);
+                
+                // $user->hasRole('Usuario');
+
+                // $user = User::getRole('Administrador');
+                // $user = Role::syncRole('Administrador');
+                // $user = Role::all(); // Trae todos los roles
+                // // $user = User::getRole('Administrador');
+                // $user = User::doesntHave('roles')->get();
+                
+                // $user = User::role('Administrador')->get();
+                // $user = User::getRole;
+                // $roles = Auth::user()->getRoleNames();
+                // $permissions = $user->permissions;
+                // dd($role->hasPermissionTo('areas.Agregar'));
+                return view('livewire.roles.roles-component')->extends('layouts.adminlte');
+
+                } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+            } else {
+                return view('SinPermiso')->extends('layouts.adminlte');
+            }
     }
 
     public function Filtrar() {

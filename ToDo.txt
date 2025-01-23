@@ -99,3 +99,7 @@ Ingredientes    REALIZADO 05/07/2024
 Elementos -> Agregar Imágenes
 Artículos -> Agregar Imágenes
 Descartables -> Agregar Imágenes
+
+Revisar interfacesComponent para ver que sirve y si se puede utilizr para algo
+Revisar si PersonaComponent sigue vigente i ya no hace falta
+Verificar que TiposdePersonas esté a nivel global y no en Geri

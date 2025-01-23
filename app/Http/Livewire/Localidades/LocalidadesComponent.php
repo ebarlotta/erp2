@@ -15,8 +15,14 @@ class LocalidadesComponent extends Component
 
     public function render()
     {
-        $this->localidades = Localidades::all();
-        return view('livewire.localidades.localidades-component',['isModalOpen'=>$this->isModalOpen,'localidades'=>$this->localidades])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('localidades.Ver')) {
+            if(session('empresa_id')) {
+                $this->localidades = Localidades::all();
+                return view('livewire.localidades.localidades-component',['isModalOpen'=>$this->isModalOpen,'localidades'=>$this->localidades])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
 

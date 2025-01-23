@@ -15,10 +15,15 @@ class MotivoegresoComponent extends Component
 
     public function render()
     {
-        $this->motivos = MotivosEgresos::all();
-        return view('livewire.geri.motivoegreso.motivoegreso-component',['isModalOpen'=>$this->isModalOpen,'motivos'=>$this->motivos])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('motivoegreso.Ver')) {
+            if(session('empresa_id')) {
+                $this->motivos = MotivosEgresos::all();
+                return view('livewire.geri.motivoegreso.motivoegreso-component',['isModalOpen'=>$this->isModalOpen,'motivos'=>$this->motivos])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
-
 
     public function create()
     {

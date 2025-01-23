@@ -31,7 +31,9 @@ class ModuloComponent extends Component
                 // a ----> b    a * b
                 // c ----> d    -----
                 //                c
-                $this->porc = 1 * 10 / count($empresa_modulos);   // Se utiliza la variable porc para calcular el tamaño de cada uno de los íconos
+                if(count($empresa_modulos)>5) {
+                    $this->porc = 1 * 10 / count($empresa_modulos);   // Se utiliza la variable porc para calcular el tamaño de cada uno de los íconos
+                } else { $this->porc = 1; }
 
                 $this->modulos=Modulo::find($empresa_modulos);
                 return view('livewire.modulo.modulo-component',$this->modulos)->extends('layouts.adminlte')->section('content'); 

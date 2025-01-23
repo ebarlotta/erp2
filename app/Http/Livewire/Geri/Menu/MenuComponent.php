@@ -22,17 +22,16 @@ class MenuComponent extends Component
     
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        $this->menues = Menu::where('empresa_id', $this->empresa_id)->orderby('nombremenu')->get();
-
-        $this->ingredientes = ElementoIngrediente::join('elementos', 'elementos.id','elemento_ingredientes.elemento_id')->orderby('elementos.name')->get();
-
-        $this->CargarIngredientesDelMenu();
-        // dd($this->ingredientes);
-
-        // $this->ingredientes = Ingredientes::where('empresa_id', $this->empresa_id)->orderby('nombreingrediente')->get();
-
-        return view('livewire.geri.menu.menu-component',['datos'=> Menu::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('menu.Ver')) {
+            if(session('empresa_id')) {
+                $this->menues = Menu::where('empresa_id', session('empresa_id'))->orderby('nombremenu')->get();
+                $this->ingredientes = ElementoIngrediente::join('elementos', 'elementos.id','elemento_ingredientes.elemento_id')->orderby('elementos.name')->get();
+                $this->CargarIngredientesDelMenu();
+                return view('livewire.geri.menu.menu-component',['datos'=> Menu::where('empresa_id', session('empresa_id'))->paginate(3),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function CargarIngredientesDelMenu() {
@@ -81,7 +80,7 @@ class MenuComponent extends Component
             'nombremenu' => $this->nombremenu,
             'tiempopreparacion' => $this->tiempopreparacion,
             'menuactivo' => $this->menuactivo,
-            'empresa_id' =>$this->empresa_id,
+            'empresa_id' =>session('empresa_id'),
         ]);
 
         session()->flash('message', $this->menu_id ? 'Menu Actualizadao.' : 'Menu Creadao.');

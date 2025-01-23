@@ -15,10 +15,15 @@ class TiposDeDocumentosComponent extends Component
 
     public function render()
     {
-        $this->tiposdedocumentos = TiposDocumentos::all();
-        return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component',['isModalOpen' => $this->isModalOpen,'tiposdedocumentos'=> $this->tiposdedocumentos])->extends('layouts.adminlte');
-        // return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdedocumentos', $this->tiposdedocumentos)->extends('layouts.adminlte');
-
+        if(auth()->user()->hasPermissionTo('tiposdedocumentos.Ver')) {
+            if(session('empresa_id')) {
+                $this->tiposdedocumentos = TiposDocumentos::all();
+                return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component',['isModalOpen' => $this->isModalOpen,'tiposdedocumentos'=> $this->tiposdedocumentos])->extends('layouts.adminlte');
+                // return view('livewire.geri.tiposdedocumentos.tipos-de-documentos-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdedocumentos', $this->tiposdedocumentos)->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
     public function create()
     {

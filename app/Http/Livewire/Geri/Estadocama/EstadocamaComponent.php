@@ -17,12 +17,18 @@ class EstadocamaComponent extends Component
 
     public function render()
     {
-        $this->camas = DB::table('camas')
-            ->orderBy('NroHabitacion', 'asc')
-            ->orderBy('NroCama', 'asc')
-            ->get();
-            //dd($this->camas);
-        return view('livewire.geri.estadocama.estadocama-component',['isModalOpen'=>$this->isModalOpen,'camas'=>$this->camas])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('estadocama.Ver')) {
+            if(session('empresa_id')) {
+                $this->camas = DB::table('camas')
+                    ->orderBy('NroHabitacion', 'asc')
+                    ->orderBy('NroCama', 'asc')
+                    ->get();
+                    //dd($this->camas);
+                return view('livewire.geri.estadocama.estadocama-component',['isModalOpen'=>$this->isModalOpen,'camas'=>$this->camas])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
 

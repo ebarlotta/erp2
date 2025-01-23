@@ -13,7 +13,7 @@ class AreaComponent extends Component
     public $isModalOpen = false;
     public $area, $area_id;
     public $name;
-    public $empresa_id;
+    // public $empresa_id;
     protected $areas;
 
     use WithPagination;
@@ -23,12 +23,16 @@ class AreaComponent extends Component
         // $role = auth()->user();
         // dd($role->permissions);
         if(auth()->user()->hasPermissionTo('areas.Ver')) {
-            $this->empresa_id=session('empresa_id');
-            // $this->areas = Area::where('empresa_id', $this->empresa_id)->get();
-            $this->areas = Area::where('empresa_id', '=', $this->empresa_id)->paginate(7);
+            if(session('empresa_id')) {
+                // $this->empresa_id=session('empresa_id');
+                // $this->areas = Area::where('empresa_id', $this->empresa_id)->get();
+                $this->areas = Area::where('empresa_id', '=', session('empresa_id'))->paginate(7);
 
-            return view('livewire.area.area-component',['areas' => $this->areas])->extends('layouts.adminlte');
-            // return view('livewire.area.area-component',['datos'=> Area::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+                return view('livewire.area.area-component',['areas' => $this->areas])->extends('layouts.adminlte');
+                // return view('livewire.area.area-component',['datos'=> Area::where('empresa_id', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+            } else {
+                return view('livewire.seleccionarempresa')->extends('layouts.adminlte');
+            }
         } else {
             return view('SinPermiso')->extends('layouts.adminlte');
         }
@@ -64,7 +68,7 @@ class AreaComponent extends Component
         ]);
         Area::updateOrCreate(['id' => $this->area_id], [
             'name' => $this->name,
-            'empresa_id' => $this->empresa_id,
+            'empresa_id' => session('empresa_id'),
         ]);
 
         session()->flash('message', $this->area_id ? 'Area Actualizada.' : 'Area Creada.');

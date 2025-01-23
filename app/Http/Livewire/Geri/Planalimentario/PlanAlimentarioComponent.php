@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Geri;
+namespace App\Http\Livewire\Geri\Planalimentario;
 
 use Livewire\Component;
 use App\Models\Geri\Menu;
@@ -23,10 +23,16 @@ class PlanAlimentarioComponent extends Component
 
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        $this->planesalimentarios = PlanAlimentario::where('empresa_id', $this->empresa_id)->get();
-        $this->momentos = MomentosDelDia::all();
-        return view('livewire.geri.plan-alimentario.plan-alimentario-component',['datos'=> PlanAlimentario::where('empresa_id', $this->empresa_id)->paginate(7),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('planalimentario.Ver')) {
+            if(session('empresa_id')) {
+                $this->empresa_id=session('empresa_id');
+                $this->planesalimentarios = PlanAlimentario::where('empresa_id', $this->empresa_id)->get();
+                $this->momentos = MomentosDelDia::all();
+                return view('livewire.geri.plan-alimentario.plan-alimentario-component',['datos'=> PlanAlimentario::where('empresa_id', $this->empresa_id)->paginate(7),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function create()

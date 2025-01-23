@@ -15,13 +15,19 @@ class MedicamentosComponent extends Component
 
     public function render()
     {
-        if(is_null($this->buscar)) {
-            $this->medicamentos = Medicamento::orderby('nombremedicamento')
-            ->get();
-            $this->buscar = '';
+        if(auth()->user()->hasPermissionTo('medicamentos.Ver')) {
+            if(session('empresa_id')) {
+                if(is_null($this->buscar)) {
+                    $this->medicamentos = Medicamento::orderby('nombremedicamento')
+                    ->get();
+                    $this->buscar = '';
+                }
+                $this->unidades = Unidad::all();
+                return view('livewire.geri.medicamentos.medicamentos-component')->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
         }
-        $this->unidades = Unidad::all();
-        return view('livewire.geri.medicamentos.medicamentos-component')->extends('layouts.adminlte');
     }
 
     public function create()

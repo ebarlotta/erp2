@@ -16,10 +16,14 @@ class NacionalidadComponent extends Component
 
     public function render()
     {
-        //dd(Nacionalidad::all());
-        $this->nacionalidades = DB::table('nacionalidads')->get();
-        return view('livewire.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidades'=>$this->nacionalidades])->extends('layouts.adminlte');
-        //return "Hola";
+        if(auth()->user()->hasPermissionTo('modulousuarios.Ver')) {
+            if(session('empresa_id')) {
+                $this->nacionalidades = DB::table('nacionalidads')->get();
+                return view('livewire.nacionalidad.nacionalidad-component',['isModalOpen'=>$this->isModalOpen,'nacionalidades'=>$this->nacionalidades])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
 

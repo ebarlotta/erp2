@@ -27,10 +27,13 @@ class ProveedorComponent extends Component
 
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        // $this->proveedores = Proveedor::where('empresa_id', $this->empresa_id)->get();
-        
-        return view('livewire.proveedor.proveedor-component',['datos'=> Proveedor::where('empresa_id', $this->empresa_id)->where('name', 'like', '%'.$this->search.'%')->paginate(7),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('proveedores.Ver')) {
+            if(session('empresa_id')) {
+                return view('livewire.proveedor.proveedor-component',['datos'=> Proveedor::where('empresa_id', session('empresa_id'))->where('name', 'like', '%'.$this->search.'%')->paginate(7),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function create()
@@ -71,7 +74,7 @@ class ProveedorComponent extends Component
         ]);
         Proveedor::updateOrCreate(['id' => $this->proveedor_id], [
             'name' => $this->name,
-            'empresa_id' => $this->empresa_id,
+            'empresa_id' => session('empresa_id'),
             'direccion' => $this->direccion,
             'cuit' => $this->cuit,
             'telefono' => $this->telefono,

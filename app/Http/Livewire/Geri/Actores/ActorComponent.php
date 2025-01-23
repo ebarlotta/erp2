@@ -92,45 +92,50 @@ class ActorComponent extends Component
 
     public $plan_alimentario_actor_id, $visualizarPlanAlimentario, $plan_alimentario_elegido;
 
-    public function render()
-    {
-        //Busca el id de la empresa relacionada con el usuario que está logueado
-        $usuario=EmpresaUsuario::where('user_id','=',Auth::id())->get();
-        // session(['empresa_id' => $usuario[0]['empresa_id']]);
-        
-        $this->anioNuevo=date("Y");
-        $this->tipos_documentos = TiposDocumentos::all();   //Carga todos los tipos de documentos
-        $this->estados_civiles = EstadosCiviles::all(); // Carga todos los estados civiles
-        $this->tipos_de_personas = TipoDePersona::all();    // Carga tipos de personas/agentes
-        $this->nacionalidades = Nacionalidad::all();    //Carga nacionalidades
-        $this->localidades = Localidades::all();    // Carga localidades
-        $this->beneficios = Beneficios::all();  // Carga Obras Sociales
-        $this->grados_dependencias = GradoDependencia::all();   // Carga Grados de dependencia
-        $this->escolaridades = Escolaridades::all();    // Carga escolaridades
-        $this->sexos = Sexo::all();     // Carga sexos 
-        $this->person_activos = PersonActivo::all();    // Carga los distintos estados Alta/Baja/En proceso de baja
-        $this->dias = DiasDeLaSemana::all();
-        $this->momentos = MomentosDelDia::all();
-        // $this->ivas = Iva::all();   // Carga las distintas ivas
-        $this->ivas = Condicioniva::all();   // Carga las distintas ivas
-        // Carga las distintas camas y sus habitaciones de cada empresa
-        $this->camas = json_decode(DB::table('cama_habitacions')
-            ->join('habitacions', 'habitacions.id', '=', 'cama_habitacions.habitacion_id')
-            ->where('habitacions.empresa_id',session('empresa_id'))
-            ->orderBy('cama_id')
-            ->get(),true);
-        if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
-        else {
-            $this->Filtrar();
-        }
-    
-        return view('livewire.geri.actores.actor-component',['radios'=>$this->radios])->extends('layouts.adminlte');
+    public function render() {
+        if(auth()->check() && auth()->user()->hasPermissionTo('actores.Ver')) {
+            if(session('empresa_id')) {
+                //Busca el id de la empresa relacionada con el usuario que está logueado
+                $usuario=EmpresaUsuario::where('user_id','=',Auth::id())->get();
+                // session(['empresa_id' => $usuario[0]['empresa_id']]);
+                
+                $this->anioNuevo=date("Y");
+                $this->tipos_documentos = TiposDocumentos::all();   //Carga todos los tipos de documentos
+                $this->estados_civiles = EstadosCiviles::all(); // Carga todos los estados civiles
+                $this->tipos_de_personas = TipoDePersona::all();    // Carga tipos de personas/agentes
+                $this->nacionalidades = Nacionalidad::all();    //Carga nacionalidades
+                $this->localidades = Localidades::all();    // Carga localidades
+                $this->beneficios = Beneficios::all();  // Carga Obras Sociales
+                $this->grados_dependencias = GradoDependencia::all();   // Carga Grados de dependencia
+                $this->escolaridades = Escolaridades::all();    // Carga escolaridades
+                $this->sexos = Sexo::all();     // Carga sexos 
+                $this->person_activos = PersonActivo::all();    // Carga los distintos estados Alta/Baja/En proceso de baja
+                $this->dias = DiasDeLaSemana::all();
+                $this->momentos = MomentosDelDia::all();
+                // $this->ivas = Iva::all();   // Carga las distintas ivas
+                $this->ivas = Condicioniva::all();   // Carga las distintas ivas
+                // Carga las distintas camas y sus habitaciones de cada empresa
+                $this->camas = json_decode(DB::table('cama_habitacions')
+                    ->join('habitacions', 'habitacions.id', '=', 'cama_habitacions.habitacion_id')
+                    ->where('habitacions.empresa_id',session('empresa_id'))
+                    ->orderBy('cama_id')
+                    ->get(),true);
+                if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
+                else {
+                    $this->Filtrar();
+                }
+                return view('livewire.geri.actores.actor-component',['radios'=>$this->radios])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }       
+          
     }
     
-    protected $rules = [
-        'agente_id' => ['required', 'email'],
-        'informe_id' => ['required'],
-    ];
+    // protected $rules = [
+    //     'agente_id' => ['required', 'email'],
+    //     'informe_id' => ['required'],
+    // ];
 
     public function nuevoInforme() {
         $this->validate([

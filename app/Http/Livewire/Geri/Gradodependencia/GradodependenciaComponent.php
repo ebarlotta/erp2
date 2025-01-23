@@ -15,10 +15,15 @@ class GradodependenciaComponent extends Component
 
     public function render()
     {
-        $this->gradodependencias = GradoDependencia::all();
-        return view('livewire.geri.gradodependencia.gradodependencia-component',['isModalOpen'=>$this->isModalOpen, 'gradodependencias'=>$this->gradodependencias])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('gradodependencia.Ver')) {
+            if(session('empresa_id')) {
+                $this->gradodependencias = GradoDependencia::all();
+                return view('livewire.geri.gradodependencia.gradodependencia-component',['isModalOpen'=>$this->isModalOpen, 'gradodependencias'=>$this->gradodependencias])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
-
 
     public function create()
     {

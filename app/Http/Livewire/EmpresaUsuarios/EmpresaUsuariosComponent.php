@@ -34,9 +34,15 @@ class EmpresaUsuariosComponent extends Component
     {
                 // DB::table('empresas')->insert(['name' => 'Empresa de Pruebas','direccion' => 'Dirección','cuit' => '20123456789','ib' => '012345678','imagen' => 'BarBer.png','establecimiento' => '0','telefono' => '12345678','actividad' => 'Desarrollo','actividad1' => 'Software','email' => '','habilitada' => true,'nombretitular' => 'Juan de los Palotes','dnititular' => '1234',]);
 
-        $this->usuariosglobales= User::all();
-        $this->empresas = Empresa::all()->sortBy('id');
-        return view('livewire.empresa-usuarios.empresa-usuarios-component',['datos'=>Empresa::OrderBy('id')->paginate(3),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('empresausuarios.Ver')) {
+            if(session('empresa_id')) {
+                $this->usuariosglobales= User::all();
+                $this->empresas = Empresa::all()->sortBy('id');
+                return view('livewire.empresa-usuarios.empresa-usuarios-component',['datos'=>Empresa::OrderBy('id')->paginate(3),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function mostrarmodal()

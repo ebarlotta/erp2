@@ -25,14 +25,18 @@ class InformeComponent extends Component
 
     public function render()
     {
-        $this->periodos = Periodo::all();
-        // dd($this->periodos);
-        $this->escalas = Escala::all();
-        $this->preguntas= Pregunta::all();
-        $this->informes = Informe::orderby('nombreinforme')->get();
-        $this->areas = Areas::orderby('name')->get();
-// dd($this->informes);
-        return view('livewire.geri.informes.informe-component')->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('informe.Ver')) {
+            if(session('empresa_id')) {
+                $this->periodos = Periodo::all();
+                $this->escalas = Escala::all();
+                $this->preguntas= Pregunta::all();
+                $this->informes = Informe::orderby('nombreinforme')->get();
+                $this->areas = Areas::orderby('name')->get();
+                return view('livewire.geri.informes.informe-component')->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function Mostrar($opcion)

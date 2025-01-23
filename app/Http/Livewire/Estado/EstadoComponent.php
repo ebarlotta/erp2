@@ -20,12 +20,18 @@ class EstadoComponent extends Component
 
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        $this->estados = Estado::where('empresa_id', '=', $this->empresa_id)
-        ->where('name', 'like', '%'.$this->search.'%')
-        ->paginate(7);
-        return view('livewire.estado.estado-component',['estados' => $this->estados])->extends('layouts.adminlte');
-        // return view('livewire.estado.estado-component',['datos'=> Estado::where('empresa_ids', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('estados.Ver')) {
+            if(session('empresa_id')) {
+                $this->empresa_id=session('empresa_id');
+                $this->estados = Estado::where('empresa_id', '=', $this->empresa_id)
+                ->where('name', 'like', '%'.$this->search.'%')
+                ->paginate(7);
+                return view('livewire.estado.estado-component',['estados' => $this->estados])->extends('layouts.adminlte');
+                // return view('livewire.estado.estado-component',['datos'=> Estado::where('empresa_ids', $this->empresa_id)->paginate(3),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function Filtrar() {

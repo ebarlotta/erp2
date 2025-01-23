@@ -37,22 +37,34 @@ class ElementosComponent extends Component
 
     public function render()
     {
-        $this->estados = Estado::where('empresa_id','=',session('empresa_id'))->get();
-        $this->proveedores = Proveedor::where('empresa_id','=',session('empresa_id'))->get();
-        $this->listas = Lista::where('empresa_id','=',session('empresa_id'))->get();
+        if(auth()->user()->hasPermissionTo('elementos.Ver')) {
 
-        switch ($this->seleccionado) {
-            case "Medicamento" : $this->datos = Elemento::join('elemento_medicamentos','elemento_medicamentos.elemento_id','=','elementos.id')->paginate(7); break;
-            case "Ingrediente" : $this->datos = Elemento::join('elemento_ingredientes','elemento_ingredientes.elemento_id','=','elementos.id')->paginate(7); break;
-            case "Producto" : $this->datos = Elemento::join('elemento_productos','elemento_productos.elemento_id','=','elementos.id')->paginate(7); break;
-            case "Descartable" : $this->datos = Elemento::join('elemento_descartables','elemento_descartables.elemento_id','=','elementos.id')->paginate(7); break;
-            case "Articulo" : $this->datos = Elemento::join('elemento_articulos','elemento_articulos.elemento_id','=','elementos.id')->paginate(7); break;
+            if(session('empresa_id')) {
+
+                $this->estados = Estado::where('empresa_id','=',session('empresa_id'))->get();
+                $this->proveedores = Proveedor::where('empresa_id','=',session('empresa_id'))->get();
+                $this->listas = Lista::where('empresa_id','=',session('empresa_id'))->get();
+
+                switch ($this->seleccionado) {
+                    case "Medicamento" : $this->datos = Elemento::join('elemento_medicamentos','elemento_medicamentos.elemento_id','=','elementos.id')->paginate(7); break;
+                    case "Ingrediente" : $this->datos = Elemento::join('elemento_ingredientes','elemento_ingredientes.elemento_id','=','elementos.id')->paginate(7); break;
+                    case "Producto" : $this->datos = Elemento::join('elemento_productos','elemento_productos.elemento_id','=','elementos.id')->paginate(7); break;
+                    case "Descartable" : $this->datos = Elemento::join('elemento_descartables','elemento_descartables.elemento_id','=','elementos.id')->paginate(7); break;
+                    case "Articulo" : $this->datos = Elemento::join('elemento_articulos','elemento_articulos.elemento_id','=','elementos.id')->paginate(7); break;
+                }
+                // dd($this->datos);
+                $this->unidades = Unidad::where('empresa_id','=',session('empresa_id'))->get();
+                // dd($this->unidades);
+                $this->categorias = Categorias::where('empresa_id','=',session('empresa_id'))->get();
+                return view('livewire.elementos.elementos-component',['datos'=>$this->datos, 'unidades'=>$this->unidades,'categorias'=>$this->categorias,'estados'=>$this->estados,'proveedores'=>$this->proveedores,'listas'=>$this->listas])->extends('layouts.adminlte');
+            } else {
+                return view('livewire.seleccionarempresa')->extends('layouts.adminlte');    
+            } 
+        
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
         }
-        // dd($this->datos);
-        $this->unidades = Unidad::where('empresa_id','=',session('empresa_id'))->get();
-        // dd($this->unidades);
-        $this->categorias = Categorias::where('empresa_id','=',session('empresa_id'))->get();
-        return view('livewire..elementos.elementos-component',['datos'=>$this->datos, 'unidades'=>$this->unidades,'categorias'=>$this->categorias,'estados'=>$this->estados,'proveedores'=>$this->proveedores,'listas'=>$this->listas])->extends('layouts.adminlte');
+
     }
 
     public function closeModalPopover() { $this->isModalOpen = false; $this->isModalDelete=false; }

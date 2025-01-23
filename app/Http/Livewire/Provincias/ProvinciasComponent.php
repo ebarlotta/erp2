@@ -14,8 +14,14 @@ class ProvinciasComponent extends Component
 
     public function render()
     {
-        $this->provincias = Provincias::all();
-        return view('livewire.provincias.provincias-component',['isModalOpen'=>$this->isModalOpen,'provincias'=>$this->provincias])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('provincias.Ver')) {
+            if(session('empresa_id')) {
+                $this->provincias = Provincias::all();
+                return view('livewire.provincias.provincias-component',['isModalOpen'=>$this->isModalOpen,'provincias'=>$this->provincias])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
 

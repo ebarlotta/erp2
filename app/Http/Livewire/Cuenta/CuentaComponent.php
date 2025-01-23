@@ -20,9 +20,17 @@ class CuentaComponent extends Component
 
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        $this->cuentas = Cuenta::where('empresa_id', $this->empresa_id)->orderby('name')->get();
-        return view('livewire.cuenta.cuenta-component',['datos'=> Cuenta::where('empresa_id', $this->empresa_id)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('areas.Ver')) {
+            if(session('empresa_id')) {
+                $this->empresa_id=session('empresa_id');
+                $this->cuentas = Cuenta::where('empresa_id', $this->empresa_id)->orderby('name')->get();
+                return view('livewire.cuenta.cuenta-component',['datos'=> Cuenta::where('empresa_id', $this->empresa_id)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+            } else {
+                return view('livewire.seleccionarempresa')->extends('layouts.adminlte');
+            }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function create()

@@ -13,11 +13,17 @@ class PersonActivoComponent extends Component
 
     public function render()
     {
-        $this->estados = PersonActivo::all();
-        return view('livewire.geri.personactivo.person-activo-component',['isModalOpen'=> $this->isModalOpen, 'estados'=> $this->estados])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('personactivo.Ver')) {
+            if(session('empresa_id')) {
+                $this->estados = PersonActivo::all();
+                return view('livewire.geri.personactivo.person-activo-component',['isModalOpen'=> $this->isModalOpen, 'estados'=> $this->estados])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
-    public function create()
-    {
+
+    public function create() {
         $this->resetCreateForm();   
         $this->openModalPopover();
         $this->isModalOpen=true;

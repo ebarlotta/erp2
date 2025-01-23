@@ -13,8 +13,14 @@ class EstadosCivilesComponent extends Component
 
     public function render()
     {
-        $this->estadosciviles = EstadosCiviles::all();
-        return view('livewire.geri.estadosciviles.estados-civiles-component',['isModalOpen'=> $this->isModalOpen,'estadociviles'=>$this->estadosciviles])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('estadosciviles.Ver')) {
+            if(session('empresa_id')) {        
+                $this->estadosciviles = EstadosCiviles::all();
+                return view('livewire.geri.estadosciviles.estados-civiles-component',['isModalOpen'=> $this->isModalOpen,'estadociviles'=>$this->estadosciviles])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
 

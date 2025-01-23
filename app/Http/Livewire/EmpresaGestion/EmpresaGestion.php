@@ -23,8 +23,14 @@ class EmpresaGestion extends Component
 
     public function render()
     {
-        $this->empresas=Empresa::all();
-        return view('livewire.empresa-gestion.empresa-gestion',['datos'=> Empresa::orderby('name')->paginate(7),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('empresagestion.Ver')) {
+            if(session('empresa_id')) {
+               $this->empresas=Empresa::all();
+                return view('livewire.empresa-gestion.empresa-gestion',['datos'=> Empresa::orderby('name')->paginate(7),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function mostrarmodal()

@@ -23,11 +23,8 @@ class ImprimirPDF extends Controller
         ->where('comprobantes.fecha','>=',date($request->ddesde))
         ->where('comprobantes.fecha','<=',date($request->dhasta))
         ->groupBy('proveedors.id');
-        
 
-        // $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.* from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= $request->ddesde and `comprobantes`.`fecha` <= $request->dhasta ";
-        $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= '$request->ddesde' and `comprobantes`.`fecha` <= '$request->dhasta' group by proveedors.id, proveedors.name HAVING 
-    Saldo > 1";
+        $sql ="select sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name from `comprobantes` inner join `proveedors` on `comprobantes`.`proveedor_id` = `proveedors`.`id` and `comprobantes`.`fecha` >= '$request->ddesde' and `comprobantes`.`fecha` <= '$request->dhasta' and comprobantes.empresa_id=".session('empresa_id')." group by proveedors.id, proveedors.name HAVING Saldo > 1";
         // dd($sql);
         // $registros = DB::select(DB::raw($sql));
         $registros = DB::select($sql);
@@ -51,45 +48,51 @@ class ImprimirPDF extends Controller
     public function PrepararTabla($registros) {
         $html='';
         foreach($registros as $registro) {
-            if ($this->operacion == 'deuda') 
-                {
-                    if ($registro->Saldo > 1) {
-                        $html=$html."<tr><td class=\"border text-left pl-3 mr-3 pr-3\">". $registro->name . "</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo, 2, ',','.') ."</td></tr>";
-                } 
-                else 
-                {
-                    if ($registro->Saldo < 1) {
-                        $html=$html."<tr><td class=\"border text-left pl-3 mr-3 pr-3\">". $registro->name ."</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo * -1, 2, ',','.') ."</td></tr>";
-                    }
+            if ($this->operacion == 'deuda') {
+                if ($registro->Saldo > 1) {
+                    $html=$html."<tr><td class=\"border text-left pl-3 mr-3 pr-3\">". $registro->name . "</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo, 2, ',','.') ."</td></tr>";
+                } else {
+                    
+                }
+            } else {
+                if ($registro->Saldo < 1) {
+                    $html=$html."<tr><td class=\"border text-left pl-3 mr-3 pr-3\">". $registro->name ."</td><td class=\"border text-end mr-3 pr-3\">". number_format($registro->Saldo * -1, 2, ',','.') ."</td></tr>";
                 }
             }
         }
-        // dd($html);
+
         return $html;
     }
 
     public function CreditoPFD( Request $request) {
-        $operacion = "credito"; //$request->operacion;
+        $operacion = $this->operacion = "credito"; //$request->operacion;
         $registros = DB::table('comprobantes')
         ->selectRaw('sum(NetoComp-MontoPagadoComp) as Saldo, proveedors.id, proveedors.name')
         ->join('proveedors', 'comprobantes.proveedor_id', '=', 'proveedors.id')
-        ->groupBy('proveedors.id')
-        //->whereBetween('comprobantes.fecha',["'".$this->ddesde."'","'".$this->dhasta."'"])
+        ->groupBy('proveedors.id', 'proveedors.name')
         // ->whereRaw('(NetoComp-MontoPagadoComp)<1')
         ->where('comprobantes.fecha','>=',$request->cdesde)
         ->where('comprobantes.fecha','<=',$request->chasta)
         ->get();
+// dd($registros);
 
         $saldo = 0;
         foreach($registros as $registro) { 
             if($registro->Saldo<1) { $saldo = $saldo + $registro->Saldo; }
         }
         $saldo = $saldo *-1;
-        $pdf = PDF::loadView('livewire.compra.pdf_view',compact('registros','saldo','operacion'));
+
+        $saldototal = $saldo;
+
+        $html = $this->PrepararTabla($registros);
+
+        $pdf = PDF::loadView('livewire.compra.pdf_view',compact('html','saldototal','operacion'));
+        // $pdf = PDF::loadView('livewire.compra.pdf_view',compact('registros','saldo','operacion'));
         
         // download PDF file with download method
         return $pdf->stream('pdf_file.pdf');
     }
+
     public function ConvierteMesEnTexto($id) {
         switch ($id) {
             case 1 : $caso="Enero"; break;

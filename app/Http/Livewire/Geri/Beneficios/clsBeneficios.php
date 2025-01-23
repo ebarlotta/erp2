@@ -13,13 +13,19 @@ class clsBeneficios extends Component
     
     public function render()
     {
-        $this->beneficios = Beneficios::all();
-        //return view('liveware.crudbeneficios')->with('isModalOpen', $this->isModalOpen)->with('beneficios', $this->beneficios);
-        return view('livewire.geri.beneficios.crudbeneficios')
-            ->with('isModalOpen', $this->isModalOpen)
-            ->with('beneficios', $this->beneficios)
-            ->extends('layouts.adminlte');
-}
+        if(auth()->user()->hasPermissionTo('beneficios.Ver')) {
+            if(session('empresa_id')) {
+                $this->beneficios = Beneficios::all();
+                //return view('liveware.crudbeneficios')->with('isModalOpen', $this->isModalOpen)->with('beneficios', $this->beneficios);
+                return view('livewire.geri.beneficios.crudbeneficios')
+                    ->with('isModalOpen', $this->isModalOpen)
+                    ->with('beneficios', $this->beneficios)
+                    ->extends('layouts.adminlte');
+                } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+            } else {
+                return view('SinPermiso')->extends('layouts.adminlte');
+            }
+    }
 
     public function create()
     {

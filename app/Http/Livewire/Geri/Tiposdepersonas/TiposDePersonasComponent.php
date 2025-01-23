@@ -17,11 +17,17 @@ class TiposDePersonasComponent extends Component
 
     public function render()
     {
-        ////$this->tiposdepersonas = TipoDePersona::paginate(2);
-        //$coments = TipoDePersona::find(2)->interfaces;
-        //dd($coments);
-        //return view('livewire.tiposdepersonas.tipos-de-personas-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdepersonas', $this->tiposdepersonas);
-        return view('livewire.geri.tiposdepersonas.tipos-de-personas-component', ['tiposdepersonas' => TipoDePersona::paginate(5),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('tiposdepersonas.Ver')) {
+            if(session('empresa_id')) {
+                ////$this->tiposdepersonas = TipoDePersona::paginate(2);
+                //$coments = TipoDePersona::find(2)->interfaces;
+                //dd($coments);
+                //return view('livewire.tiposdepersonas.tipos-de-personas-component')->with('isModalOpen', $this->isModalOpen)->with('tiposdepersonas', $this->tiposdepersonas);
+                return view('livewire.geri.tiposdepersonas.tipos-de-personas-component', ['tiposdepersonas' => TipoDePersona::paginate(5),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
 

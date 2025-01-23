@@ -491,21 +491,21 @@ class CompraComponent extends Component
         <td class=\"col d-none d-sm-table-cell\"></td>
         <td></td>
         <td><b>Totales</b></td>
-        <td class=\"p-0 text-right\"><b>".number_format($Bruto, 2,'.','')."</b></td>
-        <td class=\"p-0 text-right\"><b>".number_format($MontoIvaT, 2,'.','')."</b></td>
-        <td class=\"p-0 text-right\"><b>".number_format($Exento, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell text-right\"><b>".number_format($ImpInterno, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell text-right\"><b>".number_format($PerIva, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell text-right\"><b>".number_format($RetIB, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell text-right\"><b>".number_format($RetGan, 2,'.','')."</b></td>
-        <td class=\"p-0 text-right\"><b>".number_format($NetoT, 2,'.','')."</b></td>
-        <td class=\"p-0 text-right\"><b>".number_format($MontoPagado, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell text-right\"><b>".number_format($Saldo, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell text-right\"><b>".number_format($Cantidad, 2,'.','')."</b></td>
-        <td class=\"p-0 d-none d-sm-table-cell\"></td>
-        <td class=\"p-0 d-none d-sm-table-cell\"></td>
-        <td class=\"p-0 d-none d-sm-table-cell\"></td>
-        <td class=\"p-0 d-none d-sm-table-cell\"></td>
+        <td class=\"px-1 text-right\"><b>".number_format($Bruto, 2,'.','')."</b></td>
+        <td class=\"px-1 text-right\"><b>".number_format($MontoIvaT, 2,'.','')."</b></td>
+        <td class=\"px-1 text-right\"><b>".number_format($Exento, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell text-right\"><b>".number_format($ImpInterno, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell text-right\"><b>".number_format($PerIva, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell text-right\"><b>".number_format($RetIB, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell text-right\"><b>".number_format($RetGan, 2,'.','')."</b></td>
+        <td class=\"px-1 text-right\"><b>".number_format($NetoT, 2,'.','')."</b></td>
+        <td class=\"px-1 text-right\"><b>".number_format($MontoPagado, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell text-right\"><b>".number_format($Saldo, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell text-right\"><b>".number_format($Cantidad, 2,'.','')."</b></td>
+        <td class=\"px-1 d-none d-sm-table-cell\"></td>
+        <td class=\"px-1 d-none d-sm-table-cell\"></td>
+        <td class=\"px-1 d-none d-sm-table-cell\"></td>
+        <td class=\"px-1 d-none d-sm-table-cell\"></td>
         </tr> 
         </tbody>
         </table>    
@@ -706,7 +706,7 @@ class CompraComponent extends Component
 
         //Dibuja el filtro
         $Saldo=0;
-        $this->DeudaProveedoresFiltro = "<table class=\"mt-6\" style=\"width:300px\">
+        $this->DeudaProveedoresFiltro = "<table class=\"mt-6 col-5\" >
             <tr class=\"bg-blue-200 border border-blue-500\">
                 <td class=\"center bg-gray-300\"><b>Nombre</b></td>
                 <td class=\"center bg-gray-300\"><b>Deuda</b></td>

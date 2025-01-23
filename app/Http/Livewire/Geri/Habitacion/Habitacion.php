@@ -18,10 +18,14 @@ class Habitacion extends Component
 
     public function render()
     {
-        // dd(session('empresa_id'));
-        $this->habitaciones = Hab::where('empresa_id',session('empresa_id'))->get();
-        //dd($this->habitaciones);
-        return view('livewire.geri.habitacion.habitacion-component')->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('habitaciones.Ver')) {
+            if(session('empresa_id')) {
+                $this->habitaciones = Hab::where('empresa_id',session('empresa_id'))->get();
+                return view('livewire.geri.habitacion.habitacion-component')->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function create()

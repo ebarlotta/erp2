@@ -35,12 +35,18 @@ class ModuloUsuariosComponent extends Component
 
     public function render()
     {
-        $this->usuariosglobales= User::all();
-        //$modulos = Modulo::get()->sortBy('id')->paginate(4);
-        //$this->modulos = Modulo::all();
-        //$datos = Modulo::paginate(10);
-        return view('livewire.modulo-usuarios.modulo-usuarios-component',['datos'=> Modulo::orderby('name')->paginate(8),])->extends('layouts.adminlte')
-        ->section('content'); //Enzo
+        if(auth()->user()->hasPermissionTo('modulousuarios.Ver')) {
+            if(session('empresa_id')) {
+                $this->usuariosglobales= User::all();
+                //$modulos = Modulo::get()->sortBy('id')->paginate(4);
+                //$this->modulos = Modulo::all();
+                //$datos = Modulo::paginate(10);
+                return view('livewire.modulo-usuarios.modulo-usuarios-component',['datos'=> Modulo::orderby('name')->paginate(8),])->extends('layouts.adminlte')
+                ->section('content'); //Enzo
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function mostrarmodal()

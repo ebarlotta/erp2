@@ -16,9 +16,15 @@ class UnidadComponent extends Component
 
     public function render()
     {
-        $this->empresa_id=session('empresa_id');
-        $this->unidades = Unidad::where('empresa_id', $this->empresa_id)->get();
-        return view('livewire.unidad.unidad-component',['datos'=> Unidad::where('empresa_id', $this->empresa_id)->paginate(7),])->extends('layouts.adminlte');
+        if(auth()->user()->hasPermissionTo('unidades.Ver')) {
+            if(session('empresa_id')) {
+                $this->empresa_id=session('empresa_id');
+                $this->unidades = Unidad::where('empresa_id', $this->empresa_id)->get();
+                return view('livewire.unidad.unidad-component',['datos'=> Unidad::where('empresa_id', $this->empresa_id)->paginate(7),])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
     }
 
     public function create()

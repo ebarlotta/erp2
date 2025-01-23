@@ -28,19 +28,26 @@ class GestionModuloComponent extends Component
 
     public function render()
     {
+        if(auth()->user()->hasPermissionTo('gestionmodulo.Ver')) {
+            if(session('empresa_id')) {
         
-        $this->filtrar();
+            $this->filtrar();
 
-        // if ($this->buscar<>'') {
-        //     $this->modulos = Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->get();
-        //     return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->orderby('name')->paginate(7),])->extends('layouts.adminlte');
-        // } else {
-        //     $this->modulos = Modulos::where('id','>',0)->get();
-        //     // dd($this->modulos);
-        //     // $this->modulos = Modulos::all();
-            // return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('id','>',0)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
-            return view('livewire.modulos.modulo-component',['modulos' => $this->modulos])->extends('layouts.adminlte');
-        // }
+            // if ($this->buscar<>'') {
+            //     $this->modulos = Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->get();
+            //     return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('name', 'LIKE', "%" . $this->buscar . "%")->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+            // } else {
+            //     $this->modulos = Modulos::where('id','>',0)->get();
+            //     // dd($this->modulos);
+            //     // $this->modulos = Modulos::all();
+                // return view('livewire.modulos.modulo-component',['datos'=> Modulos::where('id','>',0)->orderby('name')->paginate(7),])->extends('layouts.adminlte');
+                return view('livewire.modulos.modulo-component',['modulos' => $this->modulos])->extends('layouts.adminlte');
+            // }
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
+
     }
 
     public function showNew() { $this->reset('name'); }

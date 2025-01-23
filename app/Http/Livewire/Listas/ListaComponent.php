@@ -19,11 +19,14 @@ class ListaComponent extends Component
     public function render()
     {
         if(auth()->user()->hasPermissionTo('listas.Ver')) {
-            $this->empresa_id=session('empresa_id');
-            // $this->listas = Lista::where('empresa_id', $this->empresa_id)->get();
-            $this->listas = Lista::where('empresa_id', '=', $this->empresa_id)->paginate(7);
-            
-            return view('livewire.listas.lista-component',['listas' => $this->listas])->extends('layouts.adminlte');
+            if(session('empresa_id')) {
+
+                $this->empresa_id=session('empresa_id');
+                // $this->listas = Lista::where('empresa_id', $this->empresa_id)->get();
+                $this->listas = Lista::where('empresa_id', '=', $this->empresa_id)->paginate(7);
+                
+                return view('livewire.listas.lista-component',['listas' => $this->listas])->extends('layouts.adminlte');
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
         } else {
             return view('SinPermiso')->extends('layouts.adminlte');
         }

@@ -34,15 +34,22 @@ class EmpresaModulosComponent extends Component
     {
         // if(!isset($this->modulosglobales)) { $this->modulosglobales = Modulo::all(); }
         //$this->empresas = Empresa::all()->sortBy('id');
+        if(auth()->user()->hasPermissionTo('empresamodulos.Ver')) {
+            if(session('empresa_id')) {
+                $userid=auth()->user()->id;
+                $this->empresas= EmpresaUsuario::where('user_id',$userid)
+                    ->join('empresas','empresas.id','=','empresa_usuarios.empresa_id')
+                    ->get();
+                // dd($this->empresas);
 
-        $userid=auth()->user()->id;
-        $this->empresas= EmpresaUsuario::where('user_id',$userid)
-            ->join('empresas','empresas.id','=','empresa_usuarios.empresa_id')
-            ->get();
-        // dd($this->empresas);
+                return view('livewire.empresa-modulos.empresa-modulos-component',['datos'=>EmpresaUsuario::where('user_id',$userid)->join('empresas','empresas.id','=','empresa_usuarios.empresa_id')->paginate(5)])->extends('layouts.adminlte')
+                ->section('content'); //enzo
 
-        return view('livewire.empresa-modulos.empresa-modulos-component',['datos'=>EmpresaUsuario::where('user_id',$userid)->join('empresas','empresas.id','=','empresa_usuarios.empresa_id')->paginate(5)])->extends('layouts.adminlte')
-        ->section('content'); //enzo
+            } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
+        } else {
+            return view('SinPermiso')->extends('layouts.adminlte');
+        }
+
     }
     public function mostrarmodal()
     {

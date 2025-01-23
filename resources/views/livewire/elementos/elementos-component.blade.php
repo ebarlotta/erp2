@@ -16,22 +16,43 @@
                         </div>
                     @endif
 
-                    <div class="flex justify-around">
-                        @can('elementos.Agregar')
-                            <x-crear>Nuevo Elemento</x-crear>
-                        @endcan
+                    <div class="flex">
+                        <div style="width: 30%;">
+                            @can('elementos.Agregar')
+                                <x-crear>Nuevo Elemento</x-crear>
+                            @endcan
+                        </div>
+                        <div style="background-color: lightgray; display: flex; justify-content: space-between;" class="w-full">
+                            <div wire:click="cambiarSeleccion('Medicamento')" @if($seleccionado=='Medicamento') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                                <input class="mr-2" type="radio" name="elements" value="Medicamento" checked>
+                                <label class="mr-4" for="huey">Medicamento</label>
+                            </div>
 
-                        <div class="flex">
-                            <div wire:click="cambiarSeleccion('Medicamento')" @if($seleccionado=='Medicamento') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Medicamento" checked><label class="mr-4" for="huey">Medicamento</label></div>
-                            <div wire:click="cambiarSeleccion('Ingrediente')" @if($seleccionado=='Ingrediente') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Ingrediente"><label class="mr-4" for="huey">Ingrediente</label></div>
+                            <div wire:click="cambiarSeleccion('Ingrediente')" @if($seleccionado=='Ingrediente') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                                <input class="mr-2" type="radio" name="elements" value="Ingrediente">
+                                <label class="mr-4" for="huey">Ingrediente</label>
+                            </div>
+                            
                             {{-- <div wire:click="cambiarSeleccion('Elemento')" @if($seleccionado=='Elemento') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Elemento"><label class="mr-4" for="huey">Elemento</label></div> --}}
-                            <div wire:click="cambiarSeleccion('Descartable')" @if($seleccionado=='Descartable') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Descartable"><label class="mr-4" for="huey">Descartable</label></div>
-                            <div wire:click="cambiarSeleccion('Producto')" @if($seleccionado=='Producto') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Producto"><label class="mr-4" for="huey">Producto</label></div>
-                            <div wire:click="cambiarSeleccion('Articulo')" @if($seleccionado=='Articulo') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Artíulo"><label class="mr-4" for="huey">Artículo</label></div>
+                            
+                            <div wire:click="cambiarSeleccion('Descartable')" @if($seleccionado=='Descartable') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                                <input class="mr-2" type="radio" name="elements" value="Descartable">
+                                <label class="mr-4" for="huey">Descartable</label>
+                            </div>
+                            
+                            <div wire:click="cambiarSeleccion('Producto')" @if($seleccionado=='Producto') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                                <input class="mr-2" type="radio" name="elements" value="Producto">
+                                <label class="mr-4" for="huey">Producto</label>
+                            </div>
+                            
+                            <div wire:click="cambiarSeleccion('Articulo')" @if($seleccionado=='Articulo') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                                <input class="mr-2" type="radio" name="elements" value="Artíulo">
+                                <label class="mr-4" for="huey">Artículo</label>
+                            </div>
                         </div>
                         @if ($isModalOpen) @include('livewire.elementos.createelemento') @endif
                         @if ($isModalDelete) @include('livewire.elementos.deleteelemento') @endif
-                        <div class="w-1/2 justify-end">{{ $datos->links() }}</div>
+                        {{-- <div class="w-1/2 justify-end">{{ $datos->links() }}</div> --}}
                     </div>
                     <div style="display: block">
                         <table class="table-fixed w-full">
