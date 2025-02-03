@@ -706,7 +706,7 @@ class VentaComponent extends Component
     public function gCargarRegistro($id) {
         $registro=Venta::find($id);
         $this->venta_id = $id;
-        $this->id = $id; //Utilizado para buscar el registro para eliminar
+        //$this->id = $id; //Utilizado para buscar el registro para eliminar
         $this->gfecha= substr($registro->fecha,0,10);
         // $this->gventa=$registro->comprobante;
         $this->gcomprobante=$registro->comprobante;

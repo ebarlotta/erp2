@@ -11,13 +11,9 @@
                                     d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                             </svg>
                         </div>
-                        <p class="relative -bottom-1 left-0 mx-2"
-                            wire:click="cargamodulos({{ $empresa['id'] ? $empresa['id'] : 0 }})">
+                        <p class="relative -bottom-1 left-0 mx-2" wire:click="cargamodulos({{ $empresa['id'] ? $empresa['id'] : 0 }})">
                             {{ $empresa['name'] }}
-
-                            <img class="rounded-md" src="{{ asset('images/' . $empresa['imagen']) }}"
-                                style="margin: auto; margin-top: 10px; width: 150px; height: 150px;">
-                            <!-- <img wire:click="cargamodulos({{ $empresa['id'] }})" class="rounded-md" src="{{ asset('/images2/' . $empresa['imagen']) }}" style="margin: auto; margin-top: 10px; width: 150px; height: 150px;"> -->
+                            <img class="rounded-md" src="{{ asset('public/' . $empresa['imagen']) }}" style="margin: auto; margin-top: 10px; width: 150px; height: 150px;">
                     </div>
                 @endforeach
             @else

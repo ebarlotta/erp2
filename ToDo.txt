@@ -100,6 +100,8 @@ Elementos -> Agregar Imágenes
 Artículos -> Agregar Imágenes
 Descartables -> Agregar Imágenes
 
+Revisar: no dar de alta a ventas/compras si faltan datos en proveedor/cliente, area y cuenta. Además agregar campo de detalle
+
 Revisar interfacesComponent para ver que sirve y si se puede utilizr para algo
 Revisar si PersonaComponent sigue vigente i ya no hace falta
 Verificar que TiposdePersonas esté a nivel global y no en Geri
