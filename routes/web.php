@@ -12,6 +12,7 @@ use App\Http\Livewire\Compra\CompraSimpleComponent;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes()->prefix('');
+
 Route::get('/', function () { return view('welcome'); });
 
 
@@ -36,7 +37,9 @@ Route::post('/home',[HomeController::class,'upload']);
 // Route::get('/', EmpresaComponent::class)->name('inicio');
 // Route::get('/cart', [App\Http\Controllers\Cart::class, 'index']);
 
-
+Route::any('{any?}', function () {
+    return view('login');
+})->where('any', '.*');
 
 
 
@@ -47,7 +50,6 @@ Route::post('/home',[HomeController::class,'upload']);
 //Route::get('deletion/?id=abc123',EmpleadoComponent::class)->name('deletion'); //Eliminación de datos en Facebook
 
 // Route::get('/search/', 'ProveedorComponent@search')->name('search');
-
 
 
 Route::get('pruebas', [Chart::class, 'index'])->name('pruebas');

@@ -81,7 +81,7 @@
                             <div class="mb-4">
                                 <div class="d-flex">
                                     <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Imágen</label>
-                                    <img class="mx-3" src="images/{{ $imagen }}" width="70px;">
+                                    <img class="mx-3" src="/{{ $imagen }}" width="70px;">
                                     <input value="Actualizar Imágen" type="button" class="btn btn-info">
                                     @error('imagen') <span class="text-red-500">{{ $message }}</span>@enderror
                                 </div>  
@@ -89,6 +89,7 @@
                         @else
                             <div class="mb-4">
                                 <label for="exampleFormControlInput1" class="block text-gray-700 text-sm font-bold mb-2">Imágen</label>
+                                <img class="mx-3" src="/sin_imagen.jpg" width="70px;">
                                 <input type="file" class="shadow appearance-none border rounded w-full py-2 pl-2 -mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" wire:model="imagen">
                                 @error('imagen') <span class="text-red-500">{{ $message }}</span>@enderror
                             </div>

@@ -370,7 +370,7 @@
 											<label style="font-size: 80%;" wire:click="copiarMontoPagado()">Monto Pagado</label>
 											<input class="num w-full text-right rounded-md h-8" type="text" wire:model="gmontopagado" style="box-shadow: 2px 2px 5px #999;">
 										</div>
-										<div class="mr-1 w-2 grid text-left0">
+										<div class="mr-1 w-8 grid text-left">
 											<label style="font-size: 80%;">Cantidad</label>
 											<input class="num w-full text-right rounded-md h-8" type="text" wire:model="gcantidad" style="box-shadow: 2px 2px 5px #999;">
 										</div>
