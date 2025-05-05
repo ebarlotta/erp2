@@ -53,15 +53,15 @@
                                             <td class="border px-4 py-2">
                                                 <div class="flex justify-center">
                                                     <div class="sm:flex justify-center">
-                                                        @can('areas.Modificar')
-                                                        {{-- @if(session('Cuentas.Editar')) --}}
+                                                        @can('cuentas.Modificar')
+                                                        {{-- @if(session('cuentas.Modificar')) --}}
                                                             <!-- Editar  -->
                                                             <x-editar id="{{ $cuenta->id }}"></x-editar>
                                                         </div>
                                                         {{-- @endif --}}
                                                         @endcan
-                                                        @can('areas.Eliminar')
-                                                        {{-- @if(session('Cuentas.Eliminar')) --}}
+                                                        @can('cuentas.Eliminar')
+                                                        {{-- @if(session('cuentas.Eliminar')) --}}
                                                             <div class="sm:flex justify-center">
                                                                 <!-- Eliminar -->
                                                                 <x-eliminar id="{{ $cuenta->id }}"></x-eliminar>

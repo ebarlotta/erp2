@@ -75,12 +75,12 @@ class EmpresaComponent extends Component
     }
 
     public function cargamodulos($id) {
-        // dd($id);
         // Establece el id de la empresaa modo global
+        // dd("este es el id de la empresa:".$id);
         session(['empresa_id' => $id]);
         //sleep(2);
         $this->empresa_id=$id;
-
+        
         $a = Empresa::find($id);
         session(['nombre_empresa' => $a->name]);
         session(['url_logo_empresa' => $a->imagen]);

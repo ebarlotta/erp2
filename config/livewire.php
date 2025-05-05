@@ -1,6 +1,12 @@
 <?php
 
+// var_dump($APP_URL);
+
 return [
+
+    // 'asset_url' => env('APP_URL', '/public/'), 
+    // 'asset_url' => env('172.20.0.3', ''), 
+
 
     /*
     |---------------------------------------------------------------------------
@@ -13,7 +19,8 @@ return [
     |
     */
 
-    'class_namespace' => 'App\\Http\\Livewire',
+    // 'class_namespace' => 'App\\Livewire',
+    'class_namespace' => 'App\Http\Livewire',
 
     /*
     |---------------------------------------------------------------------------
@@ -38,9 +45,7 @@ return [
     |
     */
 
-    // 'layout' => 'components.layouts.app',
-    // 'layout' => '',
-    'layout' => 'layouts.app',
+    'layout' => 'components.layouts.app',
 
     /*
     |---------------------------------------------------------------------------

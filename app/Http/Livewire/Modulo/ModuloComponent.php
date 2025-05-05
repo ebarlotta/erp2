@@ -33,6 +33,7 @@ class ModuloComponent extends Component
                 //                c
                 if(count($empresa_modulos)>5) {
                     $this->porc = 1 * 10 / count($empresa_modulos);   // Se utiliza la variable porc para calcular el tamaño de cada uno de los íconos
+                    if($this->porc<2) $this->porc = 0.85;
                 } else { $this->porc = 1; }
 
                 $this->modulos=Modulo::find($empresa_modulos);

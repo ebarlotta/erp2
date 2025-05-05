@@ -1,3 +1,6 @@
 <?php
+echo "Enzo";
 phpinfo();
+
+
 ?>

@@ -36,8 +36,7 @@
     {{-- Modo Escritorio --}}
     <div class="hidden sm:hidden md:block lg:block xl:block">
         <?php echo session('nombre_empresa').'<br>'; ?>
-        <div class="hidden sm:hidden md:block lg:block xl:block  mb-4 mr-2 text-left mt-6" style=" display: flex; flex-wrap: wrap; width: 100%; justify-content: center; overflow-y: scroll;
-  height: fit-content;">
+        <div class="hidden sm:hidden md:block lg:block xl:block  mb-4 mr-2 text-left mt-6" style=" display: flex; flex-wrap: wrap; width: 100%; justify-content: center; overflow-y: scroll; height: fit-content;">
             @foreach ($modulos as $modulo)
             <a wire:click="EnrutarModulo('{{ $modulo->pagina }}')" class="rounded-l-md flex mb-2 mt-2 transform transition duration-500 hover:scale-105" style="width:{{ 55*$porc }}%; margin-right: 5px; margin-left: 5px;height: fit-content;">
        {{-- <a href="{{ route($modulo->pagina) }}" class="rounded-l-md flex mb-2 mt-2 transform transition duration-500 hover:scale-105" style="width:45%; margin-right: 5px; margin-left: 5px;"> --}}

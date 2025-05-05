@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Elementos;
 
+use App\Models\Archivos;
 use App\Models\Unidad;
 use App\Models\Categorias;
 use App\Models\Estado;
@@ -18,6 +19,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class ElementosComponent extends Component
 {
@@ -28,12 +30,14 @@ class ElementosComponent extends Component
     public $name, $existencia, $stock_minimo, $precio_compra, $categoria_id, $unidad_id, $vencimiento; //General
     public $pedira, $psiquiatrico; // Medicamento
     public $estados, $estado_id; //Ingrediente
-    public $barra, $qr, $descuento, $descuento_especial, $descripcion, $calificacion, $precio_venta, $lote, $ruta, $proveedores, $proveedor_id; //producto
+    public $barra, $qr, $descuento, $descuento_especial, $descripcion, $calificacion, $precio_venta, $lote,  $proveedores, $proveedor_id; //producto
     public $marca, $listas, $lista_id; //Articulo
     public $isModalOpen=false, $isModalDelete=false;
+    public $ruta;
+    public $photos = [];
 
     use WithPagination;
-    
+    use WithFileUploads;    
 
     public function render() {
         if(auth()->check() && auth()->user()->hasPermissionTo('elementos.Ver')) {
@@ -63,7 +67,6 @@ class ElementosComponent extends Component
         } else {
             return view('SinPermiso')->extends('layouts.adminlte');
         }
-
     }
 
     public function closeModalPopover() { $this->isModalOpen = false; $this->isModalDelete=false; }
@@ -86,12 +89,13 @@ class ElementosComponent extends Component
             'vencimiento'=> 'required',
         ]);
 
-        if($this->ruta==NULL || $this->ruta=='sin_imagen.jpg') {
+        if($this->ruta=='null' || $this->ruta=='sin_imagen.jpg') {
             $this->ruta = "sin_imagen.jpg";   
         } else
         {
             $nombreCompleto = basename($this->ruta) . time().'.jpg';
-            $this->ruta = $nombreCompleto;
+            // $url = $nombreCompleto;
+            // $this->ruta = $nombreCompleto;
         }
 
         switch ($this->seleccionado) {
@@ -132,6 +136,20 @@ class ElementosComponent extends Component
             'unidad_id'=> $this->unidad_id,
             'empresa_id'=> session('empresa_id'),
         ]);
+
+        // is_null($nombreCompleto) ? dd('Nombrecompleto') : dd('nada');
+        if(!is_null($nombreCompleto)) {
+            
+            // dd($this->ruta.'iiii');
+            // $path = request('ruta')->store('images');
+            // if(is_null($path)) dd('Path nulo');
+
+            $c =  $this->ruta->store('photos');
+            dd($c);
+            $b = new Archivos(['archivable_type'=>'App\Models\Archivos','archivable_id'=>$a->id,'url' => $this->ruta, 'descripcion'=>'Nada']);
+            $b->save();
+        }
+
         switch ($this->seleccionado) {
             case "Medicamento" : 
                 ElementoMedicamento::updateOrCreate(['elemento_id' => $a->id], [
