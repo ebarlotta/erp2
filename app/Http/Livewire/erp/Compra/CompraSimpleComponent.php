@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 
 class CompraSimpleComponent extends Component
 {
-    public $areas, $cuentas, $clientes, $proveedores, $ivas;
+    public $areas, $cuentas, $clientes, $proveedores, $ivas, $detalle;
     public $area, $cuenta, $cliente, $proveedor;
     public $fecha_simple=false,$monto_simple=0, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
     public $iva_simple=1, $ModalGuardado=false;
@@ -133,7 +133,7 @@ class CompraSimpleComponent extends Component
         $a = Comprobante::create([
             'fecha'             => $this->fecha_simple,
             'comprobante'       => 0,
-            'detalle'           => '',
+            'detalle'           => $this->detalle,
             'BrutoComp'         => (double) number_format($this->monto_simple/(1+$iva/100), 2, '.', ','),
             'ParticIva'         => $partiva_simple,
             'MontoIva'          => (double) number_format($this->monto_simple - $this->monto_simple/(1+$iva/100), 2, '.', ','),

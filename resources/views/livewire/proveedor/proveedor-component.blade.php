@@ -35,7 +35,8 @@
                         @endcan
                     </div>
                     <div style="display: block">
-                    <label for="">Buscar por nombre</label><input class="shadow-md m-1" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 3px;" wire:model="search" type="search" placeholder="Ingresa nombre">
+                    <label for="">Buscar por nombre</label>
+                        <input class="shadow-md m-1" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 3px 5px 0px 10px;" wire:keyup="BuscarProveedor()" wire:model="search" type="search" placeholder="Ingresa nombre">
                     <table class="table-fixed table-striped w-full">
                         <thead>
                             <tr class="bg-gray-100">

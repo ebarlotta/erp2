@@ -1,5 +1,7 @@
 {{-- <x-slot> --}}
 <div>
+	{{-- @section('title', session('nombre_empresa')) --}}
+
 	<x-tituloslim>Comprobantes de Compras - <?php echo session('nombre_empresa').'<br>'; ?></x-tituloslim>
 	<div class="content-center block">
 		<div class="bg-white p-2 text-center rounded-lg shadow-lg w-full">
@@ -218,7 +220,7 @@
 											@error('gfecha') <span class="text-red-500">{{ $message }}</span>@enderror
 										</div>
 										<div class="w-44 mr-1 grid text-left">
-											<label style="font-size: 80%;">Proveedor</label>
+											<label style="font-size: 80%;" wire:click="ActualizarProveedores()">Proveedor</label>
 											<select class="px-2 w-full rounded-md h-8 leading-none" wire:model="gproveedor" style="box-shadow: 2px 2px 5px #999;">
 												<option value=" "> </option>
 												@foreach ($proveedores as $proveedor)
@@ -271,7 +273,7 @@
 											@error('ganio') <span class="text-red-500">{{ $message }}</span>@enderror
 										</div>
 										<div class="w-24 mr-1 grid text-left">
-											<label style="font-size: 80%;">Mes</label>
+											<label style="font-size: 80%;" wire:click="gfiltro()">Mes</label>
 											<select class="w-full px-2 rounded-md h-8 leading-none" wire:model="gmes" style="box-shadow: 2px 2px 5px #999;">
 												<option value=""></option>
 												<option value="1">enero</option>
@@ -379,7 +381,7 @@
 
 										<div class="flex flex-wrap fse-1 justify-content-between" style="background-color: rgb(199, 233, 233); font-size: 14px;padding-bottom: 10px;">
 											<div class="px-2 grid text-left">
-												<label style="font-size: 80%;">Mes</label>
+												<label style="font-size: 80%;" wire:click="gfiltro()">Mes</label>
 												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfmes" wire:change="gfiltro()" style="box-shadow: 2px 2px 5px #999;">
 													<option value=""></option>
 													<option value="1">Enero</option>
@@ -396,7 +398,7 @@
 													<option value="12">Diciembre</option>
 												</select></div>
 											<div class="px-2 grid text-left">
-												<label style="font-size: 80%;">Proveedor</label>
+												<label style="font-size: 80%;" wire:click="ActualizarProveedores()">Proveedor</label>
 												<select class="px-2 rounded-md h-7 py-0 leading-none" wire:model="gfproveedor" wire:change="gfiltro()" style="box-shadow: 2px 2px 5px #999;">
 													<option value=""></option>
 													@foreach ($proveedores as $proveedor)

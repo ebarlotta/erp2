@@ -9,7 +9,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    
+    <title>{{ config('app.name', session('nombre_empresa')) }}</title>
+    {{-- @section('title', session('nombre_empresa')) --}}
     
     <!-- Tailwind -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -17,14 +20,12 @@
     <!-- Tooltips -->
     <link rel="stylesheet" href="{{asset('css/tooltips.css')}}">
 
-
     <script src="cart/js/taildwind.js"></script>
     <!-- Scripts -->
     <script src="js/jquery.mask.js"></script>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
 
     <!-- Styles -->
     

@@ -34,7 +34,8 @@
                         {{-- @endif --}}
                         @endcan
                         <div style="display: block">
-                            <label for="">Buscar por cuit</label><input class="shadow-md m-1" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 3px;" wire:model="search" type="search" placeholder="Ingresa cuit">
+                            <label for="">Buscar por cuit</label>
+                            <input class="shadow-md m-1" style="font-size: 18px; background-color: rgb(226, 230, 230); border-radius: 10px; padding: 3px 5px 0px 10px;" wire:keyup="BuscarCliente()" wire:model="search" type="search" placeholder="Ingresa cuit">
                         </div>        
                         <div class="w-full">{{ $clientes->links() }}</div>
                     </div>

@@ -89,7 +89,6 @@ class ProveedorComponent extends Component
     public function edit($id)
     {
         $proveedor = Proveedor::findOrFail($id);
-        $this->id = $id;
         $this->proveedor_id=$id;
         $this->name = $proveedor->name;
         $this->direccion = $proveedor->direccion;
@@ -120,4 +119,8 @@ class ProveedorComponent extends Component
     //     return view('search', compact('posts'));
     // }
 
+    public function BuscarProveedor() {
+        return view('livewire.proveedor.proveedor-component',['datos'=> Proveedor::where('empresa_id', session('empresa_id'))->where('name', 'like', '%'.$this->search.'%')->paginate(7),])->extends('layouts.adminlte');
+    }
+ 
 }

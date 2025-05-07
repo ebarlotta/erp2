@@ -117,4 +117,17 @@ class ClienteComponent extends Component
         Cliente::find($id)->delete();
         session()->flash('message', 'Cliente Eliminado.');
     }
+
+    public function BuscarCliente() {
+
+        $this->clientes = Cliente::where('empresa_id', session('empresa_id'))
+        ->whereRaw("cuil like '%$this->search%' or name like '%$this->search%'")
+        ->paginate(7);
+        // ->count();
+
+        // $this->clientes = Cliente::where('empresa_id', $this->empresa_id)
+        // ->where('cuil', 'like', "'%".$this->search."%'")
+        // ->orwhere('namea', 'like', "'%".$this->search."%'")
+        // ->orderBy('name','asc')->paginate(7);
+    }
 }

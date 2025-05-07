@@ -84,7 +84,7 @@ class CompraComponent extends Component
             if(Auth::user()) {
                 $userid = auth()->user()->id;
                 $empresas= EmpresaUsuario::where('user_id',$userid)->get();
-                return view('livewire.empresa.empresa-component')->with('empresas', $empresas); 
+                return view('livewire.empresa.empresa-component')->with('empresas', $empresas);
             } else {
                 return view('empresas'); 
 
@@ -230,6 +230,10 @@ class CompraComponent extends Component
 
     }
 
+    public function ActualizarProveedores() {
+        $this->proveedores = Proveedor::where('empresa_id', $this->empresa_id)->ORDERBY('name')->get();
+    }
+    
     public function RellenarCamposVacios() {
         if(is_null($this->gfecha)) $this->gfecha=now();
         if(is_null($this->gbruto)) $this->gbruto=0.00;
