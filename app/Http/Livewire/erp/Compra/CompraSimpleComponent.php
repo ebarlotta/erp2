@@ -19,7 +19,7 @@ class CompraSimpleComponent extends Component
 {
     public $areas, $cuentas, $clientes, $proveedores, $ivas, $detalle;
     public $area, $cuenta, $cliente, $proveedor;
-    public $fecha_simple=false,$monto_simple=0, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
+    public $fecha_simple=false,$monto_simple, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
     public $iva_simple=1, $ModalGuardado=false;
 
     public $modulo; // Permite hacer elección de módulo a utilizar
@@ -132,7 +132,7 @@ class CompraSimpleComponent extends Component
 
         $a = Comprobante::create([
             'fecha'             => $this->fecha_simple,
-            'comprobante'       => 0,
+            'comprobante'       => 2,
             'detalle'           => $this->detalle,
             'BrutoComp'         => (double) number_format($this->monto_simple/(1+$iva/100), 2, '.', ','),
             'ParticIva'         => $partiva_simple,

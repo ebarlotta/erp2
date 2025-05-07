@@ -90,7 +90,8 @@
                     </a>
                 </div>
     
-                <input wire:model="monto_simple" wire:keyup="ActualizaMonto()" class="Monto" type="text" placeholder="Monto $" autofocus/><br />
+                <input wire:model="monto_simple" class="Monto" type="text" placeholder="Monto $" autofocus/><br />
+                {{-- <input wire:model="monto_simple" wire:keyup="ActualizaMonto()" class="Monto" type="text" placeholder="Monto $" autofocus/><br /> --}}
                 <input class="fecha" type="date" value="{{ $fecha_simple }}" placeholder="dd/mm/aaaa"/><br />
     
                 <!-- Botón para abrir el formulario emergente -->
