@@ -19,7 +19,7 @@ class CompraSimpleComponent extends Component
 {
     public $areas, $cuentas, $clientes, $proveedores, $ivas, $detalle;
     public $area, $cuenta, $cliente, $proveedor;
-    public $fecha_simple=false,$monto_simple, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple;
+    public $fecha_simple=false,$monto_simple, $partiva_simple, $area_simple, $cuenta_simple, $cliente_simple, $proveedor_simple, $chkPagado;
     public $iva_simple=1, $ModalGuardado=false;
 
     public $modulo; // Permite hacer elección de módulo a utilizar
@@ -42,7 +42,8 @@ class CompraSimpleComponent extends Component
         $this->clientes = Cliente::where('empresa_id', session('empresa_id'))->ORDERBY('name')->get();
         $this->proveedores = Proveedor::where('empresa_id', session('empresa_id'))->ORDERBY('name')->get();
         $this->ivas = Iva::where('id','>',0)->get();
-        return view('livewire.compra.compra-simple-component')->with(['areas' => $this->areas, 'cuentas' => $this->cuentas,'clientes' => $this->clientes,'ivas' => $this->ivas])->extends('layouts.adminlte');    
+        // return view('livewire.compra.compra-simple-component')->with(['areas' => $this->areas, 'cuentas' => $this->cuentas,'clientes' => $this->clientes,'ivas' => $this->ivas])->extends('layouts.layoutSilmple');
+        return view('livewire.compra.compra-simple-component')->with(['areas' => $this->areas, 'cuentas' => $this->cuentas,'clientes' => $this->clientes,'ivas' => $this->ivas])->extends('layouts.adminlte');
 
         // return view('livewire.compra.compra-simple-component');
     }
@@ -83,7 +84,8 @@ class CompraSimpleComponent extends Component
             'fecha'             => $this->fecha_simple,
             'comprobante'       => 0,
             'detalle'           => '',
-            'BrutoComp'         => (double) number_format($this->monto_simple/(1+$iva/100), 2, '.', ','),
+            'BrutoComp'         => $this->monto_simple,
+            // 'BrutoComp'         => (double) number_format($this->monto_simple/(1+$iva/100), 2, '.', ','),
             'ParticIva'         => $partiva_simple,
             'MontoIva'          => (double) number_format($this->monto_simple - $this->monto_simple/(1+$iva/100), 2, '.', ','),
             'ExentoComp'        => 0,
@@ -91,8 +93,10 @@ class CompraSimpleComponent extends Component
             'PercepcionIvaComp' => 0,
             'RetencionIB'       => 0,
             'RetencionGan'      => 0,
-            'NetoComp'          => (double) number_format($this->monto_simple, 2, '.', ','),
-            'MontoPagadoComp'   => (double) number_format($this->monto_simple, 2, '.', ','),
+            'NetoComp'          => $this->monto_simple,
+            // 'NetoComp'          => (double) number_format($this->monto_simple, 2, '.', ','),
+            // 'MontoPagadoComp'   => (double) number_format($this->monto_simple, 2, '.', ','),
+            'MontoPagadoComp'   => $this->chkPagado ? $this->monto_simple : 0,
             'CantidadLitroComp' => 0,
             'Anio'              => $anio,
             'PasadoEnMes'       => (int) $mes,
@@ -134,7 +138,8 @@ class CompraSimpleComponent extends Component
             'fecha'             => $this->fecha_simple,
             'comprobante'       => 2,
             'detalle'           => $this->detalle,
-            'BrutoComp'         => $this->monto_simple/(1+$iva/100),
+            'BrutoComp'         => $this->monto_simple,
+            // 'BrutoComp'         => $this->monto_simple/(1+$iva/100),
             // 'BrutoComp'         => number_format($this->monto_simple/(1+$iva/100), 2, '.', ','),
             // 'BrutoComp'         => (double) number_format($this->monto_simple/(1+$iva/100), 2, '.', ','),
             'ParticIva'         => $partiva_simple,
@@ -144,8 +149,10 @@ class CompraSimpleComponent extends Component
             'PercepcionIvaComp' => 0,
             'RetencionIB'       => 0,
             'RetencionGan'      => 0,
-            'NetoComp'          => (double) number_format($this->monto_simple, 2, '.', ','),
-            'MontoPagadoComp'   => (double) number_format($this->monto_simple, 2, '.', ','),
+            // 'NetoComp'          => (double) number_format($this->monto_simple, 2, '.', ','),
+            'NetoComp'          => $this->monto_simple,
+            // 'MontoPagadoComp'   => (double) number_format($this->monto_simple, 2, '.', ','),
+            'MontoPagadoComp'   => $this->chkPagado ? $this->monto_simple : 0,
             'CantidadLitroComp' => 0,
             'Anio'              => $anio,
             'PasadoEnMes'       => (int) $mes,

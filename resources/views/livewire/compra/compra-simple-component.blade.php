@@ -16,35 +16,10 @@
         <!--     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">  -->
       </head>
     
-      <body>
-        {{-- <header>
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand ms-3" href="#">MCR Soft 7/7/24 FlexBoxa</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Empresas</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Cobradores</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Clientes</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header> --}}
-    
-        <main>
+      <body> 
+        {{-- <main> --}}
           <!-- desde aca o anterior -->
-          <div cass="container">
+          {{-- <div cass="container"> --}}
             <div>
               <div class="text-center">
                 @if(session()->has('message')) 
@@ -90,10 +65,14 @@
                     </a>
                 </div>
     
-                <input wire:model="monto_simple" class="Monto" type="text" placeholder="Monto $" autofocus/><br />
+                <input wire:model="monto_simple" class="Monto" type="number" placeholder="Monto $" autofocus/><br />
                 {{-- <input wire:model="monto_simple" wire:keyup="ActualizaMonto()" class="Monto" type="text" placeholder="Monto $" autofocus/><br /> --}}
                 <input class="fecha" type="date" value="{{ $fecha_simple }}" placeholder="dd/mm/aaaa"/><br />
-    
+                @error('monto_simple')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
                 <!-- Botón para abrir el formulario emergente -->
     
                 <!-- Cliente -->
@@ -136,22 +115,40 @@
               </div>
               @if($modulo=="Ventas")
                 <div class="col-12 grid justify-center">
-                  <input class="form-control w-full mb-2" type="text" wire:model="detalle" value="" placeholder="Detalle [Opcional]">
-                  <label class=""><b>Ingresos</b></label><br/>
-                    <input class="Guardar" type="button" value="Guardar" wire:click="GuardarVentaSimple"/>
+                  <div class="flex d-flex">
+                    <input class="form-control w-full mb-2" type="text" wire:model="detalle" value="" placeholder="Detalle [Opcional]">
+                    <div class="flex d-flex text-center" style="border: 1px solid lightgray; height: min-content;border-radius: 10px;padding: 5px 5px 0px 6px;margin-left: 10px;">
+                      <label><b>Pagado</b></label><br/>
+                      <input type="checkbox" wire:model="chkPagado" checked style="height:min-content;margin-top: 5px;margin-left: 3px;">
+                    </div>
+                  </div>
+                  <div class="block text-center">
+                    <label class=""><b>Ingresos</b></label><br/>
+                    <button class="btn btn-primary mt-2 col-10" type="button" wire:click="GuardarVentaSimple" wire:loading.attr="disabled">
+                      Guardar
+                    </button>
+                  </div>
                 </div>
               @else
                 <div class="col-12 grid justify-center">
-                  <input class="form-control w-full mb-2" type="text" wire:model="detalle" value="" placeholder="Detalle [Opcional]">
-                  <label class="text-brown font-bold">Egresos</label>
-                  <button class="btn btn-primary mt-2" type="button" wire:click="GuardarCompraSimple" wire:loading.attr="disabled">
+                  <div class="flex d-flex">
+                    <input class="form-control w-full mb-2" type="text" wire:model="detalle" value="" placeholder="Detalle [Opcional]">
+                    <div class="flex d-flex text-center" style="border: 1px solid lightgray; height: min-content;border-radius: 10px;padding: 5px 5px 0px 6px;margin-left: 10px;">
+                      <label><b>Pagado</b></label><br/>
+                      <input type="checkbox" wire:model="chkPagado" checked style="height:min-content;margin-top: 5px;margin-left: 3px;">
+                    </div>
+                  </div>
+                  <div class="block text-center">
+                    <label class="text-brown font-bold">Egresos</label><br/>
+                    <button class="btn btn-primary mt-2 col-10" type="button" wire:click="GuardarCompraSimple" wire:loading.attr="disabled">
                     Guardar
-                  </button>
+                    </button>
+                  </div>
                 </div>
               @endif
             </div>
-          </div>
-        </main>
+          {{-- </div> --}}
+        {{-- </main> --}}
     
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>

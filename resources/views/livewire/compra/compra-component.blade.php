@@ -1,6 +1,6 @@
 {{-- <x-slot> --}}
 <div>
-	{{-- @section('title', session('nombre_empresa')) --}}
+	@section('title', session('nombre_empresa'))
 
 	<x-tituloslim>Comprobantes de Compras - <?php echo session('nombre_empresa').'<br>'; ?></x-tituloslim>
 	<div class="content-center block">
