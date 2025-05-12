@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title><?php session('nombre_empresa') ? echo session('nombre_empresa') : echo "BarBer"; ?></title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

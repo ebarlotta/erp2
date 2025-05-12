@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', session('nombre_empresa') ? session('nombre_empresa') : "BarBer") }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -18,6 +18,7 @@
 
         <!-- Styles -->
         @livewireStyles
+        @laravelPWA
     </head>
     <body class="font-sans antialiased">
         <x-banner />
@@ -36,7 +37,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot ?? ''}}
+                {{ $slot ?? ''}} . 'Encabezado'
             </main>
         </div>
 

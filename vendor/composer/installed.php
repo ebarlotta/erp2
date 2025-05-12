@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-integrandogeri',
         'version' => 'dev-integrandogeri',
-        'reference' => 'fed514d3e6ba5e2526796e1bb1acaee650c0dfa5',
+        'reference' => '694371433c2c598b1645f9ff2031f1f975d9bc77',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -469,7 +469,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-integrandogeri',
             'version' => 'dev-integrandogeri',
-            'reference' => 'fed514d3e6ba5e2526796e1bb1acaee650c0dfa5',
+            'reference' => '694371433c2c598b1645f9ff2031f1f975d9bc77',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1156,6 +1156,15 @@
             'install_path' => __DIR__ . '/../sebastian/version',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'silviolleite/laravelpwa' => array(
+            'pretty_version' => '2.0.3',
+            'version' => '2.0.3.0',
+            'reference' => '5f7135d2ee870af01793c9fdf6b1b932b546e20e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../silviolleite/laravelpwa',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'spatie/laravel-permission' => array(
             'pretty_version' => '6.17.0',

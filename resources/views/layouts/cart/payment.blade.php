@@ -40,7 +40,8 @@
     <link rel="stylesheet" type="text/css" href="cart/css/easy-responsive-tabs.css">
     <script src="cart/css/easyResponsiveTabs.js"></script>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <title>{{ config('app.name', session('nombre_empresa') ? session('nombre_empresa') : "BarBer") }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">

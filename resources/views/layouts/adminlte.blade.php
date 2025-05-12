@@ -1,5 +1,9 @@
 @extends('adminlte::page')
 
+<head>
+    @laravelPWA
+</head>
+
 @section('title', session('nombre_empresa'))
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <script src="cart/js/taildwind.js"></script>
@@ -14,8 +18,4 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
 @stop
