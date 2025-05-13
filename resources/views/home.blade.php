@@ -38,7 +38,8 @@
 						</ul>
 						<ul class="actions stacked">
 							<li><a href="#" class="button primary fit">Comenzar</a></li>
-							<li><a href="/public/login" class="button fit">Ingresar</a></li>
+							<li><a href="/public/public/login" class="button fit">Ingresar</a></li>
+							{{-- <li><a href="/public/login" class="button fit">Ingresar</a></li> --}}
 						</ul>
 					</nav>
 

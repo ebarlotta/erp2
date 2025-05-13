@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-integrandogeri',
         'version' => 'dev-integrandogeri',
-        'reference' => '694371433c2c598b1645f9ff2031f1f975d9bc77',
+        'reference' => 'e9524d1b9ed432c8dcbb9518dab9f15c9367e452',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -469,7 +469,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-integrandogeri',
             'version' => 'dev-integrandogeri',
-            'reference' => '694371433c2c598b1645f9ff2031f1f975d9bc77',
+            'reference' => 'e9524d1b9ed432c8dcbb9518dab9f15c9367e452',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

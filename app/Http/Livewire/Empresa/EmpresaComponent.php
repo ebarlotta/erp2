@@ -63,7 +63,8 @@ class EmpresaComponent extends Component
         }
         else {
             return view('livewire.llevaralogin')->extends('layouts.adminlte');
-            return view('public/login');
+            return view('public/public/login');
+            // return view('public/login');
             $this->Redirecciona();
             return redirect()->route('login');
             // return redirect(route('login'));

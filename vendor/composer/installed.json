@@ -71,12 +71,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "ArielMejiaDev\\LarapexCharts\\LarapexChartsServiceProvider"
-                    ],
                     "aliases": {
                         "LarapexChart": "ArielMejiaDev\\LarapexCharts\\Facades\\LarapexChart"
-                    }
+                    },
+                    "providers": [
+                        "ArielMejiaDev\\LarapexCharts\\LarapexChartsServiceProvider"
+                    ]
                 }
             },
             "installation-source": "dist",
@@ -188,17 +188,17 @@
             "time": "2024-04-25T13:16:04+00:00",
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                },
                 "laravel": {
+                    "aliases": {
+                        "PDF": "Barryvdh\\DomPDF\\Facade\\Pdf",
+                        "Pdf": "Barryvdh\\DomPDF\\Facade\\Pdf"
+                    },
                     "providers": [
                         "Barryvdh\\DomPDF\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Pdf": "Barryvdh\\DomPDF\\Facade\\Pdf",
-                        "PDF": "Barryvdh\\DomPDF\\Facade\\Pdf"
-                    }
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
                 }
             },
             "installation-source": "dist",
