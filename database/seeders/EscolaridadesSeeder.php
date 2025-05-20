@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\geri;
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

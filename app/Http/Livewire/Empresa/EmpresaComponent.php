@@ -72,7 +72,7 @@ class EmpresaComponent extends Component
     }
 
     public function LlevarALogin() {
-        return redirect('public/public/login');
+        return redirect('public/public/public/login');
     }
 
     public function cargamodulos($id) {

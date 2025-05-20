@@ -37,7 +37,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot ?? ''}} . 'Encabezado'
+                {{ $slot ?? ''}}
             </main>
         </div>
 

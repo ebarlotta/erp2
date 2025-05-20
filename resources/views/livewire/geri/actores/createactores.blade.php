@@ -107,7 +107,7 @@
                             @error('condicioniva_id') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-2 col-2">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Estado de Persona</label>
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Estado de Personas</label>
                             <select name="personactivo_id" class="form-control"  wire:model="personactivo_id">
                                 <option value="">-</option>
                                 @foreach($person_activos as $personactivo)

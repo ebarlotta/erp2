@@ -64,7 +64,8 @@
 									<div class="w-full p-2 hover:scale-110 transition-all duration-500">
 										<div class="flex rounded overflow-hidden border">
 											@if($usuario['profile_photo_path']) 
-                                                <img class="block rounded-md flex-none bg-cover" src="{{ asset('storage/'. $usuario['profile_photo_path'] ) }}" style="width: 70px; height: 70px;">
+                                                <img class="block rounded-md flex-none bg-cover" src="{{ asset($usuario['profile_photo_path']) }}" style="width: 70px; height: 70px;">
+												{{-- <img class="block rounded-md flex-none bg-cover" src="{{ asset('storageimages/'. $usuario['profile_photo_path'] ) }}" style="width: 70px; height: 70px;"> --}}
                                                    {{-- src="{{ asset('images2/'. $usuario['profile_photo_path'] ) }}" style="width: 100px; height: 100px;"> --}}
                                                 @else
                                                 <img class="block rounded-md flex-none bg-cover" src="{{ asset('images/sin_imagen.jpg') }}" style="width: 70px; height: 70px;">

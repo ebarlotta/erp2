@@ -14,6 +14,8 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Auth;
 
+use Laravel\Fortify\Contracts\LogoutResponse;
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,18 @@ class FortifyServiceProvider extends ServiceProvider
     {
         // dd(Auth::user());
         //
+
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+
+            public function toResponse($request)
+    
+            {
+    
+                return redirect('/');
+    
+            }
+    
+        });
     }
 
     /**

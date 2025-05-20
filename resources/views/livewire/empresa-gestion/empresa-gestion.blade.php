@@ -48,7 +48,7 @@
                                             @if($empresa->imagen) 
                                                 <img class="block flex-none bg-cover col-2 p-2" src="{{ asset('/'. $empresa->imagen) }}" style="width: 70px; height: 70px; border-radius: 15px;">
                                             @else
-                                                <img class="block flex-none bg-cover col-2 p-2" src="{{ asset('/sin_imagen.jpg') }}" style="width: 70px; height: 70px; border-radius: 15px;">
+                                                <img class="block flex-none bg-cover col-2 p-2" src="{{ asset('/images/sin_imagen.jpg') }}" style="width: 70px; height: 70px; border-radius: 15px;">
                                             @endif
                                             <div class="bg-white rounded-b ml-4 pl-4 justify-between leading-normal bg-transparent col-8" style="margin: auto;hover:background-color=pink; 0pacity: 1;">
                                                 <div class="text-black font-bold text-lg mb-2 leading-tight bg-transparent">

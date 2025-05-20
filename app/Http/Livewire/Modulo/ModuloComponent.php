@@ -65,7 +65,7 @@ class ModuloComponent extends Component
     }
 
     public function LlevarALogin() {
-        return redirect('public/public/login');
+        return redirect('public/public/public/login');
     }
 
     public function EnrutarModulo($NombreModulo) {

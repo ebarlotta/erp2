@@ -9,22 +9,18 @@ use App\Http\Controllers\ImprimirPDF;
 use App\Http\Controllers\SocialController;
 use App\Http\Livewire\Compra\CompraSimpleComponent;
 
+use App\Http\Livewire\Afip\ConsultaAfip;
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Auth::routes()->prefix('');
 
-Route::get('/', function () { return view('welcome'); });
+// Route::get('/', function () { return view('welcome'); });
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+
+
+
 
 // Login with Facebook
 Route::get('login-facebook', [App\Http\Controllers\Auth\LoginSocialController::class,'redirect_facebook']);
@@ -37,9 +33,6 @@ Route::post('/home',[HomeController::class,'upload']);
 // Route::get('/', EmpresaComponent::class)->name('inicio');
 // Route::get('/cart', [App\Http\Controllers\Cart::class, 'index']);
 
-Route::any('{any?}', function () {
-    return view('login');
-})->where('any', '.*');
 
 
 

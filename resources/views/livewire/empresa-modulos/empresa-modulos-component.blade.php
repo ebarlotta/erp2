@@ -47,7 +47,7 @@
 										<div class="w-full p-3 hover:scale-105 transition-all duration-500">
 											<div class="flex rounded overflow-hidden border">
 												@if($empresa->imagen) 
-													<img class="block rounded-md flex-none bg-cover" src="{{ asset('images/'. $empresa->imagen) }}" style="width: 70px; height: 70px;">
+													<img class="block rounded-md flex-none bg-cover" src="{{ asset('/'. $empresa->imagen) }}" style="width: 70px; height: 70px;">
 												@else
 													<img class="block rounded-md flex-none bg-cover" src="{{ asset('images/sin_imagen.jpg') }}"	style="width: 70px; height: 70px;">
 												@endif

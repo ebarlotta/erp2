@@ -100,7 +100,7 @@ use App\Http\Livewire\Listas\ListaComponent;
 //     return view('dasboard');
 // })->name('dashboard');
 
-Route::get('dashboard', EmpresaComponent::class)->name('dashboard');
+// Route::get('dashboard', EmpresaComponent::class)->name('dashboard');
 
 
 // Livewire::setUpdateRoute(function ($handle) {
@@ -115,6 +115,21 @@ Route::get('dashboard', EmpresaComponent::class)->name('dashboard');
 //Route::get('/', function () { return redirect()->route('public/login'); }); // return view('welcome');   
 // php artisan route:clear
 Route::get('/', function () { return redirect()->route('login'); }); // return view('welcome'); 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return redirect()->route('login');
+        // return view('dashboard');
+    })->name('dashboard');
+});
+
+
+
+
 
 Route::get('/home', function () { Auth::loginUsingId(1); return view('home')->extends('guest'); })->name('home2');
 
@@ -152,6 +167,12 @@ Route::get('carts',Cart::class)->name('carts');
 Route::get('payments',PaymentComponent::class)->name('payments');
 
 
+Route::get('/afip', function () {
+    return view('livewire.afip.afip');
+});
+// Route::any('{any?}', function () {
+//     return view('login');
+// })->where('any', '.*');
 
 
 Route::get('proveedores',ProveedorComponent::class)->name('proveedores');
@@ -225,3 +246,10 @@ Route::get('modalpreguntas',[ActorComponent::class,'ResponderInforme1'])->name('
 // Route::get('empresagestion',EmpresaGestion::class)->name('empresagestion');
 // Route::get('unidades',UnidadComponent::class)->name('unidades');
 // Route::get('personas',PersonaComponent::class)->name('personas');
+
+
+
+Route::any('{any?}', function () { return redirect()->route('login'); }
+    // Route::any('{any?}', function () {
+    // return redirect()->route('login'); //view('login');
+)->where('any', '.*');

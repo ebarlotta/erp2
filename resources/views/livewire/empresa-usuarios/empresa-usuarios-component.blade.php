@@ -57,7 +57,7 @@
                                                     style="width: 100px; height: 100px;">
                                                 @else
                                                 <img class="block rounded-md flex-none bg-cover"
-                                                    src="{{ asset('/sin_imagen.jpg') }}"
+                                                    src="{{ asset('images/sin_imagen.jpg') }}"
                                                     style="width: 100px; height: 100px;">
                                                 @endif
                                                 <div

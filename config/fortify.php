@@ -87,7 +87,8 @@ return [
     */
 
     // 'prefix' => '',
-    'prefix' => '/public/public',
+    'prefix' => '/',
+    // 'prefix' => '/public/public',
 
     'domain' => null,
 
