@@ -17,10 +17,15 @@
 								</div>
 								<div style="display: flex; flex-wrap: wrap; justify-content: center;">
 									@foreach ($usuariosNOmodulo as $user)
-										<div style="width: max-content;background-color: bisque;border-radius: 20px;height: 5rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
-											<div style="position: inherit; justify-content: end; display: flex; margin-right: -21px; margin-top: 5px;" placeholder="Agregar" wire:click="AgregarUsuario({{ $user['id'] }})">
-												<img src="{{ asset('images/activo.png') }}" width="20" height="20">
-											</div>
+									<div class="flex d-flex" style="width: max-content;background-color: bisque;border-radius: 20px;height: 5rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
+											@if($user['profile_photo_path'])
+												<img src="{{ asset($user['profile_photo_path']) }}" width="40" height="20" style="border-radius: 10px; margin-right: 10px;">
+											@else
+												<img src="{{ asset('images/sin_imagen.jpg') }}" width="40" height="20" style="border-radius: 10px; margin-right: 10px;">
+											@endif
+											{{-- <div style="position: inherit; justify-content: end; display: flex; margin-right: -21px; margin-top: 5px;" placeholder="Agregar" wire:click="AgregarUsuario({{ $user['id'] }})"> --}}
+											<img src="{{ asset('images/activo.png') }}" width="20" height="20" wire:click="AgregarUsuario({{ $user['id'] }})">
+											{{-- </div> --}}
 											<p style="margin-top: -10px;">{{ $user['name'] }}</p>
 											<p style="margin-top: -14px;">{{ $user['email'] }}</p>
 										</div>
@@ -31,7 +36,12 @@
 									
 										<div style="width: max-content; background-color: rgb(160, 233, 100);border-radius: 20px;height: 5rem;justify-content: center;display: block; margin: 4px; align-items: center; text-align: center; padding-top:1px; padding-left:2rem; padding-right:2rem;">
 											<div style="position: inherit; justify-content: end; display: flex; margin-right: -21px; margin-top: 5px;" placeholder="Eliminar" wire:click="EliminarUsuario({{ $usx['id'] }})">
-												<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20">
+											@if($user['profile_photo_path'])
+												<img src="{{ asset($user['profile_photo_path']) }}" width="40" height="20" style="border-radius: 10px; margin-right: 10px;">
+											@else
+												<img src="{{ asset('images/sin_imagen.jpg') }}" width="40" height="20" style="border-radius: 10px; margin-right: 10px;">
+											@endif
+											<img src="{{ asset('images/pasivo.jpg') }}" width="20" height="20">
 											</div>
 											<b>{{ $usx['name'] }}</b>
 										</div>

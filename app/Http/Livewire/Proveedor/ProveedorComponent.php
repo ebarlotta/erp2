@@ -28,7 +28,7 @@ class ProveedorComponent extends Component
     public function render() {
         if(auth()->check() && auth()->user()->hasPermissionTo('proveedores.Ver')) {
             if(session('empresa_id')) {
-                return view('livewire.proveedor.proveedor-component',['datos'=> Proveedor::where('empresa_id', session('empresa_id'))->where('name', 'like', '%'.$this->search.'%')->paginate(7),])->extends('layouts.adminlte');
+                return view('livewire.proveedor.proveedor-component',['datos'=> Proveedor::where('empresa_id', session('empresa_id'))->where('name', 'like', '%'.$this->search.'%')->orderby('name')->paginate(7),])->extends('layouts.adminlte');
             } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
         } else {
             return view('SinPermiso')->extends('layouts.adminlte');

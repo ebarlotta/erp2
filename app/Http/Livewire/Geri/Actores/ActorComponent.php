@@ -181,11 +181,19 @@ class ActorComponent extends Component
             if(count($a)) { 
                 $this->plan_alimentario_actor_id = $a[0]->plan_id; 
                 $this->plan_alimentario_elegido=$a[0]->plan_id;
-            } else { $this->plan_alimentario_elegido = NULL; }
+            } else { 
+                $this->plan_alimentario_elegido = NULL;
+                $this->CargarInforme('PlanAlimentario');
+                // $listado_planes_alimentarios = PlanAlimentario::where('empresa_id','=',session('empresa_id'))->get();
+
+                // $this->listado_planes_alimentarios = PlanAlimentarioActor::where('actor_id','=',$this->actor_id)->get();
+            }
             $this->isModalOpenGestionar=!$this->isModalOpenGestionar;
         }
     }
 
+    public function cerrarModal(){ $this->isModalOpenGestionar=false; }
+    
     public function CargarInforme($informe) {
         $this->listadoinformes = null;
         switch ($informe) {

@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 
+use Exception;
+
+
 class ElementosComponent extends Component
 {
     // public $Elemento = Elemento::class;
@@ -144,10 +147,19 @@ class ElementosComponent extends Component
             // $path = request('ruta')->store('images');
             // if(is_null($path)) dd('Path nulo');
 
-            $c =  $this->ruta->store('photos');
-            dd($c);
-            $b = new Archivos(['archivable_type'=>'App\Models\Archivos','archivable_id'=>$a->id,'url' => $this->ruta, 'descripcion'=>'Nada']);
-            $b->save();
+            // try {
+            //     $a = $this->ruta->store('photos');
+            // dd('pepe');
+            // }
+            
+            // catch (Exception $e) {
+            //     dd($e->getMessage());
+            // }
+
+            // $c =  $this->ruta->store('photos');
+            // dd($c);
+            // $b = new Archivos(['archivable_type'=>'App\Models\Archivos','archivable_id'=>$a->id,'url' => $this->ruta, 'descripcion'=>'Nada']);
+            // $b->save();
         }
 
         switch ($this->seleccionado) {
