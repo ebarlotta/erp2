@@ -136,14 +136,28 @@ class PlanAlimentarioComponent extends Component
         session()->flash('message', 'Plan Alimentario Hebilitado/Desabilitado.');
     }
 
-    public function habilitarMenuPlan($menu_plan_id, $estado) {
-        MenuPlan::where('id', $menu_plan_id)->update(['activo' => !$estado]);
+    public function habilitarMenuPlan($menu_id, $plan_id, $dia, $momento_dia_id, $estado) {
+    // public function habilitarMenuPlan($menu_plan_id, $estado) {
+        // MenuPlan::where('id', $menu_plan_id)->update(['activo' => !$estado]);
+        // {{$menuadherido->menu_id}},{{$menuadherido->plan_id}},{{$menuadherido->dia}},{{$menuadherido->momento_dia_id}}
+        $a = MenuPlan::where('menu_id', $menu_id)
+        ->where('plan_id', $plan_id)
+        ->where('dia', $dia)
+        ->where('momento_dia_id', $momento_dia_id)
+        ->update(['activo' => !$estado]);
+        // ->get();
+        // dd($estado);
+        // dd($a);
         $this->CargarRelaciones();
         session()->flash('message', 'Plan Alimentario Hebilitado/Desabilitado.');
     }
 
-    public function deletemenuadherido($id) { 
-        MenuPlan::where('id','=',$id)->delete(); 
+    public function deletemenuadherido($menu_id, $plan_id, $dia, $momento_dia_id) { 
+        MenuPlan::where('menu_id','=',$menu_id)
+        ->where('plan_id','=',$plan_id)
+        ->where('dia','=',$dia)
+        ->where('momento_dia_id','=',$momento_dia_id)
+        ->delete(); 
         $this->CargarRelaciones();
     }
 }

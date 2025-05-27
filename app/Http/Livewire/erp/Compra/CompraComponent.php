@@ -530,6 +530,7 @@ class CompraComponent extends Component
             case 10 : $caso="Octubre"; break;
             case 11 : $caso="Noviembre"; break;
             case 12 : $caso="Diciembre"; break;
+            default : $caso="Enero"; break;
         }
         return $caso;
     }

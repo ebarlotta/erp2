@@ -18,6 +18,7 @@ class CreateMenuingredienteTable extends Migration
 
             $table->unsignedBigInteger('menu_id');
             $table->unsignedBigInteger('elemento_id');
+            // $table->unsignedBigInteger('elemento_id');
             $table->double('cantidad')->default(0);
 
             $table->timestamps();

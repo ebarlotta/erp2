@@ -23,29 +23,26 @@
                             @endcan
                         </div>
                         <div style="background-color: lightgray; display: flex; justify-content: space-between;" class="w-full">
-                            <div wire:click="cambiarSeleccion('Medicamento')" @if($seleccionado=='Medicamento') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                            <div class="my-auto mx-auto rounded-md p-2 @if($seleccionado=='Medicamento') bg-red-400 @endif" wire:click="cambiarSeleccion('Medicamento')" >
                                 <input class="mr-2" type="radio" name="elements" value="Medicamento" checked>
                                 <label class="mr-4" for="huey">Medicamento</label>
                             </div>
 
-                            <div wire:click="cambiarSeleccion('Ingrediente')" @if($seleccionado=='Ingrediente') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                            <div class="my-auto mx-auto rounded-md p-2 @if($seleccionado=='Ingrediente') bg-red-300 @endif" wire:click="cambiarSeleccion('Ingrediente')" >
                                 <input class="mr-2" type="radio" name="elements" value="Ingrediente">
                                 <label class="mr-4" for="huey">Ingrediente</label>
-                            </div>
-                            
-                            {{-- <div wire:click="cambiarSeleccion('Elemento')" @if($seleccionado=='Elemento') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif><input class="mr-2" type="radio" name="elements" value="Elemento"><label class="mr-4" for="huey">Elemento</label></div> --}}
-                            
-                            <div wire:click="cambiarSeleccion('Descartable')" @if($seleccionado=='Descartable') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                            </div>                            
+                            <div class="my-auto mx-auto rounded-md p-2 @if($seleccionado=='Descartable') bg-red-200 @endif" wire:click="cambiarSeleccion('Descartable')">
                                 <input class="mr-2" type="radio" name="elements" value="Descartable">
                                 <label class="mr-4" for="huey">Descartable</label>
                             </div>
                             
-                            <div wire:click="cambiarSeleccion('Producto')" @if($seleccionado=='Producto') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                            <div class="my-auto mx-auto rounded-md p-2 @if($seleccionado=='Producto') bg-red-100 @endif" wire:click="cambiarSeleccion('Producto')">
                                 <input class="mr-2" type="radio" name="elements" value="Producto">
                                 <label class="mr-4" for="huey">Producto</label>
                             </div>
                             
-                            <div wire:click="cambiarSeleccion('Articulo')" @if($seleccionado=='Articulo') class="mt-1 mx-2 px-2 bg-red-300 rounded-md" @endif>
+                            <div class="my-auto mx-auto rounded-md p-2 @if($seleccionado=='Articulo') bg-red-300 @endif" wire:click="cambiarSeleccion('Articulo')">
                                 <input class="mr-2" type="radio" name="elements" value="Artíulo">
                                 <label class="mr-4" for="huey">Artículo</label>
                             </div>

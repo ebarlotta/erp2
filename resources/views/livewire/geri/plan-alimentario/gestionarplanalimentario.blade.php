@@ -105,12 +105,14 @@
                                         {{-- {{ $menuadherido }} --}}
                                         <div class="flex justify-center">
                                             @if($menuadherido->activo==0)
-                                                <span class="border rounded-full border-grey bg-green-400 flex items-center cursor-pointer w-12 justify-start" wire:click="habilitarMenuPlan({{$menuadherido->id}}, {{ $menuadherido->activo }})">
+                                                {{-- <span class="border rounded-full border-grey bg-green-400 flex items-center cursor-pointer w-12 justify-start" wire:click="habilitarMenuPlan({{$menuadherido->id}}, {{ $menuadherido->activo }})"> --}}
+                                                <span class="border rounded-full border-red bg-red-400 flex items-center cursor-pointer w-12 justify-end" wire:click="habilitarMenuPlan({{$menuadherido->menu_id}},{{$menuadherido->plan_id}},{{$menuadherido->dia}},{{$menuadherido->momento_dia_id}},{{ $menuadherido->activo }})">
                                                     <span class="rounded-full border w-6 h-6 border-grey shadow-inner bg-white"></span>
                                                 </span>
                                             @else
                                                 <!------- on ----->
-                                                <span class="border rounded-full border-grey bg-red-400 flex items-center cursor-pointer w-12 bg-red justify-end" wire:click="habilitarMenuPlan({{$menuadherido->id}}, {{ $menuadherido->activo }})">
+                                                <span class="border rounded-full border-grey bg-green-400 flex items-center cursor-pointer w-12 justify-start" wire:click="habilitarMenuPlan({{$menuadherido->menu_id}},{{$menuadherido->plan_id}},{{$menuadherido->dia}},{{$menuadherido->momento_dia_id}},{{ $menuadherido->activo }})">
+                                                {{-- <span class="border rounded-full border-grey bg-red-400 flex items-center cursor-pointer w-12 bg-red justify-end" wire:click="habilitarMenuPlan({{$menuadherido->id}}, {{ $menuadherido->activo }})"> --}}
                                                     <span class="rounded-full border w-6 h-6 border-grey shadow-inner bg-white"></span>
                                                 </span>
                                             @endif
@@ -119,7 +121,7 @@
                                     </td>
                                     <td class="col-1">
                                         <div class="text-center" style="padding-left: 30%;">
-                                            <input type="button" class="hidden sm:flex bg-red-300 hover:bg-red-400 text-black-900 font-bold py-2 px-4 mr-2 rounded col-6" value="X" wire:click="deletemenuadherido({{ $menuadherido->id }})">
+                                            <input type="button" class="hidden sm:flex bg-red-300 hover:bg-red-400 text-black-900 font-bold py-2 px-4 mr-2 rounded col-6" value="X" wire:click="deletemenuadherido({{$menuadherido->menu_id}},{{$menuadherido->plan_id}},{{$menuadherido->dia}},{{$menuadherido->momento_dia_id}})">
                                         </div>
                                     </td>
                                 </tr>
