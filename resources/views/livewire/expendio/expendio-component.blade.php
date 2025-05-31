@@ -26,7 +26,8 @@
           <div class="card-header ui-sortable-handle" style="cursor: move; justify-content: space-between;">
               <h3 class="card-title ml-3">Datos de Expediciones</h3>
               <div class="flex ml-4" style="padding-left: 60px;">
-                Fecha: <input type="date" wire:model="fecha" style="background-color: lightgreen; border-radius: 5px; padding: 0px 5px 0px 5px; margin-left: 7px;">
+                Fecha: <input type="date" wire:model="fecha" wire:change="CargarMenues()" style="background-color: lightgreen; border-radius: 5px; padding: 0px 5px 0px 5px; margin-left: 7px;">
+                {{ $fecha }} - {{ $borrar }}
               </div>
           </div>
         </div>

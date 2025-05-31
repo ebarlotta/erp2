@@ -68,5 +68,6 @@ class ModuloSeeder extends Seeder
         DB::table('modulos')->insert(['name' => 'Perfil', 'pagina' => 'profile','imagen'=>'haberes.jpg','leyenda'=>'Modifique los datos personales.','habilitado'=>1]);   // Geri
         DB::table('modulos')->insert(['name' => 'Tipos de Personas', 'pagina' => 'tiposdepersonas','imagen'=>'tiposdepersonas.jpg','leyenda'=>'Administra los distintos actores/personas dentro del sistema.','habilitado'=>1]);   // Geri
         DB::table('modulos')->insert(['name' => 'Planes Alimentarios', 'pagina' => 'planalimentario','imagen'=>'planalimentario.jpg','leyenda'=>'Administra los distintos Planes alimentarios de la institución.','habilitado'=>1]);   // Geri
+        DB::table('modulos')->insert(['name' => 'Expendio', 'pagina' => 'expendio','imagen'=>'expendio.jpg','leyenda'=>'Administra el expendio de los menúes.','habilitado'=>1]);   // Geri
     }
 }

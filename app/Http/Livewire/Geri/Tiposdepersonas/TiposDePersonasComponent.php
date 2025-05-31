@@ -63,7 +63,7 @@ class TiposDePersonasComponent extends Component
             'tipodepersona' => $this->tipodepersona,
         ]);
 
-        session()->flash('message', $this->tipo_de_persona_id ? 'Tipo de Perona Actualizado.' : 'Tipo de Perona Creado.');
+        session()->flash('message', $this->tipo_de_persona_id ? 'Tipo de Perona Actualizado.' : 'Tipo de Persona Creado.');
 
         $this->closeModalPopover();
         $this->resetCreateForm();

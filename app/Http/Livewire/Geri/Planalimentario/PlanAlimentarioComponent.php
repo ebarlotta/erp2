@@ -133,7 +133,7 @@ class PlanAlimentarioComponent extends Component
 
     public function habilitar($plan_id, $estado) {
         PlanAlimentario::where('id', $plan_id)->update(['activo' => !$estado]);
-        session()->flash('message', 'Plan Alimentario Hebilitado/Desabilitado.');
+        session()->flash('message', 'Plan Alimentario Habilitado/Desabilitado.');
     }
 
     public function habilitarMenuPlan($menu_id, $plan_id, $dia, $momento_dia_id, $estado) {
@@ -149,7 +149,7 @@ class PlanAlimentarioComponent extends Component
         // dd($estado);
         // dd($a);
         $this->CargarRelaciones();
-        session()->flash('message', 'Plan Alimentario Hebilitado/Desabilitado.');
+        session()->flash('message', 'Plan Alimentario Habilitado/Desabilitado.');
     }
 
     public function deletemenuadherido($menu_id, $plan_id, $dia, $momento_dia_id) { 

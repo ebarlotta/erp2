@@ -37,9 +37,9 @@
                                     <!-- 
                                     <div class="w-50 inline-flex ml-4">
                                         <input class=" mr-4" type="radio" id="male" name="gender" value="1" wire:modal="SexoCama">
-                                        <img class="w-9" src="{{asset('images/avatars/boy.png')}}" alt="">
+                                        <img class="w-9" src="{{asset('images/geri/avatars/boy.png')}}" alt="">
                                         <input class=" ml-4" type="radio" id="female" name="gender" value="0" wire:modal="SexoCamaM">
-                                        <img class="w-9" src="{{asset('images/avatars/girl.png')}}" alt=""> -->
+                                        <img class="w-9" src="{{asset('images/geri/avatars/girl.png')}}" alt=""> -->
                                     <!-- <input type="text" class="shadow appearance-none border rounded w-full ml-3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="exampleFormControlInput1" placeholder="Ingrese Sexo Cama" wire:model="SexoCama"> 
                                     </div>-->
                                 </div>

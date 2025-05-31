@@ -132,6 +132,14 @@
 
                             {{-- Planes Alimentarios --}}
                             <div class="col-12" style="display: flex; overflow: auto; background-color: lemonchiffon">
+                                {{-- <input type="button" wire:click="openModalNuevaIndicacion('Medicamentos')" class="btn btn-info sm:flex bg-green-300 hover:bg-green-400 text-black-900 font-bold ml-2 rounded" style="max-height: 31px;" value="+ Agregar Menú"> --}}
+                                
+                                {{-- @if($listadomedicamentos)   
+                                    {!! $visualizarMedicamentos !!}                                
+                                @else
+                                    No hay menues configurados por el momento
+                                @endif --}}
+
                                 @if($visualizarPlanAlimentario)
                                     {!! $visualizarPlanAlimentario !!}
                                 @else

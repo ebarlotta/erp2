@@ -15,7 +15,7 @@ class CreateActorAgentesTable extends Migration
     {
         Schema::create('actor_agentes', function (Blueprint $table) {
             $table->id();
-            $table->date('fingreso')->nullable();
+            $table->date('fingreso')->default(now());
             $table->date('fegreso')->nullable();
             $table->string('alias')->nullable();
             $table->double('peso_id')->nullable();

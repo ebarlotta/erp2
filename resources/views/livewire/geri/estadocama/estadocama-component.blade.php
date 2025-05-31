@@ -68,11 +68,11 @@
                             <td class="border  py-2">
                                 <div class="flex justify-center">
                                     @if($cama->SexoCama==1)
-                                        <img class="w-9" src="{{asset('images/avatars/boy.png')}}" alt="" wire:click="cambiar({{ $cama->id }} , {{ $cama->SexoCama }})">
+                                        <img class="w-9" src="{{asset('images/geri/avatars/boy.png')}}" alt="" wire:click="cambiar({{ $cama->id }} , {{ $cama->SexoCama }})">
                                     @endif
                                     @if($cama->SexoCama==2)
                                     <!------- on ----->
-                                        <img class="w-9" src="{{asset('images/avatars/girl.png')}}" alt="" wire:click="cambiar({{ $cama->id }}, {{ $cama->SexoCama }})">                                
+                                        <img class="w-9" src="{{asset('images/geri/avatars/girl.png')}}" alt="" wire:click="cambiar({{ $cama->id }}, {{ $cama->SexoCama }})">                                
                                     @endif
                                     @if($cama->SexoCama==3)
                                     <!------- on ----->

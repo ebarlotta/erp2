@@ -249,7 +249,7 @@ Route::get('modalpreguntas',[ActorComponent::class,'ResponderInforme1'])->name('
 
 
 
-Route::any('{any?}', function () { return redirect()->route('login'); }
+Route::any('{any?}', function () { return redirect()->route('public/public/login'); }
     // Route::any('{any?}', function () {
     // return redirect()->route('login'); //view('login');
 )->where('any', '.*');

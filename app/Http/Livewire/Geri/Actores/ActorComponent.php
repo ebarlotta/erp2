@@ -329,7 +329,7 @@ class ActorComponent extends Component
                         <p>
                             <table class="w-full">
                                 <tr>
-                                    <td><b class="ml-2">Plan Alimentario Utilizado</b></td>
+                                    <td><b class="ml-2">Plan Alimentario utilizado</b></td>
                                     <td>';
                                     if(count($a)) { $this->plan_alimentario_actor_id = $a[0]->plan_id; }
                                     $matriz = $matriz . '<select wire:model="plan_alimentario_elegido" wire:change="ActualizarPlanAlimentarioActor()">
@@ -547,13 +547,19 @@ class ActorComponent extends Component
     public function cerrarModalModificarIndicacion() { $this->mostrarModificarIndicacion = false; }
     public function cerrarModalNuevaIndicacion() { $this->mostrarNuevaIndicacion = false; }
     public function openModalNuevaIndicacion($caso) { 
+        // dd('entra');
         switch ($caso) {
             case 'Medicamentos': 
                 $this->elementos = Elemento::join('elemento_medicamentos','elemento_medicamentos.elemento_id','elementos.id')
                 ->where('empresa_id','=',session('empresa_id'))->orderby('name')->get();
                 break;
+            // case 'Menu':
+            //     $this->elementos = Elemento::join('elemento_medicamentos','elemento_medicamentos.elemento_id','elementos.id')
+            //     ->where('empresa_id','=',session('empresa_id'))->orderby('name')->get();
+            //     break;
         }
-    $this->mostrarNuevaIndicacion = true; }
+        $this->mostrarNuevaIndicacion = true; 
+    }
 
     private function resetCreateForm(){
         $this->name = '';
@@ -587,7 +593,7 @@ class ActorComponent extends Component
             'nombre' => $this->name, 
             'domicilio' => $this->domicilio, 
             'documento' =>  $this->documento,
-            'tipos_documento' =>  1, //$this->tipodocumento_id, 
+            'tipos_documento' => $this->tipodocumento_id, 
             'nacimiento' =>  date(now()), //$this->nacimiento,
             'sexo_id' =>  1, //$this->sexo_id, 
             'email' =>  $this->email, 
@@ -601,7 +607,7 @@ class ActorComponent extends Component
             'condicioniva_id' => $this->condicioniva_id,
             'empresa_id' => session('empresa_id'),
             'urlfoto' => asset('images/sin_imagen.jpg'),
-            'activo' => 1,
+            'activo' => $this->personactivo_id,
         ]);
 
         // dd($a->id);
@@ -663,6 +669,16 @@ class ActorComponent extends Component
     public function delete($id)
     {
         // fALTA MENSAJE DE CONFIRMACIÓN DE ELIMINACIÓN
+        switch($this->tipopersona_id) {
+            case 1: ActorAgente::find('actor_id',$id)->delete(); break;
+            case 2: ActorReferente::find('actor_id',$id)->delete(); break;
+            case 3: ActorPersonal::find('actor_id',$id)->delete(); break;
+            case 4: ActorProveedor::find('actor_id',$id)->delete(); break;    
+            case 5: ActorCliente::find('actor_id',$id)->delete(); break;
+            case 6: ActorVendedor::find('actor_id',$id)->delete(); break;
+            case 7: ActorEmpresa::find('actor_id',$id)->delete(); break;
+
+        }
         Actor::find($id)->delete();
         session()->flash('message', 'Actor Eliminado.');
         $this->Filtrar();
@@ -768,10 +784,13 @@ class ActorComponent extends Component
         $this->personactivo_id = $actor->personactivo_id;
         $this->email_verified_at = $actor->email_verified_at;
         $this->condicioniva_id = $actor->condicioniva_id;
-        // dd($actor->actor_referente()[0]->nombre);
-        if(!is_null($actor->actor_referente())) {
+
+        if(!is_null($actor->actor_referente()) && !empty($actor->actor_referente()) && count($actor->actor_referente())>0) {
             $this->actor_referente = $actor->actor_referente()[0]->nombre;
             $this->referente_id = $actor->actor_referente()[0]->id;
+        } else {
+            $this->actor_referente = null; // o un valor por defecto
+            $this->referente_id = null;    // o un valor por defecto
         }
     }
 

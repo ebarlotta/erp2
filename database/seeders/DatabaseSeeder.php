@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(IvaSeeder::class);
         $this->call(CondicionivaSeeder::class);
         $this->call(PermissionsSeeder::class);
+        $this->call(SexoSeeder::class);
         
         DB::table('empresas')->insert(['name' => 'Empresa de Pruebas','direccion' => 'Dirección','cuit' => '20123456789','ib' => '012345678','imagen' => 'BarBer.png','establecimiento' => '0','telefono' => '12345678','actividad' => 'Desarrollo','actividad1' => 'Software','menu' => '2','email'=>'enzo@gmail.com','habilitada'=>true,'nombretitular'=>'Enzo','dnititular'=>'1234',]);
         
@@ -83,11 +84,11 @@ class DatabaseSeeder extends Seeder
         // Geri
         // ======================================
 
-        // $this->call(EscolaridadesSeeder::class);
-        DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Primaria Incompleta',]);
-        DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Primaria Completa',]);
-        DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Secundaria Incompleta',]);
-        DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Secundaria Completa',]);
+        $this->call(EscolaridadesSeeder::class);
+        // DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Primaria Incompleta',]);
+        // DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Primaria Completa',]);
+        // DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Secundaria Incompleta',]);
+        // DB::table('escolaridades')->insert(['escolaridadDescripcion'=>'Secundaria Completa',]);
         // $this->call(TipoDePersonaSeeder::class);
         DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Agente',]);
         DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Referente',]);
@@ -150,9 +151,9 @@ class DatabaseSeeder extends Seeder
         DB::table('escalas')->insert(['nombreescala'=>'Numérica','tipodatos'=>'numerico','minimo'=>0,'maximo'=>1,'empresa_id'=>1]);
         DB::table('escalas')->insert(['nombreescala'=>'Porcentaje','tipodatos'=>'numerico','minimo'=>0,'maximo'=>100,'empresa_id'=>1]);
         // $this->call(SexoSeeder::class);
-        DB::table('sexos')->insert(['nombresexo'=>'Masculino',]);
-        DB::table('sexos')->insert(['nombresexo'=>'Femenino',]);
-        DB::table('sexos')->insert(['nombresexo'=>'Prefiero no decirlo',]);
+        // DB::table('sexos')->insert(['nombresexo'=>'Masculino',]);
+        // DB::table('sexos')->insert(['nombresexo'=>'Femenino',]);
+        // DB::table('sexos')->insert(['nombresexo'=>'Prefiero no decirlo',]);
 
         // $this->call(AreasSeeder::class);
         DB::table('areas')->insert(['name'=>'Administración','empresa_id'=>1,'habilitada'=>1]);

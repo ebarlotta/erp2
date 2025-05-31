@@ -17,12 +17,12 @@ class TipoDePersonaSeeder extends Seeder
         //DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Residente',]);
         //DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Referente',]);
         //DB::table('tipo_de_personas')->truncate();
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Agente',]);
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Referente',]);
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Personal',]);
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Proveedor',]);
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Cliente',]);
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Vendedor',]);
-        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Empresa',]);
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Agente',]); //1
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Referente',]); // 2
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Personal',]); // 3
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Proveedor',]); // 4
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Cliente',]); // 5
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Vendedor',]); // 6
+        DB::table('tipo_de_personas')->insert(['tipodepersona'=>'Empresa',]); // 7
     }
 }

@@ -26,7 +26,7 @@ class MenuComponent extends Component
                 $this->menues = Menu::where('empresa_id', session('empresa_id'))->orderby('nombremenu')->get();
                 $this->ingredientes = ElementoIngrediente::join('elementos', 'elementos.id','elemento_ingredientes.elemento_id')->orderby('elementos.name')->get();
                 $this->CargarIngredientesDelMenu();
-                return view('livewire.geri.menu.menu-component',['datos'=> Menu::where('empresa_id', session('empresa_id'))->paginate(3),])->extends('layouts.adminlte');
+                return view('livewire.geri.menu.menu-component',['datos'=> Menu::where('empresa_id', session('empresa_id'))->paginate(10),])->extends('layouts.adminlte');
             } else { return view('livewire.seleccionarempresa')->extends('layouts.adminlte'); }
         } else {
             return view('SinPermiso')->extends('layouts.adminlte');
