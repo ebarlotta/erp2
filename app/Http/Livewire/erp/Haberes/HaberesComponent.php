@@ -153,9 +153,11 @@ class HaberesComponent extends Component
     }
 
     public function cargaIdEmpleado($id) {
-        $this->empleadoseleccionado = $id;
+        // $this->empleadoseleccionado = $id;
+        $this->empleadoseleccionado =$this->IdEmpleado;
         //$this->CargarEmpleadosActivosEnEsePeriodo();
         // $this->CargarEmpleadosTipoYCategoria($id);
+        // dd($this->IdEmpleado);
         $this->CargarDatosRecibo($this->anio . $this->mes, $this->empleadoseleccionado);
     }
 

@@ -28,6 +28,10 @@
                 @include('livewire.haberes.gestionarconceptos')
             @endif
 
+            {{-- INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES (NULL, 'haberes.GraficarReciboVer', 'web', NULL, NULL), (NULL, 'haberes.AltaReciboVer', 'web', NULL, NULL), (NULL, 'haberes.ModificarEscalaVer', 'web', NULL, NULL), (NULL, 'haberes.EliminarReciboVer', 'web', NULL, NULL), (NULL, 'haberes.GestionarConceptosVer', 'web', NULL, NULL); --}}
+            
+            {{-- INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES ('223', 'App\\Models\\User', '1'), ('224', 'App\\Models\\User', '1'), ('225', 'App\\Models\\User', '1'), ('226', 'App\\Models\\User', '1'), ('227', 'App\\Models\\User', '1'); --}}
+
             {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> --}}
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-1">
                 @if (session()->has('messageOk'))
@@ -117,7 +121,7 @@
                                                 </td>
                                                 <td style="vertical-align: top;">
                                                     @if ($EmpleadosActivos)
-                                                        <select class="form-control" wire:model="IdEmpleado">
+                                                        <select class="form-control" wire:model="IdEmpleado" wire:change="cargaIdEmpleado('1')">
                                                             <option value="00" selected>-</option>
                                                             @foreach ($EmpleadosActivos as $empleado)
                                                                 <option  style="text-decoration:line-through; color: rgb(246, 250, 0); background-color: rgb(5, 26, 1);" value="{{ $empleado['id'] }}" wire:click="cargaIdEmpleado({{ $empleado['id'] }});">{{ ucwords(strtolower($empleado['name'])) }}</option>
@@ -260,11 +264,11 @@
             <!-- //Boton Alta Recibo  -->
             <div class="General">
                 <div>
-                    @can('haberes.GraficarReciboVer')
+                    {{-- @can('haberes.GraficarReciboVer') --}}
                         <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black; " title="Dibuja el recibo por Pantalla" wire:click="cargaIdEmpleado({{ $IdEmpleado }})">Graficar Recibo</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="cargaIdEmpleado({{ $IdEmpleado }})" disabled>Graficar Recibo</button>
-                    @endcan
+                    {{-- @else --}}
+                        {{-- <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="cargaIdEmpleado({{ $IdEmpleado }})" disabled>Graficar Recibo</button> --}}
+                    {{-- @endcan --}}
                 </div>
                 <div>
                     @can('haberes.AltaReciboVer')

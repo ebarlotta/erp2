@@ -79,13 +79,12 @@ Revisar que las tablas migradas tengan agregada la empresa a la que prertenecen
 
 Ingredientes    REALIZADO 05/07/2024
 - Se mejoró la redirección de las páginas que se vence la sesión y se mejoraron la asignación de permisos a los módulos que tiene habilitado el usuario y la empresa -> 07/01/2025
-
-- Medicamentos    REVISAR PORQUE HAY DOS INTERFACES MEDICAMENTOS Y ELEMENTOS-MEDICAMENTOS
-
-- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR -> Por ahora se consifura cada usuario en particular cada uno de los permisos. Hay que habilitar la posibilidad de copiar usuarios y permisos
 - Hacer Paciente_Medicamentos -> Realizado 07/01/2025 -> Pensar en el tema de la unidad/cantidad
 
-- Desarrollar RelPacienteMenu -> Se relaciona a travéz del Plan Alimentario que se elige para el paciente
+- Desarrollar RelPacienteMenu -> Se relaciona a travéz del Plan Alimentario que se elige para el paciente 01/05/2025
+
+- Medicamentos    REVISAR PORQUE HAY DOS INTERFACES MEDICAMENTOS Y ELEMENTOS-MEDICAMENTOS
+- FALTA AGREGAR ROLES Y PERMISOS POR EMPRESA, NO A NIVEL GENERAL, SINO PARTICULAR -> Por ahora se consifura cada usuario en particular cada uno de los permisos. Hay que habilitar la posibilidad de copiar usuarios y permisos
 
 - Gestión de Certificados
 

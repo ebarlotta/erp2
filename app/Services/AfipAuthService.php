@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 
+
 class AfipAuthService
 {
     private $endpoint;
@@ -15,14 +16,26 @@ class AfipAuthService
 
     public function __construct()
     {
+        // include('afip.php');
         // $_ENV['empresa_id']
-        // dd(Storage::path(env('AFIP_CERT_PATH')));
-        $this->cuit = env('AFIP_CUIT');
-        $this->cert = Storage::path(env('AFIP_CERT_PATH'));
-        $this->key = Storage::path(env('AFIP_KEY_PATH'));
-        $this->endpoint = env('AFIP_ENV') === 'testing'
-            ? 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl'
-            : 'https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl';
+        //dd(Storage::path(env('AFIP_CERT_PATH')));
+        // $this->cuit = env('AFIP_CUIT');
+        // $this->cert = Storage::path(env('AFIP_CERT_PATH'));
+        // $this->key = Storage::path(env('AFIP_KEY_PATH'));
+        // $this->endpoint = env('AFIP_ENV') === 'testing'
+            // ? 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl'
+            // : 'https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl';
+
+        $this->cuit = '30712141790';
+        $this->cert = 'afip/DN30712141790_2229f09cd05f7c6.crt';
+        // $this->cert = 'afip/Sociedad/BarBerDesarrollos_18d017bf15393d95.crt';
+        // dd($this->cert);
+        $this->key = 'afip/barber';
+        // $this->key = 'afip/Sociedad/privada';
+        // $this->endpoint = env('AFIP_ENV') === 'testing'
+        //     ? 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl'
+        //     : 'https://wsaa.afip.gov.ar/ws/services/LoginCms?wsdl';
+        
     }
 
     public function getCredentials(string $service = 'wsfe')
@@ -40,6 +53,7 @@ class AfipAuthService
 
         // Generar nuevo TA
         $tra = $this->generateTRA($service);
+        // dd($tra);
         $cms = $this->signTRA($tra);
         $ta = $this->callWSAA($cms);
 
@@ -71,19 +85,30 @@ class AfipAuthService
         $tmpFile = tempnam(sys_get_temp_dir(), 'tra');
         file_put_contents($tmpFile, $tra);
         $cmsFile = tempnam(sys_get_temp_dir(), 'cms');
+        // dd($this->cert);
         
         openssl_pkcs7_sign(
             $tmpFile,
             $cmsFile,
-            "file://{$this->cert}",
-            "file://{$this->key}",
+            $this->cert,
+            [$this->key, 'barber'], // Passphrase aquí
             [],
             PKCS7_DETACHED
         );
 
+        // openssl_pkcs7_sign(
+        //     $tmpFile,
+        //     $cmsFile,
+        //     "file://{$this->cert}",
+        //     "file://{$this->key}",
+        //     [],
+        //     PKCS7_DETACHED
+        // );
+
         // PKCS7_BINARY
         // "file://{$this->cert}",
             // "file://{$this->key}",
+dd($cmsFile);            
         dd(file_get_contents($cmsFile));
 
         $cms = file_get_contents($cmsFile);
