@@ -79,7 +79,7 @@ class HaberesComponent extends Component
 
     //Modales
     public $ModalAgregar=false;
-    public $ModificarEscalaShow=false;
+    public $ModificarEscalaShow_modal=false;
     public $ModificarConceptoShow=false;
     public $GestionarConceptos=false;
     public $EliminarConceptoReciboShow=false;
@@ -605,11 +605,11 @@ class HaberesComponent extends Component
 
     public function ModificarEscalaShow() {
         $this->CategoriasProf = Categoriaprofesional::where('empresa_id',session('empresa_id'))->where('activo',1)->orderby('name')->get();
-        $this->ModificarEscalaShow=true;
+        $this->ModificarEscalaShow_modal=true;
     }
 
     public function ModificarEscalaHide() {
-        $this->ModificarEscalaShow=false;
+        $this->ModificarEscalaShow_modal=false;
     }
 
     public function ModificarEscala($IdCatProf, $Opcion) {

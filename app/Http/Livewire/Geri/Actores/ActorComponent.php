@@ -120,7 +120,7 @@ class ActorComponent extends Component
                     ->where('habitacions.empresa_id',session('empresa_id'))
                     ->orderBy('cama_id')
                     ->get(),true);
-                if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
+                if(is_null($this->radios)) { $this->radios='Todos'; $this->actores = Actor::where('empresa_id',session('empresa_id'))->orderby('nombre')->get(); } // Carga inicial de los actores y categoria Todos en la variable radios
                 else {
                     $this->Filtrar();
                 }

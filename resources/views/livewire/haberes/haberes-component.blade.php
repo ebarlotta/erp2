@@ -15,7 +15,7 @@
             @if ($ModalAgregar)
                 @include('livewire.haberes.altaconcepto')
             @endif
-            @if ($ModificarEscalaShow)
+            @if ($ModificarEscalaShow_modal)
                 @include('livewire.haberes.modificarescala')
             @endif
             @if ($ModificarConceptoShow)
@@ -27,10 +27,6 @@
             @if ($GestionarConceptos)
                 @include('livewire.haberes.gestionarconceptos')
             @endif
-
-            {{-- INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES (NULL, 'haberes.GraficarReciboVer', 'web', NULL, NULL), (NULL, 'haberes.AltaReciboVer', 'web', NULL, NULL), (NULL, 'haberes.ModificarEscalaVer', 'web', NULL, NULL), (NULL, 'haberes.EliminarReciboVer', 'web', NULL, NULL), (NULL, 'haberes.GestionarConceptosVer', 'web', NULL, NULL); --}}
-            
-            {{-- INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES ('223', 'App\\Models\\User', '1'), ('224', 'App\\Models\\User', '1'), ('225', 'App\\Models\\User', '1'), ('226', 'App\\Models\\User', '1'), ('227', 'App\\Models\\User', '1'); --}}
 
             {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> --}}
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg px-4 py-1">
@@ -121,7 +117,7 @@
                                                 </td>
                                                 <td style="vertical-align: top;">
                                                     @if ($EmpleadosActivos)
-                                                        <select class="form-control" wire:model="IdEmpleado" wire:change="cargaIdEmpleado('1')">
+                                                        <select class="form-control" wire:model="IdEmpleado">
                                                             <option value="00" selected>-</option>
                                                             @foreach ($EmpleadosActivos as $empleado)
                                                                 <option  style="text-decoration:line-through; color: rgb(246, 250, 0); background-color: rgb(5, 26, 1);" value="{{ $empleado['id'] }}" wire:click="cargaIdEmpleado({{ $empleado['id'] }});">{{ ucwords(strtolower($empleado['name'])) }}</option>
@@ -264,87 +260,42 @@
             <!-- //Boton Alta Recibo  -->
             <div class="General">
                 <div>
-                    {{-- @can('haberes.GraficarReciboVer') --}}
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black; " title="Dibuja el recibo por Pantalla" wire:click="cargaIdEmpleado({{ $IdEmpleado }})">Graficar Recibo</button>
-                    {{-- @else --}}
-                        {{-- <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="cargaIdEmpleado({{ $IdEmpleado }})" disabled>Graficar Recibo</button> --}}
-                    {{-- @endcan --}}
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black; " title="Dibuja el recibo por Pantalla" wire:click="cargaIdEmpleado({{ $IdEmpleado }})">Graficar Recibo</button>
                 </div>
                 <div>
-                    @can('haberes.AltaReciboVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo de sueldo para el mes seleccionado" wire:click="AltaRecibo({{ $anio }},'{{ $mes }}')">Alta Recibo</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="AltaRecibo({{ $anio }},'{{ $mes }}')" disabled>Alta Recibo</button>
-                    @endcan
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo de sueldo para el mes seleccionado" wire:click="AltaRecibo({{ $anio }},'{{ $mes }}')">Alta Recibo</button>
                 </div>
                 <div>
-                    @can('haberes.AltaReciboVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo del primer Aguinaldo" wire:click="AltaRecibo({{ $anio }},'{{ 13 }}')">1erSAC</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="AltaRecibo({{ $anio }},'{{ 13 }}')" disabled>1erSAC</button>
-                    @endcan
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo del primer Aguinaldo" wire:click="AltaRecibo({{ $anio }},'{{ 13 }}')">1erSAC</button>
                 </div>
                 <div>
-                    @can('haberes.AltaReciboVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo del segundo Aguinaldo" wire:click="AltaRecibo({{ $anio }},'{{ 14 }}')">2doSAC</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="AltaRecibo({{ $anio }},'{{ 14 }}')" disabled>2doSAC</button>
-                    @endcan
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo del segundo Aguinaldo" wire:click="AltaRecibo({{ $anio }},'{{ 14 }}')">2doSAC</button>
                 </div>
                 <div>
-                    @can('haberes.AltaReciboVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo de Vacaciones" wire:click="AltaRecibo({{ $anio }},'{{ 15 }}')">Vacaciones</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="AltaRecibo({{ $anio }},'{{ 15 }}')" disabled>Vacaciones</button>
-                    @endcan
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo recibo de Vacaciones" wire:click="AltaRecibo({{ $anio }},'{{ 15 }}')">Vacaciones</button>
                 </div>
                 <div>
-                    @can('haberes.AltaReciboVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo conjunto de recibos de sueldo para el mes seleccionado">Alta Grupal</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" disabled>Alta Grupal</button>
-                    @endcan
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera un nuevo conjunto de recibos de sueldo para el mes seleccionado">Alta Grupal</button>
                 </div>
-                {{-- <div>
-                    <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999; color:black;"
-                        title="Agrega un nuevo concepto al recibo">Administrar
-                        Conceptos</button>
+                <!-- <div>
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999; color:black;" title="Agrega un nuevo concepto al recibo">Administrar Conceptos</button>
                 </div>
                 <div>
-                    <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999; color:black;"
-                        title="Genera una vista previa del recibo">Graficar</button>
-                </div> --}}
+<button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3" style="box-shadow: 2px 2px 5px #999; color:black;" title="Genera una vista previa del recibo">Graficar</button>
+                </div> -->
                 <div>
-                    @can('haberes.AltaReciboVer')
-                        <a href="{{ URL::to('/pdf/recibos'.'/'.$anio.'/'.$mes.'/'.$empleadoseleccionado) }}" target="_blank">
-						    <button class="rounded-md bg-green-300 px-8 py-1 ml-4 mt-6 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black; text-decoration: none">Imprimir PDF</button>
-					    </a><br>
-                    @else
-                        <a href="{{ URL::to('/pdf/recibos'.'/'.$anio.'/'.$mes.'/'.$empleadoseleccionado) }}" target="_blank">
-                            <button class="rounded-md bg-green-300 px-8 py-1 ml-4 mt-6 btn btn-outline-success" title="Debe solicitar los permisos necesarios" style="box-shadow: 2px 2px 5px #999; color:black; text-decoration: none" disabled>Imprimir PDF</button>
-                        </a><br>
-                    @endcan
+                    <a href="{{ URL::to('/pdf/recibos'.'/'.$anio.'/'.$mes.'/'.$empleadoseleccionado) }}" target="_blank">
+                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black; text-decoration: none">Imprimir PDF</button>
+                    </a><br>
                 </div>
                 <div>
-                    @can('haberes.ModificarEscalaVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Cambia la escala salarial con la que se liquida el recibo" wire:click="ModificarEscalaShow">Modificar Escala</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="ModificarEscalaShow" disabled>Modificar Escala</button>
-                    @endcan
+                    <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Cambia la escala salarial con la que se liquida el recibo" wire:click="ModificarEscalaShow()">Modificar Escala</button>
                 </div>
                 <div>
-                    @can('haberes.EliminarReciboVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Elimina el recibo seleccionado" wire:click="EliminarRecibo">Eliminar Recibo</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="EliminarRecibo" disabled>Eliminar Recibo</button>
-                    @endcan
+                    <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Elimina el recibo seleccionado" wire:click="EliminarRecibo">Eliminar Recibo</button>
                 </div>
                 <div>
-                    @can('haberes.GestionarConceptosVer')
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Elimina el recibo seleccionado" wire:click="GestionarConceptosShow()">Gestionar Conceptos</button>
-                    @else
-                        <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Debe solicitar los permisos necesarios" wire:click="GestionarConceptosShow()" disabled>Gestionar Conceptos</button>
-                    @endcan
+                    <button class="rounded-md bg-green-300 px-6 mx-2 py-1 mt-3 btn btn-outline-success" style="box-shadow: 2px 2px 5px #999; color:black;" title="Elimina el recibo seleccionado" wire:click="GestionarConceptosShow()">Gestionar Conceptos</button>
                 </div>
             </div>
         </td>

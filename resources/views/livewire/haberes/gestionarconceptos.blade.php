@@ -6,7 +6,7 @@
         </div>
 
         <span class="hidden sm:inline-block sm:align-middle "></span>
-        <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-1 sm:align-top sm:w-full"
+        <div class="ml-5 inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-1 sm:align-top sm:w-full"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline" style="max-width: 70%;">
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -139,7 +139,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="display: flex; flex-wrap; ">
+                                <td style="display: flex; flex-wrap;">
                                     <div class="form-control" style="margin: 8px"><p> Monto Fijo</p><input type="text" wire:model="montofijo"></div>
                                     <div class="form-control" style="margin: 8px" data-toggle="tooltip" data-placement="right" title="<p>RA: Remuneración Asignada</p> \n /n <br /> <p></p>BC: Básico Categoría</p>">Forma de Cálculo<input type="text" wire:model="calculo"></div>
                                     <div class="form-control" style="margin: 8px">Monto Máximo:<input type="text" wire:model="montomaximo"></div>

@@ -1,8 +1,8 @@
-@props(['momento','cerrado'])
+@props(['momento','cerrado','titulo'])
 <div>
     <div class="card direct-chat direct-chat-primary">
         <div class="card-header ui-sortable-handle flex" style="cursor: move; justify-content: space-between;">
-            <h3 class="card-title ml-3" style="justify-content: right;width: 10%;"><b>{{ $momento }}</b>
+            <h3 class="card-title ml-3" style="justify-content: right;width: 10%;"><b>{{ $titulo }}</b>
             @php
                 if($cerrado=='true') { echo '<br><input type="text" style="text-align: center; background-color: lightgreen; border-radius: 5px; padding: 0px 5px 0px 5px; margin-left: 7px; width: 100%; height: 22px;" value="Cerrado" disabled>'; }
             @endphp
@@ -35,19 +35,23 @@
                         </tr>
                         @php
                            switch ($momento) {
-                            case 'Desayuno': $regs = $this->registros_desayuno; break;
-                            case 'Almuerzo': $regs = $this->registros_almuerzo; break;
-                            case 'Mediatarde': $regs = $this->registros_mediatarde; break;
-                            case 'Cena': $regs = $this->registros_cena; break;
+                            case '1': $regs = $this->registros_desayuno; break;
+                            case '2': $regs = $this->registros_almuerzo; break;
+                            case '3': $regs = $this->registros_mediatarde; break;
+                            case '4': $regs = $this->registros_cena; break;
                         }
                         @endphp
+                        
                         @foreach ($regs as $registro)
-                            <tr>
-                                <td>{{ $registro->nombreactor }}</td>
-                                <td>{{ $registro->nombreplan }}</td>
-                                <td>{{ $registro->nombremenu }}</td>
-                                <td>{{ $registro->descripcion }}</td>
-                                <td><input type="checkbox" checked></td>
+                        {{-- {{ var_dump($registro) }} --}}
+                            <tr wire:click="CambiarCondicionMenu('{{ $momento.'-'.$registro['indice'].'-'.$registro['actor_id'].'-'.$registro['menu_id'] }}')">
+                                {{-- <td>{{ $registro->indice }}</td> --}}
+                                <td>{{ $registro['nombreactor'] }}</td>
+                                <td>{{ $registro['nombreplan'] }}</td>
+                                <td>{{ $registro['nombremenu'] }}</td>
+                                <td>{{ $registro['descripcion'] }}</td>
+                                {{-- <td><input style="width: 20px;height: 20px;" type="checkbox"  @if($registro->presente) checked @endif></td> --}}
+                                <td><input style="width: 20px;height: 20px;" type="checkbox"  @if($registro['presente']) checked @endif></td>
                             </tr>
                         @endforeach
                     </table>

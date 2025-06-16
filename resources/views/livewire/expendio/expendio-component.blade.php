@@ -27,19 +27,19 @@
               <h3 class="card-title ml-3">Datos de Expediciones</h3>
               <div class="flex ml-4" style="padding-left: 60px;">
                 Fecha: <input type="date" wire:model="fecha" wire:change="CargarMenues()" style="background-color: lightgreen; border-radius: 5px; padding: 0px 5px 0px 5px; margin-left: 7px;">
-                {{ $fecha }} - {{ $borrar }}
+                {{ $fecha }}
               </div>
           </div>
         </div>
 
-        <x-expedirMomento momento="Desayuno" cerrado="true"></x-expedirMomento>
-        <x-expedirMomento momento="Almuerzo" cerrado="false"></x-expedirMomento>
-        <x-expedirMomento momento="Mediatarde" cerrado="false"></x-expedirMomento>
-        <x-expedirMomento momento="Cena" cerrado="false"></x-expedirMomento>
+        <x-expedirMomento momento="1" cerrado="true"  titulo="Desayuno">Desayuno</x-expedirMomento> 
+        <x-expedirMomento momento="2" cerrado="false" titulo="Almuerzo"></x-expedirMomento>
+        <x-expedirMomento momento="3" cerrado="false" titulo="Mediatarde"></x-expedirMomento>
+        <x-expedirMomento momento="4" cerrado="false" titulo="Cena"></x-expedirMomento>
 
       </div>
 
-    </style>
+    
       <x-dialog-modal  class="max-w-lg w-full mt-10" wire:model="confirmacion" style="margin-top: 100px">
         <x-slot name="title" style="margin-top: 100px; padding-top: 100px;">
             Cerrar Servicio

@@ -1,15 +1,24 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'dev-integrandogeri',
-        'version' => 'dev-integrandogeri',
-        'reference' => 'e9524d1b9ed432c8dcbb9518dab9f15c9367e452',
+        'pretty_version' => 'dev-afip',
+        'version' => 'dev-afip',
+        'reference' => '994788474703267ac7bad381aa56948fe581539e',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'afipsdk/afip.php' => array(
+            'pretty_version' => 'v1.1.4',
+            'version' => '1.1.4.0',
+            'reference' => '4b3c00a904264cca7923cc4b3e6a3363522505b5',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../afipsdk/afip.php',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'almasaeed2010/adminlte' => array(
             'pretty_version' => 'v3.2.0',
             'version' => '3.2.0.0',
@@ -467,9 +476,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'dev-integrandogeri',
-            'version' => 'dev-integrandogeri',
-            'reference' => 'e9524d1b9ed432c8dcbb9518dab9f15c9367e452',
+            'pretty_version' => 'dev-afip',
+            'version' => 'dev-afip',
+            'reference' => '994788474703267ac7bad381aa56948fe581539e',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

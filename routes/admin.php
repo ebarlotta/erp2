@@ -122,8 +122,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return redirect()->route('login');
-        // return view('dashboard');
+        // return redirect()->route('login');
+        return view('dashboard');
     })->name('dashboard');
 });
 
@@ -249,7 +249,26 @@ Route::get('modalpreguntas',[ActorComponent::class,'ResponderInforme1'])->name('
 
 
 
-Route::any('{any?}', function () { return redirect()->route('public/public/login'); }
-    // Route::any('{any?}', function () {
-    // return redirect()->route('login'); //view('login');
-)->where('any', '.*');
+
+use App\Http\Controllers\AfipController;
+// Para API
+Route::prefix('afip')->group(function () {
+    Route::get('status', [AfipController::class, 'checkStatus']);
+    Route::get('last-voucher', [AfipController::class, 'getLastVoucher']);
+});
+
+// Para web
+Route::middleware('auth')->prefix('afip')->group(function () {
+    Route::get('status', [AfipController::class, 'checkStatus'])->name('afip.status');
+    Route::get('statusgetLastVoucher', [AfipController::class, 'getLastVoucher'])->name('statusgetLastVoucher');
+    // Otras rutas web...
+});
+
+
+
+
+
+// Route::any('{any?}', function () { return redirect()->route('public/public/login'); }
+//     // Route::any('{any?}', function () {
+//     // return redirect()->route('login'); //view('login');
+// )->where('any', '.*');

@@ -192,8 +192,8 @@ return [
 
     'use_route_url' => false,
     'dashboard_url' => '/empresas',
-    'logout_url' => 'public/public/public/logout',
-    // 'logout_url' => 'public/logout',
+    // 'logout_url' => 'public/public/public/logout',
+    'logout_url' => 'logout',
     // 'login_url' => 'public/public/login',
     'login_url' => 'public/login',
     // 'login_url' => 'public/login',
